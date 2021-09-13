@@ -1,5 +1,4 @@
-import { isFunction } from '@/utils';
-import { isEqual } from 'lodash';
+import { isEqual, isFunction } from 'lodash';
 import { useState, useMemo } from 'react';
 
 const useArray = <T = any>(initialArray: T[]) => {

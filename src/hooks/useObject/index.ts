@@ -14,7 +14,7 @@ export default function useObject<T extends object = object>(
   const [state, setState] = useState<T>(defaultValue);
   const reset = useCallback(() => {
     setState(defaultValue);
-  }, [state]);
+  }, [defaultValue]);
 
   const isEdited = useMemo(() => {
     return !isEqual(state, defaultValue);

@@ -5,15 +5,8 @@ interface Obj {
   name: string;
   age: number;
 }
-// todo:
-// 1. 可以重置单个属性
-// 2. 可以设置单个属性
 const Demo = () => {
   const [obj, actions] = useObject<Obj>({
-    name: 'bhwa233',
-    age: 25,
-  });
-  const [state, setState] = useState<Obj>({
     name: 'bhwa233',
     age: 25,
   });
