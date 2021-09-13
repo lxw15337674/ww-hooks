@@ -11,12 +11,6 @@ export default () => {
         <button type="button" onClick={() => toggle()}>
           toggle
         </button>
-        <button type="button" onClick={() => toggle(true)}>
-          toggle true
-        </button>
-        <button type="button" onClick={() => toggle(false)}>
-          toggle false
-        </button>
       </p>
 
       <p>
