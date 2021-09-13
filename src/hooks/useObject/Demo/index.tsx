@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Fragment } from 'react-dom/node_modules/@types/react';
 import { useObject } from 'wwhooks';
 interface Obj {
   name: string;
@@ -18,22 +19,36 @@ const Demo = () => {
   });
   return (
     <div>
-      {(Object.keys(obj) as Array<keyof Obj>).map((key) => {
-        return (
-          <p key={key}>
-            {key} : {obj[key]}
-          </p>
-        );
-      })}
+      <p>
+        {(Object.keys(obj) as Array<keyof Obj>).map((key) => {
+          return (
+            <span key={key}>
+              {key} : {obj[key]}
+            </span>
+          );
+        })}
+      </p>
       <p>isEdited : {actions.isEdited.toString()}</p>
       <p>
-        <button onClick={() => actions.reset()}>reset</button>
+        <button
+          onClick={() =>
+            actions.set((prev) => {
+              age: ++prev.age;
+            })
+          }
+        >
+          age++
+        </button>
+
         <input
           value={obj.name}
           onChange={(e) => {
             actions.set({ name: e.target.value });
           }}
         />
+      </p>
+      <p>
+        <button onClick={actions.reset}>reset</button>
       </p>
     </div>
   );

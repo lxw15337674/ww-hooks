@@ -12,9 +12,9 @@ export default function useObject<T extends object = object>(
   defaultValue: T = Object.create(null),
 ): [T, Action<T>] {
   const [state, setState] = useState<T>(defaultValue);
-  const reset = useMemo(() => {
-    return () => setState(defaultValue);
-  }, []);
+  const reset = useCallback(() => {
+    setState(defaultValue);
+  }, [state]);
 
   const isEdited = useMemo(() => {
     return !isEqual(state, defaultValue);
@@ -40,7 +40,7 @@ export default function useObject<T extends object = object>(
         return { ...prevState, ...innerState };
       });
     },
-    [isValue, setState],
+    [setState],
   );
 
   return [state, { set, reset, isEdited }];
