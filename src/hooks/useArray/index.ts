@@ -1,8 +1,13 @@
 import { isFunction } from '@/utils';
+import { isEqual } from 'lodash';
 import { useState, useMemo } from 'react';
 
 const useArray = <T = any>(initialArray: T[]) => {
   const [value, setValue] = useState<T[]>(initialArray);
+
+  const isEdited = useMemo(() => {
+    return !isEqual(initialArray, value);
+  }, [initialArray, value]);
   const actions = useMemo(
     () => ({
       set: (index: number, item: T | ((prev: T) => T)) => {
@@ -42,7 +47,7 @@ const useArray = <T = any>(initialArray: T[]) => {
     }),
     [initialArray],
   );
-  return [value, actions] as const;
+  return [value, { isEdited, ...actions }] as const;
 };
 
 export default useArray;

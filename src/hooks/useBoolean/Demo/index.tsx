@@ -14,7 +14,7 @@ export default () => {
       </p>
 
       <p>
-        <button type="button" onClick={setTrue} className="mx-5">
+        <button type="button" onClick={setTrue}>
           Set true
         </button>
         <button type="button" onClick={setFalse}>

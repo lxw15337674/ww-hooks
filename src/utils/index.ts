@@ -1,3 +1,3 @@
-export const isFunction = (value: any): value is (...params: any[]) => any => {
+export const isFunction = (value: any): value is Function => {
   return typeof value === 'function';
 };
