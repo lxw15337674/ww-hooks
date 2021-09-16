@@ -1,13 +1,12 @@
 ---
-title:
 group:
-  title: state
-  path: /state
+  title: cache
+  path: /cache
 ---
 
-# useBoolean
+# useUrlState
 
-简化 boolean 类型操作
+简化url的query 参数操作
 
 ## demo
 

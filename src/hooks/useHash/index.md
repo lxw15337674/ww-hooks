@@ -15,6 +15,7 @@ group:
 ## API
 
 ```typescript
+const [state, setState, reset] = useHash(initialHash);
 
 ```
 
