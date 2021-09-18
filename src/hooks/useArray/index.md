@@ -50,4 +50,4 @@ const [array, { array, set, setAll, remove, reset, clear, push }] = useArray<
 
 | **参数**       | **说明** | **类型** | **默认值** | 必填 |
 | -------------- | -------- | -------- | ---------- | ---- |
-| _defaultValue_ | 初始数据 | `T[]`    | []         | 否   |
+| _defaultValue_ | 初始数据 | `T[]`    | `[]`        | 否   |

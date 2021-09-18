@@ -1,47 +1,37 @@
-import { useMemo, useState, useCallback } from 'react';
+import { useMemo, useCallback, useState } from 'react';
 import { isEqual } from 'lodash';
+import { setState } from '@/common/utils';
+import { SetDispatch } from '@/common/interface';
+
 interface Action<T> {
   reset: () => void;
-  set: React.Dispatch<SetStateAction<T>>;
+  set: SetDispatch<T>;
   isEdited: boolean;
 }
 
-export type SetStateAction<T> = Partial<T> | ((prevState: T) => Partial<T>);
+// export type setObjectAction<T> = Partial<T> | ((prevObject: T) => Partial<T>);
 
 export default function useObject<T extends object = object>(
   defaultValue: T = Object.create(null),
 ): [T, Action<T>] {
-  const [state, setState] = useState<T>(defaultValue);
+  const [object, setObject] = useState<T>(defaultValue);
   const reset = useCallback(() => {
-    setState(defaultValue);
+    setObject(defaultValue);
   }, [defaultValue]);
 
   const isEdited = useMemo(() => {
-    return !isEqual(state, defaultValue);
-  }, [state, defaultValue]);
-
-  const isValue = useCallback(
-    (state: SetStateAction<T>): state is Partial<T> => {
-      return typeof state !== 'function';
-    },
-    [],
-  );
+    return !isEqual(object, defaultValue);
+  }, [object, defaultValue]);
 
   const set = useCallback(
-    (state: SetStateAction<T>) => {
-      if (isValue(state)) {
-        setState((prevState: T) => {
-          return { ...prevState, ...state };
-        });
-        return;
-      }
-      setState((prevState: T) => {
-        const innerState = state(prevState);
-        return { ...prevState, ...innerState };
+    (object) => {
+      setObject((prevObject: T) => {
+        const state = setState<T>(object, prevObject);
+        return { ...prevObject, ...state };
       });
     },
-    [setState],
+    [setObject],
   );
 
-  return [state, { set, reset, isEdited }];
+  return [object, { set, reset, isEdited }];
 }

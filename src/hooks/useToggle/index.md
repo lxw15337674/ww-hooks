@@ -7,7 +7,7 @@ group:
 
 # useBoolean
 
-简化 boolean 类型操作
+简化数据选择的操作
 
 ## demo
 

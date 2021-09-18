@@ -11,7 +11,7 @@ const setWindowsHash = (hash: string) => {
 };
 
 export default (
-  initialState: string,
+  initialState?: string,
 ): [string, Dispatch<SetStateAction<string>>, () => void] => {
   const [hash, setHash] = useState<string>(() => {
     let hash = window.location.hash.substring(1);
