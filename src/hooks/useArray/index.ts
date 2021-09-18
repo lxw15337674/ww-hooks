@@ -1,3 +1,4 @@
+import { setState } from '@/common/utils';
 import { isEqual, isFunction } from 'lodash';
 import { useState, useMemo } from 'react';
 
@@ -11,12 +12,8 @@ const useArray = <T = any>(initialArray: T[]) => {
     () => ({
       set: (index: number, item: T | ((prev: T) => T)) => {
         setValue((prev) => {
-          const temp = [...prev];
-          if (isFunction(item)) {
-            temp[index] = item(temp[index]);
-          } else {
-            temp[index] = item;
-          }
+          let temp = [...prev];
+          temp[index] = setState<T>(item, temp[index]);
           return temp;
         });
       },
