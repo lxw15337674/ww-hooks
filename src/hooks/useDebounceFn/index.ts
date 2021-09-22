@@ -1,19 +1,22 @@
 import { Fn } from '@/common/interface';
-import { debounce } from 'lodash';
-import { useCallback, useMemo, useRef } from 'react';
+import { debounce, DebounceSettings } from 'lodash';
+import { useMemo, useRef } from 'react';
 import useUnmount from '../useUnmount';
 
 export default function useDebounceFn<T extends Fn = Fn>(
   fn: T,
   wait?: number,
-  leading?: boolean,
+  options?: DebounceSettings,
 ) {
+  const fnRef = useRef<T>(fn);
+  fnRef.current = fn;
+
+  const debounceSettings = useRef<DebounceSettings>();
+  debounceSettings.current = options;
+
   const debouncedFn = useMemo(() => {
-    wait = wait ?? 1000;
-    leading = leading ?? false;
-    console.log(leading);
-    return debounce<T>(fn, wait, { leading, trailing: !leading });
-  }, [fn, wait, leading]);
+    return debounce<T>(fnRef.current, wait ?? 1000, debounceSettings.current);
+  }, [wait, fnRef, debounceSettings]);
 
   useUnmount(() => {
     debouncedFn.cancel();
