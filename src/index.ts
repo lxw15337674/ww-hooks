@@ -10,4 +10,4 @@ export { default as useToggle } from './hooks/useToggle';
 export { default as useDebounceFn } from './hooks/useDebounceFn';
 export { default as useLockScroll } from './hooks/useLockScroll';
 export { default as useRequest } from './hooks/useRequest/oldIndex';
-export { default as useAxios } from './hooks/useRequest/useAxios/';
+export { default as useAxios } from './hooks/useRequest/useAxios/useAxios';

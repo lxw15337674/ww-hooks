@@ -1,10 +1,10 @@
-import useRequest from './useAxios';
+import useRequest from './useAxios/useAxios';
 import { SetPartialStateAction, SetStateAction } from '@/common/interface';
 import { setState } from '@/common/utils';
 import { mockRequest } from './Demo/mockRequest';
 
 import { Params } from './interface';
-import useAxios from './useAxios';
+import useAxios from './useAxios/useAxios';
 import { AxiosRequestConfig } from 'axios';
 
 const defaultConfig: Required<Params> = {
