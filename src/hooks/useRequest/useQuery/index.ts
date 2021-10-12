@@ -10,6 +10,7 @@ export function useQuery(axiosConfig?: AxiosRequestConfig) {
   //       },
   //     ],
   //   });
+  //
   return useAxios(axiosConfig, {
     request: [
       (config) => {
