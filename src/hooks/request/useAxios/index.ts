@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import Axios, { AxiosRequestConfig } from 'axios';
+import Axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { Interceptors } from './interface';
 
 const axios = Axios.create();
@@ -11,23 +11,25 @@ function awaitWrap<T, U = any>(promise: Promise<T>) {
   );
 }
 
-export default function useAxios<D = any, T = never>(
+export default function useAxios<D = any>(
   axiosConfig?: AxiosRequestConfig,
   interceptors?: Interceptors,
-): () => Promise<D | T> {
+): () => Promise<AxiosResponse<D>> {
   const request = useCallback(async () => {
     let currentConfig = axiosConfig;
     for (let fn of interceptors?.request ?? []) {
       currentConfig = fn(currentConfig);
     }
-    let [data, err] = await awaitWrap<D>(axios.request<D, D>(currentConfig));
+    let [data, err] = await awaitWrap<AxiosResponse<D>>(
+      axios.request<D, AxiosResponse<D>>(currentConfig),
+    );
     for (let fn of interceptors?.response ?? []) {
       [data, err] = fn(data, err);
     }
-    if (data === null) {
-      return Promise.reject(err);
+    if (err === null) {
+      return Promise.resolve(data);
     }
-    return Promise.resolve(data);
+    return Promise.reject(err);
   }, [axiosConfig, interceptors]);
   return request;
 }

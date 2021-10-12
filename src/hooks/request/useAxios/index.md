@@ -13,14 +13,17 @@ group:
 
 ## demo
 
+### 基本请求
+
 <code src="./Demo/Demo1.tsx"/>
+
 
 ### Generics
 
 | 参数 | 说明         | 默认值 |
 | ---- | ------------ | ------ |
 | D    | 返回数据泛型 | any    |
-| T    | 错误数据泛型 | never  |
+|      |              |        |
 
 ### Result<P,D>
 
@@ -40,8 +43,8 @@ group:
 
 ### Interceptors
 
-| *axiosConfig* | axios配置项                             | 类型                                                      | 默认值 |
-| ------------- | --------------------------------------- | --------------------------------------------------------- | ------ |
-| request       | 请求拦截器                              | `(axiosConfig: AxiosRequestConfig) => AxiosRequestConfig` | -      |
-| response      | 响应拦截器,P为返回数据，D为处理后的数据 | `<P = any, D = P> { (data: P, err: string): [D, string]}` | -      |
+| *axiosConfig* | axios配置项                             | 类型                                                         | 默认值 |
+| ------------- | --------------------------------------- | ------------------------------------------------------------ | ------ |
+| request       | 请求拦截器                              | `(axiosConfig: AxiosRequestConfig) => AxiosRequestConfig`    | -      |
+| response      | 响应拦截器,P为返回数据，D为处理后的数据 | `<P = any, D = P> { (data: AxiosResponse<P>, err: Error): [AxiosResponse<D>, Error];}` | -      |
 
