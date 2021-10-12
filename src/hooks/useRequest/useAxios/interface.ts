@@ -25,6 +25,6 @@ export interface ResponseFn<P = any, D = P> {
 }
 
 export interface Interceptors {
-  request: RequestFn[];
-  response: ResponseFn[];
+  request?: RequestFn[];
+  response?: ResponseFn[];
 }

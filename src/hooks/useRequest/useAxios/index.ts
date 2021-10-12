@@ -1,31 +1,33 @@
-import { AxiosRequestConfig } from 'axios';
-import useAxios from './useAxios';
-import { Interceptors, RequestFn, ResponseFn } from './interface';
-import _ from 'lodash';
+import { useCallback } from 'react';
+import Axios, { AxiosRequestConfig } from 'axios';
+import { Interceptors } from './interface';
 
-class createUseAxios {
-  private config: AxiosRequestConfig;
-  private interceptors: Interceptors;
-  constructor(config?: AxiosRequestConfig) {
-    this.config = config;
-  }
-  mergeConfig(config?: AxiosRequestConfig) {
-    this.config = { ...this.config, ...config };
-  }
-  RegisterRequestInterceptors(requestFn: RequestFn) {
-    this.interceptors.request.push(requestFn);
-  }
-  RegisterResponseInterceptors(responseFn: ResponseFn) {
-    this.interceptors.response.push(responseFn);
-  }
-  create() {
-    return (config: AxiosRequestConfig, interceptors: Interceptors) => {
-      config = { ...this.config, ...config };
-      const inter = _.merge(this.interceptors, interceptors);
-      useAxios(config, inter);
-    };
-  }
+const axios = Axios.create();
+
+function awaitWrap<T, U = any>(promise: Promise<T>) {
+  return promise.then<[T, null], [null, U]>(
+    (data: T) => [data, null],
+    (err: U) => [null, err],
+  );
 }
 
-export default useAxios;
-export { createUseAxios };
+export default function useAxios<D = any, T = never>(
+  axiosConfig?: AxiosRequestConfig,
+  interceptors?: Interceptors,
+): () => Promise<D | T> {
+  const request = useCallback(async () => {
+    let currentConfig = axiosConfig;
+    for (let fn of interceptors?.request ?? []) {
+      currentConfig = fn(currentConfig);
+    }
+    let [data, err] = await awaitWrap<D>(axios.request<D, D>(currentConfig));
+    for (let fn of interceptors?.response ?? []) {
+      [data, err] = fn(data, err);
+    }
+    if (data === null) {
+      return Promise.reject(err);
+    }
+    return Promise.resolve(data);
+  }, [axiosConfig, interceptors]);
+  return request;
+}
