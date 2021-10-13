@@ -1,12 +1,15 @@
 import { useState, useCallback, useMemo } from 'react';
 import { AxiosRequestConfig, AxiosResponse } from 'axios';
-import _, { defaults } from 'lodash';
-import { Config, UseStateAxios } from './interface';
+import _ from 'lodash';
+import { Config } from './interface';
 import useAxios from '../useAxios';
 import useMount from '../../useMount';
 
 // 数据请求Hook
-const useStateAxios: UseStateAxios = <D>(config, axiosConfig) => {
+const useStateAxios = <D>(
+  config?: Config<D>,
+  axiosConfig?: AxiosRequestConfig,
+) => {
   config = useMemo(() => {
     const defaultConfig: Config<D> = {
       manual: false,

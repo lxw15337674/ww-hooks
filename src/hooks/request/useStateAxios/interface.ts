@@ -24,7 +24,3 @@ export interface Config<D> {
   onError?: (result: Error, config: AxiosRequestConfig) => void;
   initialData?: D;
 }
-
-export interface UseStateAxios<D = any> {
-  (config?: Config<D>, axiosConfig?: AxiosRequestConfig): void;
-}
