@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { useRequest } from 'wwhooks';
+import { useStateAxios } from 'wwhooks';
 
 export default () => {
-  const request = useRequest(
+  const request = useStateAxios(
     {
       manual: true,
       onSuccess: (data) => {
@@ -12,7 +12,7 @@ export default () => {
     { url: 'https://getman.cn/mock/test2' },
   );
   //   失败的请求
-  const errorRequest = useRequest(
+  const errorRequest = useStateAxios(
     {
       manual: true,
       onError: (error) => {

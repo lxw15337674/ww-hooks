@@ -25,6 +25,6 @@ export interface Config<D> {
   initialData?: D;
 }
 
-// export interface useRequest<P = any, D = any> {
-//   (config?: Config<D>, axiosConfig?: AxiosRequestConfig): void;
-// }
+export interface UseStateAxios<D = any> {
+  (config?: Config<D>, axiosConfig?: AxiosRequestConfig): void;
+}
