@@ -15,7 +15,7 @@ export default function useRequest<D = any>(
       manual: false,
       initialData: null,
     };
-    return { ...config, ...defaultConfig };
+    return { ...defaultConfig, ...config };
   }, [config]);
   const [data, setData] = useState<D>(config.initialData);
   const [error, setError] = useState<string>();
@@ -24,6 +24,7 @@ export default function useRequest<D = any>(
 
   const run = useCallback(() => {
     setLoading(true);
+    setError(undefined);
     return request()
       .then((data: AxiosResponse<D>) => {
         setData(data.data);

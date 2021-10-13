@@ -41,7 +41,7 @@ export default () => {
           });
         }}
       >
-        测试正常的请求
+        正常的请求
       </button>
       <button
         onClick={() => {
@@ -50,7 +50,7 @@ export default () => {
           });
         }}
       >
-        测试 失败的请求
+        失败的请求
       </button>
     </p>
   );
