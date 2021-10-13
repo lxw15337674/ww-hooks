@@ -1,7 +1,7 @@
 import { useState, useCallback, useMemo } from 'react';
 import { AxiosRequestConfig, AxiosResponse } from 'axios';
 import _ from 'lodash';
-import { Config } from './interface';
+import { Config, Result } from './interface';
 import useAxios from '../useAxios';
 import useMount from '../../useMount';
 
@@ -9,7 +9,7 @@ import useMount from '../../useMount';
 const useStateAxios = <D>(
   config?: Config<D>,
   axiosConfig?: AxiosRequestConfig,
-) => {
+): Result<D> => {
   config = useMemo(() => {
     const defaultConfig: Config<D> = {
       manual: false,
@@ -27,17 +27,16 @@ const useStateAxios = <D>(
     setError(undefined);
     return request()
       .then((data: AxiosResponse<D>) => {
+        setLoading(false);
         setData(data.data);
         config?.onSuccess?.(data);
         return data;
       })
       .catch((err: Error) => {
+        setLoading(false);
         setError(err);
         config?.onError?.(err, axiosConfig[0]);
         return error;
-      })
-      .finally(() => {
-        setLoading(false);
       });
   }, [request, config]);
 

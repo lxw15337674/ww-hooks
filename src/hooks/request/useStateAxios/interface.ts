@@ -1,18 +1,11 @@
 import { AxiosRequestConfig, AxiosResponse } from 'axios';
 
-export interface Result<P, D, R> {
-  data: R;
-  error: string;
+export interface Result<D> {
+  data: D;
+  error: Error;
   loading: boolean;
-  run: () => Promise<R>;
-  mutate: React.Dispatch<React.SetStateAction<R>>;
-}
-
-export interface DebounceOptions<P, D> {
-  wait?: number;
-  leading?: boolean;
-  maxWait?: number;
-  trailing?: boolean;
+  run: () => Promise<Error | AxiosResponse<D>>;
+  mutate: React.Dispatch<React.SetStateAction<D>>;
 }
 
 export interface Config<D> {
