@@ -24,7 +24,3 @@ export interface Config<D> {
   onError?: (result: Error, config: AxiosRequestConfig) => void;
   initialData?: D;
 }
-
-// export interface useRequest<P = any, D = any> {
-//   (config?: Config<D>, axiosConfig?: AxiosRequestConfig): void;
-// }

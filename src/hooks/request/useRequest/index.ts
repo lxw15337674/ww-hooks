@@ -1,24 +1,24 @@
 import { useState, useCallback, useMemo } from 'react';
-import { AxiosResponse } from 'axios';
+import { AxiosRequestConfig, AxiosResponse } from 'axios';
 import _ from 'lodash';
-import { Params } from './interface';
+import { Config } from './interface';
 import useAxios from '../useAxios';
 import useMount from '../../useMount';
 
 // 数据请求Hook
 export default function useRequest<D = any>(
-  config?: Params<D>,
+  config?: Config<D>,
   ...useAxiosConfig: Parameters<typeof useAxios>
 ) {
   config = useMemo(() => {
-    const defaultConfig: Params<D> = {
+    const defaultConfig: Config<D> = {
       manual: false,
       initialData: null,
     };
     return { ...defaultConfig, ...config };
   }, [config]);
   const [data, setData] = useState<D>(config.initialData);
-  const [error, setError] = useState<string>();
+  const [error, setError] = useState<Error>();
   const [loading, setLoading] = useState<boolean>(!config.manual);
   const request = useAxios(...useAxiosConfig);
 
@@ -28,12 +28,12 @@ export default function useRequest<D = any>(
     return request()
       .then((data: AxiosResponse<D>) => {
         setData(data.data);
-        config?.onSuccess?.(data.data);
+        config?.onSuccess?.(data);
         return data;
       })
       .catch((err: Error) => {
-        setError(err.message);
-        config?.onError?.(err.message);
+        setError(err);
+        config?.onError?.(err, useAxiosConfig[0]);
         return error;
       })
       .finally(() => {
