@@ -5,13 +5,6 @@ import { Config, Result } from './interface';
 
 const axios = Axios.create();
 
-function awaitWrap<T, U = any>(promise: Promise<T>) {
-  return promise.then<[T, null], [null, U]>(
-    (data: T) => [data, null],
-    (err: U) => [null, err],
-  );
-}
-
 // 数据请求Hook
 const useAxios = <D>(
   config?: Config<D>,

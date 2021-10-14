@@ -10,7 +10,7 @@ export default () => {
     onSuccess: (data) => {
       ++requestCount;
     },
-    debounce: false,
+    debounce: { wait: 1000 },
   });
   return (
     <div>
@@ -23,7 +23,21 @@ export default () => {
           request.run();
         }}
       >
-        正常的请求
+        request
+      </button>
+      <button
+        onClick={() => {
+          request.cancel();
+        }}
+      >
+        cancel
+      </button>
+      <button
+        onClick={() => {
+          request.flush();
+        }}
+      >
+        flush
       </button>
     </div>
   );

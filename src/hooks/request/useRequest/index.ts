@@ -17,13 +17,13 @@ const useRequest = <D = any>({
   onError,
   initialData,
   ...AxiosConfig
-}: useRequestConfig<D>): useRequestResult<D> => {
+}: useRequestConfig<D>) => {
   const axios = useAxios({ onSuccess, onError, initialData }, AxiosConfig);
 
   const debounceRun = useMemo(() => {
     const run = axios.run;
     if (debounce === true) {
-      return _.debounce(run, 1000);
+      return _.debounce(run, 500);
     }
     if (!debounce) {
       return null;
@@ -52,6 +52,8 @@ const useRequest = <D = any>({
   return {
     ...axios,
     run,
+    cancel: debounceRun.cancel,
+    flush: debounceRun.flush,
   };
 };
 
