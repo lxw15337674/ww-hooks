@@ -1,4 +1,4 @@
-import useStateAxios from '../useStateAxios';
+import useAxios from '../useAxios';
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import {
   DebounceOptions,
@@ -6,33 +6,51 @@ import {
   useRequestConfig,
   useRequestResult,
 } from './interface';
-import { AxiosRequestConfig } from 'axios';
+import { AxiosRequestConfig, AxiosResponse } from 'axios';
 import _ from 'lodash';
+import { useMount } from '../../../';
 
-const useRequest = <D = any>(
-  { debounce, ...useStateAxiosConfig }: useRequestConfig<D>,
-  axiosConfig?: AxiosRequestConfig,
-): useRequestResult<D> => {
-  const stateAxios = useStateAxios(useStateAxiosConfig, axiosConfig);
+const useRequest = <D = any>({
+  debounce,
+  manual,
+  onSuccess,
+  onError,
+  initialData,
+  ...AxiosConfig
+}: useRequestConfig<D>): useRequestResult<D> => {
+  const axios = useAxios({ onSuccess, onError, initialData }, AxiosConfig);
 
   const debounceRun = useMemo(() => {
-    const run = stateAxios.run;
+    const run = axios.run;
     if (debounce === true) {
-      return _.debounce(run, 500);
+      return _.debounce(run, 1000);
+    }
+    if (!debounce) {
+      return null;
     }
     const { wait = 500, ...options } = debounce as DebounceOptions;
     return _.debounce(run, wait, options);
-  }, [stateAxios.run, debounce]);
+  }, [axios.run, debounce]);
 
-  const run = useMemo(() => {
-    if (!debounce) {
-      return stateAxios.run;
+  const run = useCallback(
+    (config?: AxiosRequestConfig): Promise<Error | AxiosResponse<D> | null> => {
+      if (!debounce) {
+        return axios.run(config);
+      }
+      debounceRun(config);
+      return Promise.resolve(null);
+    },
+    [debounceRun, debounce],
+  );
+
+  useMount(() => {
+    if (!manual) {
+      run();
     }
-    debounceRun();
-    return Promise.resolve(null);
-  }, [debounceRun, debounce]);
+  });
+
   return {
-    ...stateAxios,
+    ...axios,
     run,
   };
 };

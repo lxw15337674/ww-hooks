@@ -9,7 +9,6 @@ export { default as useUrlState } from './hooks/useUrlState';
 export { default as useToggle } from './hooks/useToggle';
 export { default as useDebounceFn } from './hooks/useDebounceFn';
 export { default as useLockScroll } from './hooks/useLockScroll';
-export { default as useStateAxios } from './hooks/request/useStateAxios';
 export { default as useAxios } from './hooks/request/useAxios';
-
+export { default as useRequest } from './hooks/request/useRequest';
 export { default as setDefaultArguments } from './utils/setDefaultArguments';

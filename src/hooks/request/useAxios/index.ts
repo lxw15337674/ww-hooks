@@ -1,6 +1,7 @@
-import { useCallback } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import Axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
-import { Interceptors } from './interface';
+import _ from 'lodash';
+import { Config, Result } from './interface';
 
 const axios = Axios.create();
 
@@ -11,25 +12,54 @@ function awaitWrap<T, U = any>(promise: Promise<T>) {
   );
 }
 
-export default function useAxios<D = any>(
+// 数据请求Hook
+const useAxios = <D>(
+  config?: Config<D>,
   axiosConfig?: AxiosRequestConfig,
-  interceptors?: Interceptors,
-): () => Promise<AxiosResponse<D>> {
-  const request = useCallback(async () => {
-    let currentConfig = axiosConfig;
-    for (let fn of interceptors?.request ?? []) {
-      currentConfig = fn(currentConfig);
-    }
-    let [data, err] = await awaitWrap<AxiosResponse<D>>(
-      axios.request<D, AxiosResponse<D>>(currentConfig),
-    );
-    for (let fn of interceptors?.response ?? []) {
-      [data, err] = fn(data, err);
-    }
-    if (err === null) {
-      return Promise.resolve(data);
-    }
-    return Promise.reject(err);
-  }, [axiosConfig, interceptors]);
-  return request;
-}
+): Result<D> => {
+  config = useMemo(() => {
+    const defaultConfig: Config<D> = {
+      initialData: null,
+    };
+    return { ...defaultConfig, ...config };
+  }, [config]);
+  const [data, setData] = useState<D>(config.initialData);
+  const [error, setError] = useState<Error>();
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const run = useCallback(
+    (_axiosConfig?: AxiosRequestConfig) => {
+      const runConfig = { ...axiosConfig, ..._axiosConfig };
+      setLoading(true);
+      setError(undefined);
+      return axios
+        .request<D, AxiosResponse<D>>(runConfig)
+        .then(
+          (data: AxiosResponse<D>) => {
+            setData(data.data);
+            config?.onSuccess?.(data);
+            return data;
+          },
+          (err: Error) => {
+            setError(err);
+            config?.onError?.(err, axiosConfig[0]);
+            return err;
+          },
+        )
+        .finally(() => {
+          setLoading(false);
+        });
+    },
+    [axiosConfig, config],
+  );
+
+  return {
+    data,
+    error,
+    loading,
+    run,
+    mutate: setData,
+  };
+};
+
+export default useAxios;

@@ -1,20 +1,19 @@
 import React, { useState } from 'react';
-import { useStateAxios } from 'wwhooks';
+import { useAxios } from 'wwhooks';
 
 export default () => {
-  const request = useStateAxios(
+  const request = useAxios(
     {
-      manual: true,
       onSuccess: (data) => {
         console.log(data);
       },
+      initialData: 'initialData',
     },
     { url: 'https://getman.cn/mock/test2' },
   );
   //   失败的请求
-  const errorRequest = useStateAxios(
+  const errorRequest = useAxios(
     {
-      manual: true,
       onError: (error) => {
         console.log(error);
       },

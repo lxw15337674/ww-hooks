@@ -1,7 +1,7 @@
 ---
 group:
-  title: dom
-  path: /dom
+  title: request
+  path: /request
 ---
 
 # useRequest
@@ -10,7 +10,7 @@ group:
 
 ## demo
 
-<code src="./Demo/index.tsx"/>
+<code src="./Demo/debounce.tsx"/>
 
 
 ## API

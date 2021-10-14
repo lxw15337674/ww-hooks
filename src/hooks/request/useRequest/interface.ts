@@ -1,5 +1,5 @@
 import { AxiosRequestConfig, AxiosResponse } from 'axios';
-import { Config, Result } from '../useStateAxios/interface';
+import { Config, Result } from '../useAxios/interface';
 
 export interface DebounceOptions {
   wait?: number;
@@ -9,9 +9,14 @@ export interface DebounceOptions {
 }
 export interface HookConfig<D> {
   debounce?: DebounceOptions | boolean;
+  manual?: boolean;
 }
-export type useRequestConfig<D> = HookConfig<D> & Config<D>;
+export type useRequestConfig<D> = HookConfig<D> &
+  Config<D> &
+  AxiosRequestConfig;
 
 export interface useRequestResult<D> extends Omit<Result<D>, 'run'> {
-  run: Promise<null> | (() => Promise<Error | AxiosResponse<D>>);
+  run: (
+    config?: AxiosRequestConfig,
+  ) => Promise<Error | AxiosResponse<D> | null>;
 }
