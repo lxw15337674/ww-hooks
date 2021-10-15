@@ -1,12 +1,16 @@
 import { AxiosRequestConfig, AxiosResponse } from 'axios';
 
-export type RequestFn = (axiosConfig: AxiosRequestConfig) => AxiosRequestConfig;
-
-export interface ResponseFn<P = any, D = P> {
-  (data: AxiosResponse<P>, err: Error): [AxiosResponse<D>, Error];
+export interface Result<D> {
+  data: D;
+  error: Error;
+  loading: boolean;
+  run: (config?: AxiosRequestConfig) => Promise<AxiosResponse<D> | Error>;
+  mutate: React.Dispatch<React.SetStateAction<D>>;
 }
 
-export interface Interceptors {
-  request?: RequestFn[];
-  response?: ResponseFn[];
+export interface Config<D> {
+  onSuccess?: (data: AxiosResponse<D>) => void;
+  onError?: (result: Error, config: AxiosRequestConfig) => void;
+  initialData?: D;
+  loadingDelay?: number;
 }

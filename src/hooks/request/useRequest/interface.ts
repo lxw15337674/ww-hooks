@@ -1,30 +1,28 @@
 import { AxiosRequestConfig, AxiosResponse } from 'axios';
+import { Config, Result } from '../useAxios/interface';
 
-export interface Result<P, D, R> {
-  data: R;
-  error: string;
-  loading: boolean;
-  run: () => Promise<R>;
-  mutate: React.Dispatch<React.SetStateAction<R>>;
-}
-
-export interface DebounceOptions<P, D> {
+export interface DebounceOptions {
   wait?: number;
   leading?: boolean;
   maxWait?: number;
   trailing?: boolean;
 }
 
-export interface Config<D> {
-  /**
-   * @desc: 是否手动
-   */
-  manual?: boolean;
-  onSuccess?: (data: AxiosResponse<D>) => void;
-  onError?: (result: Error, config: AxiosRequestConfig) => void;
-  initialData?: D;
+export interface ThrottleOptions {
+  wait?: number;
+  leading?: boolean;
+  trailing?: boolean;
 }
 
-// export interface useRequest<P = any, D = any> {
-//   (config?: Config<D>, axiosConfig?: AxiosRequestConfig): void;
-// }
+export interface HookConfig {
+  debounce?: DebounceOptions | boolean;
+  manual?: boolean;
+  throttle?: ThrottleOptions | boolean;
+}
+export type useRequestConfig<D> = HookConfig & Config<D> & AxiosRequestConfig;
+
+export interface useRequestResult<D> extends Omit<Result<D>, 'run'> {
+  run: (
+    config?: AxiosRequestConfig,
+  ) => Promise<Error | AxiosResponse<D> | null>;
+}
