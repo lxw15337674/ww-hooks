@@ -7,9 +7,17 @@ export interface DebounceOptions {
   maxWait?: number;
   trailing?: boolean;
 }
+
+export interface ThrottleOptions {
+  wait?: number;
+  leading?: boolean;
+  trailing?: boolean;
+}
+
 export interface HookConfig<D> {
   debounce?: DebounceOptions | boolean;
   manual?: boolean;
+  throttle?: ThrottleOptions | boolean;
 }
 export type useRequestConfig<D> = HookConfig<D> &
   Config<D> &

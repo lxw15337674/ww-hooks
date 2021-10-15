@@ -6,11 +6,18 @@ group:
 
 # useRequest
 
-需要隐藏 body 或指定容器的滚动条的hook，例如用于dialog组件
+特性：
+
+1. 防抖
+2. 依赖请求
 
 ## demo
 
+### 防抖
 <code src="./Demo/debounce.tsx"/>
+
+### 节流
+<code src="./Demo/throttle.tsx"/>
 
 
 ## API

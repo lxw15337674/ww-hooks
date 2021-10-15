@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+// import useRequest from '..';
 import { useRequest } from 'wwhooks';
 
 let requestCount = 0;
@@ -6,10 +7,10 @@ export default () => {
   const request = useRequest({
     url: 'https://getman.cn/mock/test2',
     manual: true,
-    onSuccess: () => {
+    onSuccess: (data) => {
       ++requestCount;
     },
-    debounce: { wait: 1000 },
+    throttle: { wait: 1000 },
   });
   return (
     <div>
