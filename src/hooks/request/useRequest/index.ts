@@ -1,15 +1,9 @@
 import useAxios from '../useAxios';
-import React, { useCallback, useMemo, useRef, useState } from 'react';
-import {
-  DebounceOptions,
-  HookConfig,
-  ThrottleOptions,
-  useRequestConfig,
-  useRequestResult,
-} from './interface';
+import { useCallback, useMemo } from 'react';
+import { useRequestConfig } from './interface';
 import { AxiosRequestConfig, AxiosResponse } from 'axios';
 import _ from 'lodash';
-import { useMount } from '../../../';
+import { useMount, useObject } from '../../../';
 
 const useRequest = <D = any>({
   debounce,
@@ -18,10 +12,9 @@ const useRequest = <D = any>({
   onError,
   initialData,
   throttle,
-  ...AxiosConfig
+  ...axiosConfig
 }: useRequestConfig<D>) => {
-  const axios = useAxios({ onSuccess, onError, initialData }, AxiosConfig);
-
+  const axios = useAxios({ onSuccess, onError, initialData }, axiosConfig);
   const debounceRun = useMemo(() => {
     if (!debounce) {
       return null;
@@ -68,11 +61,11 @@ const useRequest = <D = any>({
     throttleRun?.cancel();
   }, [debounceRun, throttleRun]);
 
-  const flush = useCallback(() => {
-    if (debounceRun.flush) {
+  const flush = useMemo(() => {
+    if (debounceRun?.flush) {
       return debounceRun.flush;
     }
-    if (throttleRun.flush) {
+    if (throttleRun?.flush) {
       return throttleRun.flush;
     }
   }, [debounceRun, throttleRun]);

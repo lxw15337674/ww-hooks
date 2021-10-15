@@ -9,7 +9,6 @@ group:
 特性：
 
 1. 状态管理。
-
 2. 初始数据。
 
 ## demo
@@ -50,9 +49,10 @@ group:
 
 ### config
 
-| 参数        | 说明                     | 类型                               | 默认值 | 必填 |
-| ----------- | ------------------------ | ---------------------------------- | ------ | ---- |
-| initialData | 默认的 data。            | `D`                                | null   | 否   |
-| onSuccess   | service resolve时触发 。 | `(data: AxiosResponse<D>) => void` | -      | 否   |
-| onError     | service reject时触发。   | `(error: string) => void`          | -      | 否   |
+| 参数         | 说明                     | 类型                               | 默认值 | 必填 |
+| ------------ | ------------------------ | ---------------------------------- | ------ | ---- |
+| initialData  | 默认的 data。            | `D`                                | null   | 否   |
+| onSuccess    | service resolve时触发 。 | `(data: AxiosResponse<D>) => void` | -      | 否   |
+| onError      | service reject时触发。   | `(error: string) => void`          | -      | 否   |
+| loadingDelay | loading延迟为true的时间  | number                             | -      | 否   |
 

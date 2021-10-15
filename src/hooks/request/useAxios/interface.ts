@@ -12,4 +12,5 @@ export interface Config<D> {
   onSuccess?: (data: AxiosResponse<D>) => void;
   onError?: (result: Error, config: AxiosRequestConfig) => void;
   initialData?: D;
+  loadingDelay?: number;
 }

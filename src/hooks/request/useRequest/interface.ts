@@ -14,14 +14,12 @@ export interface ThrottleOptions {
   trailing?: boolean;
 }
 
-export interface HookConfig<D> {
+export interface HookConfig {
   debounce?: DebounceOptions | boolean;
   manual?: boolean;
   throttle?: ThrottleOptions | boolean;
 }
-export type useRequestConfig<D> = HookConfig<D> &
-  Config<D> &
-  AxiosRequestConfig;
+export type useRequestConfig<D> = HookConfig & Config<D> & AxiosRequestConfig;
 
 export interface useRequestResult<D> extends Omit<Result<D>, 'run'> {
   run: (
