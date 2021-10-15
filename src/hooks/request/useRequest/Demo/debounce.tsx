@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import useRequest from '..';
-// import { useRequest } from 'wwhooks';
+import { useRequest } from 'wwhooks';
 
 let requestCount = 0;
 export default () => {
