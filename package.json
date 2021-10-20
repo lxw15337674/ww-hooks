@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "scripts": {
     "start": "dumi dev",
-    "dev":"dumi dev",
+    "dev": "dumi dev",
     "docs:build": "dumi build",
     "docs:deploy": "gh-pages -d docs-dist",
     "build": "father-build",
@@ -30,7 +30,7 @@
     ]
   },
   "dependencies": {
-    "axios": "^0.21.4",
+    "axios": "^0.23.0",
     "lodash": "^4.17.21",
     "react": "^16.12.0"
   },
