@@ -2,6 +2,7 @@ import { useState, useCallback, useMemo, useRef } from 'react';
 import Axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import _ from 'lodash';
 import { Config, Result } from './interface';
+import { useMountedState } from '../../../';
 
 const axios = Axios.create();
 // 数据请求Hook
@@ -9,6 +10,7 @@ const useAxios = <D>(
   config?: Config<D>,
   axiosConfig?: AxiosRequestConfig,
 ): Result<D> => {
+  const mountedState = useMountedState();
   config = useMemo(() => {
     const defaultConfig: Config<D> = {
       initialData: null,
@@ -36,13 +38,17 @@ const useAxios = <D>(
         .request<D, AxiosResponse<D>>(runConfig)
         .then(
           (data: AxiosResponse<D>) => {
-            setData(data.data);
-            config?.onSuccess?.(data);
+            if (mountedState) {
+              setData(data.data);
+              config?.onSuccess?.(data);
+            }
             return data;
           },
           (err: Error) => {
-            setError(err);
-            config?.onError?.(err, axiosConfig[0]);
+            if (mountedState) {
+              setError(err);
+              config?.onError?.(err, axiosConfig[0]);
+            }
             return err;
           },
         )
