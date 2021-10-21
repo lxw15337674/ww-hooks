@@ -3,7 +3,7 @@ import { useCallback, useMemo } from 'react';
 import { useRequestConfig } from './interface';
 import { AxiosRequestConfig, AxiosResponse } from 'axios';
 import _ from 'lodash';
-import { useMount, useObject } from '../../../';
+import { useMount, useUnmount } from '../../../';
 
 const useRequest = <D = any>({
   debounce,
@@ -74,6 +74,10 @@ const useRequest = <D = any>({
     if (!manual) {
       run();
     }
+  });
+
+  useUnmount(() => {
+    cancel();
   });
 
   return {
