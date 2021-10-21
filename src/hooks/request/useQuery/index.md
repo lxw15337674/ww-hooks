@@ -1,4 +1,4 @@
----
+<!-- ---
 group:
   title: request
   path: /request
@@ -100,4 +100,4 @@ group:
 | -------- | ---------------------- | ------- | ------ |
 | wait     | 需要延迟的毫秒数       | number  | 500    |
 | leading  | 指定在延迟开始前调用。 | boolean | false  |
-| trailing | 指定在延迟结束后调用。 | boolean | true   |
+| trailing | 指定在延迟结束后调用。 | boolean | true   | -->
