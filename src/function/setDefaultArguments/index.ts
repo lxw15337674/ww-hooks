@@ -8,9 +8,9 @@ function customizer(objValue, srcValue) {
   }
 }
 
-export default function setDefaultArguments<
+function setDefaultArguments<
   F extends Fn = Fn,
-  P extends any[] = Parameters<F>
+  P extends any[] = Parameters<F>,
 >(fn: F, ...defaultArguments: Parameters<F>): (...args: P) => ReturnType<F> {
   return (...args: P) => {
     const mergeArgs = defaultArguments.map((v, i) => {
@@ -26,3 +26,5 @@ export default function setDefaultArguments<
     return fn(...mergeArgs);
   };
 }
+
+export default setDefaultArguments;

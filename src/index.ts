@@ -12,4 +12,5 @@ export { default as useLockScroll } from './hooks/useLockScroll';
 export { default as useAxios } from './hooks/request/useAxios';
 export { default as useRequest } from './hooks/request/useRequest';
 export { default as useMountedState } from './hooks/useMountedState';
-export { default as setDefaultArguments } from './utils/setDefaultArguments';
+export { default as setDefaultArguments } from './function/setDefaultArguments';
+export { default as sortBy } from './function/orderBy';
