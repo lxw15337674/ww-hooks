@@ -1,16 +1,16 @@
 import { Table } from 'antd';
 import { ColumnsType } from 'antd/lib/table';
 import React from 'react';
-import { sortBy } from '@qunhe/budget-hooks';
+import { sortBy } from 'wwhooks';
 
 const data = [
-  { user: 'fred', age: 48, key: 1 },
-  { user: 'barney', age: 36, key: 2 },
-  { user: 'fred', age: 48, key: 8 },
-  { user: 'fred', age: 40, key: 3 },
-  { user: 'barney', age: 34, key: 4 },
-  { user: 'test', age: 44, key: 5 },
-];
+  { user: 'fred', age: 48, phone: 123456 },
+  { user: 'barney', age: 36, phone: 123456 },
+  { user: 'fred', age: 48, phone: 123456 },
+  { user: 'fred', age: 40, phone: 123456 },
+  { user: 'barney', age: 34, phone: 123456 },
+  { user: 'test', age: 40, phone: 123456 },
+].map((item, index) => ({ ...item, index }));
 
 const app = () => {
   const [dataSource, rowSpan] = sortBy(data, ['user', 'age']);
