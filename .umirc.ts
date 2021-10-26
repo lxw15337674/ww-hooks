@@ -21,9 +21,4 @@ export default defineConfig({
       'antd',
     ],
   ],
-  mfsu: {
-    development: {},
-  },
-  // styles: ['https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css'],
-  // more config: https://d.umijs.org/config
 });
