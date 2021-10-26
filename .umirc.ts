@@ -21,4 +21,14 @@ export default defineConfig({
       'antd',
     ],
   ],
+  mfsu: {
+    development: {
+      output: '/.mfsu-dev',
+    },
+    production: {
+      output: '/.mfsu-prod',
+    },
+  },
+  webpack5: {},
+  dynamicImport: {},
 });
