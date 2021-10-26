@@ -3,6 +3,7 @@ group:
   title: function
   path: /function
 ---
+
 # setDefaultArguments
 
 设置函数的默认参数
@@ -11,12 +12,10 @@ group:
 
 <code src="./Demo/index.tsx"/>
 
-
 ## API
 
 ```typescript
-const wrapperFn = setDefaultArguments<F,P>(fn, ...params)
-
+const wrapperFn = setDefaultArguments<F, P>(fn, ...params);
 ```
 
 ### Generics

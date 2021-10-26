@@ -1,5 +1,5 @@
 import React from 'react';
-import setDefaultArguments from '../index';
+import { setDefaultArguments } from 'wwhooks';
 
 interface Obj {
   a?: string;
