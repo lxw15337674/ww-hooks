@@ -1,8 +1,13 @@
 import { useState, useCallback, useMemo, useRef } from 'react';
-import Axios, { AxiosRequestConfig, AxiosResponse, Canceler } from 'axios';
+import Axios, {
+  AxiosRequestConfig,
+  AxiosResponse,
+  Cancel,
+  Canceler,
+} from 'axios';
 import _ from 'lodash';
 import { Config, Result } from './interface';
-import { useMountedState } from '../../../';
+import { isType, useMountedState } from '../../../';
 
 const axios = Axios.create();
 // 数据请求Hook
@@ -48,10 +53,13 @@ const useAxios = <D>(
             config?.onSuccess?.(data);
             return data;
           },
-          (err: Error) => {
-            mountedState && setError(err);
-            config?.onError?.(err, axiosConfig[0]);
-            return err;
+          (err: Error | Cancel) => {
+            if (isType<Error>(err, 'error')) {
+              mountedState && setError(err);
+              config?.onError?.(err, axiosConfig[0]);
+              return err;
+            }
+            return null;
           },
         )
         .finally(() => {

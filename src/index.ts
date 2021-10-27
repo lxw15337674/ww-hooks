@@ -14,5 +14,5 @@ export { default as useRequest } from './hooks/request/useRequest';
 export { default as useMountedState } from './hooks/useMountedState';
 export { default as setDefaultArguments } from './function/setDefaultArguments';
 export { default as sortBy } from './function/sortBy';
-export { default as isType } from './function/IsDataType';
 export { default as useQuery } from './hooks/request/useQuery';
+export { default as isType } from './function/IsType';

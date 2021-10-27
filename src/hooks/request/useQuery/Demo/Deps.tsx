@@ -1,20 +1,17 @@
 import React, { useState } from 'react';
-// import { useQuery } from 'wwhooks';
-import useQuery from '../';
+import { useQuery } from 'wwhooks';
 
 export default () => {
+  const [number, setNumber] = useState(0);
   const [requestCount, setRequestCount] = useState(0);
+
   const request = useQuery({
     url: 'https://getman.cn/mock/test2',
-    pollingInterval: 1000,
     manual: true,
     onSuccess: () => {
       setRequestCount((state) => ++state);
-      request.cancel();
     },
-    onError: () => {
-      setRequestCount((state) => ++state);
-    },
+    deps: [number],
   });
   return (
     <div>
@@ -22,21 +19,13 @@ export default () => {
       <p>loading:{JSON.stringify(request.loading)}</p>
       <p>error:{JSON.stringify(request.error?.message)}</p>
       <p>requestCount:{requestCount}</p>
+      <p>number:{number}</p>
       <button
         onClick={() => {
-          request.run().then((res) => {
-            console.log(res);
-          });
+          setNumber((number) => ++number);
         }}
       >
-        request
-      </button>
-      <button
-        onClick={() => {
-          request.cancel();
-        }}
-      >
-        cancel
+        number++
       </button>
     </div>
   );

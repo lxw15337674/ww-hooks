@@ -73,7 +73,7 @@ const useRequest = <D = any>({
   }, [debounceRun, throttleRun]);
 
   useMount(() => {
-    if (!manual) {
+    if (manual === false) {
       run();
     }
   });

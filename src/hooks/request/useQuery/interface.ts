@@ -1,8 +1,8 @@
-/*
- * @Author: your name
- * @Date: 2021-10-15 18:41:02
- * @LastEditTime: 2021-10-15 18:41:02
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: \hooks\src\hooks\request\useQuery\interface.ts
- */
+import { useRequestConfig } from '../useRequest/interface';
+
+export interface useQueryConfig<P, D> extends useRequestConfig<D> {
+  deps?: any[];
+  pollingInterval?: number;
+  concurrent?: boolean;
+  //   key?: (args: P) => string;
+}

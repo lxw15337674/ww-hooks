@@ -1,5 +1,5 @@
 import React from 'react';
-import isType from '..';
+import { isType } from 'wwhooks';
 
 const App = () => {
   const log = JSON.stringify;

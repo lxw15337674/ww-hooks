@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
-// import { useQuery } from 'wwhooks';
-import useQuery from '../';
+// import { useQuery } from '..';
+import useQuery from '..';
 
 export default () => {
   const [requestCount, setRequestCount] = useState(0);
   const request = useQuery({
     url: 'https://getman.cn/mock/test2',
-    pollingInterval: 1000,
-    manual: true,
-    onSuccess: () => {
+    concurrent: false,
+    onSuccess: (data) => {
       setRequestCount((state) => ++state);
-      request.cancel();
     },
-    onError: () => {
+    onError: (err) => {
       setRequestCount((state) => ++state);
     },
   });
@@ -24,19 +22,12 @@ export default () => {
       <p>requestCount:{requestCount}</p>
       <button
         onClick={() => {
-          request.run().then((res) => {
-            console.log(res);
-          });
+          for (var i = 0; i < 5; i++) {
+            request.run();
+          }
         }}
       >
         request
-      </button>
-      <button
-        onClick={() => {
-          request.cancel();
-        }}
-      >
-        cancel
       </button>
     </div>
   );
