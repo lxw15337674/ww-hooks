@@ -1,5 +1,5 @@
 import { useState, useCallback, useMemo, useRef } from 'react';
-import Axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import Axios, { AxiosRequestConfig, AxiosResponse, Canceler } from 'axios';
 import _ from 'lodash';
 import { Config, Result } from './interface';
 import { useMountedState } from '../../../';
@@ -11,6 +11,7 @@ const useAxios = <D>(
   axiosConfig?: AxiosRequestConfig,
 ): Result<D> => {
   const mountedState = useMountedState();
+  const cancelToken = useRef<Canceler>();
   config = useMemo(() => {
     const defaultConfig: Config<D> = {
       initialData: null,
@@ -24,7 +25,13 @@ const useAxios = <D>(
   const loadingDelayTimer = useRef<NodeJS.Timeout>();
   const run = useCallback(
     (_axiosConfig?: AxiosRequestConfig) => {
-      const runConfig = { ...axiosConfig, ..._axiosConfig };
+      const runConfig: AxiosRequestConfig<D> = {
+        cancelToken: new Axios.CancelToken(function executor(c) {
+          cancelToken.current = c;
+        }),
+        ...axiosConfig,
+        ..._axiosConfig,
+      };
 
       if (loadingDelayTimer.current) {
         clearTimeout(loadingDelayTimer.current);
@@ -54,12 +61,16 @@ const useAxios = <D>(
     },
     [axiosConfig, config],
   );
+  const cancel = useCallback(() => {
+    cancelToken.current();
+  }, [cancelToken]);
 
   return {
     data,
     error,
     loading,
     run,
+    cancel,
     mutate: setData,
   };
 };

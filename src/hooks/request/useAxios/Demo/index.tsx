@@ -26,13 +26,21 @@ export default () => {
         <p>data:{JSON.stringify(request.data)}</p>
         <p>loading:{JSON.stringify(request.loading)}</p>
         <p>error:{JSON.stringify(request.error)}</p>
-
         <button
           onClick={() => {
             request.run();
           }}
         >
           正常的请求
+        </button>
+
+        <button
+          onClick={() => {
+            request.run();
+            request.cancel();
+          }}
+        >
+          取消请求
         </button>
       </div>
       <div>

@@ -57,6 +57,7 @@ const useRequest = <D = any>({
   );
 
   const cancel = useCallback(() => {
+    axios.cancel();
     debounceRun?.cancel();
     throttleRun?.cancel();
   }, [debounceRun, throttleRun]);

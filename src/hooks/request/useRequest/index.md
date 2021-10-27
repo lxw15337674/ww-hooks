@@ -6,7 +6,7 @@ group:
 
 # useRequest
 
-基于useAxios的扩展hook
+基于 useAxios 的扩展 hook
 
 特性：
 
@@ -17,6 +17,7 @@ group:
 ## demo
 
 ### 防抖
+
 <code src="./Demo/debounce.tsx"/>
 
 ### 节流
@@ -24,13 +25,6 @@ group:
 > 同时配置防抖，节流的情况下，节流优先级低于防抖
 
 <code src="./Demo/throttle.tsx"/>
-
-
-## API
-
-```typescript
-
-```
 
 ### Generics
 
@@ -40,38 +34,34 @@ group:
 
 ### Result
 
-| 参数    | 说明                                                         | 类型                                                         |
-| ------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| data    | service 返回的数据，默认为 `undefined`。如果有 `formatResult`, 则该数据为被格式化后的数据。 | `D`                                                          |
-| error   | service 抛出的异常，默认为 `undefined`                       | `string`                                                     |
-| loading | service 是否正在执行                                         | `boolean`                                                    |
-| mutate  | 直接修改 data                                                | `React.Dispatch<React.SetStateAction<D>>`                    |
-| run     | - 手动触发 service 执行，run的axios参数优先级最高。<br />- debounce 模式与 throttle 模式返回值为 `Promise<null>` | ` (config?: AxiosRequestConfig) => Promise<Error |AxiosResponse<D>>` |
-| cancel  | 取消当前请求                                                 | `() => void`                                                 |
-| flush   | 立即调用处于防抖或节流状态的函数                             | `() => Promise<Error |AxiosResponse<D>>`                     |
-
-
+| 参数    | 说明                                                                                                                | 类型                                             |
+| ------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ | ------------------ |
+| data    | service 返回的数据，默认为 `undefined`。如果有 `formatResult`, 则该数据为被格式化后的数据。                         | `D`                                              |
+| error   | service 抛出的异常，默认为 `undefined`                                                                              | `string`                                         |
+| loading | service 是否正在执行                                                                                                | `boolean`                                        |
+| mutate  | 直接修改 data                                                                                                       | `React.Dispatch<React.SetStateAction<D>>`        |
+| run     | - 手动触发 service 执行，run 的 axios 参数优先级最高。<br />- debounce 模式与 throttle 模式返回值为 `Promise<null>` | ` (config?: AxiosRequestConfig) => Promise<Error | AxiosResponse<D>>` |
+| cancel  | 取消当前请求                                                                                                        | `() => void`                                     |
+| flush   | 立即调用处于防抖或节流状态的函数                                                                                    | `() => Promise<Error                             | AxiosResponse<D>>` |
 
 ### Params
 
-| 参数          | 说明        | 类型                 | 默认值 | 必填 |
-| ------------- | ----------- | -------------------- | ------ | ---- |
-| *config*      | hook配置项  | `Config<D>`          | -      | 否   |
-| *axiosConfig* | axios配置项 | `AxiosRequestConfig` | -      | 否   |
+| 参数     | 说明                           | 类型                           | 默认值 | 必填 |
+| -------- | ------------------------------ | ------------------------------ | ------ | ---- |
+| _config_ | hook 配置项，继承 axios 配置项 | `Config<D>&AxiosRequestConfig` | -      | 是   |
+|          |                                |                                |        |      |
 
 #### config
 
-
-| **参数** | **说明**                         | **类型**                     | **默认值** | 必填 |
-| :------: | -------------------------------- | ---------------------------- | ---------- | ---- |
-| debounce | 防抖，如果为true则使用默认参数。 | `boolean`|`DebouenceOptions` |false | 否      |
-| throttle | 节流，如果为true则使用默认参数。 | `boolean`\|`ThrottleOptions` | false | 否   |
-| manual   | 是否手动触发                     | `boolean`                    | false      | 否   |
-| initialData  | 默认的 data。            | `D`                                | null   | 否   |
-| onSuccess    | service resolve时触发 。 | `(data: AxiosResponse<D>) => void` | -      | 否   |
-| onError      | service reject时触发。   | `(error: string) => void`          | -      | 否   |
-| loadingDelay | loading延迟为true的时间  | number                             | -      | 否   |
-
+|   **参数**   | **说明**                           | **类型**                           | **默认值**         | 必填  |
+| :----------: | ---------------------------------- | ---------------------------------- | ------------------ | ----- | --- |
+|   debounce   | 防抖，如果为 true 则使用默认参数。 | `boolean`                          | `DebouenceOptions` | false | 否  |
+|   throttle   | 节流，如果为 true 则使用默认参数。 | `boolean`\|`ThrottleOptions`       | false              | 否    |
+|    manual    | 是否手动触发                       | `boolean`                          | false              | 否    |
+| initialData  | 默认的 data。                      | `D`                                | null               | 否    |
+|  onSuccess   | service resolve 时触发 。          | `(data: AxiosResponse<D>) => void` | -                  | 否    |
+|   onError    | service reject 时触发。            | `(error: string) => void`          | -                  | 否    |
+| loadingDelay | loading 延迟为 true 的时间         | number                             | -                  | 否    |
 
 #### DebouenceOptions
 

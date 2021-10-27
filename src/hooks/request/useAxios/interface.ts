@@ -4,6 +4,7 @@ export interface Result<D> {
   data: D;
   error: Error;
   loading: boolean;
+  cancel: () => void;
   run: (config?: AxiosRequestConfig) => Promise<AxiosResponse<D> | Error>;
   mutate: React.Dispatch<React.SetStateAction<D>>;
 }
