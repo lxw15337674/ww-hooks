@@ -32,23 +32,18 @@ const useAxios = <D>(
       loadingDelayTimer.current = setTimeout(() => {
         setLoading(true);
       }, config.loadingDelay);
-
       setError(undefined);
       return axios
         .request<D, AxiosResponse<D>>(runConfig)
         .then(
           (data: AxiosResponse<D>) => {
-            if (mountedState) {
-              setData(data.data);
-              config?.onSuccess?.(data);
-            }
+            mountedState && setData(data.data);
+            config?.onSuccess?.(data);
             return data;
           },
           (err: Error) => {
-            if (mountedState) {
-              setError(err);
-              config?.onError?.(err, axiosConfig[0]);
-            }
+            mountedState && setError(err);
+            config?.onError?.(err, axiosConfig[0]);
             return err;
           },
         )
