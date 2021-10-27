@@ -62,7 +62,7 @@ const useAxios = <D>(
     [axiosConfig, config],
   );
   const cancel = useCallback(() => {
-    cancelToken.current();
+    cancelToken.current?.();
   }, [cancelToken]);
 
   return {

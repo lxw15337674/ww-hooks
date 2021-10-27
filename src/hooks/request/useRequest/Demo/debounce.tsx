@@ -33,9 +33,7 @@ export default () => {
       </button>
       <button
         onClick={() => {
-          request.flush().then((data) => {
-            console.log(data);
-          });
+          request.flush();
         }}
       >
         flush

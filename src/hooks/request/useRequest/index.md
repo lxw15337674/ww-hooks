@@ -53,14 +53,14 @@ group:
 
 #### config
 
-|   **参数**   | **说明**                           | **类型**                           | **默认值**         | 必填  |
-| :----------: | ---------------------------------- | ---------------------------------- | ------------------ | ----- | --- |
-|   debounce   | 防抖，如果为 true 则使用默认参数。 | `boolean`                          | `DebouenceOptions` | false | 否  |
-|   throttle   | 节流，如果为 true 则使用默认参数。 | `boolean`\|`ThrottleOptions`       | false              | 否    |
-|    manual    | 是否手动触发                       | `boolean`                          | false              | 否    |
+| **参数**     | **说明**                           | **类型**                           | **默认值**         | 必填  |
+| ------------ | ---------------------------------- | ---------------------------------- | ------------------ | ----- |
+| debounce     | 防抖，如果为 true 则使用默认参数。 | `boolean`                          | `DebouenceOptions` | false |
+| throttle     | 节流，如果为 true 则使用默认参数。 | `boolean`\|`ThrottleOptions`       | false              | 否    |
+| manual       | 是否手动触发                       | `boolean`                          | false              | 否    |
 | initialData  | 默认的 data。                      | `D`                                | null               | 否    |
-|  onSuccess   | service resolve 时触发 。          | `(data: AxiosResponse<D>) => void` | -                  | 否    |
-|   onError    | service reject 时触发。            | `(error: string) => void`          | -                  | 否    |
+| onSuccess    | service resolve 时触发 。          | `(data: AxiosResponse<D>) => void` | -                  | 否    |
+| onError      | service reject 时触发。            | `(error: string) => void`          | -                  | 否    |
 | loadingDelay | loading 延迟为 true 的时间         | number                             | -                  | 否    |
 
 #### DebouenceOptions
