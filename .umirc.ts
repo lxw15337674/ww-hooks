@@ -26,6 +26,4 @@ export default defineConfig({
       output: '/.mfsu-dev',
     },
   },
-  webpack5: {},
-  dynamicImport: {},
 });
