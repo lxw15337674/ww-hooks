@@ -1,8 +1,8 @@
 ---
 title: useUpdate
 group:
-  title: LiftCycle
-  path: /LiftCycle
+  title: lifeCycle
+  path: /lifeCycle
 ---
 
 # useUpdate
@@ -33,4 +33,3 @@ useUpdate(
 | -------- | ------------------ | -------------- | ---------- | ---- |
 | effect   | 可执行函数         | `() => (void)` | -          | 是   |
 | deps     | 传入依赖变化的对象 | `array`        | -          | 是   |
-

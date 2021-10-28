@@ -1,8 +1,8 @@
 ---
 title: useUnmount
 group:
-  title: LiftCycle
-  path: /LiftCycle
+  title: lifeCycle
+  path: /lifeCycle
 ---
 
 # useUnmount
@@ -24,4 +24,3 @@ useUnmount(fn);
 | **参数** | **说明**         | **类型**   | **默认值** | 必填 |
 | -------- | ---------------- | ---------- | ---------- | ---- |
 | fn       | unmount 执行函数 | `()=>void` |            | 否   |
-

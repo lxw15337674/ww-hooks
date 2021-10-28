@@ -1,8 +1,8 @@
 ---
 title: useMountedState
 group:
-  title: state
-  path: /state
+  title: lifeCycle
+  path: /lifeCycle
 ---
 
 # useMountedState
@@ -22,7 +22,7 @@ group:
 ## API
 
 ```typescript
-const state = useUnmountedRef();
+const state = useMountedState();
 ```
 
 ### Result
