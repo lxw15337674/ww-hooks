@@ -1,28 +1,26 @@
 import { useBoolean } from '../../';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 
-// let timer = null
-function useTimeoutFn(
-  fn: () => void,
+function useTimeoutFn<T extends any[] = never>(
+  fn: (...args: T) => void,
   delay: number = 0,
-  mutate: boolean = true,
 ) {
   const timer = useRef(null);
   const [waiting, { setTrue, setFalse }] = useBoolean(false);
-  const run = useCallback(() => {
-    clearTimeout(timer.current);
-    if (delay === undefined || delay === null) return;
-    setTrue();
-    timer.current = setTimeout(() => {
-      fn();
-      setFalse();
-    }, delay);
-  }, [fn, delay]);
+  const run = useCallback(
+    (...args: T) => {
+      clearTimeout(timer.current);
+      if (delay === undefined || delay === null) return;
+      setTrue();
+      timer.current = setTimeout(() => {
+        fn(...args);
+        setFalse();
+      }, delay);
+    },
+    [fn, delay],
+  );
 
   useEffect(() => {
-    if (!mutate) {
-      run();
-    }
     return () => {
       clearTimeout(timer.current);
     };

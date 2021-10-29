@@ -11,13 +11,7 @@ export default () => {
   const plus1 = useTimeoutFn(() => {
     setState((state) => ++state);
   }, 2000);
-  const plus10 = useTimeoutFn(
-    () => {
-      setState((state) => 10 + state);
-    },
-    1000,
-    false,
-  );
+  const plus = useTimeoutFn(setState, 1000);
 
   return (
     <div>
@@ -26,6 +20,7 @@ export default () => {
         <button onClick={plus1.cancel} disabled={!plus1.waiting}>
           cancel
         </button>
+        <button onClick={() => plus.run(10)}>plus10</button>
       </p>
       <p style={{ marginTop: 16 }}> {state} </p>
     </div>
