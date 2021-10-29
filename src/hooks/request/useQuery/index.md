@@ -16,6 +16,7 @@ group:
   - [ ] ~~预加载~~
   - [x] 是否允许并发请求
   - [ ] 重复请求处理
+  - [ ] 加载状态延迟
 - [ ] 数据
   - [ ] 数据的全局使用
   - [ ] 缓存数据
@@ -40,9 +41,9 @@ group:
 
 解决并发数据问题。
 
-> 例如在请求分页数据时，第一页的数据较多请求时间长，在请求未完成时请求第二页的数据。
+> 例如在请求分页数据时，第一页的数据较多请求时间长，第二页数据较少请求时间短。先请求第一页数据，再请求第二页。
 >
-> 由于第二页的数据较少会先返回数据，而第一页的数据后返回，导致此时在第二页却显示第一页的数据。
+> 由于第二页的数据会先返回数据，而第一页的数据后返回，导致此时在第二页却显示第一页的数据。
 
 <code src="./Demo/Concurrent.tsx"/>
 
@@ -66,6 +67,7 @@ group:
 | run     | - 手动触发 service 执行，run 的 axios 参数优先级最高。<br />- debounce 模式与 throttle 模式返回值为 `Promise<null>` | ` (config?: AxiosRequestConfig) => Promise<Error | AxiosResponse<D>>` |
 | cancel  | 取消当前请求                                                                                                        | `() => void`                                     |
 | flush   | 立即调用处于防抖或节流状态的函数                                                                                    | `() => Promise<Error                             | AxiosResponse<D>>` |
+|         |                                                                                                                     |                                                  |
 
 #### config
 

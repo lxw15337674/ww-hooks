@@ -7,7 +7,7 @@ import Axios, {
 } from 'axios';
 import _ from 'lodash';
 import { Config, Result } from './interface';
-import { isType, useMountedState } from '../../../';
+import { isType, useMountedState, useTimeoutFn } from '../../../';
 
 const axios = Axios.create();
 // 数据请求Hook
@@ -20,7 +20,7 @@ const useAxios = <D>(
   config = useMemo(() => {
     const defaultConfig: Config<D> = {
       initialData: null,
-      loadingDelay: 0,
+      loadingDelay: 300,
     };
     return { ...defaultConfig, ...config };
   }, [config]);
@@ -28,6 +28,8 @@ const useAxios = <D>(
   const [error, setError] = useState<Error>();
   const [loading, setLoading] = useState<boolean>(false);
   const loadingDelayTimer = useRef<NodeJS.Timeout>();
+  const delaySetLoading = useTimeoutFn(setLoading, config.loadingDelay);
+
   const run = useCallback(
     (_axiosConfig?: AxiosRequestConfig) => {
       const runConfig: AxiosRequestConfig<D> = {
@@ -37,25 +39,19 @@ const useAxios = <D>(
         ...axiosConfig,
         ..._axiosConfig,
       };
-
-      if (loadingDelayTimer.current) {
-        clearTimeout(loadingDelayTimer.current);
-      }
-      loadingDelayTimer.current = setTimeout(() => {
-        setLoading(true);
-      }, config.loadingDelay);
+      delaySetLoading.run(true);
       setError(undefined);
       return axios
         .request<D, AxiosResponse<D>>(runConfig)
         .then(
           (data: AxiosResponse<D>) => {
-            mountedState && setData(data.data);
+            mountedState() && setData(data.data);
             config?.onSuccess?.(data);
             return data;
           },
           (err: Error | Cancel) => {
             if (isType<Error>(err, 'error')) {
-              mountedState && setError(err);
+              mountedState() && setError(err);
               config?.onError?.(err, axiosConfig[0]);
               return err;
             }
@@ -63,6 +59,7 @@ const useAxios = <D>(
           },
         )
         .finally(() => {
+          delaySetLoading.cancel();
           setLoading(false);
           clearTimeout(loadingDelayTimer.current);
         });
