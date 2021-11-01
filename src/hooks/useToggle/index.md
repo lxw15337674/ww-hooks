@@ -1,5 +1,4 @@
 ---
-title:
 group:
   title: state
   path: /state
@@ -16,6 +15,7 @@ group:
 ## API
 
 ```typescript
+
 ```
 
 ### Generics

@@ -8,5 +8,6 @@ export default function useMountedState() {
       mountedRef.current = false;
     };
   }, []);
-  return mountedRef.current;
+  const get = useCallback(() => mountedRef.current, []);
+  return get;
 }

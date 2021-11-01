@@ -1,8 +1,8 @@
 import { useQueryConfig } from './interface';
 import _ from 'lodash';
 import { useMount, useRequest, useUnmount, useUpdate } from '../../../';
-import { useCallback, useMemo, useRef } from 'react';
-import { AxiosRequestConfig, AxiosResponse } from 'axios';
+import { useCallback, useRef } from 'react';
+import { AxiosRequestConfig } from 'axios';
 
 const useQuery = <P = any, D = any>({
   deps = [],
@@ -12,19 +12,11 @@ const useQuery = <P = any, D = any>({
   ...useRequestConfig
 }: useQueryConfig<P, D>) => {
   const request = useRequest<D>(useRequestConfig);
-  //   依赖请求
   const polling = useRef<NodeJS.Timeout>();
   const axiosConfig = useCallback(
     (args: P): AxiosRequestConfig => {
       const config: AxiosRequestConfig = {};
-      if (
-        useRequestConfig.method === 'get' ||
-        useRequestConfig.method === undefined
-      ) {
-        config.params = args;
-      } else {
-        config.data = args;
-      }
+      config.params = { ...useRequestConfig.params, ...args };
       return config;
     },
     [useRequestConfig],
@@ -57,7 +49,6 @@ const useQuery = <P = any, D = any>({
     [request.run, pollingInterval],
   );
 
-  // 依赖请求
   useUpdate(() => {
     run();
   }, deps);

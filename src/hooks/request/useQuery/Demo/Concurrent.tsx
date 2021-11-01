@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-// import { useQuery } from '..';
-import useQuery from '..';
+import { useQuery } from 'wwhooks';
 
 export default () => {
   const [requestCount, setRequestCount] = useState(0);

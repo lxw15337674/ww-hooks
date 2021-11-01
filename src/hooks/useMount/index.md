@@ -1,8 +1,8 @@
 ---
 title: useMount
 group:
-  title: LiftCycle
-  path: /LiftCycle
+  title: lifeCycle
+  path: /lifeCycle
 ---
 
 # useMount

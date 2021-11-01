@@ -7,7 +7,7 @@ const Component = () => {
   const mounted = useMountedState();
   useUnmount(() => {
     setTimeout(() => {
-      mounted && setState('Unmount');
+      mounted() && setState('Unmount');
     }, 1000);
   });
   return <input value={state} onChange={(e) => setState(e.target.value)} />;

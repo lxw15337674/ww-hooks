@@ -8,12 +8,22 @@ group:
 
 特性：
 
-1. 状态管理(已处理 setState 的内存泄漏)。
+1. 状态管理
+   1. 已处理 setState 的内存泄漏。
+   2. loading 防闪烁
 2. 初始数据。
 
 ## demo
 
+### 基本用法
+
 <code src="./Demo/index.tsx"/>
+
+### 加载状态延迟
+
+延迟 loading 变为 true 的时间，防止接口返回过快导致闪烁。
+
+<code src="./Demo/LoadingDelay.tsx"/>
 
 ## API
 
@@ -53,4 +63,4 @@ group:
 | initialData  | 默认的 data。              | `D`                                | null   | 否   |
 | onSuccess    | service resolve 时触发 。  | `(data: AxiosResponse<D>) => void` | -      | 否   |
 | onError      | service reject 时触发。    | `(error: string) => void`          | -      | 否   |
-| loadingDelay | loading 延迟为 true 的时间 | number                             | -      | 否   |
+| loadingDelay | loading 延迟为 true 的时间 | number                             | 300    | 否   |

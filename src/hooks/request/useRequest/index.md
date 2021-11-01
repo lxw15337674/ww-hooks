@@ -57,7 +57,7 @@ group:
 | ------------ | ---------------------------------- | ---------------------------------- | ------------------ | ----- |
 | debounce     | 防抖，如果为 true 则使用默认参数。 | `boolean`                          | `DebouenceOptions` | false |
 | throttle     | 节流，如果为 true 则使用默认参数。 | `boolean`\|`ThrottleOptions`       | false              | 否    |
-| manual       | 是否手动触发                       | `boolean`                          | false              | 否    |
+| manual       | 是否手动触发                       | `boolean`                          | true               | 否    |
 | initialData  | 默认的 data。                      | `D`                                | null               | 否    |
 | onSuccess    | service resolve 时触发 。          | `(data: AxiosResponse<D>) => void` | -                  | 否    |
 | onError      | service reject 时触发。            | `(error: string) => void`          | -                  | 否    |
