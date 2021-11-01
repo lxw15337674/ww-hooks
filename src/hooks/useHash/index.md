@@ -1,4 +1,4 @@
----
+<!-- ---
 group:
   title: cache
   path: /cache
@@ -31,4 +31,4 @@ const [state, setState, reset] = useHash(initialHash);
 
 | **参数**    | **说明**     | **类型** | **默认值** | 必填 |
 | ----------- | ------------ | -------- | ---------- | ---- |
-| initialHash | 默认 hash 值 | `string` | `null`     | 否   |
+| initialHash | 默认 hash 值 | `string` | `null`     | 否   | -->
