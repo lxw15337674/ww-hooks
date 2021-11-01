@@ -6,4 +6,5 @@ export interface useQueryConfig<P, D> extends useRequestConfig<D> {
   concurrent?: boolean;
   //   key?: (args: P) => string;
   manual?: boolean;
+  defaultParams?: P;
 }

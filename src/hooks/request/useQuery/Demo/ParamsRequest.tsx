@@ -2,31 +2,32 @@ import React, { useState } from 'react';
 // import { useQuery } from 'wwhooks';
 import useQuery from '../';
 
+interface Params {
+  a: number;
+}
+let number = 0;
 export default () => {
-  const [number, setNumber] = useState(0);
   const [requestCount, setRequestCount] = useState(0);
-
-  const request = useQuery({
+  const request = useQuery<Params>({
     url: 'https://getman.cn/mock/test2',
     manual: true,
     onSuccess: () => {
       setRequestCount((state) => ++state);
     },
-    deps: [number],
   });
   return (
     <div>
+      <p>params:{JSON.stringify(request.params)}</p>
       <p>data:{JSON.stringify(request.data)}</p>
       <p>loading:{JSON.stringify(request.loading)}</p>
       <p>error:{JSON.stringify(request.error?.message)}</p>
       <p>requestCount:{requestCount}</p>
-      <p>number:{number}</p>
       <button
         onClick={() => {
-          setNumber((number) => ++number);
+          request.setParams({ a: ++number });
         }}
       >
-        number++
+        run
       </button>
     </div>
   );

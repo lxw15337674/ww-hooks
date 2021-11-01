@@ -1,7 +1,7 @@
 import { useQueryConfig } from './interface';
 import _ from 'lodash';
 import { useMount, useRequest, useUnmount, useUpdate } from '../../../';
-import { useCallback, useRef } from 'react';
+import { useCallback, useRef, useState, useMemo } from 'react';
 import { AxiosRequestConfig } from 'axios';
 
 const useQuery = <P = any, D = any>({
@@ -9,49 +9,47 @@ const useQuery = <P = any, D = any>({
   pollingInterval = 0,
   manual = true,
   concurrent = false,
+  defaultParams = null,
   ...useRequestConfig
 }: useQueryConfig<P, D>) => {
   const request = useRequest<D>(useRequestConfig);
   const polling = useRef<NodeJS.Timeout>();
-  const axiosConfig = useCallback(
-    (args: P): AxiosRequestConfig => {
-      const config: AxiosRequestConfig = {};
-      config.params = { ...useRequestConfig.params, ...args };
-      return config;
-    },
-    [useRequestConfig],
-  );
+
+  const [params, setParams] = useState<P>(defaultParams);
+
   const cancel = useCallback(() => {
     request.cancel();
     clearTimeout(polling.current);
   }, [request.cancel]);
 
-  const run = useCallback(
-    (args?: P) => {
-      if (polling.current) {
-        clearTimeout(polling.current);
-      }
-      if (!concurrent) {
-        cancel();
-      }
-      // 参数合并
-      const config = axiosConfig(args);
-      if (pollingInterval) {
-        return request.run(config).finally(() => {
-          polling.current = setTimeout(() => {
-            if (!polling.current) return;
-            run(args);
-          }, pollingInterval);
-        });
-      }
-      return request.run(config);
-    },
-    [request.run, pollingInterval],
-  );
+  const axiosConfig = useMemo((): AxiosRequestConfig => {
+    const config: AxiosRequestConfig = {};
+    config.params = { ...useRequestConfig.params, ...params };
+    return config;
+  }, [useRequestConfig]);
+
+  const run = useCallback(() => {
+    if (polling.current) {
+      clearTimeout(polling.current);
+    }
+    if (!concurrent) {
+      cancel();
+    }
+    // 参数合并
+    if (pollingInterval) {
+      return request.run(axiosConfig).finally(() => {
+        polling.current = setTimeout(() => {
+          if (!polling.current) return;
+          run();
+        }, pollingInterval);
+      });
+    }
+    return request.run(axiosConfig);
+  }, [request.run, pollingInterval]);
 
   useUpdate(() => {
     run();
-  }, deps);
+  }, [...deps, params]);
 
   useMount(() => {
     if (manual === false) {
@@ -63,7 +61,7 @@ const useQuery = <P = any, D = any>({
     clearTimeout(polling.current);
   });
 
-  return { ...request, run, cancel };
+  return { ...request, run, cancel, params, setParams };
 };
 
 export default useQuery;

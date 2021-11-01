@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { useQuery } from 'wwhooks';
+// import { useQuery } from 'wwhooks';
+import useQuery from '../';
 
 export default () => {
   const [requestCount, setRequestCount] = useState(0);
@@ -7,7 +8,8 @@ export default () => {
     url: 'https://getman.cn/mock/test2',
     pollingInterval: 1000,
     manual: true,
-    onSuccess: () => {
+    onSuccess: (res) => {
+      console.log(res);
       setRequestCount((state) => ++state);
       request.cancel();
     },
@@ -26,9 +28,7 @@ export default () => {
       <p>requestCount:{requestCount}</p>
       <button
         onClick={() => {
-          request.run({ a: 2 }).then((res) => {
-            console.log(res);
-          });
+          request.setParams({ a: 2 });
         }}
       >
         request
