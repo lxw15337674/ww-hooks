@@ -5,4 +5,5 @@ export interface useQueryConfig<P, D> extends useRequestConfig<D> {
   pollingInterval?: number;
   concurrent?: boolean;
   //   key?: (args: P) => string;
+  manual?: boolean;
 }

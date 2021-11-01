@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-// import { useQuery } from 'wwhooks';
-import useQuery from '../';
+import { useQuery } from 'wwhooks';
 
 export default () => {
   const [requestCount, setRequestCount] = useState(0);
@@ -15,6 +14,9 @@ export default () => {
     onError: () => {
       setRequestCount((state) => ++state);
     },
+    params: {
+      id: 2,
+    },
   });
   return (
     <div>
@@ -24,7 +26,7 @@ export default () => {
       <p>requestCount:{requestCount}</p>
       <button
         onClick={() => {
-          request.run().then((res) => {
+          request.run({ a: 2 }).then((res) => {
             console.log(res);
           });
         }}
