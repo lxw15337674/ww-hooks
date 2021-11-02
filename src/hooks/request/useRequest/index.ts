@@ -87,7 +87,7 @@ const useRequest = <D = any>({
     run,
     cancel,
     flush,
-  };
+  } as const;
 };
 
 export default useRequest;

@@ -6,10 +6,12 @@ group:
 
 # useQuery
 
+基于 useRequest，用来处理请求数据接口的 hook
+
 基本思想：
 
 1. 请求的处理都在 hooks 配置中处理，而不是写在业务代码里，达到尽可能的复用
-2. 请求会通过修改参数会自动请求。
+2. 通过修改参数自动请求。
 
 特性：
 
@@ -29,11 +31,6 @@ group:
   - [ ] 数据的全局使用
   - [ ] 缓存数据
   - [ ] 支持 SSR
-- [ ] onsuccess、onError 的拦截器功能
-
-  > 可以对 hook 进行再一层的封装，例如实现统一的错误处理，统一的数据格式化。
-
-###
 
 ## demo
 
@@ -69,17 +66,18 @@ group:
 
 ### Result
 
-| 参数      | 说明                                                                                                                                            | 类型                                        |
-| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
-| data      | service 返回的数据，默认为 `undefined`。如果有 `formatResult`, 则该数据为被格式化后的数据。                                                     | `D`                                         |
-| error     | service 抛出的异常，默认为 `undefined`                                                                                                          | `string`                                    |
-| loading   | service 是否正在执行                                                                                                                            | `boolean`                                   |
-| mutate    | 直接修改 data                                                                                                                                   | `React.Dispatch<React.SetStateAction<D>>`   |
-| run       | - 手动触发 service 执行，run 的 axios 参数优先级最高，会与 params 参数进行浅合并。<br />- debounce 模式与 throttle 模式返回值为 `Promise<null>` | ` () => Promise<Error \| AxiosResponse<D>>` |
-| cancel    | 取消当前请求                                                                                                                                    | `() => void`                                |
-| flush     | 立即调用处于防抖或节流状态的函数                                                                                                                | `() => Promise<Error\| AxiosResponse<D>>`   |
-| params    | service 的请求参数                                                                                                                              | `P`                                         |
-| setParams | 修改请求参数                                                                                                                                    | `React.Dispatch<React.SetStateAction<P>>`   |
+| 参数        | 说明                                                                                                                                            | 类型                                        |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
+| data        | service 返回的数据，默认为 `undefined`。如果有 `formatResult`, 则该数据为被格式化后的数据。                                                     | `D`                                         |
+| error       | service 抛出的异常，默认为 `undefined`                                                                                                          | `string`                                    |
+| loading     | service 是否正在执行                                                                                                                            | `boolean`                                   |
+| mutate      | 直接修改 data                                                                                                                                   | `React.Dispatch<React.SetStateAction<D>>`   |
+| run         | - 手动触发 service 执行，run 的 axios 参数优先级最高，会与 params 参数进行浅合并。<br />- debounce 模式与 throttle 模式返回值为 `Promise<null>` | ` () => Promise<Error \| AxiosResponse<D>>` |
+| cancel      | 取消当前请求                                                                                                                                    | `() => void`                                |
+| flush       | 立即调用处于防抖或节流状态的函数                                                                                                                | `() => Promise<Error\| AxiosResponse<D>>`   |
+| params      | service 的请求参数                                                                                                                              | `P`                                         |
+| setParams   | 修改请求参数                                                                                                                                    | `React.Dispatch<React.SetStateAction<P>>`   |
+| nterceptors | axios 拦截器,[详细用法](https://github.com/axios/axios#interceptors)                                                                            | -                                           |
 
 #### config
 

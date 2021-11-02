@@ -14,7 +14,6 @@ const useQuery = <P = any, D = any>({
 }: useQueryConfig<P, D>) => {
   const request = useRequest<D>(useRequestConfig);
   const polling = useRef<NodeJS.Timeout>();
-
   const [params, setParams] = useState<P>(defaultParams);
 
   const cancel = useCallback(() => {
@@ -61,7 +60,7 @@ const useQuery = <P = any, D = any>({
     clearTimeout(polling.current);
   });
 
-  return { ...request, run, cancel, params, setParams };
+  return { ...request, run, cancel, params, setParams } as const;
 };
 
 export default useQuery;
