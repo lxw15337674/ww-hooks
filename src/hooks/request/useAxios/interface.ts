@@ -1,4 +1,5 @@
 import {
+  AxiosDefaults,
   AxiosInterceptorManager,
   AxiosRequestConfig,
   AxiosResponse,
@@ -15,6 +16,7 @@ export interface Result<D> {
     request: AxiosInterceptorManager<AxiosRequestConfig>;
     response: AxiosInterceptorManager<AxiosResponse>;
   };
+  defaults: AxiosDefaults<D>;
 }
 
 export interface Config<D> {

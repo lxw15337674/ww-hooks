@@ -45,7 +45,8 @@ group:
 | run          | 手动触发 service 执行，如果 options 存在 debounce，则 run 会返回空 Promise。run 的 axios 参数优先级最高。 | `(config?: AxiosRequestConfig) => Promise<Error\|AxiosResponse<D>>` |
 | mutate       | 直接修改 data                                                                                             | `React.Dispatch<React.SetStateAction<D>>`                           |
 | cancel       | 利用 axios 的 CancelToken 取消请求                                                                        | `()=>void`                                                          |
-| interceptors | axios 拦截器,[详细用法](https://github.com/axios/axios#interceptors)                                      | -                                                                   |
+| interceptors | 配置 axios 拦截器,[详细用法](https://github.com/axios/axios#interceptors)                                 | -                                                                   |
+| defaults     | 配置 axios 的默认参数。                                                                                   | `AxiosDefaults<D>`                                                  |
 
 ### Params
 

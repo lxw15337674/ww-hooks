@@ -80,6 +80,7 @@ const useAxios = <D>(
     cancel,
     mutate: setData,
     interceptors: axios.interceptors,
+    defaults: axios.defaults,
   } as const;
 };
 
