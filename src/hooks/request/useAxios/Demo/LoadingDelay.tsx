@@ -16,13 +16,13 @@ export default () => {
     <div style={{ display: 'flex' }}>
       <div style={{ width: '50%' }}>
         <p>data:{JSON.stringify(request.data)}</p>
-        <p>loading:{JSON.stringify(request.loading)}</p>
+        <p>loading:{JSON.stringify(request.isLoading)}</p>
         <button
           onClick={() => {
             request.run();
           }}
         >
-          正常的请求 {request.loading}
+          正常的请求 {request.isLoading}
         </button>
       </div>
     </div>

@@ -35,7 +35,7 @@ export default () => {
     <div style={{ display: 'flex' }}>
       <div style={{ width: '50%' }}>
         <p>data:{JSON.stringify(request.data)}</p>
-        <p>loading:{JSON.stringify(request.loading)}</p>
+        <p>loading:{JSON.stringify(request.isLoading)}</p>
         <p>error:{JSON.stringify(request.error)}</p>
         <button
           onClick={() => {
@@ -56,7 +56,7 @@ export default () => {
       </div>
       <div>
         <p>data:{JSON.stringify(errorRequest.data)}</p>
-        <p>loading:{JSON.stringify(errorRequest.loading)}</p>
+        <p>loading:{JSON.stringify(errorRequest.isLoading)}</p>
         <p>error:{JSON.stringify(errorRequest?.error?.message)}</p>
         <button
           onClick={() => {
