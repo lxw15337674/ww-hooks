@@ -9,7 +9,6 @@ import _ from 'lodash';
 import { Config, Result } from './interface';
 import { isType, useMountedState, useTimeoutFn } from '../../../';
 
-const axios = Axios.create();
 // 数据请求Hook
 const useAxios = <D>(
   config?: Config<D>,
@@ -24,6 +23,9 @@ const useAxios = <D>(
     };
     return { ...defaultConfig, ...config };
   }, [config]);
+  const axios = useMemo(() => {
+    return Axios.create();
+  }, []);
   const [data, setData] = useState<D>(config.initialData);
   const [error, setError] = useState<Error>();
   const [loading, setLoading] = useState<boolean>(false);
@@ -77,7 +79,8 @@ const useAxios = <D>(
     run,
     cancel,
     mutate: setData,
-  };
+    interceptors: axios.interceptors,
+  } as const;
 };
 
 export default useAxios;

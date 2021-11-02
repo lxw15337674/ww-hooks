@@ -1,5 +1,6 @@
 import React from 'react';
-import { useAxios } from 'wwhooks';
+import useAxios from '..';
+// import { useAxios } from 'wwhooks';
 
 export default () => {
   const request = useAxios(
@@ -11,6 +12,16 @@ export default () => {
     },
     { url: 'https://getman.cn/mock/test2' },
   );
+  // 拦截器使用
+  request.interceptors.request.use((config) => {
+    console.log(config);
+    config.cancelToken;
+    return config;
+  });
+  request.interceptors.response.use((response) => {
+    console.log(response);
+    return response;
+  });
   //   失败的请求
   const errorRequest = useAxios(
     {

@@ -1,4 +1,8 @@
-import { AxiosRequestConfig, AxiosResponse } from 'axios';
+import {
+  AxiosInterceptorManager,
+  AxiosRequestConfig,
+  AxiosResponse,
+} from 'axios';
 
 export interface Result<D> {
   data: D;
@@ -7,6 +11,10 @@ export interface Result<D> {
   cancel: () => void;
   run: (config?: AxiosRequestConfig) => Promise<AxiosResponse<D> | Error>;
   mutate: React.Dispatch<React.SetStateAction<D>>;
+  interceptors: {
+    request: AxiosInterceptorManager<AxiosRequestConfig>;
+    response: AxiosInterceptorManager<AxiosResponse>;
+  };
 }
 
 export interface Config<D> {
