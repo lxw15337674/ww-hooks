@@ -69,7 +69,7 @@ const useRequest = <D = any>({
     if (throttleRun?.flush) {
       return throttleRun.flush;
     }
-    return Promise.resolve(null);
+    return () => Promise.resolve(null);
   }, [debounceRun, throttleRun]);
 
   useMount(() => {
@@ -87,7 +87,7 @@ const useRequest = <D = any>({
     run,
     cancel,
     flush,
-  };
+  } as const;
 };
 
 export default useRequest;

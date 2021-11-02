@@ -6,10 +6,9 @@ import Axios, {
   Canceler,
 } from 'axios';
 import _ from 'lodash';
-import { Config, Result } from './interface';
-import { isType, useMountedState, useTimeoutFn } from '../../../';
+import { Config, Result, Status } from './interface';
+import { isType, useMountedState, useTimeoutFn, useToggle } from '../../../';
 
-const axios = Axios.create();
 // 数据请求Hook
 const useAxios = <D>(
   config?: Config<D>,
@@ -24,12 +23,16 @@ const useAxios = <D>(
     };
     return { ...defaultConfig, ...config };
   }, [config]);
+  const axios = useMemo(() => {
+    return Axios.create();
+  }, []);
   const [data, setData] = useState<D>(config.initialData);
   const [error, setError] = useState<Error>();
-  const [loading, setLoading] = useState<boolean>(false);
+  const [status, setStatus] = useState<Status>('success');
   const loadingDelayTimer = useRef<NodeJS.Timeout>();
-  const delaySetLoading = useTimeoutFn(setLoading, config.loadingDelay);
-
+  const delaySetLoading = useTimeoutFn(() => {
+    setStatus('loading');
+  }, config.loadingDelay);
   const run = useCallback(
     (_axiosConfig?: AxiosRequestConfig) => {
       const runConfig: AxiosRequestConfig<D> = {
@@ -39,7 +42,7 @@ const useAxios = <D>(
         ...axiosConfig,
         ..._axiosConfig,
       };
-      delaySetLoading.run(true);
+      delaySetLoading.run();
       setError(undefined);
       return axios
         .request<D, AxiosResponse<D>>(runConfig)
@@ -47,12 +50,14 @@ const useAxios = <D>(
           (data: AxiosResponse<D>) => {
             mountedState() && setData(data.data);
             config?.onSuccess?.(data);
+            setStatus('success');
             return data;
           },
           (err: Error | Cancel) => {
             if (isType<Error>(err, 'error')) {
               mountedState() && setError(err);
               config?.onError?.(err, axiosConfig[0]);
+              setStatus('error');
               return err;
             }
             return null;
@@ -60,7 +65,6 @@ const useAxios = <D>(
         )
         .finally(() => {
           delaySetLoading.cancel();
-          setLoading(false);
           clearTimeout(loadingDelayTimer.current);
         });
     },
@@ -69,15 +73,19 @@ const useAxios = <D>(
   const cancel = useCallback(() => {
     cancelToken.current?.();
   }, [cancelToken]);
-
   return {
     data,
     error,
-    loading,
+    isLoading: status === 'loading',
+    isError: status === 'error',
+    isSuccess: status === 'success',
+    status,
     run,
     cancel,
     mutate: setData,
-  };
+    interceptors: axios.interceptors,
+    defaults: axios.defaults,
+  } as const;
 };
 
 export default useAxios;

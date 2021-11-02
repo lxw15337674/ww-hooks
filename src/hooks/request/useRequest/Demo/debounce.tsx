@@ -14,7 +14,7 @@ export default () => {
   return (
     <div>
       <p>data:{JSON.stringify(request.data)}</p>
-      <p>loading:{JSON.stringify(request.loading)}</p>
+      <p>loading:{JSON.stringify(request.isLoading)}</p>
       <p>error:{JSON.stringify(request.error?.message)}</p>
       <p>requestCount:{requestCount}</p>
       <button
