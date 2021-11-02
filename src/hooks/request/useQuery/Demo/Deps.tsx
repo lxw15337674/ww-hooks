@@ -1,6 +1,12 @@
+/**
+ *
+ * title: 依赖请求
+ * desc: |
+ *  配置`deps`参数，当deps变化，就会触发`run`执行
+ *
+ */
 import React, { useState } from 'react';
-// import { useQuery } from 'wwhooks';
-import useQuery from '../';
+import { useQuery } from 'wwhooks';
 
 export default () => {
   const [number, setNumber] = useState(0);

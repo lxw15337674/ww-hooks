@@ -1,6 +1,13 @@
+/**
+ *
+ * title: 基本用法
+ * desc: |
+ *  - 通过`setParams`修改参数，自动触发请求
+ *  - 直接调用run方法请求。
+ *
+ */
 import React, { useState } from 'react';
-// import { useQuery } from 'wwhooks';
-import useQuery from '../';
+import { useQuery } from 'wwhooks';
 
 interface Params {
   a: number;
@@ -25,6 +32,13 @@ export default () => {
       <button
         onClick={() => {
           request.setParams({ a: ++number });
+        }}
+      >
+        a+1
+      </button>
+      <button
+        onClick={() => {
+          request.run();
         }}
       >
         run
