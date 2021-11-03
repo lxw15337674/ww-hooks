@@ -42,8 +42,8 @@ group:
 | error        | request 抛出的异常，默认为 `undefined`                                                                    | `string`                                                            |
 | isLoading    | request 是否处于请求状态。                                                                                | `boolean`                                                           |
 | isError      | request 是否处于错误状态。                                                                                | `boolean`                                                           |
-| isSuccess    | request 是否处于成功状态。                                                                                | `boolean`                                                           |
-| status       | 请求状态，初始为'success'                                                                                 | `loading`                                                           | `error` | `success` |
+| isSuccess    | request 是否处于成功状态。                                                                                | `loading`                                                           | `error` | `success` |
+| status       | 请求状态，初始为'success'                                                                                 | `loading`                                                           |
 | run          | 手动触发 service 执行，如果 options 存在 debounce，则 run 会返回空 Promise。run 的 axios 参数优先级最高。 | `(config?: AxiosRequestConfig) => Promise<Error\|AxiosResponse<D>>` |
 | mutate       | 直接修改 data                                                                                             | `React.Dispatch<React.SetStateAction<D>>`                           |
 | cancel       | 利用 axios 的 CancelToken 取消请求                                                                        | `()=>void`                                                          |
