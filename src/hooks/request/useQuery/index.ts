@@ -44,7 +44,7 @@ const useQuery = <P = any, D = any>({
       });
     }
     return request.run(axiosConfig);
-  }, [request.run, pollingInterval]);
+  }, [request.run, pollingInterval, axiosConfig]);
 
   useUpdate(() => {
     run();
