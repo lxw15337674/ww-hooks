@@ -10,7 +10,7 @@ group:
 
 ## Demo
 
-<code src="./demo/index.tsx" />
+<code src="./Demo/index.tsx" />
 
 ### Generics
 

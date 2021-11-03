@@ -17,7 +17,7 @@ group:
 
 ### 基础用法
 
-<code src="./demo/index.tsx" />
+<code src="./Demo/index.tsx" />
 
 ## API
 
