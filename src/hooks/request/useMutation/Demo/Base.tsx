@@ -1,8 +1,8 @@
 /**
  *
- * title: 依赖请求
+ * title: 基本用法
  * desc: |
- *  配置`deps`参数，当deps变化，就会触发`run`执行
+ *  基本用法
  *
  */
 import React, { useState } from 'react';
@@ -14,9 +14,8 @@ export default () => {
 
   const request = useMutation({
     url: 'https://getman.cn/mock/test2',
-    manual: true,
-    onSuccess: () => {
-      setRequestCount((state) => ++state);
+    defaultParams: {
+      test: '123',
     },
   });
   return (
@@ -25,13 +24,7 @@ export default () => {
       <p>loading:{JSON.stringify(request.isLoading)}</p>
       <p>error:{JSON.stringify(request.error?.message)}</p>
       <p>requestCount:{requestCount}</p>
-      <button
-        onClick={() => {
-          request;
-        }}
-      >
-        number++
-      </button>
+      <button onClick={request.run}>number++</button>
     </div>
   );
 };
