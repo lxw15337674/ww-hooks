@@ -16,7 +16,6 @@ export default () => {
         resize: 'both',
         border: '1px solid',
         overflow: 'auto',
-        boxSizing: 'content-box',
       }}
     >
       <p>width:{size.width}</p>

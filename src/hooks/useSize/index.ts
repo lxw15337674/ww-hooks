@@ -8,16 +8,17 @@ function useSize() {
     width: null,
     height: null,
   });
-
   useEffect(() => {
     const resizeObserver = new ResizeObserver((entries) => {
       entries.forEach((entry) => {
+        const target = entry.target as HTMLElement;
         setState({
-          width: entry.target.clientWidth,
-          height: entry.target.clientHeight,
+          width: target.offsetWidth,
+          height: target.offsetHeight,
         });
       });
     });
+
     if (ref.current) {
       resizeObserver.observe(ref.current);
     }

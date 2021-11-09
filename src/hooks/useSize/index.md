@@ -18,5 +18,3 @@ group:
 | -------- | --------------------------- | ---------------------------------------- |
 | ref      | 用于绑定需要监听的 dom 节点 | `React.MutableRefObject<HTMLDivElement>` |
 | size     | dom 节点的尺寸              | `{ width: number, height: number }`      |
-
-###
