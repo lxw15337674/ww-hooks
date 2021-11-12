@@ -15,6 +15,7 @@ export { default as useMountedState } from './hooks/useMountedState';
 export { default as useTimeoutFn } from './hooks/useTimeoutFn';
 export { default as useQuery } from './hooks/request/useQuery';
 export { default as useMutation } from './hooks/request/useMutation';
+export { default as useSize } from './hooks/useSize';
 export { default as setDefaultArguments } from './function/setDefaultArguments';
 export { default as sortBy } from './function/sortBy';
 export { default as isType } from './function/IsType';

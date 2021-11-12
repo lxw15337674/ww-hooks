@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-type Size = { width?: number; height?: number };
+export type Size = { width: number; height: number };
 
 function useSize() {
   const ref = useRef<HTMLDivElement>();
