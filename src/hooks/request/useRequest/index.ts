@@ -53,7 +53,7 @@ const useRequest = <D = any>({
       }
       return axios.run(config);
     },
-    [debounceRun, debounce],
+    [debounceRun, debounce, throttle, throttleRun],
   );
 
   const cancel = useCallback(() => {
