@@ -1,6 +1,6 @@
 import { useMutationConfig } from './interface';
 import _ from 'lodash';
-import { useMount, useRequest, useUnmount, useUpdate } from '../../../';
+import { useMount, useRequest, useUnmount, useUpdateEffect } from '../../../';
 import { useCallback, useRef, useState, useMemo } from 'react';
 import { AxiosRequestConfig } from 'axios';
 
@@ -24,7 +24,7 @@ const useQuery = <P = any, D = any>({
     return request.run(axiosConfig);
   }, [request.run, axiosConfig]);
 
-  useUpdate(() => {
+  useUpdateEffect(() => {
     run();
   }, [params]);
 

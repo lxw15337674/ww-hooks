@@ -1,30 +1,23 @@
-import React, { useEffect, useState } from 'react';
+/**
+ *
+ * title: 轮询
+ * desc: |
+ *  通过设置 `options.pollingInterval` ，进入轮询模式，定时触发函数执行。
+ *  - 通过 `run` / `cancel` 来 开启/停止 轮询。
+ *
+ */
 import { useUpdate } from 'wwhooks';
+import React from 'react';
 
-export default () => {
-  const [depCount, setDepCount] = useState<number>(0);
-  const [effectCount, setEffectCount] = useState<number>(0);
-  const [updateCount, setUpdateCount] = useState<number>(0);
-  const [object] = useState({
-    a: '1',
-    b: '2'
-  });
-
-  useEffect(() => {
-    setEffectCount((v) => ++v);
-  }, [depCount]);
-
-  useUpdate(() => {
-    setUpdateCount((v) => ++v);
-  }, [depCount]);
-
+const test = () => {
+  const update = useUpdate();
   return (
     <>
-      <p>effectCount: {effectCount}</p>
-      <p>updateCount: {updateCount}</p>
+      Time: {Date.now()}
       <p>
-        <button onClick={() => setDepCount((c) => ++c)}>update Deps</button>
+        <button onClick={update}>update</button>
       </p>
     </>
   );
 };
+export default test;
