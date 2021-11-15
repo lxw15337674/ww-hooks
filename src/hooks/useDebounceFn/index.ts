@@ -21,7 +21,6 @@ export default function useDebounceFn<T extends Fn = Fn>(
   useUnmount(() => {
     debouncedFn.cancel();
   });
-
   return {
     run: debouncedFn,
     cancel: debouncedFn.cancel,
