@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-const useUpdate = (props) => {
+const useUpdate = () => {
   const [, setState] = useState({});
   return useCallback(() => {
     setState({});
