@@ -6,8 +6,7 @@
  *
  */
 import React, { useState } from 'react';
-import useMutation from '..';
-// import { useQuery } from 'wwhooks';
+import { useMutation } from 'wwhooks';
 
 export default () => {
   const [requestCount, setRequestCount] = useState(0);

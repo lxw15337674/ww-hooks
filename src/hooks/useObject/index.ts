@@ -1,15 +1,18 @@
 import { useMemo, useCallback, useState } from 'react';
 import { isEqual } from 'lodash';
 import { setState } from '@/common/utils';
-import { SetDispatch } from '@/common/interface';
+import {
+  SetDispatch,
+  SetPartialDispatch,
+  SetPartialStateAction,
+} from '@/common/interface';
 
-interface Action<T> {
+export interface Action<T> {
   reset: () => void;
-  set: SetDispatch<T>;
+  set: SetPartialDispatch<T>;
+  setAll: SetDispatch<T>;
   isEdited: boolean;
 }
-
-// export type setObjectAction<T> = Partial<T> | ((prevObject: T) => Partial<T>);
 
 export default function useObject<T extends object = object>(
   defaultValue: T = Object.create(null),
@@ -24,14 +27,14 @@ export default function useObject<T extends object = object>(
   }, [object, defaultValue]);
 
   const set = useCallback(
-    (object) => {
+    (object: SetPartialStateAction<T>) => {
       setObject((prevObject: T) => {
-        const state = setState<T>(object, prevObject);
+        const state = setState<Partial<T>>(object, prevObject);
         return { ...prevObject, ...state };
       });
     },
     [setObject],
   );
 
-  return [object, { set, reset, isEdited }];
+  return [object, { setAll: setObject, set, reset, isEdited }];
 }
