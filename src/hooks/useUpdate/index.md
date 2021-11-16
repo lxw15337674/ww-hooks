@@ -10,8 +10,6 @@ group:
 
 ## demo
 
-### 基本用法
-
 <code src="./Demo/index.tsx"/>
 
 ### Result
