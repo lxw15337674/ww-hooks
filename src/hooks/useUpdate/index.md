@@ -1,5 +1,4 @@
 ---
-title: useUpdate
 group:
   title: lifeCycle
   path: /lifeCycle
@@ -7,29 +6,14 @@ group:
 
 # useUpdate
 
-只有在依赖更新时执行。
-
-> 与 useEffect 区别：
->
-> 1. 不会在首次渲染时执行。
-> 2. 依赖对象为必填项。
+强制重新渲染
 
 ## demo
 
 <code src="./Demo/index.tsx"/>
 
-## API
+### Result
 
-```typescript
-useUpdate(
-  effect: () => (void | (() => void | undefined)),
-  deps: deps,
-)
-```
-
-### Params
-
-| **参数** | **说明**           | **类型**       | **默认值** | 必填 |
-| -------- | ------------------ | -------------- | ---------- | ---- |
-| effect   | 可执行函数         | `() => (void)` | -          | 是   |
-| deps     | 传入依赖变化的对象 | `array`        | -          | 是   |
+| 参数   | 说明     | 类型       |
+| ------ | -------- | ---------- |
+| update | 强制更新 | `()=>void` |

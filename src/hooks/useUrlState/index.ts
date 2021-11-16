@@ -1,7 +1,7 @@
 import { setState } from '@/common/utils';
 import { useMemo, useState } from 'react';
 import { SetStateAction } from '../../common/interface';
-import useUpdate from '../useUpdate';
+import useUpdateEffect from '../useUpdateEffect';
 
 export default (
   defaultValue?: string | string[][] | Record<string, string> | URLSearchParams,
@@ -34,7 +34,7 @@ export default (
     [urlState, setUrlState],
   );
 
-  useUpdate(() => {
+  useUpdateEffect(() => {
     const mode = `${navigateMode}State`;
     const params = urlState.toString();
     if (!params) {

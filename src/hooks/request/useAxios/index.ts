@@ -7,7 +7,7 @@ import Axios, {
 } from 'axios';
 import _ from 'lodash';
 import { Config, Result, Status } from './interface';
-import { isType, useMountedState, useTimeoutFn, useToggle } from '../../../';
+import { isType, useMountedState, useTimeoutFn } from '../../../';
 
 // 数据请求Hook
 const useAxios = <D>(

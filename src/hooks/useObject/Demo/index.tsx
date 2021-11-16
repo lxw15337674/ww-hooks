@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Fragment } from 'react-dom/node_modules/@types/react';
 import { useObject } from 'wwhooks';
+
 interface Obj {
   name: string;
   age: number;
@@ -25,9 +25,9 @@ const Demo = () => {
       <p>
         <button
           onClick={() =>
-            actions.set((prev) => {
-              age: ++prev.age;
-            })
+            actions.set((prev) => ({
+              age: ++prev.age,
+            }))
           }
         >
           age++

@@ -1,6 +1,5 @@
 import React from 'react';
-import useAxios from '..';
-// import { useAxios } from 'wwhooks';
+import { useAxios } from 'wwhooks';
 
 export default () => {
   const request = useAxios(

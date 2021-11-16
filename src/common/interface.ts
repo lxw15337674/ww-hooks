@@ -4,4 +4,6 @@ export type SetPartialStateAction<T> = Partial<T> | ((value: T) => Partial<T>);
 
 export type SetDispatch<T> = (state: SetStateAction<T>) => void;
 
+export type SetPartialDispatch<T> = (state: SetPartialStateAction<T>) => void;
+
 export type Fn = (...args: any) => any;
