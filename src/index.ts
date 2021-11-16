@@ -17,6 +17,7 @@ export { default as useQuery } from './hooks/request/useQuery';
 export { default as useMutation } from './hooks/request/useMutation';
 export { default as useSize } from './hooks/useSize';
 export { default as useUpdate } from './hooks/useUpdate';
+export { default as useNumber } from './hooks/useNumber';
 
 export { default as setDefaultArguments } from './function/setDefaultArguments';
 export { default as sortBy } from './function/sortBy';
