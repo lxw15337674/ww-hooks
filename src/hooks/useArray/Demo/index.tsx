@@ -20,7 +20,6 @@ export default () => {
       <p>state: {JSON.stringify(array)}</p>
       <p>isEdited:{JSON.stringify(actions.isEdited)}</p>
       <p>
-        actions:
         {actionButtons.map(([text, callback], index) => (
           <button type="button" onClick={() => callback()} key={index}>
             {text}

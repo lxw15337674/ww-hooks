@@ -1,7 +1,7 @@
 ---
 group:
-  title: function
-  path: /function
+  title: utils
+  path: /utils
 ---
 
 # IsType
