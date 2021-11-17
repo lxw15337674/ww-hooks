@@ -20,6 +20,6 @@ export { default as useUpdate } from './hooks/useUpdate';
 export { default as useNumber } from './hooks/useNumber';
 export { default as useClick } from './hooks/useClick';
 
-export { default as setDefaultArguments } from './function/setDefaultArguments';
-export { default as sortBy } from './function/sortBy';
-export { default as isType } from './function/IsType';
+export { default as setDefaultArguments } from './utils/setDefaultArguments';
+export { default as sortBy } from './utils/sortBy';
+export { default as isType } from './utils/IsType';
