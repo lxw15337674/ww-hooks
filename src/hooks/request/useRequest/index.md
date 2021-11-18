@@ -34,19 +34,19 @@ group:
 
 ### Result
 
-| 参数        | 说明                                                                                                                | 类型                                             |
-| ----------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ | ------------------ | --------- |
-| data        | service 返回的数据，默认为 `undefined`。如果有 `formatResult`, 则该数据为被格式化后的数据。                         | `D`                                              |
-| error       | service 抛出的异常，默认为 `undefined`                                                                              | `string`                                         |
-| isLoading   | request 是否处于请求状态。                                                                                          | `boolean`                                        |
-| isError     | request 是否处于错误状态。                                                                                          | `boolean`                                        |
-| isSuccess   | request 是否处于成功状态。                                                                                          | `boolean`                                        |
-| status      | 请求状态，初始为'success'                                                                                           | `loading`                                        | `error`            | `success` |
-| mutate      | 直接修改 data                                                                                                       | `React.Dispatch<React.SetStateAction<D>>`        |
-| run         | - 手动触发 service 执行，run 的 axios 参数优先级最高。<br />- debounce 模式与 throttle 模式返回值为 `Promise<null>` | ` (config?: AxiosRequestConfig) => Promise<Error | AxiosResponse<D>>` |
-| cancel      | 取消当前请求                                                                                                        | `() => void`                                     |
-| flush       | 立即调用处于防抖或节流状态的函数                                                                                    | `() => Promise<Error                             | AxiosResponse<D>>` |
-| nterceptors | axios 拦截器,[详细用法](https://github.com/axios/axios#interceptors)                                                | -                                                |
+| 参数         | 说明                                                                                                                | 类型                                             |
+| ------------ | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ | ------------------ |
+| data         | service 返回的数据，默认为 `undefined`。如果有 `formatResult`, 则该数据为被格式化后的数据。                         | `D`                                              |
+| error        | service 抛出的异常，默认为 `undefined`                                                                              | `string`                                         |
+| isLoading    | request 是否处于请求状态。                                                                                          | `boolean`                                        |
+| isError      | request 是否处于错误状态。                                                                                          | `boolean`                                        |
+| isSuccess    | request 是否处于成功状态。                                                                                          | `boolean`                                        |
+| status       | 请求状态，初始为'success'                                                                                           | `loading`                                        |
+| mutate       | 直接修改 data                                                                                                       | `React.Dispatch<React.SetStateAction<D>>`        |
+| run          | - 手动触发 service 执行，run 的 axios 参数优先级最高。<br />- debounce 模式与 throttle 模式返回值为 `Promise<null>` | ` (config?: AxiosRequestConfig) => Promise<Error | AxiosResponse<D>>` |
+| cancel       | 取消当前请求                                                                                                        | `() => void`                                     |
+| flush        | 立即调用处于防抖或节流状态的函数                                                                                    | `() => Promise<Error                             | AxiosResponse<D>>` |
+| interceptors | axios 拦截器,[详细用法](https://github.com/axios/axios#interceptors)                                                | -                                                |
 
 ### Params
 
@@ -57,15 +57,15 @@ group:
 
 #### config
 
-| **参数**     | **说明**                           | **类型**                           | **默认值**         | 必填  |
-| ------------ | ---------------------------------- | ---------------------------------- | ------------------ | ----- |
-| debounce     | 防抖，如果为 true 则使用默认参数。 | `boolean`                          | `DebouenceOptions` | false |
-| throttle     | 节流，如果为 true 则使用默认参数。 | `boolean`\|`ThrottleOptions`       | false              | 否    |
-| manual       | 是否手动触发                       | `boolean`                          | true               | 否    |
-| initialData  | 默认的 data。                      | `D`                                | null               | 否    |
-| onSuccess    | service resolve 时触发 。          | `(data: AxiosResponse<D>) => void` | -                  | 否    |
-| onError      | service reject 时触发。            | `(error: string) => void`          | -                  | 否    |
-| loadingDelay | loading 延迟为 true 的时间         | number                             | -                  | 否    |
+| **参数**     | **说明**                           | **类型**                           | **默认值**         | 必填 |
+| ------------ | ---------------------------------- | ---------------------------------- | ------------------ | ---- |
+| debounce     | 防抖，如果为 true 则使用默认参数。 | `boolean`                          | `DebouenceOptions` | 否   |
+| throttle     | 节流，如果为 true 则使用默认参数。 | `boolean`\|`ThrottleOptions`       | false              | 否   |
+| manual       | 是否手动触发                       | `boolean`                          | true               | 否   |
+| initialData  | 默认的 data。                      | `D`                                | null               | 否   |
+| onSuccess    | service resolve 时触发 。          | `(data: AxiosResponse<D>) => void` | -                  | 否   |
+| onError      | service reject 时触发。            | `(error: string) => void`          | -                  | 否   |
+| loadingDelay | loading 延迟为 true 的时间         | number                             | -                  | 否   |
 
 #### DebouenceOptions
 
