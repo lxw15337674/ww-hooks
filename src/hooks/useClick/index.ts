@@ -29,7 +29,6 @@ const useClick = (
 
   const fn = useCallback(
     (e: React.MouseEvent) => {
-      console.log(clickCount);
       if (clickCount === 0) {
         simpleClickFn?.(e);
         run();
