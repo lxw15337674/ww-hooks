@@ -4,8 +4,8 @@ import { useMount, useRequest, useUnmount, useUpdateEffect } from '../../../';
 import { useCallback, useRef, useState, useMemo } from 'react';
 import { AxiosRequestConfig } from 'axios';
 
-const useQuery = <P = any, D = any>({
-  manual = false,
+const useMutation = <P = any, D = any>({
+  manual = true,
   defaultParams = null,
   ...useRequestConfig
 }: useMutationConfig<P, D>) => {
@@ -37,4 +37,4 @@ const useQuery = <P = any, D = any>({
   return { ...request, run, params, setParams } as const;
 };
 
-export default useQuery;
+export default useMutation;
