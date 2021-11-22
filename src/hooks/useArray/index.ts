@@ -38,7 +38,7 @@ const useArray = <T = any>(initialArray: T[]) => {
       reset: () => {
         setValue(initialArray);
       },
-      swap: (dragIndex, dropIndex) => {
+      swap: (dragIndex: number, dropIndex: number) => {
         const maxIndex = value.length - 1;
         if (dragIndex > maxIndex || dropIndex > maxIndex) {
           console.error('交换位置超出最大位置');
