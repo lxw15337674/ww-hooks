@@ -6,7 +6,7 @@ group:
 
 # useQuery
 
-基于 useRequest，用来处理请求数据接口的 hook。
+基于 useAxios，用来处理请求数据接口的 hook。
 
 请求接口特点：
 

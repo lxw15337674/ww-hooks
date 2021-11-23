@@ -1,30 +1,25 @@
 import React from 'react';
-import useAxios from '..';
-// import { useAxios } from 'wwhooks';
+import { useAxios } from 'wwhooks';
 
 export default () => {
-  const request = useAxios(
-    {
-      onSuccess: (data) => {
-        console.log(data);
-      },
-      loadingDelay: 2000,
+  const request = useAxios({
+    url: 'https://getman.cn/mock/test2',
+    onSuccess: (data) => {
+      console.log(data);
     },
-    { url: 'https://getman.cn/mock/test2' },
-  );
+    loadingDelay: 2000,
+  });
   return (
-    <div style={{ display: 'flex' }}>
-      <div style={{ width: '50%' }}>
-        <p>data:{JSON.stringify(request.data)}</p>
-        <p>loading:{JSON.stringify(request.isLoading)}</p>
-        <button
-          onClick={() => {
-            request.run();
-          }}
-        >
-          正常的请求 {request.isLoading}
-        </button>
-      </div>
+    <div>
+      <p>data:{JSON.stringify(request.data)}</p>
+      <p>loading:{JSON.stringify(request.isLoading)}</p>
+      <button
+        onClick={() => {
+          request.run();
+        }}
+      >
+        正常的请求 {request.isLoading}
+      </button>
     </div>
   );
 };

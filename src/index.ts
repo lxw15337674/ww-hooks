@@ -10,7 +10,6 @@ export { default as useToggle } from './hooks/useToggle';
 export { default as useDebounceFn } from './hooks/useDebounceFn';
 export { default as useLockScroll } from './hooks/useLockScroll';
 export { default as useAxios } from './hooks/request/useAxios';
-export { default as useRequest } from './hooks/request/useRequest';
 export { default as useMountedState } from './hooks/useMountedState';
 export { default as useTimeoutFn } from './hooks/useTimeoutFn';
 export { default as useQuery } from './hooks/request/useQuery';

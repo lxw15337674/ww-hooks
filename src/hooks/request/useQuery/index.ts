@@ -1,6 +1,6 @@
 import { useQueryConfig } from './interface';
 import _ from 'lodash';
-import { useMount, useRequest, useUnmount, useUpdateEffect } from '../../../';
+import { useMount, useAxios, useUnmount, useUpdateEffect } from '../../../';
 import { useCallback, useRef, useState, useMemo } from 'react';
 import { AxiosRequestConfig } from 'axios';
 
@@ -12,7 +12,12 @@ const useQuery = <P = any, D = any>({
   defaultParams = null,
   ...useRequestConfig
 }: useQueryConfig<P, D>) => {
-  const request = useRequest<D>(useRequestConfig);
+  const axiosConfig = useMemo((): AxiosRequestConfig => {
+    const config: AxiosRequestConfig = {};
+    config.params = { ...useRequestConfig.params, ...params };
+    return config;
+  }, [useRequestConfig]);
+  const request = useAxios<D>(axiosConfig);
   const polling = useRef<NodeJS.Timeout>();
   const [params, setParams] = useState<P>(defaultParams);
 
@@ -21,30 +26,30 @@ const useQuery = <P = any, D = any>({
     clearTimeout(polling.current);
   }, [request.cancel]);
 
-  const axiosConfig = useMemo((): AxiosRequestConfig => {
-    const config: AxiosRequestConfig = {};
-    config.params = { ...useRequestConfig.params, ...params };
-    return config;
-  }, [useRequestConfig]);
-
-  const run = useCallback(() => {
-    if (polling.current) {
-      clearTimeout(polling.current);
-    }
-    if (!concurrent) {
-      cancel();
-    }
-    // 参数合并
-    if (pollingInterval) {
-      return request.run(axiosConfig).finally(() => {
-        polling.current = setTimeout(() => {
-          if (!polling.current) return;
-          run();
-        }, pollingInterval);
-      });
-    }
-    return request.run(axiosConfig);
-  }, [request.run, pollingInterval, axiosConfig]);
+  const run = useCallback(
+    (params?: React.SetStateAction<P>) => {
+      if (polling.current) {
+        clearTimeout(polling.current);
+      }
+      if (!concurrent) {
+        cancel();
+      }
+      // 参数合并
+      if (pollingInterval) {
+        return request.run().finally(() => {
+          polling.current = setTimeout(() => {
+            if (!polling.current) return;
+            run();
+          }, pollingInterval);
+        });
+      }
+      if (params !== undefined) {
+        setParams(params);
+      }
+      return request.run();
+    },
+    [request.run, pollingInterval, axiosConfig],
+  );
 
   useUpdateEffect(() => {
     run();

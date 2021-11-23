@@ -5,6 +5,7 @@
  *  基本用法
  *
  */
+import axios from 'axios';
 import React, { useState } from 'react';
 import { useMutation } from 'wwhooks';
 
@@ -16,6 +17,9 @@ export default () => {
     defaultParams: {
       test: '123',
     },
+    params: {
+      data: '123',
+    },
   });
   return (
     <div>
@@ -23,7 +27,8 @@ export default () => {
       <p>loading:{JSON.stringify(request.isLoading)}</p>
       <p>error:{JSON.stringify(request.error?.message)}</p>
       <p>requestCount:{requestCount}</p>
-      <button onClick={request.run}>number++</button>
+      // TODO: 不能传递数组，setParams改为run
+      <button onClick={() => request.run([1, 2, 3])}>number++</button>
     </div>
   );
 };

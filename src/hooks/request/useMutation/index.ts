@@ -1,6 +1,6 @@
 import { useMutationConfig } from './interface';
 import _ from 'lodash';
-import { useMount, useRequest, useUnmount, useUpdateEffect } from '../../../';
+import { useMount, useAxios, useUnmount, useUpdateEffect } from '../../../';
 import { useCallback, useRef, useState, useMemo } from 'react';
 import { AxiosRequestConfig } from 'axios';
 
@@ -9,9 +9,6 @@ const useMutation = <P = any, D = any>({
   defaultParams = null,
   ...useRequestConfig
 }: useMutationConfig<P, D>) => {
-  const request = useRequest<D>(useRequestConfig);
-  const [params, setParams] = useState<P>(defaultParams);
-
   const axiosConfig = useMemo((): AxiosRequestConfig => {
     const config: AxiosRequestConfig = {
       method: 'post',
@@ -20,13 +17,18 @@ const useMutation = <P = any, D = any>({
     return config;
   }, [useRequestConfig]);
 
-  const run = useCallback(() => {
-    return request.run(axiosConfig);
-  }, [request.run, axiosConfig]);
+  const request = useAxios<D>(axiosConfig);
+  const [params, setParams] = useState<P>(defaultParams);
 
-  useUpdateEffect(() => {
-    run();
-  }, [params]);
+  const run = useCallback(
+    (value?: React.SetStateAction<P>) => {
+      if (value !== undefined) {
+        setParams(value);
+      }
+      return request.run();
+    },
+    [request.run, axiosConfig],
+  );
 
   useMount(() => {
     if (manual === false) {
@@ -34,7 +36,7 @@ const useMutation = <P = any, D = any>({
     }
   });
 
-  return { ...request, run, params, setParams } as const;
+  return { ...request, run, params } as const;
 };
 
 export default useMutation;

@@ -1,10 +1,4 @@
-import {
-  MouseEventHandler,
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react';
+import { useCallback, useMemo } from 'react';
 import { useNumber, useTimeoutFn } from '../../';
 
 export interface Config {

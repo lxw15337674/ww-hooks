@@ -1,4 +1,4 @@
-import { useRequestConfig } from '../useRequest/interface';
+import { useRequestConfig } from '../useAxios/interface';
 
 export interface useQueryConfig<P, D> extends useRequestConfig<D> {
   deps?: any[];
