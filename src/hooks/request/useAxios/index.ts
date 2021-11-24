@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useRef, useState } from 'react';
-import { Config, Status, useRequestConfig } from './interface';
+import { Status, useRequestConfig } from './interface';
 import Axios, {
   AxiosRequestConfig,
   AxiosResponse,
@@ -37,39 +37,43 @@ const useAxios = <D = any>({
     setStatus('loading');
   }, loadingDelay);
 
-  const baseRun = useCallback(() => {
-    const runConfig: AxiosRequestConfig<D> = {
-      cancelToken: new Axios.CancelToken(function executor(c) {
-        cancelToken.current = c;
-      }),
-      ...axiosConfig,
-    };
-    delaySetLoading.run();
-    setError(undefined);
-    return axios
-      .request<D, AxiosResponse<D>>(runConfig)
-      .then(
-        (data: AxiosResponse<D>) => {
-          mountedState() && setData(data.data);
-          onSuccess?.(data);
-          setStatus('success');
-          return data;
-        },
-        (err: Error | Cancel) => {
-          if (isType<Error>(err, 'error')) {
-            mountedState() && setError(err);
-            onError?.(err, axiosConfig[0]);
-            setStatus('error');
-            return err;
-          }
-          return null;
-        },
-      )
-      .finally(() => {
-        delaySetLoading.cancel();
-        clearTimeout(loadingDelayTimer.current);
-      });
-  }, [axiosConfig, onSuccess, onError]);
+  const baseRun = useCallback(
+    (_axiosConfig?: AxiosRequestConfig) => {
+      const runConfig: AxiosRequestConfig<D> = {
+        cancelToken: new Axios.CancelToken(function executor(c) {
+          cancelToken.current = c;
+        }),
+        ...axiosConfig,
+        ..._axiosConfig,
+      };
+      delaySetLoading.run();
+      setError(undefined);
+      return axios
+        .request<D, AxiosResponse<D>>(runConfig)
+        .then(
+          (data: AxiosResponse<D>) => {
+            mountedState() && setData(data.data);
+            onSuccess?.(data);
+            setStatus('success');
+            return data;
+          },
+          (err: Error | Cancel) => {
+            if (isType<Error>(err, 'error')) {
+              mountedState() && setError(err);
+              onError?.(err, axiosConfig[0]);
+              setStatus('error');
+              return err;
+            }
+            return null;
+          },
+        )
+        .finally(() => {
+          delaySetLoading.cancel();
+          clearTimeout(loadingDelayTimer.current);
+        });
+    },
+    [axiosConfig, onSuccess, onError],
+  );
 
   const debounceRun = useMemo(() => {
     if (!debounce) {
@@ -94,17 +98,20 @@ const useAxios = <D = any>({
     return _.throttle(baseRun, wait, { trailing, leading });
   }, [baseRun, throttle]);
 
-  const run = useCallback((): Promise<Error | AxiosResponse<D> | null> => {
-    if (debounce) {
-      debounceRun();
-      return Promise.resolve(null);
-    }
-    if (throttle) {
-      throttleRun();
-      return Promise.resolve(null);
-    }
-    return baseRun();
-  }, [debounceRun, debounce, throttle, throttleRun, baseRun]);
+  const run = useCallback(
+    (config?: AxiosRequestConfig): Promise<Error | AxiosResponse<D> | null> => {
+      if (debounce) {
+        debounceRun(config);
+        return Promise.resolve(null);
+      }
+      if (throttle) {
+        throttleRun(config);
+        return Promise.resolve(null);
+      }
+      return baseRun(config);
+    },
+    [debounceRun, debounce, throttle, throttleRun, baseRun],
+  );
 
   const cancel = useCallback(() => {
     cancelToken.current?.();

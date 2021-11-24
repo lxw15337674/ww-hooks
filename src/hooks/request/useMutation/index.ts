@@ -1,33 +1,34 @@
 import { useMutationConfig } from './interface';
 import _ from 'lodash';
-import { useMount, useAxios, useUnmount, useUpdateEffect } from '../../../';
-import { useCallback, useRef, useState, useMemo } from 'react';
+import { useMount, useAxios } from '../../../';
+import { useCallback, useState, useMemo } from 'react';
 import { AxiosRequestConfig } from 'axios';
+import { setState } from '../../../common/utils';
 
 const useMutation = <P = any, D = any>({
   manual = true,
-  defaultParams = null,
+  data,
   ...useRequestConfig
 }: useMutationConfig<P, D>) => {
-  const axiosConfig = useMemo((): AxiosRequestConfig => {
-    const config: AxiosRequestConfig = {
-      method: 'post',
-    };
-    config.data = { ...useRequestConfig.params, ...params };
-    return config;
-  }, [useRequestConfig]);
+  const [bodyData, setBodyData] = useState<P>(data);
+  const axiosConfig: AxiosRequestConfig = {
+    data: bodyData,
+    method: 'post',
+    ...useRequestConfig,
+  };
 
   const request = useAxios<D>(axiosConfig);
-  const [params, setParams] = useState<P>(defaultParams);
 
   const run = useCallback(
-    (value?: React.SetStateAction<P>) => {
-      if (value !== undefined) {
-        setParams(value);
+    (params?: React.SetStateAction<P>) => {
+      if (params !== undefined) {
+        params = setState(params, bodyData);
+        setBodyData(params);
+        return request.run({ data: bodyData });
       }
       return request.run();
     },
-    [request.run, axiosConfig],
+    [request.run],
   );
 
   useMount(() => {
@@ -36,7 +37,7 @@ const useMutation = <P = any, D = any>({
     }
   });
 
-  return { ...request, run, params } as const;
+  return { ...request, run, params: bodyData } as const;
 };
 
 export default useMutation;

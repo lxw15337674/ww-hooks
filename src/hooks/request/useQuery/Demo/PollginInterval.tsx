@@ -35,7 +35,7 @@ export default () => {
       <p>requestCount:{requestCount}</p>
       <button
         onClick={() => {
-          request.setParams({ a: 2 });
+          request.run({ a: 2 });
         }}
       >
         request

@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React from 'react';
 import { useAxios } from 'wwhooks';
 
@@ -7,6 +6,7 @@ export default () => {
     url: 'https://getman.cn/mock/test2',
     data: [1, 2, 3],
     params: { params: 1 },
+    method: 'post',
     onSuccess: (data) => {
       console.log(data);
     },
@@ -21,7 +21,7 @@ export default () => {
   });
 
   return (
-    <p>
+    <div>
       <p>data:{JSON.stringify(request.data)}</p>
       <p>loading:{JSON.stringify(request.isLoading)}</p>
       <p>error:{JSON.stringify(request.error)}</p>
@@ -54,6 +54,6 @@ export default () => {
       >
         失败的请求
       </button>
-    </p>
+    </div>
   );
 };

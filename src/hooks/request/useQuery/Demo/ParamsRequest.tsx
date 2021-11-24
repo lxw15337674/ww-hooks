@@ -31,7 +31,7 @@ export default () => {
       <p>requestCount:{requestCount}</p>
       <button
         onClick={() => {
-          request.setParams({ a: ++number });
+          request.run({ a: ++number });
         }}
       >
         a+1

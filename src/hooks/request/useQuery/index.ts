@@ -3,23 +3,24 @@ import _ from 'lodash';
 import { useMount, useAxios, useUnmount, useUpdateEffect } from '../../../';
 import { useCallback, useRef, useState, useMemo } from 'react';
 import { AxiosRequestConfig } from 'axios';
+import { setState } from '@/common/utils';
 
 const useQuery = <P = any, D = any>({
   deps = [],
   pollingInterval = 0,
   manual = true,
   concurrent = false,
-  defaultParams = null,
+  params,
   ...useRequestConfig
 }: useQueryConfig<P, D>) => {
-  const axiosConfig = useMemo((): AxiosRequestConfig => {
-    const config: AxiosRequestConfig = {};
-    config.params = { ...useRequestConfig.params, ...params };
-    return config;
-  }, [useRequestConfig]);
-  const request = useAxios<D>(axiosConfig);
   const polling = useRef<NodeJS.Timeout>();
-  const [params, setParams] = useState<P>(defaultParams);
+  const [requestParams, setParams] = useState<P>(params);
+  const axiosConfig: AxiosRequestConfig = {
+    params: requestParams,
+    method: 'post',
+    ...useRequestConfig,
+  };
+  const request = useAxios<D>(axiosConfig);
 
   const cancel = useCallback(() => {
     request.cancel();
@@ -34,26 +35,28 @@ const useQuery = <P = any, D = any>({
       if (!concurrent) {
         cancel();
       }
+      params = setState(params, requestParams);
+      if (params !== undefined) {
+        setParams(params);
+      }
       // 参数合并
       if (pollingInterval) {
-        return request.run().finally(() => {
+        return request.run({ params }).finally(() => {
           polling.current = setTimeout(() => {
             if (!polling.current) return;
             run();
           }, pollingInterval);
         });
       }
-      if (params !== undefined) {
-        setParams(params);
-      }
-      return request.run();
+
+      return request.run({ params });
     },
-    [request.run, pollingInterval, axiosConfig],
+    [request.run, pollingInterval],
   );
 
   useUpdateEffect(() => {
     run();
-  }, [...deps, params]);
+  }, [...deps]);
 
   useMount(() => {
     if (manual === false) {
@@ -65,7 +68,7 @@ const useQuery = <P = any, D = any>({
     clearTimeout(polling.current);
   });
 
-  return { ...request, run, cancel, params, setParams } as const;
+  return { ...request, run, cancel, requestParams } as const;
 };
 
 export default useQuery;
