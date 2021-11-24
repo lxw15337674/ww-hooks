@@ -11,17 +11,11 @@ const useQuery = <P = any, D = any>({
   manual = true,
   concurrent = false,
   params,
-  ...useRequestConfig
+  ...useAxiosConfig
 }: useQueryConfig<P, D>) => {
   const polling = useRef<NodeJS.Timeout>();
   const [requestParams, setParams] = useState<P>(params);
-  const axiosConfig: AxiosRequestConfig = {
-    params: requestParams,
-    method: 'post',
-    ...useRequestConfig,
-  };
-  const request = useAxios<D>(axiosConfig);
-
+  const request = useAxios<D>(useAxiosConfig);
   const cancel = useCallback(() => {
     request.cancel();
     clearTimeout(polling.current);
@@ -36,20 +30,24 @@ const useQuery = <P = any, D = any>({
         cancel();
       }
       params = setState(params, requestParams);
-      if (params !== undefined) {
+      if (params === undefined) {
+        params = requestParams;
+      } else {
         setParams(params);
       }
+      const axiosConfig: AxiosRequestConfig = {
+        params,
+      };
       // 参数合并
       if (pollingInterval) {
-        return request.run({ params }).finally(() => {
+        return request.run(axiosConfig).finally(() => {
           polling.current = setTimeout(() => {
             if (!polling.current) return;
             run();
           }, pollingInterval);
         });
       }
-
-      return request.run({ params });
+      return request.run(axiosConfig);
     },
     [request.run, pollingInterval],
   );

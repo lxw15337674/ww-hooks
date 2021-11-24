@@ -1,5 +1,10 @@
 import { useCallback, useMemo, useRef, useState } from 'react';
-import { Status, useRequestConfig } from './interface';
+import {
+  DebounceOptions,
+  Status,
+  ThrottleOptions,
+  useAxiosConfig,
+} from './interface';
 import Axios, {
   AxiosRequestConfig,
   AxiosResponse,
@@ -26,7 +31,7 @@ const useAxios = <D = any>({
   throttle,
   loadingDelay = 300,
   ...axiosConfig
-}: useRequestConfig<D>) => {
+}: useAxiosConfig<D>) => {
   const mountedState = useMountedState();
   const cancelToken = useRef<Canceler>();
   const [data, setData] = useState<D>(initialData);
@@ -38,7 +43,7 @@ const useAxios = <D = any>({
   }, loadingDelay);
 
   const baseRun = useCallback(
-    (_axiosConfig?: AxiosRequestConfig) => {
+    (_axiosConfig?: AxiosRequestConfig<D>): Promise<D> => {
       const runConfig: AxiosRequestConfig<D> = {
         cancelToken: new Axios.CancelToken(function executor(c) {
           cancelToken.current = c;
@@ -48,6 +53,7 @@ const useAxios = <D = any>({
       };
       delaySetLoading.run();
       setError(undefined);
+      console.log(runConfig);
       return axios
         .request<D, AxiosResponse<D>>(runConfig)
         .then(
@@ -55,14 +61,13 @@ const useAxios = <D = any>({
             mountedState() && setData(data.data);
             onSuccess?.(data);
             setStatus('success');
-            return data;
+            return data.data;
           },
           (err: Error | Cancel) => {
             if (isType<Error>(err, 'error')) {
               mountedState() && setError(err);
               onError?.(err, axiosConfig[0]);
               setStatus('error');
-              return err;
             }
             return null;
           },
@@ -99,7 +104,7 @@ const useAxios = <D = any>({
   }, [baseRun, throttle]);
 
   const run = useCallback(
-    (config?: AxiosRequestConfig): Promise<Error | AxiosResponse<D> | null> => {
+    (config?: AxiosRequestConfig): Promise<D> => {
       if (debounce) {
         debounceRun(config);
         return Promise.resolve(null);

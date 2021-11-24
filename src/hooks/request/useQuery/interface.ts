@@ -1,6 +1,6 @@
-import { useRequestConfig } from '../useAxios/interface';
+import { useAxiosConfig } from '../useAxios/interface';
 
-export interface useQueryConfig<P, D> extends useRequestConfig<D> {
+export interface useQueryConfig<P, D> extends useAxiosConfig<D> {
   deps?: any[];
   pollingInterval?: number;
   concurrent?: boolean;

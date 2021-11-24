@@ -13,7 +13,7 @@ export default () => {
 
   const request = useMutation<number[]>({
     url: 'https://getman.cn/mock/test2',
-    data: { data: 'data' },
+    data: [],
     onSuccess: () => {
       setRequestCount((v) => ++v);
       console.log(requestCount);
