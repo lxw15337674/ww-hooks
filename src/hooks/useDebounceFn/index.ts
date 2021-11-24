@@ -11,12 +11,10 @@ export default function useDebounceFn<T extends Fn = Fn>(
   const fnRef = useRef<T>(fn);
   fnRef.current = fn;
 
-  const debounceSettings = useRef<DebounceSettings>();
-  debounceSettings.current = options;
-
   const debouncedFn = useMemo(() => {
-    return debounce<T>(fnRef.current, wait ?? 1000, debounceSettings.current);
-  }, [wait, fnRef, debounceSettings]);
+    console.log(options);
+    return debounce<T>(fnRef.current, wait ?? 1000, options);
+  }, [wait, fnRef, options]);
 
   useUnmount(() => {
     debouncedFn.cancel();
