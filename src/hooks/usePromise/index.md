@@ -73,4 +73,3 @@ group:
 | onError          | service reject 时触发。    | `(error: string) => void`          | -          | 否   |
 | loadingDelay     | loading 延迟为 true 的时间 | `number`                           | -          | 否   |
 
-#### 
