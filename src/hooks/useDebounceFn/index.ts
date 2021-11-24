@@ -12,7 +12,6 @@ export default function useDebounceFn<T extends Fn = Fn>(
   fnRef.current = fn;
 
   const debouncedFn = useMemo(() => {
-    console.log(options);
     return debounce<T>(fnRef.current, wait ?? 1000, options);
   }, [wait, fnRef, options]);
 

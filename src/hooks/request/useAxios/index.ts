@@ -1,161 +1,61 @@
-import { useCallback, useMemo, useRef, useState } from 'react';
-import {
-  DebounceOptions,
-  Status,
-  ThrottleOptions,
-  useAxiosConfig,
-} from './interface';
-import Axios, {
-  AxiosRequestConfig,
-  AxiosResponse,
-  Cancel,
-  Canceler,
-} from 'axios';
+import { useCallback, useMemo, useRef } from 'react';
+import Axios, { AxiosRequestConfig, AxiosResponse, Canceler } from 'axios';
 import _ from 'lodash';
-import {
-  isType,
-  useMount,
-  useMountedState,
-  useTimeoutFn,
-  useUnmount,
-} from '../../../';
+import { useUnmount } from '../../../';
+import { usePromiseConfig } from '@/hooks/usePromise/interface';
+import usePromise from '@/hooks/usePromise';
+import { useAxiosConfig } from './interface';
 
 const axios = Axios.create();
 
-const useAxios = <D = any>({
-  debounce,
+const useAxios = <D>({
+  debounceInterval,
   manual,
   onSuccess,
   onError,
   initialData,
-  throttle,
-  loadingDelay = 300,
+  throttleInterval,
+  loadingDelay,
+  defaultParams,
   ...axiosConfig
 }: useAxiosConfig<D>) => {
-  const mountedState = useMountedState();
   const cancelToken = useRef<Canceler>();
-  const [data, setData] = useState<D>(initialData);
-  const [error, setError] = useState<Error>();
-  const [status, setStatus] = useState<Status>('success');
-  const loadingDelayTimer = useRef<NodeJS.Timeout>();
-  const delaySetLoading = useTimeoutFn(() => {
-    setStatus('loading');
-  }, loadingDelay);
 
-  const baseRun = useCallback(
-    (_axiosConfig?: AxiosRequestConfig<D>): Promise<D> => {
-      const runConfig: AxiosRequestConfig<D> = {
-        cancelToken: new Axios.CancelToken(function executor(c) {
-          cancelToken.current = c;
-        }),
-        ...axiosConfig,
-        ..._axiosConfig,
-      };
-      delaySetLoading.run();
-      setError(undefined);
-      console.log(runConfig);
-      return axios
-        .request<D, AxiosResponse<D>>(runConfig)
-        .then(
-          (data: AxiosResponse<D>) => {
-            mountedState() && setData(data.data);
-            onSuccess?.(data);
-            setStatus('success');
-            return data.data;
-          },
-          (err: Error | Cancel) => {
-            if (isType<Error>(err, 'error')) {
-              mountedState() && setError(err);
-              onError?.(err, axiosConfig[0]);
-              setStatus('error');
-            }
-            return null;
-          },
-        )
-        .finally(() => {
-          delaySetLoading.cancel();
-          clearTimeout(loadingDelayTimer.current);
-        });
+  const axiosRequest = useCallback((config?: AxiosRequestConfig<D>) => {
+    const runConfig: AxiosRequestConfig<D> = {
+      cancelToken: new Axios.CancelToken(function executor(c) {
+        cancelToken.current = c;
+      }),
+      ...axiosConfig,
+      ...config,
+    };
+    return axios.request<D, AxiosResponse<D, any>>(runConfig);
+  }, []);
+
+  const request = usePromise<AxiosResponse<D>, [AxiosRequestConfig<D>]>(
+    axiosRequest,
+    {
+      debounceInterval,
+      manual,
+      onSuccess,
+      onError,
+      initialData,
+      throttleInterval,
+      loadingDelay,
+      defaultParams,
     },
-    [axiosConfig, onSuccess, onError],
-  );
-
-  const debounceRun = useMemo(() => {
-    if (!debounce) {
-      return null;
-    }
-    if (debounce === true) {
-      return _.debounce(baseRun, 500);
-    }
-    const { wait = 500, ...options } = debounce;
-    return _.debounce(baseRun, wait, options);
-  }, [baseRun, debounce]);
-
-  // TODO: 目前不可用待修复
-  const throttleRun = useMemo(() => {
-    if (!throttle) {
-      return null;
-    }
-    if (throttle === true) {
-      return _.throttle(baseRun, 500);
-    }
-    const { wait = 500, leading = true, trailing = false } = throttle;
-    return _.throttle(baseRun, wait, { trailing, leading });
-  }, [baseRun, throttle]);
-
-  const run = useCallback(
-    (config?: AxiosRequestConfig): Promise<D> => {
-      if (debounce) {
-        debounceRun(config);
-        return Promise.resolve(null);
-      }
-      if (throttle) {
-        throttleRun(config);
-        return Promise.resolve(null);
-      }
-      return baseRun(config);
-    },
-    [debounceRun, debounce, throttle, throttleRun, baseRun],
   );
 
   const cancel = useCallback(() => {
     cancelToken.current?.();
-    debounceRun?.cancel();
-    throttleRun?.cancel();
-  }, [debounceRun, throttleRun, cancelToken]);
-
-  const flush = useMemo(() => {
-    if (debounceRun?.flush) {
-      return debounceRun.flush;
-    }
-    if (throttleRun?.flush) {
-      return throttleRun.flush;
-    }
-    return () => Promise.resolve(null);
-  }, [debounceRun, throttleRun]);
-
-  useMount(() => {
-    if (manual === false) {
-      run();
-    }
-  });
+    request?.cancel();
+  }, [request.cancel, cancelToken]);
 
   useUnmount(() => {
     cancel();
   });
 
-  return {
-    data,
-    error,
-    isLoading: status === 'loading',
-    isError: status === 'error',
-    isSuccess: status === 'success',
-    status,
-    run,
-    cancel,
-    mutate: setData,
-    flush,
-  } as const;
+  return request;
 };
 
 export default useAxios;
