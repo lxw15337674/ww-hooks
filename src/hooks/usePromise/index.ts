@@ -5,7 +5,7 @@ import {
   usePromiseConfig,
   usePromiseResult,
 } from './interface';
-import _ from 'lodash';
+import _, { isNumber } from 'lodash';
 import {
   isType,
   useMount,
@@ -66,11 +66,11 @@ const usePromise = <D, P extends any[]>(
 
   const run = useCallback(
     (...params: P): Promise<D> => {
-      if (debounceInterval !== undefined) {
+      if (isNumber(debounceInterval)) {
         debounceRun.run(...params);
         return Promise.resolve(null);
       }
-      if (throttleInterval !== undefined) {
+      if (isNumber(throttleInterval)) {
         throttleRun.run(...params);
         return Promise.resolve(null);
       }
