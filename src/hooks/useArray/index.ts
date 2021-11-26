@@ -17,9 +17,7 @@ const useArray = <T = any>(initialArray: T[]) => {
           return temp;
         });
       },
-      setAll: (newArray: T[]) => {
-        setValue(newArray);
-      },
+      setAll: setValue,
       remove: (index: number) => {
         setValue((prev) => {
           const temp = [...prev];
@@ -39,6 +37,21 @@ const useArray = <T = any>(initialArray: T[]) => {
       },
       reset: () => {
         setValue(initialArray);
+      },
+      swap: (dragIndex: number, dropIndex: number) => {
+        const maxIndex = value.length - 1;
+        if (dragIndex > maxIndex || dropIndex > maxIndex) {
+          console.error('交换位置超出最大位置');
+          return;
+        }
+        setValue((prev) => {
+          const list = [...prev];
+          [list[dragIndex], list[dropIndex]] = [
+            list[dropIndex],
+            list[dragIndex],
+          ];
+          return list;
+        });
       },
     }),
     [initialArray],

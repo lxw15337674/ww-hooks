@@ -1,22 +1,23 @@
-import React from 'react';
-import { useRequest } from 'wwhooks';
+import React, { useState } from 'react';
+import usePromise from '..';
+import { getData } from './api';
+// import { usePromise } from 'wwhooks';
 
-let requestCount = 0;
 export default () => {
-  const request = useRequest({
-    url: 'https://getman.cn/mock/test2',
+  const [count, setCount] = useState(0);
+  const request = usePromise(getData, {
     manual: true,
     onSuccess: () => {
-      ++requestCount;
+      setCount((v) => ++v);
     },
-    debounce: { wait: 1000 },
+    debounceInterval: 1000,
   });
   return (
     <div>
       <p>data:{JSON.stringify(request.data)}</p>
       <p>loading:{JSON.stringify(request.isLoading)}</p>
       <p>error:{JSON.stringify(request.error?.message)}</p>
-      <p>requestCount:{requestCount}</p>
+      <p>requestCount:{count}</p>
       <button
         onClick={() => {
           request.run();

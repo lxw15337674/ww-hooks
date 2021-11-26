@@ -10,7 +10,6 @@ export { default as useToggle } from './hooks/useToggle';
 export { default as useDebounceFn } from './hooks/useDebounceFn';
 export { default as useLockScroll } from './hooks/useLockScroll';
 export { default as useAxios } from './hooks/request/useAxios';
-export { default as useRequest } from './hooks/request/useRequest';
 export { default as useMountedState } from './hooks/useMountedState';
 export { default as useTimeoutFn } from './hooks/useTimeoutFn';
 export { default as useQuery } from './hooks/request/useQuery';
@@ -19,7 +18,8 @@ export { default as useSize } from './hooks/useSize';
 export { default as useUpdate } from './hooks/useUpdate';
 export { default as useNumber } from './hooks/useNumber';
 export { default as useClick } from './hooks/useClick';
-
+export { default as usePromise } from './hooks/request/usePromise';
+export { default as useThrottleFn } from './hooks/useThrottleFn';
 export { default as setDefaultArguments } from './utils/setDefaultArguments';
 export { default as sortBy } from './utils/sortBy';
 export { default as isType } from './utils/IsType';

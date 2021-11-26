@@ -13,6 +13,7 @@ export default () => {
     ['reset Array', () => actions.reset()],
     ['clear Array', () => actions.clear()],
     ['push item to Array', () => actions.push('10')],
+    ['swap 0 to 2', () => actions.swap(0, 2)],
   ];
 
   return (

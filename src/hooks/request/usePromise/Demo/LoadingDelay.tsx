@@ -1,14 +1,15 @@
 import React from 'react';
-import { useAxios } from 'wwhooks';
+import { usePromise } from 'wwhooks';
+import { getData } from './api';
 
 export default () => {
-  const request = useAxios({
-    url: 'https://getman.cn/mock/test2',
+  const request = usePromise(getData, {
     onSuccess: (data) => {
       console.log(data);
     },
     loadingDelay: 2000,
   });
+
   return (
     <div>
       <p>data:{JSON.stringify(request.data)}</p>

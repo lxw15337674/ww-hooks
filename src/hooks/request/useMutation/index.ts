@@ -1,40 +1,49 @@
 import { useMutationConfig } from './interface';
 import _ from 'lodash';
-import { useMount, useRequest, useUnmount, useUpdateEffect } from '../../../';
-import { useCallback, useRef, useState, useMemo } from 'react';
+import { useMount, useAxios } from '../../../';
+import { useCallback, useState, useMemo } from 'react';
 import { AxiosRequestConfig } from 'axios';
+import { setState } from '../../../common/utils';
 
-const useQuery = <P = any, D = any>({
-  manual = false,
-  defaultParams = null,
-  ...useRequestConfig
+const useMutation = <P = any, D = any>({
+  manual = true,
+  data,
+  ...useAxiosConfig
 }: useMutationConfig<P, D>) => {
-  const request = useRequest<D>(useRequestConfig);
-  const [params, setParams] = useState<P>(defaultParams);
+  const [bodyData, setBodyData] = useState<P>(data);
+  const axiosConfig: AxiosRequestConfig = {
+    data: bodyData,
+    method: 'post',
+    ...useAxiosConfig,
+  };
 
-  const axiosConfig = useMemo((): AxiosRequestConfig => {
-    const config: AxiosRequestConfig = {
-      method: 'post',
-    };
-    config.data = { ...useRequestConfig.params, ...params };
-    return config;
-  }, [useRequestConfig]);
+  const request = useAxios<P>(axiosConfig);
 
-  const run = useCallback(() => {
-    return request.run(axiosConfig);
-  }, [request.run, axiosConfig]);
-
-  useUpdateEffect(() => {
-    run();
-  }, [params]);
+  const run = useCallback(
+    (params: React.SetStateAction<P>) => {
+      params = setState(params, bodyData);
+      setBodyData(params);
+      return request.run({ data: params });
+    },
+    [request.run],
+  );
+  const reload = useCallback(() => {
+    return run(bodyData);
+  }, [run, bodyData]);
 
   useMount(() => {
     if (manual === false) {
-      run();
+      request.reload();
     }
   });
 
-  return { ...request, run, params, setParams } as const;
+  return {
+    ...request,
+    run,
+    reload,
+    params: bodyData,
+    setParams: setBodyData,
+  } as const;
 };
 
-export default useQuery;
+export default useMutation;

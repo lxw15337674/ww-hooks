@@ -1,22 +1,22 @@
-import React from 'react';
-import { useRequest } from 'wwhooks';
+import React, { useState } from 'react';
+import { useAxios } from 'wwhooks';
 
-let requestCount = 0;
 export default () => {
-  const request = useRequest({
+  const [count, setCount] = useState(0);
+  const request = useAxios({
     url: 'https://getman.cn/mock/test2',
     manual: true,
     onSuccess: (data) => {
-      ++requestCount;
+      setCount((v) => ++v);
     },
-    throttle: { wait: 1000 },
+    throttle: { wait: 10000 },
   });
   return (
     <div>
       <p>data:{JSON.stringify(request.data)}</p>
       <p>loading:{JSON.stringify(request.isLoading)}</p>
       <p>error:{JSON.stringify(request.error?.message)}</p>
-      <p>requestCount:{requestCount}</p>
+      <p>requestCount:{count}</p>
       <button
         onClick={() => {
           request.run();

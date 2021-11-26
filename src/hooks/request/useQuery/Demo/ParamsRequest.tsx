@@ -2,7 +2,6 @@
  *
  * title: 基本用法
  * desc: |
- *  - 通过`setParams`修改参数，自动触发请求
  *  - 直接调用run方法请求。
  *
  */
@@ -18,6 +17,11 @@ export default () => {
   const request = useQuery<Params>({
     url: 'https://getman.cn/mock/test2',
     manual: true,
+    transformResponse: (data) => {
+      data = JSON.parse(data);
+      return data.creator;
+    },
+    params: { test: 2 },
     onSuccess: () => {
       setRequestCount((state) => ++state);
     },
@@ -31,7 +35,7 @@ export default () => {
       <p>requestCount:{requestCount}</p>
       <button
         onClick={() => {
-          request.setParams({ a: ++number });
+          request.run({ a: 33 });
         }}
       >
         a+1

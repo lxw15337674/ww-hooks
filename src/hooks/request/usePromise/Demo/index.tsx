@@ -1,20 +1,17 @@
 import React from 'react';
-import { useAxios } from 'wwhooks';
+import usePromise from '..';
+import { getData, getErrorData } from './api';
 
 export default () => {
-  const request = useAxios({
-    url: 'https://getman.cn/mock/test2',
-    data: [1, 2, 3],
-    params: { params: 1 },
-    method: 'post',
+  const request = usePromise(getData, {
     onSuccess: (data) => {
       console.log(data);
     },
     initialData: 'initialData',
   });
+
   //   失败的请求
-  const errorRequest = useAxios({
-    url: 'https://getman.cn',
+  const errorRequest = usePromise(getErrorData, {
     onError: (error) => {
       console.log(error);
     },
@@ -23,7 +20,7 @@ export default () => {
   return (
     <div>
       <p>data:{JSON.stringify(request.data)}</p>
-      <p>loading:{JSON.stringify(request.isLoading)}</p>
+      <p>status:{JSON.stringify(request.status)}</p>
       <p>error:{JSON.stringify(request.error)}</p>
       <button
         onClick={() => {
@@ -32,7 +29,6 @@ export default () => {
       >
         正常的请求
       </button>
-
       <button
         onClick={() => {
           request.run();
@@ -41,15 +37,19 @@ export default () => {
       >
         取消请求
       </button>
-
       <p>data:{JSON.stringify(errorRequest.data)}</p>
-      <p>loading:{JSON.stringify(errorRequest.isLoading)}</p>
+      <p>status:{JSON.stringify(errorRequest.status)}</p>
       <p>error:{JSON.stringify(errorRequest?.error?.message)}</p>
       <button
         onClick={() => {
-          errorRequest.run().then((res) => {
-            console.log(res);
-          });
+          errorRequest.run().then(
+            (res) => {
+              console.log(res);
+            },
+            (err) => {
+              console.log(err);
+            },
+          );
         }}
       >
         失败的请求

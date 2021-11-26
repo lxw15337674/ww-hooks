@@ -16,9 +16,8 @@ group:
 ## API
 
 ```typescript
-const [array, { array, set, setAll, remove, reset, clear, push }] = useArray<
-  string
->([]);
+const [array, { array, set, setAll, remove, reset, clear, push }] =
+  useArray<string>([]);
 ```
 
 ### Generics
@@ -44,10 +43,11 @@ const [array, { array, set, setAll, remove, reset, clear, push }] = useArray<
 | reset    | 重置为默认值     | `()=>void`                         |
 | clear    | 清空数组         | `()=>void`                         |
 | push     | 数据末尾添加元素 | `(value:T)=>void`                  |
+| swap     | 元素交换位置     | `(dragIndex, dropIndex)=>void`     |
 | isEdited | 是否修改         | `boolean`                          |
 
 ### Params
 
 | **参数**       | **说明** | **类型** | **默认值** | 必填 |
 | -------------- | -------- | -------- | ---------- | ---- |
-| _defaultValue_ | 初始数据 | `T[]`    | `[]`        | 否   |
+| _defaultValue_ | 初始数据 | `T[]`    | `[]`       | 否   |
