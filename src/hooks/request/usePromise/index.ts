@@ -12,9 +12,9 @@ import {
   useMountedState,
   useTimeoutFn,
   useUnmount,
-} from '../..';
-import useDebounceFn from '../useDebounceFn';
-import useThrottleFn from '../useThrottleFn';
+} from '../../..';
+import useDebounceFn from '../../useDebounceFn';
+import useThrottleFn from '../../useThrottleFn';
 
 const usePromise = <D, P extends any[]>(
   service: Service<D, P>,
@@ -79,6 +79,10 @@ const usePromise = <D, P extends any[]>(
     [debounceRun, throttleRun, baseRun],
   );
 
+  const reload = useCallback(() => {
+    return run(...params);
+  }, [run, params]);
+
   const cancel = useCallback(() => {
     debounceRun?.cancel();
     throttleRun?.cancel();
@@ -108,6 +112,7 @@ const usePromise = <D, P extends any[]>(
     data,
     params,
     error,
+    reload,
     isLoading: status === 'loading',
     isError: status === 'error',
     isSuccess: status === 'success',

@@ -18,7 +18,7 @@ export { default as useSize } from './hooks/useSize';
 export { default as useUpdate } from './hooks/useUpdate';
 export { default as useNumber } from './hooks/useNumber';
 export { default as useClick } from './hooks/useClick';
-export { default as usePromise } from './hooks/usePromise';
+export { default as usePromise } from './hooks/request/usePromise';
 export { default as useThrottleFn } from './hooks/useThrottleFn';
 export { default as setDefaultArguments } from './utils/setDefaultArguments';
 export { default as sortBy } from './utils/sortBy';

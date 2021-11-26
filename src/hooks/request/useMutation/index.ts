@@ -17,27 +17,33 @@ const useMutation = <P = any, D = any>({
     ...useAxiosConfig,
   };
 
-  const request = useAxios<D>(axiosConfig);
+  const request = useAxios<P>(axiosConfig);
 
   const run = useCallback(
-    (params?: React.SetStateAction<P>) => {
-      if (params !== undefined) {
-        params = setState(params, bodyData);
-        setBodyData(params);
-        return request.run({ data: params });
-      }
-      return request.run();
+    (params: React.SetStateAction<P>) => {
+      params = setState(params, bodyData);
+      setBodyData(params);
+      return request.run({ data: params });
     },
     [request.run],
   );
+  const reload = useCallback(() => {
+    return run(bodyData);
+  }, [run, bodyData]);
 
   useMount(() => {
     if (manual === false) {
-      run();
+      request.reload();
     }
   });
 
-  return { ...request, run, params: bodyData } as const;
+  return {
+    ...request,
+    run,
+    reload,
+    params: bodyData,
+    setParams: setBodyData,
+  } as const;
 };
 
 export default useMutation;

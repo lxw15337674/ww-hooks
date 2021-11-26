@@ -1,4 +1,4 @@
-import { usePromiseConfig } from '@/hooks/usePromise/interface';
+import { usePromiseConfig } from '@src/hooks/request/usePromise/interface';
 import { AxiosResponse, AxiosRequestConfig } from 'axios';
 
 export type Status = 'loading' | 'error' | 'success';
@@ -16,5 +16,4 @@ export interface ThrottleOptions {
   trailing?: boolean;
 }
 
-export type useAxiosConfig<D> = AxiosRequestConfig<D> &
-  usePromiseConfig<AxiosResponse<D>>;
+export type useAxiosConfig<D> = AxiosRequestConfig<D> & usePromiseConfig<D>;

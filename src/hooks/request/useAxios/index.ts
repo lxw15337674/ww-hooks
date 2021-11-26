@@ -1,9 +1,7 @@
-import { useCallback, useMemo, useRef } from 'react';
+import { useCallback, useRef } from 'react';
 import Axios, { AxiosRequestConfig, AxiosResponse, Canceler } from 'axios';
 import _ from 'lodash';
-import { useUnmount } from '../../../';
-import { usePromiseConfig } from '@/hooks/usePromise/interface';
-import usePromise from '@/hooks/usePromise';
+import { usePromise, useUnmount } from '../../../';
 import { useAxiosConfig } from './interface';
 
 const axios = Axios.create();
@@ -21,30 +19,32 @@ const useAxios = <D>({
 }: useAxiosConfig<D>) => {
   const cancelToken = useRef<Canceler>();
 
-  const axiosRequest = useCallback((config?: AxiosRequestConfig<D>) => {
-    const runConfig: AxiosRequestConfig<D> = {
-      cancelToken: new Axios.CancelToken(function executor(c) {
-        cancelToken.current = c;
-      }),
-      ...axiosConfig,
-      ...config,
-    };
-    return axios.request<D, AxiosResponse<D, any>>(runConfig);
-  }, []);
-
-  const request = usePromise<AxiosResponse<D>, [AxiosRequestConfig<D>]>(
-    axiosRequest,
-    {
-      debounceInterval,
-      manual,
-      onSuccess,
-      onError,
-      initialData,
-      throttleInterval,
-      loadingDelay,
-      defaultParams,
+  const axiosRequest = useCallback(
+    (config?: AxiosRequestConfig) => {
+      const runConfig = {
+        cancelToken: new Axios.CancelToken(function executor(c) {
+          cancelToken.current = c;
+        }),
+        ...axiosConfig,
+        ...config,
+      };
+      return axios.request<D>(runConfig).then((res) => {
+        return res.data;
+      });
     },
+    [axiosConfig],
   );
+
+  const request = usePromise<D, [AxiosRequestConfig<D>]>(axiosRequest, {
+    debounceInterval,
+    manual,
+    onSuccess,
+    onError,
+    initialData,
+    throttleInterval,
+    loadingDelay,
+    defaultParams,
+  });
 
   const cancel = useCallback(() => {
     cancelToken.current?.();

@@ -32,6 +32,7 @@ export interface usePromiseResult<D, P extends any[]> {
   error: Error;
   isLoading: boolean;
   params: P;
+  reload: () => Promise<D>;
   cancel: () => void;
   mutate: React.Dispatch<React.SetStateAction<D>>;
   isError: boolean;

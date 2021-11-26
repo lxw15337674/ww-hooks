@@ -22,7 +22,7 @@ const useQuery = <P = any, D = any>({
   }, [request.cancel]);
 
   const run = useCallback(
-    (params?: React.SetStateAction<P>) => {
+    (params: React.SetStateAction<P>) => {
       if (polling.current) {
         clearTimeout(polling.current);
       }
@@ -30,11 +30,7 @@ const useQuery = <P = any, D = any>({
         cancel();
       }
       params = setState(params, requestParams);
-      if (params === undefined) {
-        params = requestParams;
-      } else {
-        setParams(params);
-      }
+      setParams(params);
       const axiosConfig: AxiosRequestConfig = {
         params,
       };
@@ -43,7 +39,7 @@ const useQuery = <P = any, D = any>({
         return request.run(axiosConfig).finally(() => {
           polling.current = setTimeout(() => {
             if (!polling.current) return;
-            run();
+            run(params);
           }, pollingInterval);
         });
       }
@@ -51,14 +47,17 @@ const useQuery = <P = any, D = any>({
     },
     [request.run, pollingInterval],
   );
+  const reload = useCallback(() => {
+    return run(requestParams);
+  }, [requestParams, run]);
 
   useUpdateEffect(() => {
-    run();
+    reload();
   }, [...deps]);
 
   useMount(() => {
     if (manual === false) {
-      run();
+      reload();
     }
   });
 
@@ -66,7 +65,14 @@ const useQuery = <P = any, D = any>({
     clearTimeout(polling.current);
   });
 
-  return { ...request, run, cancel, requestParams } as const;
+  return {
+    ...request,
+    run,
+    reload,
+    cancel,
+    params: requestParams,
+    setParams,
+  } as const;
 };
 
 export default useQuery;

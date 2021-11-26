@@ -1,15 +1,19 @@
 ---
 group:
-  title: request
-  path: /request
+  title: state
+  path: /state
 ---
 
-# useAxios
+# usePromise
 
 1. 特性：
 
-   1. axios 参数合并
-   2. 卸载时会结束请求。
+   1. 状态管理
+      1. 已处理 setState 的内存泄漏。
+      2. loading 防闪烁
+   2. 防抖
+   3. 节流
+   4. 手动自动触发
 
 ## demo
 
@@ -35,9 +39,10 @@ group:
 
 ### Generics
 
-| 参数 | 说明         | 默认值 |
-| ---- | ------------ | ------ |
-| D    | 返回数据泛型 | any    |
+| 参数 | 说明         | 继承    | 默认值    |
+| ---- | ------------ | ------- | --------- |
+| D    | 返回数据泛型 | -       | `unknown` |
+| P    | 参数泛型     | `any[]` | `never`   |
 
 ### Result
 
@@ -45,6 +50,7 @@ group:
 | --------- | ------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- | ------------------ |
 | data      | service 返回的数据，默认为 `undefined`                                                                              | `D`                                                                    |
 | error     | service 抛出的异常，默认为 `undefined`                                                                              | `string`                                                               |
+| params    | 执行的 service 的参数。                                                                                             | `P`                                                                    |
 | isLoading | request 是否处于请求状态。                                                                                          | `boolean`                                                              |
 | isError   | request 是否处于错误状态。                                                                                          | `boolean`                                                              |
 | isSuccess | request 是否处于成功状态。                                                                                          | `boolean`                                                              |
@@ -56,39 +62,13 @@ group:
 
 ### Params
 
-| 参数     | 说明                           | 类型                           | 默认值 | 必填 |
-| -------- | ------------------------------ | ------------------------------ | ------ | ---- |
-| _config_ | hook 配置项，继承 axios 配置项 | `Config<D>&AxiosRequestConfig` | -      | 是   |
-
-#### AxiosRequestConfig
-
-| **参数**     | **说明**                           | **类型**                           | **默认值**         | 必填 |
-| ------------ | ---------------------------------- | ---------------------------------- | ------------------ | ---- |
-| debounce     | 防抖，如果为 true 则使用默认参数。 | `boolean`                          | `DebouenceOptions` | 否   |
-| throttle     | 节流，如果为 true 则使用默认参数。 | `boolean`\|`ThrottleOptions`       | false              | 否   |
-| manual       | 是否手动触发                       | `boolean`                          | true               | 否   |
-| initialData  | 默认的 data。                      | `D`                                | null               | 否   |
-| onSuccess    | service resolve 时触发 。          | `(data: AxiosResponse<D>) => void` | -                  | 否   |
-| onError      | service reject 时触发。            | `(error: string) => void`          | -                  | 否   |
-| loadingDelay | loading 延迟为 true 的时间         | number                             | -                  | 否   |
-
-#### DebouenceOptions
-
-防抖参数，参考[lodash.debounce | Lodash 中文文档 | Lodash 中文网 (lodashjs.com)](https://www.lodashjs.com/docs/lodash.debounce)
-
-| 参数     | 说明                             | 类型    | 默认值 |
-| -------- | -------------------------------- | ------- | ------ |
-| wait     | 需要延迟的毫秒数                 | number  | 500    |
-| leading  | 指定在延迟开始前调用。           | boolean | false  |
-| maxWait  | 设置 `func` 允许被延迟的最大值。 | number  |        |
-| trailing | 指定在延迟结束后调用。           | boolean | true   |
-
-#### ThrottleOptions
-
-节流参数，参考[lodash.throttle | Lodash 中文文档 | Lodash 中文网 (lodashjs.com)](https://www.lodashjs.com/docs/lodash.throttle)
-
-| 参数     | 说明                   | 类型    | 默认值 |
-| -------- | ---------------------- | ------- | ------ |
-| wait     | 需要延迟的毫秒数       | number  | 500    |
-| leading  | 指定在延迟开始前调用。 | boolean | false  |
-| trailing | 指定在延迟结束后调用。 | boolean | true   |
+| **参数**         | **说明**                   | **类型**                           | **默认值** | 必填 |
+| ---------------- | -------------------------- | ---------------------------------- | ---------- | ---- |
+| service          | 执行的 promise             | `(...args: P) => Promise<D>`       | -          | 是   |
+| debounceInterval | 防抖                       | `number`                           | -          | 否   |
+| throttleInterval | 节流                       | `number`                           | -          | 否   |
+| manual           | 是否手动触发               | `boolean`                          | true       | 否   |
+| initialData      | 默认的 data。              | `D`                                | null       | 否   |
+| onSuccess        | service resolve 时触发 。  | `(data: AxiosResponse<D>) => void` | -          | 否   |
+| onError          | service reject 时触发。    | `(error: string) => void`          | -          | 否   |
+| loadingDelay     | loading 延迟为 true 的时间 | `number`                           | -          | 否   |

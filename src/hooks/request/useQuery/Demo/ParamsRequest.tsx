@@ -17,10 +17,11 @@ export default () => {
   const request = useQuery<Params>({
     url: 'https://getman.cn/mock/test2',
     manual: true,
-    transformResponse: () => {
-      return;
+    transformResponse: (data) => {
+      data = JSON.parse(data);
+      return data.creator;
     },
-    params: { b: 123 },
+    params: { test: 2 },
     onSuccess: () => {
       setRequestCount((state) => ++state);
     },
