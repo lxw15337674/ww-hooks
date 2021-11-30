@@ -31,11 +31,11 @@ const [ state, { toggle, setTrue, setFalse }] = useBoolean(
 
 ### Actions
 
-| **参数** | **说明**                           | **类型**     |
-| -------- | ---------------------------------- | ------------ |
-| toggle   | 切换状态，可以接受参数修改状态值。 | `() => void` |
-| setTrue  | 设置状态值为 true                  | `() => void` |
-| setFalse | 设置状态值为 false                 | `() => void` |
+| **参数** | **说明**                           | **类型**                    |
+| -------- | ---------------------------------- | --------------------------- |
+| toggle   | 切换状态，可以接受参数修改状态值。 | `(value?: boolean) => void` |
+| setTrue  | 设置状态值为 true                  | `() => void`                |
+| setFalse | 设置状态值为 false                 | `() => void`                |
 
 ### Params
 
