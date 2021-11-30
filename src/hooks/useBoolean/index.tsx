@@ -1,25 +1,20 @@
-import { useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
-export interface Actions {
-  setTrue: () => void;
-  setFalse: () => void;
-  toggle: (value?: boolean) => void;
+export interface SetBoolean {
+  (value?: boolean): void;
 }
 // 管理 boolean 值
-export default function useBoolean(defaultValue = false): [boolean, Actions] {
+export default function useBoolean(
+  defaultValue = false,
+): [boolean, SetBoolean] {
   const [state, setState] = useState(defaultValue);
-  const actions: Actions = useMemo(() => {
-    const setTrue = () => setState(true);
-    const setFalse = () => setState(false);
-    const toggle = (value) => {
-      if (value === undefined) {
-        setState((value) => !value);
-        return;
-      }
-      setState(value);
-    };
-    return { toggle, setTrue, setFalse };
+  const setBoolean = useCallback((value) => {
+    if (value === undefined) {
+      setState((value) => !value);
+      return;
+    }
+    setState(value);
   }, []);
 
-  return [state, actions];
+  return [state, setBoolean];
 }

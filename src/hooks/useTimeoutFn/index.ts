@@ -6,15 +6,15 @@ function useTimeoutFn<T extends any[] = never>(
   delay: number = 0,
 ) {
   const timer = useRef(null);
-  const [waiting, { setTrue, setFalse }] = useBoolean(false);
+  const [waiting, setWaiting] = useBoolean(false);
   const run = useCallback(
     (...args: T) => {
       clearTimeout(timer.current);
       if (delay === undefined || delay === null) return;
-      setTrue();
+      setWaiting(true);
       timer.current = setTimeout(() => {
         fn(...args);
-        setFalse();
+        setWaiting(false);
       }, delay);
     },
     [fn, delay],
@@ -28,7 +28,7 @@ function useTimeoutFn<T extends any[] = never>(
 
   const cancel = useCallback(() => {
     clearTimeout(timer.current);
-    setFalse();
+    setWaiting(false);
   }, []);
 
   return { waiting, run, cancel };

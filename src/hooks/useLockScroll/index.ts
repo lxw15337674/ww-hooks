@@ -5,7 +5,7 @@ const lockScrollStyle = {
   overflowY: `hidden`,
 };
 export function useLockScroll(container?: HTMLElement) {
-  const [lock, { toggle }] = useBoolean(false);
+  const [lock, setLock] = useBoolean(false);
 
   useEffect(() => {
     container = container || document.body;
@@ -24,7 +24,7 @@ export function useLockScroll(container?: HTMLElement) {
       container.style.width = originalPaddingRight;
     };
   }, [lock, container]);
-  return [toggle, lock] as const;
+  return [setLock, lock] as const;
 }
 
 export default useLockScroll;
