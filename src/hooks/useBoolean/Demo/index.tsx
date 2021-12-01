@@ -1,5 +1,5 @@
 import React from 'react';
-import { useBoolean } from '@qunhe/budget-hooks';
+import { useBoolean } from 'wwhooks';
 
 export default () => {
   const [boolean, setBoolean] = useBoolean(true);
