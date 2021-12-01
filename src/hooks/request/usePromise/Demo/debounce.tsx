@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import usePromise from '..';
 import { getData } from './api';
@@ -5,7 +6,7 @@ import { getData } from './api';
 
 export default () => {
   const [count, setCount] = useState(0);
-  const request = usePromise(getData, {
+  const request = usePromise(axios.get('test'), {
     manual: true,
     onSuccess: () => {
       setCount((v) => ++v);
