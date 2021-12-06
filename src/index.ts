@@ -21,5 +21,6 @@ export { default as useClick } from './hooks/useClick';
 export { default as usePromise } from './hooks/request/usePromise';
 export { default as useThrottleFn } from './hooks/useThrottleFn';
 export { default as setDefaultArguments } from './utils/setDefaultArguments';
+export { default as useVisible } from './hooks/useVisible';
 export { default as sortBy } from './utils/sortBy';
 export { default as isType } from './utils/IsType';

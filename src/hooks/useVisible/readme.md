@@ -1,14 +1,10 @@
 ---
-title: useInViewport
-nav:
-  title: Hooks
-  path: /hooks
 group:
-  title: Dom
+  title: dom
   path: /dom
 ---
 
-# useInViewport
+# useVisible
 
 一个用于判断 dom 元素是否在可视范围之内的 Hook。
 
@@ -25,7 +21,7 @@ group:
 ## API
 
 ```ts
-const inViewPort = useInViewport(target);
+const inViewPort = useVisible(target);
 ```
 
 ### 参数
