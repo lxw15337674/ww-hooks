@@ -2,11 +2,13 @@
  * title: 用法
  * desc: 通过ref监听节点变化
  */
-import React from 'react';
-import useSize from '..';
+import React, { useRef } from 'react';
+import { useSize } from 'wwhooks';
 
 export default () => {
-  const { ref, size } = useSize();
+  const ref = useRef();
+  const { size } = useSize(ref);
+
   return (
     <div
       ref={ref}
