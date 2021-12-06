@@ -11,7 +11,7 @@ function useSize(target: BasicTarget) {
   useLayoutEffect(() => {
     const el = getTargetElement(target);
     if (!el) {
-      return () => {};
+      return;
     }
 
     const resizeObserver = new ResizeObserver((entries) => {
