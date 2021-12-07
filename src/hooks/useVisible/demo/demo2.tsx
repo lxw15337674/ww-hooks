@@ -7,7 +7,7 @@ import React from 'react';
 import { useVisible } from 'wwhooks';
 
 export default () => {
-  const visible = useVisible(document.querySelector('#demo2'));
+  const visible = useVisible(() => document.querySelector('#demo2'));
   console.log(visible);
   return (
     <div>
