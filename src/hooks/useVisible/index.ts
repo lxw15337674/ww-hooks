@@ -1,17 +1,17 @@
-import { useBoolean } from '@/';
-import { BasicTarget, getTargetElement } from '@/utils/dom';
-import { useLayoutEffect } from 'react';
+import { BasicTarget, getTargetElement } from '../../utils/dom';
+import { useEffect } from 'react';
+import useBoolean from '../useBoolean';
 
-function useVisible(target: BasicTarget) {
+function useVisible<T extends Element = Element>(target: BasicTarget<T>) {
   const [visible, setVisible] = useBoolean(false);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const el = getTargetElement(target);
     if (!el) {
       return;
     }
-
     const observer = new IntersectionObserver((entries) => {
+      console.log(entries);
       for (const entry of entries) {
         if (entry.isIntersecting) {
           setVisible(true);
@@ -20,9 +20,7 @@ function useVisible(target: BasicTarget) {
         }
       }
     });
-
-    observer.observe(el as HTMLElement);
-
+    observer.observe(el as Element);
     return () => {
       observer.disconnect();
     };

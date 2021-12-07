@@ -1,3 +1,4 @@
+import { isFunction } from 'lodash';
 import { MutableRefObject } from 'react';
 
 export type BasicTarget<T = HTMLElement> =
@@ -8,17 +9,17 @@ export type BasicTarget<T = HTMLElement> =
 
 type TargetElement = HTMLElement | Element | Document | Window;
 
-export function getTargetElement(
-  target?: BasicTarget<TargetElement>,
-  defaultElement?: TargetElement,
-): TargetElement | undefined | null {
+export function getTargetElement<T = TargetElement>(
+  target?: BasicTarget<T>,
+  defaultElement?: T,
+): T | undefined | null {
   if (!target) {
     return defaultElement;
   }
 
-  let targetElement: TargetElement | undefined | null;
+  let targetElement: T | undefined | null;
 
-  if (typeof target === 'function') {
+  if (isFunction(target)) {
     targetElement = target();
   } else if ('current' in target) {
     targetElement = target.current;
