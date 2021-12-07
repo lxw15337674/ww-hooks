@@ -11,7 +11,6 @@ function useVisible<T extends Element = Element>(target: BasicTarget<T>) {
       return;
     }
     const observer = new IntersectionObserver((entries) => {
-      console.log(entries);
       for (const entry of entries) {
         if (entry.isIntersecting) {
           setVisible(true);

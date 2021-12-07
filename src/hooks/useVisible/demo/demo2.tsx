@@ -4,7 +4,6 @@
  */
 
 import React from 'react';
-// import useVisible from '..';
 import { useVisible } from 'wwhooks';
 
 export default () => {
@@ -17,7 +16,7 @@ export default () => {
         <div id="demo2">observer dom</div>
         <div style={{ height: 300 }}></div>
       </div>
-      <p>{visible ? 'visible' : 'hidden'}</p>
+      <p>visible:{visible.toString()}</p>
     </div>
   );
 };
