@@ -11,8 +11,7 @@ function useToggle<T = string, U = string>(defaultValue: T, reverseValue: U) {
     }
     setState(value);
   }, []);
-
-  return [state, toggleState];
+  return [state, toggleState] as const;
 }
 
 export default useToggle;

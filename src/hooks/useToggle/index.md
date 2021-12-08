@@ -31,8 +31,8 @@ const [state,toggleState] = useToggle<T, U>(defaultValue: T, reverseValue: U);
 
 | **参数**    | **说明**  | **类型**                  |
 | ----------- | --------- | ------------------------- |
-| state       | 状态值    | `T`|`U`                   |
-| toggleState | 切换state | `(state?: T | U) => void` |
+| state       | 状态值    | `T`|
+| toggleState | 切换state | `(state?: T \| U) => void` |
 
 ### Params
 
