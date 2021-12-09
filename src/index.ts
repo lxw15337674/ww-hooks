@@ -24,3 +24,4 @@ export { default as setDefaultArguments } from './function/setDefaultArguments';
 export { default as useVisible } from './hooks/useVisible';
 export { default as sortBy } from './function/sortBy';
 export { default as isType } from './function/IsType';
+export { default as useEventListener } from './hooks/useEventListener';

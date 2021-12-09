@@ -16,11 +16,11 @@ group:
 
 ### 基础用法
 
-<code src="./demo/demo1.tsx" />
+<code src="./demo/index.tsx" />
 
 ### 监听 keydown 事件
 
-<code src="./demo/demo2.tsx" />
+<code src="./demo/index2.tsx" />
 
 ## API
 
