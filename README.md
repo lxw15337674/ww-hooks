@@ -10,6 +10,7 @@
 6. 单例模式的 useUrlstate
 10. useHover
 11. useScroll，封装对应的移动方法
+9. useisScroll，判断处于滚动状态
 
 ## list
 
