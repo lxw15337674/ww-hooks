@@ -15,7 +15,7 @@ export interface Action<T> {
 }
 
 export default function useObject<T extends object = object>(
-  defaultValue: T = Object.create(null),
+  defaultValue: T | (() => T),
 ): [T, Action<T>] {
   const [object, setObject] = useState<T>(defaultValue);
   const reset = useCallback(() => {
