@@ -23,4 +23,4 @@ export { default as useThrottleFn } from './hooks/useThrottleFn';
 export { default as setDefaultArguments } from './utils/setDefaultArguments';
 export { default as useVisible } from './hooks/useVisible';
 export { default as sortBy } from './utils/sortBy';
-export { default as isType } from './utils/IsType';
+export { default as isType } from './function/IsType';

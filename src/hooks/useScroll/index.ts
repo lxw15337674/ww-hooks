@@ -1,6 +1,5 @@
+import { BasicTarget } from '@/utils/dom';
 import { useState } from 'react';
-import useEventListener from '../useEventListener';
-import { BasicTarget } from '../utils/dom';
 
 export type Target = BasicTarget<HTMLElement | Element | Window | Document>;
 interface Position {
