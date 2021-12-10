@@ -1,7 +1,6 @@
-import { BasicTarget, getTargetElement } from '@/utils/dom';
+import { getTargetElement } from '../../common/dom';
 import { useEffect } from 'react';
-
-export type Target = BasicTarget<HTMLElement | Element | Window | Document>;
+import { Target } from '../../common/interface';
 
 type Options = {
   target?: Target;
@@ -12,7 +11,7 @@ type Options = {
 
 function useEventListener(
   eventName: string,
-  handler: (e) => void,
+  handler: (e: Event) => void,
   options: Options = {},
 ) {
   useEffect(() => {
