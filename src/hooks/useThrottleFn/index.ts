@@ -1,4 +1,4 @@
-import { Fn } from '@/common/interface';
+import { Fn } from '../../common/interface';
 import { DebouncedFunc, throttle, ThrottleSettings } from 'lodash';
 import { useMemo, useRef } from 'react';
 import useUnmount from '../useUnmount';

@@ -1,4 +1,4 @@
-import { setState } from '@/common/utils';
+import { setState } from '../../common/utils';
 import { isEqual } from 'lodash';
 import { useState, useMemo } from 'react';
 

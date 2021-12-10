@@ -1,11 +1,11 @@
 import { useMemo, useCallback, useState } from 'react';
 import { isEqual } from 'lodash';
-import { setState } from '@/common/utils';
+import { setState } from '../../common/utils';
 import {
   SetDispatch,
   SetPartialDispatch,
   SetPartialStateAction,
-} from '@/common/interface';
+} from '../../common/interface';
 
 export interface Action<T> {
   reset: () => void;

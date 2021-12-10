@@ -1,9 +1,9 @@
 import { useQueryConfig } from './interface';
 import _ from 'lodash';
 import { useMount, useAxios, useUnmount, useUpdateEffect } from '../../../';
-import { useCallback, useRef, useState, useMemo } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { AxiosRequestConfig } from 'axios';
-import { setState } from '@/common/utils';
+import { setState } from '../../../common/utils';
 
 const useQuery = <P = any, D = any>({
   deps = [],

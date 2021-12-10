@@ -1,4 +1,4 @@
-import { setState } from '@/common/utils';
+import { setState } from '../../common/utils';
 import { useMemo, useState } from 'react';
 import { SetStateAction } from '../../common/interface';
 import useUpdateEffect from '../useUpdateEffect';
