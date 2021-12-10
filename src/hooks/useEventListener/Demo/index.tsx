@@ -1,9 +1,6 @@
 /**
- * title: Default usage
- * desc: Click the button to preview.
  *
- * title.zh-CN: 基础用法
- * desc.zh-CN: 点击按钮查看效果。
+ * title: 基础用法
  */
 
 import React, { useState, useRef } from 'react';

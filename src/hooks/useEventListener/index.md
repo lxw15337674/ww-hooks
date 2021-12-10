@@ -1,10 +1,6 @@
 ---
-title: useEventListener
-nav:
-  title: Hooks
-  path: /hooks
 group:
-  title: Dom
+  title: dom
   path: /dom
 ---
 
