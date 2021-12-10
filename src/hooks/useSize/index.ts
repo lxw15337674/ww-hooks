@@ -1,35 +1,21 @@
-import { BasicTarget, getTargetElement } from '@/utils/dom';
-import { useLayoutEffect, useState } from 'react';
+import { useResizeObserver } from '../../';
+import { useState } from 'react';
+import { BasicTarget } from '../../common/interface';
 
 export type Size = { width: number; height: number };
 
 function useSize(target: BasicTarget) {
   const [state, setState] = useState<Size>({
-    width: null,
-    height: null,
+    width: 0,
+    height: 0,
   });
-  useLayoutEffect(() => {
-    const el = getTargetElement(target);
-    if (!el) {
-      return;
-    }
-
-    const resizeObserver = new ResizeObserver((entries) => {
-      entries.forEach((entry) => {
-        setState({
-          width: (entry.target as HTMLElement).offsetWidth,
-          height: (entry.target as HTMLElement).offsetHeight,
-        });
-      });
+  useResizeObserver(target, (entry) => {
+    setState({
+      width: (entry.target as HTMLElement).offsetWidth,
+      height: (entry.target as HTMLElement).offsetHeight,
     });
-
-    resizeObserver.observe(el as HTMLElement);
-    return () => {
-      resizeObserver.disconnect();
-    };
-  }, [target]);
-
-  return { size: state } as const;
+  });
+  return state;
 }
 
 export default useSize;

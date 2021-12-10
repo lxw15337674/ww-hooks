@@ -7,8 +7,8 @@ import { useSize } from 'wwhooks';
 
 export default () => {
   const ref = useRef();
-  const { size } = useSize(ref);
-
+  const { width, height } = useSize(ref);
+  console.log(width, height);
   return (
     <div
       ref={ref}
@@ -20,8 +20,8 @@ export default () => {
         overflow: 'auto',
       }}
     >
-      <p>width:{size.width}</p>
-      <p>height:{size.height}</p>
+      <p>width:{width}</p>
+      <p>height:{height}</p>
     </div>
   );
 };

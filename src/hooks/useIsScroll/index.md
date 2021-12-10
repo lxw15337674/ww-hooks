@@ -4,13 +4,21 @@ group:
   path: /dom
 ---
 
-# useSize
+# useIsScroll
 
-一个用于监听 dom 节点尺寸变化的 Hook。
+判断元素是否处于滚动状态。
+
+使用场景：
+
+1. 判断是否需要展开按钮。
 
 ## demo
 
+
 <code src="./Demo/index.tsx"/>
+
+
+<code src="./Demo/index2.tsx"/>
 
 ### Params
 
@@ -21,8 +29,8 @@ group:
 
 ### Result
 
-| **参数** | **说明**       | **类型** |
-| -------- | -------------- | -------- |
-| wdith    | dom 节点的宽度 | `number` |
-| height   | dom 节点的高度 | `number` |
+| **参数** | **说明**            | **类型**  |
+| -------- | ------------------- | --------- |
+| x        | x轴是否处于滚动状态 | `boolean` |
+| y        | y轴是否处于滚动状态 | `boolean` |
 
