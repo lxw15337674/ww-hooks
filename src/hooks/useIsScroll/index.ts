@@ -1,7 +1,5 @@
 import { useResizeObserver } from '@/';
-import React, { useLayoutEffect, useState } from 'react';
-import { getTargetElement } from '../../common/dom';
-import useSize from '../useSize';
+import { useState } from 'react';
 
 export interface ScrollState {
   x: boolean;
