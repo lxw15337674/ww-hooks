@@ -1,6 +1,7 @@
-import { BasicTarget, getTargetElement } from '../../utils/dom';
+import { getTargetElement } from '../../common/dom';
 import { useEffect } from 'react';
 import useBoolean from '../useBoolean';
+import { BasicTarget } from '../../common/interface';
 
 function useVisible<T extends Element = Element>(target: BasicTarget<T>) {
   const [visible, setVisible] = useBoolean(false);

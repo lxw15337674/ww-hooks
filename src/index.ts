@@ -22,6 +22,10 @@ export { default as usePromise } from './hooks/request/usePromise';
 export { default as useThrottleFn } from './hooks/useThrottleFn';
 export { default as setDefaultArguments } from './function/setDefaultArguments';
 export { default as useVisible } from './hooks/useVisible';
+export { default as useEventListener } from './hooks/useEventListener';
+export { default as useScroll } from './hooks/useScroll';
+export { default as useIsScroll } from './hooks/useIsScroll';
+export { default as useResizeObserver } from './hooks/useResizeObserver';
+
 export { default as sortBy } from './function/sortBy';
 export { default as isType } from './function/IsType';
-export { default as useEventListener } from './hooks/useEventListener';
