@@ -26,6 +26,7 @@ export { default as useEventListener } from './hooks/useEventListener';
 export { default as useScroll } from './hooks/useScroll';
 export { default as useIsScroll } from './hooks/useIsScroll';
 export { default as useResizeObserver } from './hooks/useResizeObserver';
+export { default as useIntersectionObserver } from './hooks/useIntersectionObserver';
 
 export { default as sortBy } from './function/sortBy';
 export { default as isType } from './function/IsType';

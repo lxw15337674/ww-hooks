@@ -17,9 +17,9 @@ export default () => {
         <div ref={ref}>Top </div>
         <div style={{ height: 300 }}></div>
       </div>
-      <p>
+      <div>
         <p>visible:{visible.toString()}</p>
-      </p>
+      </div>
     </div>
   );
 };

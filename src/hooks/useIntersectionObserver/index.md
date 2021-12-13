@@ -12,11 +12,13 @@ group:
 
 <code src="./Demo/index.tsx"/>
 
+<code src="./Demo/demo2.tsx"/>
+
 ### Params
 
 | 参数    | 说明                                         | 类型                   | 默认值 | 必填 |
 |---------|----------------------------------------------|------------------------|--------|--------|
 | target | 需要监听的DOM 节点或者 Refs | `HTMLElement` \| `(() => HTMLElement)` \| `MutableRefObject` | -      | 是     |
 | callback | 触发事件 | `(*entry*: IntersectionObserverEntry) => void` | - | 是 |
-| *config* | 相交配置 | ` IntersectionObserverInit` | - | 否 |
+| *config* | 配置 | ` IntersectionObserverInit` | - | 否 |
 
