@@ -2,11 +2,6 @@ import React from 'react';
 import usePromise from '..';
 import { getData, getErrorData } from './api';
 
-// 报表模版
-export async function querySheets() {
-  return pluto.get('test', { params: { obsListingId } });
-}
-
 export default () => {
   const request = usePromise(getData, {
     onSuccess: (data) => {

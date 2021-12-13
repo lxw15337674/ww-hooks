@@ -6,17 +6,11 @@ import {
   usePromiseResult,
 } from './interface';
 import _, { isNumber } from 'lodash';
-import {
-  isType,
-  useMount,
-  useMountedState,
-  useTimeoutFn,
-  useUnmount,
-} from '../../..';
+import { useMount, useMountedState, useTimeoutFn, useUnmount } from '../../..';
 import useDebounceFn from '../../useDebounceFn';
 import useThrottleFn from '../../useThrottleFn';
 
-const usePromise = <D, P extends any[]>(
+const usePromise = <D, P extends any[] = never>(
   service: Service<D, P>,
   {
     debounceInterval = null,
@@ -26,7 +20,7 @@ const usePromise = <D, P extends any[]>(
     initialData = null,
     throttleInterval = null,
     loadingDelay = 300,
-    defaultParams = null,
+    defaultParams = [] as P,
   }: usePromiseConfig<D, P> = {},
 ) => {
   const mountedState = useMountedState();
@@ -66,6 +60,9 @@ const usePromise = <D, P extends any[]>(
 
   const run = useCallback(
     (...params: P): Promise<D> => {
+      if (Array.isArray(params)) {
+        params = [] as P;
+      }
       if (isNumber(debounceInterval)) {
         debounceRun.run(...params);
         return Promise.resolve(null);
@@ -80,7 +77,11 @@ const usePromise = <D, P extends any[]>(
   );
 
   const reload = useCallback(() => {
-    return run(...params);
+    if (Array.isArray(params)) {
+      return run(...params);
+    }
+    // @ts-ignore
+    return run();
   }, [run, params]);
 
   const cancel = useCallback(() => {
@@ -100,7 +101,7 @@ const usePromise = <D, P extends any[]>(
 
   useMount(() => {
     if (manual === false) {
-      run(...params);
+      reload();
     }
   });
 
