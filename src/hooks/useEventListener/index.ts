@@ -1,5 +1,5 @@
 import { getTargetElement } from '../../common/dom';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { Target } from '../../common/interface';
 
 type Options = {
@@ -14,20 +14,27 @@ function useEventListener(
   handler: (e: Event) => void,
   options: Options = {},
 ) {
+  const handlerRef = useRef<Function>();
+  handlerRef.current = handler;
   useEffect(() => {
     const targetElement = getTargetElement(options.target, window);
     if (!targetElement?.addEventListener) {
       return;
     }
+    const eventListener = (
+      event: Event,
+    ): EventListenerOrEventListenerObject | AddEventListenerOptions => {
+      return handlerRef.current && handlerRef.current(event);
+    };
 
-    targetElement.addEventListener(eventName, handler, {
+    targetElement.addEventListener(eventName, eventListener, {
       capture: options.capture,
       once: options.once,
       passive: options.passive,
     });
 
     return () => {
-      targetElement.removeEventListener(eventName, handler, {
+      targetElement.removeEventListener(eventName, eventListener, {
         capture: options.capture,
       });
     };
