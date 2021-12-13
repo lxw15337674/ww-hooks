@@ -1,26 +1,19 @@
-import { getTargetElement } from '../../common/dom';
-import { useEffect, useRef } from 'react';
 import useBoolean from '../useBoolean';
 import { BasicTarget } from '../../common/interface';
+import useIntersectionObserver from '../useIntersectionObserver';
+import { getTargetElement, isInViewPort } from '../../common/dom';
+import { useState } from 'react';
 
-function useVisible<T extends Element = Element>(target: BasicTarget<T>) {
-  const [visible, setVisible] = useBoolean(false);
-  useEffect(() => {
+function useVisible<T extends HTMLElement = HTMLElement>(
+  target: BasicTarget<T>,
+) {
+  const [visible, setVisible] = useState(() => {
     const el = getTargetElement(target);
-    if (!el) {
-      return;
-    }
-    const observer = new IntersectionObserver((entries) => {
-      for (const entry of entries) {
-        setVisible(entry.isIntersecting);
-      }
-    });
-    observer.observe(el as Element);
-    return () => {
-      observer.disconnect();
-    };
-  }, [target]);
-
+    return isInViewPort(el as HTMLElement);
+  });
+  useIntersectionObserver(target, (entry) => {
+    setVisible(entry.isIntersecting);
+  });
   return visible;
 }
 
