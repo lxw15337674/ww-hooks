@@ -60,7 +60,7 @@ const usePromise = <D, P extends any[] = never>(
 
   const run = useCallback(
     (...params: P): Promise<D> => {
-      if (Array.isArray(params)) {
+      if (!Array.isArray(params)) {
         params = [] as P;
       }
       if (isNumber(debounceInterval)) {

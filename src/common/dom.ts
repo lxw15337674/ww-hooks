@@ -224,7 +224,7 @@ export const isInContainer = (el, container) => {
 };
 
 // 判断元素是否可见
-function isInViewPort(el: HTMLElement) {
+export function isInViewPort(el: HTMLElement) {
   if (!el) {
     return undefined;
   }
