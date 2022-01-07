@@ -11,6 +11,7 @@
 10. useHover
 11. useScroll，封装对应的移动方法
 9. useisScroll，判断处于滚动状态
+10. useObject，增加与原始数据比较出差异的对象
 
 ## list
 
