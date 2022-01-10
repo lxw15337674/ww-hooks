@@ -1,7 +1,6 @@
 import { useMutationConfig } from './interface';
-import _ from 'lodash';
 import { useMount, useAxios } from '../../../';
-import { useCallback, useState, useMemo } from 'react';
+import { useCallback, useState } from 'react';
 import { AxiosRequestConfig } from 'axios';
 import { setState } from '../../../common/utils';
 
