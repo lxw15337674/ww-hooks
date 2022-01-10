@@ -1,6 +1,5 @@
 import { useCallback, useRef } from 'react';
-import Axios, { AxiosRequestConfig, AxiosResponse, Canceler } from 'axios';
-import _ from 'lodash';
+import Axios, { AxiosRequestConfig, Canceler } from 'axios';
 import { usePromise, useUnmount } from '../../../';
 import { useAxiosConfig } from './interface';
 
