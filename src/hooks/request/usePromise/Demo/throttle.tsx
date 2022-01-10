@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import usePromise from '..';
+import { usePromise } from 'wwhooks';
 import { getData } from './api';
 
 export default () => {
