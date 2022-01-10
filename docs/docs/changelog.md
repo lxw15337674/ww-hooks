@@ -27,5 +27,15 @@ group:
 
 - 增加一些新的 hook
   - `useIntersectionObserver`
-  - 
 
+## [1.0.20] - 2022-01-10
+
+#### Feature
+
+- useArray
+  - 默认值增加函数类型
+  - 增加`reorder`
+
+#### Added
+
+- 代码增加eslint代码规范。

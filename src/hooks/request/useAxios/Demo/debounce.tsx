@@ -19,7 +19,8 @@ export default () => {
       <p>requestCount:{count}</p>
       <button
         onClick={() => {
-          request.run();
+          request.reload();
+          request.reload();
         }}
       >
         request

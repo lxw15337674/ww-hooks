@@ -16,8 +16,7 @@ group:
 ## API
 
 ```typescript
-const [array, { array, set, setAll, remove, reset, clear, push }] =
-  useArray<string>([]);
+const [array, { array, set, setAll, remove, reset, clear, push, reorder}] =useArray<string>([]);
 ```
 
 ### Generics
@@ -31,23 +30,19 @@ const [array, { array, set, setAll, remove, reset, clear, push }] =
 | **参数** | **说明**       | **类型**  |
 | -------- | -------------- | --------- |
 | array    | 数据           | `T[]`     |
-| actions  | 状态及操作集合 | `Actions` |
-
-### Actions
-
-| **参数** | **说明**         | **类型**                           |
-| -------- | ---------------- | ---------------------------------- |
+| isEdited | 是否修改                     | `boolean`                                      |
 | set      | 修改元素         | `(index:number, value: T) => void` |
 | setAll   | 修改为新的数组   | `(value: T[]) => void`             |
-| remove   | 删除元素         | `(index:number)=>void`             |
-| reset    | 重置为默认值     | `()=>void`                         |
-| clear    | 清空数组         | `()=>void`                         |
-| push     | 数据末尾添加元素 | `(value:T)=>void`                  |
-| swap     | 元素交换位置     | `(dragIndex, dropIndex)=>void`     |
-| isEdited | 是否修改         | `boolean`                          |
+| remove   | 删除元素         | `(index:number)=>void`       |
+| reset    | 重置为默认值     | `()=>void`                      |
+| clear    | 清空数组         | `()=>void`                   |
+| push     | 数据末尾添加元素 | `(value:T)=>void`            |
+| swap     | 两个元素交换位置   | `(dragIndex, dropIndex)=>void` |
+| reorder  | 将指定元素重新排列到指定位置 | `(startIndex: number, endIndex: number)=>void` |
+|  |  |  |
 
 ### Params
 
-| **参数**       | **说明** | **类型** | **默认值** | 必填 |
-| -------------- | -------- | -------- | ---------- | ---- |
-| _defaultValue_ | 初始数据 | `T[]`    | `[]`       | 否   |
+| **参数**       | **说明** | **类型**      | **默认值** | 必填 |
+| -------------- | -------- | ------------- | ---------- | ---- |
+| _defaultValue_ | 初始数据 | `T[]|()=>T[]` | `[]`       | 否   |

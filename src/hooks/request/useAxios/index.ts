@@ -21,7 +21,7 @@ const useAxios = <D>({
   const axiosRequest = useCallback(
     (config?: AxiosRequestConfig) => {
       const runConfig = {
-        cancelToken: new Axios.CancelToken(function executor(c) {
+        cancelToken: new Axios.CancelToken((c) => {
           cancelToken.current = c;
         }),
         ...axiosConfig,
@@ -48,7 +48,7 @@ const useAxios = <D>({
   const cancel = useCallback(() => {
     cancelToken.current?.();
     request?.cancel();
-  }, [request.cancel, cancelToken]);
+  }, [request.cancel]);
 
   useUnmount(() => {
     cancel();

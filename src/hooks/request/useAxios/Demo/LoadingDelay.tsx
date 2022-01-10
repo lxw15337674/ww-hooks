@@ -15,7 +15,7 @@ export default () => {
       <p>loading:{JSON.stringify(request.isLoading)}</p>
       <button
         onClick={() => {
-          request.run();
+          request.reload();
         }}
       >
         正常的请求 {request.isLoading}

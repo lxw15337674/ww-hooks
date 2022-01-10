@@ -1,14 +1,14 @@
-import { useCallback, useMemo, useRef, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import {
   Service,
   Status,
   usePromiseConfig,
   usePromiseResult,
 } from './interface';
-import _, { isNumber } from 'lodash';
 import { useMount, useMountedState, useTimeoutFn, useUnmount } from '../../..';
 import useDebounceFn from '../../useDebounceFn';
 import useThrottleFn from '../../useThrottleFn';
+import { isNumber } from '@/common/utils';
 
 const usePromise = <D, P extends any[] = never>(
   service: Service<D, P>,
@@ -32,27 +32,30 @@ const usePromise = <D, P extends any[] = never>(
     setStatus('loading');
   }, loadingDelay);
 
-  const baseRun = (...params: P): Promise<D> => {
-    delaySetLoading.run();
-    setError(undefined);
-    setParams(params);
-    return service(...params)
-      .then((data: D) => {
-        mountedState() && setData(data);
-        onSuccess?.(data, params);
-        setStatus('success');
-        return data;
-      })
-      .catch((err: Error) => {
-        mountedState() && setError(err);
-        onError?.(err, params);
-        setStatus('error');
-        return Promise.reject(err);
-      })
-      .finally(() => {
-        delaySetLoading.cancel();
-      });
-  };
+  const baseRun = useCallback(
+    (...params: P): Promise<D> => {
+      delaySetLoading.run();
+      setError(undefined);
+      setParams(params);
+      return service(...params)
+        .then((data: D) => {
+          mountedState() && setData(data);
+          onSuccess?.(data, params);
+          setStatus('success');
+          return data;
+        })
+        .catch((err: Error) => {
+          mountedState() && setError(err);
+          onError?.(err, params);
+          setStatus('error');
+          return Promise.reject(err);
+        })
+        .finally(() => {
+          delaySetLoading.cancel();
+        });
+    },
+    [delaySetLoading, mountedState, onError, onSuccess, service],
+  );
 
   const debounceRun = useDebounceFn(baseRun, debounceInterval);
 
@@ -60,20 +63,21 @@ const usePromise = <D, P extends any[] = never>(
 
   const run = useCallback(
     (...params: P): Promise<D> => {
+      let _params = params;
       if (!Array.isArray(params)) {
-        params = [] as P;
+        _params = [] as P;
       }
       if (isNumber(debounceInterval)) {
-        debounceRun.run(...params);
+        debounceRun.run(..._params);
         return Promise.resolve(null);
       }
       if (isNumber(throttleInterval)) {
-        throttleRun.run(...params);
+        throttleRun.run(..._params);
         return Promise.resolve(null);
       }
-      return baseRun(...params);
+      return baseRun(..._params);
     },
-    [debounceRun, throttleRun, baseRun],
+    [debounceInterval, throttleInterval, baseRun, debounceRun, throttleRun],
   );
 
   const reload = useCallback(() => {

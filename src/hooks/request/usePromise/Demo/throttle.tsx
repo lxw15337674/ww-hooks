@@ -21,6 +21,8 @@ export default () => {
       <button
         onClick={() => {
           request.run();
+          request.run();
+          request.run();
         }}
       >
         request

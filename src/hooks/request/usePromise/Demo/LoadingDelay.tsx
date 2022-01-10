@@ -1,3 +1,10 @@
+/**
+ *
+ * title: 加载状态延迟
+ * desc: |
+ *  延迟 loading 变为 true 的时间，防止接口返回过快导致闪烁。
+ *
+ */
 import React from 'react';
 import { usePromise } from 'wwhooks';
 import { getData } from './api';

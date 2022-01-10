@@ -23,8 +23,6 @@ group:
 
 ### 加载状态延迟
 
-延迟 loading 变为 true 的时间，防止接口返回过快导致闪烁。
-
 <code src="./Demo/LoadingDelay.tsx"/>
 
 ### 防抖
@@ -58,7 +56,7 @@ group:
 | mutate    | 直接修改 data                                                | `React.Dispatch<React.SetStateAction<D>>`                    |
 | run       | - 手动触发 service 执行，run 的 axios 参数优先级最高。<br />- debounce 模式与 throttle 模式返回值为 `Promise<null>` | ` (config?: AxiosRequestConfig) => Promise<Error \| AxiosResponse<D>>` |
 | cancel    | 取消当前请求                                                 | `() => void`                                                 |
-| flush     | 立即调用处于防抖或节流状态的函数                             | `() => Promise<Error                                                   | AxiosResponse<D>>` |
+| flush     | 立即调用处于防抖或节流状态的函数                             | `() => Promise<Error\| AxiosResponse<D>>`                    |
 
 ### Params
 
@@ -67,8 +65,8 @@ group:
 | service          | 执行的 promise             | `(...args: P) => Promise<D>`       | -          | 是   |
 | debounceInterval | 防抖                       | `number`                           | -          | 否   |
 | throttleInterval | 节流                       | `number`                           | -          | 否   |
-| manual           | 是否手动触发               | `boolean`                          | true       | 否   |
-| initialData      | 默认的 data。              | `D`                                | null       | 否   |
+| manual           | 是否手动触发               | `boolean`                          | `true`     | 否   |
+| initialData      | 默认的 data。              | `D`                                | `null`     | 否   |
 | onSuccess        | service resolve 时触发 。  | `(data: AxiosResponse<D>) => void` | -          | 否   |
 | onError          | service reject 时触发。    | `(error: string) => void`          | -          | 否   |
 | loadingDelay     | loading 延迟为 true 的时间 | `number`                           | -          | 否   |

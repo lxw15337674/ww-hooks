@@ -1,4 +1,3 @@
-import useBoolean from '../useBoolean';
 import { BasicTarget } from '../../common/interface';
 import useIntersectionObserver from '../useIntersectionObserver';
 import { getTargetElement, isInViewPort } from '../../common/dom';

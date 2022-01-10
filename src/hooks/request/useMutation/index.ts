@@ -3,6 +3,7 @@ import { useMount, useAxios } from '../../../';
 import { useCallback, useState } from 'react';
 import { AxiosRequestConfig } from 'axios';
 import { setState } from '../../../common/utils';
+import { SetStateAction } from '@/common/interface';
 
 const useMutation = <P = any, D = any>({
   manual = true,
@@ -19,12 +20,12 @@ const useMutation = <P = any, D = any>({
   const request = useAxios<P>(axiosConfig);
 
   const run = useCallback(
-    (params: React.SetStateAction<P>) => {
-      params = setState(params, bodyData);
+    (params: SetStateAction<P>) => {
+      let _params = setState(params, bodyData);
       setBodyData(params);
-      return request.run({ data: params });
+      return request.run({ data: _params });
     },
-    [request.run],
+    [bodyData, request],
   );
   const reload = useCallback(() => {
     return run(bodyData);
