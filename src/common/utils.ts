@@ -43,35 +43,6 @@ export function pxToNum(str: string): number {
   return 0;
 }
 
-export function isNumber(value) {
-  return typeof value === 'number';
-}
-
-export function isObject(obj) {
-  return Object.prototype.toString.call(obj) === '[object Object]';
-}
-
-export function isEqual(obj1, obj2) {
-  // 1.判断是不是引用类型，不是引用
-  if (!isObject(obj1) || !isObject(obj2)) {
-    return obj1 === obj2;
-  }
-  // 2.比较是否为同一个内存地址
-  if (obj1 === obj2) return true;
-  // 3.比较 key 的数量
-  const obj1KeysLength = Object.keys(obj1).length;
-  const obj2KeysLength = Object.keys(obj2).length;
-  if (obj1KeysLength !== obj2KeysLength) return false;
-  // 4.比较 value 的值
-  for (let key in obj1) {
-    if (Object.prototype.hasOwnProperty.call(obj1, key)) {
-      const result = isEqual(obj1[key], obj2[key]);
-      if (!result) return false;
-    }
-  }
-  return true;
-}
-
 export function mergeWith(obj, source, customizer) {
   for (let i in obj) {
     if (Object.prototype.hasOwnProperty.call(obj, i)) {
@@ -79,36 +50,4 @@ export function mergeWith(obj, source, customizer) {
     }
   }
   return obj;
-}
-
-export function orderBy<T>(data: T[], key: keyof T) {
-  const map = new Map<keyof T, T[]>();
-  for (let item of data) {
-    const value = map.get(key);
-    map.set(key, [...(value ?? []), item]);
-  }
-  return [...map.values()];
-}
-
-export function orderBys<T extends object>(data: T[], keys: (keyof T)[]) {
-  const res = data;
-  for (let index in keys) {
-    if (Object.prototype.hasOwnProperty.call(index, keys)) {
-      const array = [];
-      const key = keys[index];
-      const prevKey = keys[Number(index) - 1];
-      let currentArray = [];
-      for (let arrayIndex in res) {
-        if (Object.prototype.hasOwnProperty.call(arrayIndex, res)) {
-          const item = res[arrayIndex][prevKey];
-          if (item === currentArray[currentArray.length - 1][prevKey]) {
-            currentArray.push(item);
-          } else {
-            array.push(currentArray);
-            currentArray = [item];
-          }
-        }
-      }
-    }
-  }
 }

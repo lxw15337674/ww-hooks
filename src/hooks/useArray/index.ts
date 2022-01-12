@@ -1,4 +1,5 @@
-import { isEqual, setState } from '../../common/utils';
+import { setState } from '../../common/utils';
+import { isEqual } from 'lodash';
 import { useState, useMemo, useCallback } from 'react';
 import { initialState } from '@/common/interface';
 

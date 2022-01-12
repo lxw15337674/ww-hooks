@@ -8,7 +8,7 @@ import {
 import { useMount, useMountedState, useTimeoutFn, useUnmount } from '../../..';
 import useDebounceFn from '../../useDebounceFn';
 import useThrottleFn from '../../useThrottleFn';
-import { isNumber } from '@/common/utils';
+import { isNumber } from 'lodash';
 
 const usePromise = <D, P extends any[] = never>(
   service: Service<D, P>,

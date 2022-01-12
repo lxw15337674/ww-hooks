@@ -3,5 +3,8 @@ export default {
     type: 'rollup',
     minify: true,
   },
-  // cjs: 'rollup',
+  cjs: {
+    type: 'rollup',
+    minify: true,
+  },
 };

@@ -35,9 +35,7 @@
     ]
   },
   "dependencies": {
-    "axios": "^0.23.0",
-    "lodash.debounce": "^4.0.8",
-    "lodash.throttle": "^4.1.1"
+    "axios": "^0.23.0"
   },
   "peerDependencies": {
     "react": "^16.8.6 || ^17.0"
@@ -45,7 +43,6 @@
   "devDependencies": {
     "@babel/eslint-parser": "^7.16.5",
     "@babel/preset-react": "^7.16.7",
-    "eslint-config-alloy": "^4.4.0",
     "@types/lodash": "^4.14.172",
     "@typescript-eslint/eslint-plugin": "^5.9.0",
     "@typescript-eslint/parser": "^5.9.0",
@@ -56,6 +53,7 @@
     "babel-plugin-import": "^1.13.3",
     "dumi": "^1.1.31",
     "eslint": "^8.6.0",
+    "eslint-config-alloy": "^4.4.0",
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
     "father-build": "^1.17.2",
