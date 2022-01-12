@@ -1,9 +1,8 @@
 import { useQueryConfig } from './interface';
-import _ from 'lodash';
 import { useMount, useAxios, useUnmount, useUpdateEffect } from '../../../';
-import { useCallback, useRef, useState, useMemo } from 'react';
+import { SetStateAction, useCallback, useRef, useState } from 'react';
 import { AxiosRequestConfig } from 'axios';
-import { setState } from '@/common/utils';
+import { setState } from '../../../common/utils';
 
 const useQuery = <P = any, D = any>({
   deps = [],
@@ -19,17 +18,17 @@ const useQuery = <P = any, D = any>({
   const cancel = useCallback(() => {
     request.cancel();
     clearTimeout(polling.current);
-  }, [request.cancel]);
+  }, [request]);
 
   const run = useCallback(
-    (params: React.SetStateAction<P>) => {
+    (_params: SetStateAction<P>) => {
       if (polling.current) {
         clearTimeout(polling.current);
       }
       if (!concurrent) {
         cancel();
       }
-      params = setState(params, requestParams);
+      const params = setState(_params, requestParams);
       setParams(params);
       const axiosConfig: AxiosRequestConfig = {
         params,
@@ -45,7 +44,7 @@ const useQuery = <P = any, D = any>({
       }
       return request.run(axiosConfig);
     },
-    [request.run, pollingInterval],
+    [concurrent, requestParams, pollingInterval, request, cancel],
   );
   const reload = useCallback(() => {
     return run(requestParams);

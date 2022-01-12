@@ -1,11 +1,11 @@
 import { useMemo, useCallback, useState } from 'react';
-import { isEqual } from 'lodash';
-import { setState } from '@/common/utils';
+import { setState } from '../../common/utils';
 import {
   SetDispatch,
   SetPartialDispatch,
   SetPartialStateAction,
-} from '@/common/interface';
+} from '../../common/interface';
+import { isEqual } from 'lodash';
 
 export interface Action<T> {
   reset: () => void;
@@ -15,7 +15,7 @@ export interface Action<T> {
 }
 
 export default function useObject<T extends object = object>(
-  defaultValue: T = Object.create(null),
+  defaultValue: T | (() => T),
 ): [T, Action<T>] {
   const [object, setObject] = useState<T>(defaultValue);
   const reset = useCallback(() => {

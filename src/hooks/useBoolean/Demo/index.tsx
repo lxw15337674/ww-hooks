@@ -2,22 +2,21 @@ import React from 'react';
 import { useBoolean } from 'wwhooks';
 
 export default () => {
-  const [state, { toggle, setTrue, setFalse }] = useBoolean(true);
+  const [boolean, setBoolean] = useBoolean(true);
   return (
     <div>
-      <p>state:{state.toString()}</p>
-
+      <p>state:{boolean.toString()}</p>
       <p>
-        <button type="button" onClick={() => toggle()}>
+        <button type="button" onClick={() => setBoolean()}>
           toggle
         </button>
       </p>
 
       <p>
-        <button type="button" onClick={setTrue}>
+        <button type="button" onClick={() => setBoolean(true)}>
           Set true
         </button>
-        <button type="button" onClick={setFalse}>
+        <button type="button" onClick={() => setBoolean(false)}>
           Set false
         </button>
       </p>

@@ -8,12 +8,10 @@
 4. useIndexedDB
 5. useDialog
 6. 单例模式的 useUrlstate
-7. useAxios、useRequest 合并
-8. useRequest 参考 ahook 的 useRequest
-9. useMutation、useQuery
-   1. onSuccess 获取不到外层参数
 10. useHover
 11. useScroll，封装对应的移动方法
+9. useisScroll，判断处于滚动状态
+10. useObject，增加与原始数据比较出差异的对象
 
 ## list
 

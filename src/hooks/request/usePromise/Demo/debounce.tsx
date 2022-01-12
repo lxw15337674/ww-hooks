@@ -1,7 +1,11 @@
+/**
+ *
+ * title: 防抖
+
+ */
 import React, { useState } from 'react';
-import usePromise from '..';
 import { getData } from './api';
-// import { usePromise } from 'wwhooks';
+import { usePromise } from 'wwhooks';
 
 export default () => {
   const [count, setCount] = useState(0);
@@ -20,6 +24,8 @@ export default () => {
       <p>requestCount:{count}</p>
       <button
         onClick={() => {
+          request.run();
+          request.run();
           request.run();
         }}
       >

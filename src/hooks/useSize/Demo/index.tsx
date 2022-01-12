@@ -2,11 +2,13 @@
  * title: 用法
  * desc: 通过ref监听节点变化
  */
-import React from 'react';
-import useSize from '..';
+import React, { useRef } from 'react';
+import { useSize } from 'wwhooks';
 
 export default () => {
-  const { ref, size } = useSize();
+  const ref = useRef();
+  const { width, height } = useSize(ref);
+  console.log(width, height);
   return (
     <div
       ref={ref}
@@ -18,8 +20,8 @@ export default () => {
         overflow: 'auto',
       }}
     >
-      <p>width:{size.width}</p>
-      <p>height:{size.height}</p>
+      <p>width:{width}</p>
+      <p>height:{height}</p>
     </div>
   );
 };

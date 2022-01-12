@@ -20,6 +20,13 @@ export { default as useNumber } from './hooks/useNumber';
 export { default as useClick } from './hooks/useClick';
 export { default as usePromise } from './hooks/request/usePromise';
 export { default as useThrottleFn } from './hooks/useThrottleFn';
-export { default as setDefaultArguments } from './utils/setDefaultArguments';
-export { default as sortBy } from './utils/sortBy';
-export { default as isType } from './utils/IsType';
+export { default as setDefaultArguments } from './function/setDefaultArguments';
+export { default as useVisible } from './hooks/useVisible';
+export { default as useEventListener } from './hooks/useEventListener';
+export { default as useScroll } from './hooks/useScroll';
+export { default as useIsScroll } from './hooks/useIsScroll';
+export { default as useResizeObserver } from './hooks/useResizeObserver';
+export { default as useIntersectionObserver } from './hooks/useIntersectionObserver';
+
+export { default as sortBy } from './function/colSpan';
+export { default as isType } from './function/IsType';

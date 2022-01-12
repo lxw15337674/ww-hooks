@@ -1,21 +1,10 @@
-import { useMemo, useState } from 'react';
+import useToggle from '../useToggle';
 
-export interface Actions {
-  setTrue: () => void;
-  setFalse: () => void;
-  toggle: () => void;
+export interface SetBoolean {
+  (value?: boolean): void;
 }
 // 管理 boolean 值
-export default function useBoolean(defaultValue = false): [boolean, Actions] {
-  const [state, setState] = useState(defaultValue);
-  const actions: Actions = useMemo(() => {
-    const setTrue = () => setState(true);
-    const setFalse = () => setState(false);
-    const toggle = () => {
-      setState((value) => !value);
-    };
-    return { toggle, setTrue, setFalse };
-  }, []);
-
-  return [state, actions];
+export default function useBoolean(defaultValue = false) {
+  const state = useToggle(defaultValue, !defaultValue);
+  return state;
 }

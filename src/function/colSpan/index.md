@@ -4,9 +4,9 @@ group:
   path: /utils
 ---
 
-# sortBy
+# colSpan
 
-排序，类似于[`_.sortBy`](https://www.lodashjs.com/docs/lodash.orderBy#sortBy)，返回值额外增加一个 spanObject，用于列合并。
+表格的列合并。
 
 ## demo
 
@@ -20,10 +20,9 @@ group:
 
 ### Result
 
-| **参数**   | **说明**       | **类型**                        |
-| ---------- | -------------- | ------------------------------- |
-| list       | 排序后的数据   | `T[]`                           |
-| spanObject | key 列的合并值 | `[index in keyof T]?: number[]` |
+| **参数** | **说明**       | **类型**                        |
+| -------- | -------------- | ------------------------------- |
+| span     | key 列的合并值 | `[index in keyof T]?: number[]` |
 
 ### Params
 

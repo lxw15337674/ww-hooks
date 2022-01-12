@@ -1,33 +1,21 @@
-import { useEffect, useRef, useState } from 'react';
+import { useResizeObserver } from '../../';
+import { useState } from 'react';
+import { BasicTarget } from '../../common/interface';
 
 export type Size = { width: number; height: number };
 
-function useSize() {
-  const ref = useRef<HTMLDivElement>();
+function useSize(target: BasicTarget) {
   const [state, setState] = useState<Size>({
-    width: null,
-    height: null,
+    width: 0,
+    height: 0,
   });
-  useEffect(() => {
-    const resizeObserver = new ResizeObserver((entries) => {
-      entries.forEach((entry) => {
-        const target = entry.target as HTMLElement;
-        setState({
-          width: target.offsetWidth,
-          height: target.offsetHeight,
-        });
-      });
+  useResizeObserver(target, (entry) => {
+    setState({
+      width: (entry.target as HTMLElement).offsetWidth,
+      height: (entry.target as HTMLElement).offsetHeight,
     });
-
-    if (ref.current) {
-      resizeObserver.observe(ref.current);
-    }
-    return () => {
-      resizeObserver.disconnect();
-    };
-  }, [ref]);
-
-  return { size: state, ref } as const;
+  });
+  return state;
 }
 
 export default useSize;

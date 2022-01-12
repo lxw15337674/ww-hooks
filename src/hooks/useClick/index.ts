@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { useNumber, useTimeoutFn } from '../../';
 
 export interface Config {
@@ -35,7 +35,7 @@ const useClick = (
       }
       actions.plus(1);
     },
-    [simpleClickFn, doubleClickFn, run, exclusive],
+    [simpleClickFn, run, exclusive, doubleClickFn],
   );
 
   return fn;

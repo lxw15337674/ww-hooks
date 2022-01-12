@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { setDefaultArguments } from 'wwhooks';
 
 interface Obj {
@@ -11,8 +11,10 @@ interface Fn {
 }
 
 export default () => {
+  const [value, setValue] = useState<any>('');
   const fn: Fn = (...args) => {
     console.log(...args);
+    setValue(args);
   };
   const wrapperFn = setDefaultArguments<Fn, Parameters<Fn>>(
     fn,
@@ -23,10 +25,11 @@ export default () => {
     },
   );
   return (
-    <p>
+    <>
+      <p>{JSON.stringify(value)}</p>
       <button onClick={() => wrapperFn({ b: '1' }, ['1'], { a: ['1'] })}>
         点击
       </button>
-    </p>
+    </>
   );
 };

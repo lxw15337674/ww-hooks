@@ -1,5 +1,3 @@
-import _ from 'lodash';
-
 function isType<T>(data: any, type: string): data is T {
   const dataType = Object.prototype.toString
     .call(data)

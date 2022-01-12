@@ -14,6 +14,10 @@ export default () => {
     ['clear Array', () => actions.clear()],
     ['push item to Array', () => actions.push('10')],
     ['swap 0 to 2', () => actions.swap(0, 2)],
+    [
+      'The second subItem is reorder to the fourth',
+      () => actions.reorder(2, 4),
+    ],
   ];
 
   return (

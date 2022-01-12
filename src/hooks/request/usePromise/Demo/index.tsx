@@ -1,5 +1,12 @@
+/**
+ *
+ * title: 基本用法
+ * desc: |
+ *  基本用法
+ *
+ */
 import React from 'react';
-import usePromise from '..';
+import { usePromise } from 'wwhooks';
 import { getData, getErrorData } from './api';
 
 export default () => {
@@ -28,14 +35,6 @@ export default () => {
         }}
       >
         正常的请求
-      </button>
-      <button
-        onClick={() => {
-          request.run();
-          request.cancel();
-        }}
-      >
-        取消请求
       </button>
       <p>data:{JSON.stringify(errorRequest.data)}</p>
       <p>status:{JSON.stringify(errorRequest.status)}</p>

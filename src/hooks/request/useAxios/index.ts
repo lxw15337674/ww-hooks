@@ -1,6 +1,5 @@
 import { useCallback, useRef } from 'react';
-import Axios, { AxiosRequestConfig, AxiosResponse, Canceler } from 'axios';
-import _ from 'lodash';
+import Axios, { AxiosRequestConfig, Canceler } from 'axios';
 import { usePromise, useUnmount } from '../../../';
 import { useAxiosConfig } from './interface';
 
@@ -22,7 +21,7 @@ const useAxios = <D>({
   const axiosRequest = useCallback(
     (config?: AxiosRequestConfig) => {
       const runConfig = {
-        cancelToken: new Axios.CancelToken(function executor(c) {
+        cancelToken: new Axios.CancelToken((c) => {
           cancelToken.current = c;
         }),
         ...axiosConfig,
@@ -49,7 +48,7 @@ const useAxios = <D>({
   const cancel = useCallback(() => {
     cancelToken.current?.();
     request?.cancel();
-  }, [request.cancel, cancelToken]);
+  }, [request.cancel]);
 
   useUnmount(() => {
     cancel();

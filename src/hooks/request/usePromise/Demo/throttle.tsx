@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import usePromise from '..';
+import { usePromise } from 'wwhooks';
 import { getData } from './api';
 
 export default () => {
@@ -20,6 +20,8 @@ export default () => {
       <p>requestCount:{count}</p>
       <button
         onClick={() => {
+          request.run();
+          request.run();
           request.run();
         }}
       >

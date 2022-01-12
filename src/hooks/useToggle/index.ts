@@ -1,23 +1,17 @@
-import { useMemo, useState } from 'react';
+import { useCallback, useState } from 'react';
 
-export interface Actions {
-  setLeft: () => void;
-  setRight: () => void;
-  toggle: () => void;
-}
-
-function useToggle<T = string>(defaultValue: T, reverseValue: T): [T, Actions] {
-  const [state, setState] = useState(defaultValue);
-  const actions: Actions = useMemo(() => {
-    const setLeft = () => setState(defaultValue);
-    const setRight = () => setState(reverseValue);
-    const toggle = () => {
-      setState((s) => (s === defaultValue ? reverseValue : defaultValue));
-    };
-    return { toggle, setLeft, setRight };
-  }, [defaultValue, reverseValue]);
-
-  return [state, actions];
+function useToggle<T = string, U = string>(defaultValue: T, reverseValue: U) {
+  const [state, setState] = useState<T | U>(defaultValue);
+  const toggleState = useCallback((value?: T | U) => {
+    if (value === undefined) {
+      setState((value) =>
+        value === defaultValue ? reverseValue : defaultValue,
+      );
+      return;
+    }
+    setState(value);
+  }, []);
+  return [state, toggleState] as const;
 }
 
 export default useToggle;

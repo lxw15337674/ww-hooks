@@ -27,7 +27,7 @@ export default () => {
       <p>error:{JSON.stringify(request.error)}</p>
       <button
         onClick={() => {
-          request.run();
+          request.reload();
         }}
       >
         正常的请求
@@ -35,7 +35,7 @@ export default () => {
 
       <button
         onClick={() => {
-          request.run();
+          request.reload();
           request.cancel();
         }}
       >
@@ -47,7 +47,7 @@ export default () => {
       <p>error:{JSON.stringify(errorRequest?.error?.message)}</p>
       <button
         onClick={() => {
-          errorRequest.run().then((res) => {
+          errorRequest.reload().then((res) => {
             console.log(res);
           });
         }}
