@@ -1,12 +1,6 @@
-import _ from 'lodash';
+import { isObject } from '@/common/utils';
 
 type Fn = (...args: any[]) => any;
-
-function customizer(objValue, srcValue) {
-  if (_.isArray(objValue)) {
-    return objValue.concat(srcValue);
-  }
-}
 
 function setDefaultArguments<
   F extends Fn = Fn,
@@ -14,12 +8,11 @@ function setDefaultArguments<
 >(fn: F, ...defaultArguments: Parameters<F>): (...args: P) => ReturnType<F> {
   return (...args: P) => {
     const mergeArgs = defaultArguments.map((v, i) => {
-      if (_.isArray(v)) {
-        return [...v, ...args[i]];
+      if (Array.isArray(v)) {
+        return args[i];
       }
-      if (_.isObject(v)) {
-        const source = { ...v };
-        return _.mergeWith(source, args[i], customizer);
+      if (isObject(v)) {
+        return { ...v, ...args[i] };
       }
       return args[i];
     });

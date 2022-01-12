@@ -1,6 +1,5 @@
 import { useMemo, useCallback, useState } from 'react';
-import { isEqual } from 'lodash';
-import { setState } from '../../common/utils';
+import { isEqual, setState } from '../../common/utils';
 import {
   SetDispatch,
   SetPartialDispatch,

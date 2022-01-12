@@ -1,7 +1,8 @@
 import { Fn } from '../../common/interface';
-import { debounce, DebounceSettings } from 'lodash';
+import { DebounceSettings } from 'lodash';
 import { useMemo, useRef } from 'react';
 import useUnmount from '../useUnmount';
+import { debounce } from 'lodash.debounce';
 
 export default function useDebounceFn<T extends Fn = Fn>(
   fn: T,

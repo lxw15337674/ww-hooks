@@ -1,19 +1,20 @@
 import { Table } from 'antd';
 import { ColumnsType } from 'antd/lib/table';
 import React from 'react';
-import { sortBy } from 'wwhooks';
+import sortBy from '..';
+// import { sortBy } from 'wwhooks';
 
 const data = [
   { user: 'fred', age: 48, phone: 123456 },
-  { user: 'barney', age: 36, phone: 123456 },
   { user: 'fred', age: 48, phone: 123456 },
   { user: 'fred', age: 40, phone: 123456 },
+  { user: 'barney', age: 36, phone: 123456 },
   { user: 'barney', age: 34, phone: 123456 },
   { user: 'test', age: 40, phone: 123456 },
 ].map((item, index) => ({ ...item, index }));
 
 const app = () => {
-  const [dataSource, rowSpan] = sortBy(data, ['user', 'age']);
+  const rowSpan = sortBy(data, ['user', 'age']);
   const columns: ColumnsType = [
     {
       title: 'user',
@@ -45,8 +46,6 @@ const app = () => {
     },
   ];
 
-  return (
-    <Table bordered columns={columns} dataSource={dataSource} rowKey="key" />
-  );
+  return <Table bordered columns={columns} dataSource={data} rowKey="key" />;
 };
 export default app;

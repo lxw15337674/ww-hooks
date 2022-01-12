@@ -32,11 +32,15 @@ group:
 
 #### Feature
 
-- useArray
+- `useArray`
   - 默认值增加函数类型
   - 增加`reorder`
+- 重构`setDefaultArguments`
 
 #### Added
 
 - 代码增加eslint代码规范，并根据规范优化代码。
-- 
+- 去除lodash，减少包大小
+- 增加新的utils
+  - `colSpan`
+
