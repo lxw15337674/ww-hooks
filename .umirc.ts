@@ -19,5 +19,12 @@ export default defineConfig({
       'antd',
     ],
   ],
-  mfsu: {},
+  mfsu: {
+    development: {
+      output: './.mfsu-dev',
+    },
+    production: {
+      output: './.mfsu-prod',
+    },
+  },
 });
