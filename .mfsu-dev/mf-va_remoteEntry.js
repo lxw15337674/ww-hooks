@@ -126,12 +126,17 @@
           'mf-dep_vendors-node_modules_core-js_index_js': 'a6bec1a5',
           'mf-dep__mfsu-dev_mf-va_core-js_js': '4613e8ba',
           'mf-dep__mfsu-dev_mf-va_react_js': 'f02bd873',
+          'mf-dep_vendors-node_modules_lodash_throttle_index_js': '8264e624',
           'mf-dep_vendors-node_modules_umijs_preset-dumi_lib_theme_hooks_useSearch_js-node_modules_umijs_preset-227cc3':
-            '994cf79e',
+            '25f98619',
           'mf-dep__mfsu-dev_mf-va_D__ownerCode_wwhooks_node_modules__umijs_preset-dumi_lib_plugins_features_dem-5178be':
             'dc194fcf',
-          'mf-dep_vendors-node_modules_dumi-theme-default_es_builtins_Previewer_js':
-            '3d7aaadb',
+          'mf-dep_vendors-node_modules_dumi-theme-default_es_builtins_SourceCode_js':
+            'd300e5e7',
+          'mf-dep_vendors-node_modules_babel_runtime_helpers_esm_toConsumableArray_js-node_modules_rc-motion_es-9d7511':
+            '453471ee',
+          'mf-dep_vendors-node_modules_dumi-theme-default_es_builtins_Previewer_js-node_modules_prismjs_themes_-25b7f2':
+            'cb0c7875',
           'mf-dep__mfsu-dev_mf-va_dumi-theme-default_es_builtins_Previewer_js_js-src_umi_core_umiExports_ts':
             'eccd2a15',
           'mf-dep__mfsu-dev_mf-va_dumi_theme_js': 'ecc2b9a6',
@@ -151,6 +156,22 @@
             '088d9873',
           'mf-dep__mfsu-dev_mf-va_D__ownerCode_wwhooks_node_modules__umijs_babel-preset-umi_node_modules__babel-0d6a05':
             'eec30423',
+          'mf-dep_vendors-node_modules_babel_runtime_helpers_esm_objectWithoutPropertiesLoose_js-node_modules_b-867bca':
+            'ed35fe0e',
+          'mf-dep__mfsu-dev_mf-va_dumi-theme-default_es_builtins_Tree_js_js-node_modules_dumi-theme-default_es_-d2cd43':
+            '8b6b7e20',
+          'mf-dep__mfsu-dev_mf-va_dumi-theme-default_es_builtins_Table_js_js':
+            '0d8103dd',
+          'mf-dep__mfsu-dev_mf-va_dumi-theme-default_es_builtins_SourceCode_js_js-node_modules_prismjs_themes_p-c7baa6':
+            '44312b3d',
+          'mf-dep__mfsu-dev_mf-va_dumi-theme-default_es_builtins_Example_js_js':
+            'da5021e8',
+          'mf-dep__mfsu-dev_mf-va_dumi-theme-default_es_builtins_Badge_js_js':
+            '1cdb5554',
+          'mf-dep__mfsu-dev_mf-va_dumi-theme-default_es_builtins_API_js_js':
+            '26a30a92',
+          'mf-dep__mfsu-dev_mf-va_dumi-theme-default_es_builtins_Alert_js_js':
+            'b22b6cf4',
         }[chunkId] +
         '.async.js'
       );
@@ -365,8 +386,14 @@
     /******/
     /******/ __webpack_require__.f.miniCss = function (chunkId, promises) {
       /******/ var cssChunks = {
-        'mf-dep_vendors-node_modules_dumi-theme-default_es_builtins_Previewer_js': 1,
+        'mf-dep_vendors-node_modules_dumi-theme-default_es_builtins_Previewer_js-node_modules_prismjs_themes_-25b7f2': 1,
         'mf-dep_vendors-node_modules_dumi-theme-default_es_layout_js': 1,
+        'mf-dep__mfsu-dev_mf-va_dumi-theme-default_es_builtins_Tree_js_js-node_modules_dumi-theme-default_es_-d2cd43': 1,
+        'mf-dep__mfsu-dev_mf-va_dumi-theme-default_es_builtins_Table_js_js': 1,
+        'mf-dep__mfsu-dev_mf-va_dumi-theme-default_es_builtins_SourceCode_js_js-node_modules_prismjs_themes_p-c7baa6': 1,
+        'mf-dep__mfsu-dev_mf-va_dumi-theme-default_es_builtins_Example_js_js': 1,
+        'mf-dep__mfsu-dev_mf-va_dumi-theme-default_es_builtins_Badge_js_js': 1,
+        'mf-dep__mfsu-dev_mf-va_dumi-theme-default_es_builtins_Alert_js_js': 1,
       };
       /******/ if (installedCssChunks[chunkId])
         promises.push(installedCssChunks[chunkId]);
@@ -644,6 +671,9 @@
               'mf-dep_vendors-node_modules_umijs_runtime_dist_index_esm_js',
             ),
             __webpack_require__.e(
+              'mf-dep_vendors-node_modules_lodash_throttle_index_js',
+            ),
+            __webpack_require__.e(
               'mf-dep_vendors-node_modules_umijs_preset-dumi_lib_theme_hooks_useSearch_js-node_modules_umijs_preset-227cc3',
             ),
             __webpack_require__.e(
@@ -667,13 +697,22 @@
             'mf-dep_vendors-node_modules_umijs_runtime_dist_index_esm_js',
           ),
           __webpack_require__.e(
+            'mf-dep_vendors-node_modules_lodash_throttle_index_js',
+          ),
+          __webpack_require__.e(
             'mf-dep_vendors-node_modules_umijs_preset-dumi_lib_theme_hooks_useSearch_js-node_modules_umijs_preset-227cc3',
           ),
           __webpack_require__.e(
             'mf-dep_vendors-node_modules_react-dom_index_js',
           ),
           __webpack_require__.e(
-            'mf-dep_vendors-node_modules_dumi-theme-default_es_builtins_Previewer_js',
+            'mf-dep_vendors-node_modules_dumi-theme-default_es_builtins_SourceCode_js',
+          ),
+          __webpack_require__.e(
+            'mf-dep_vendors-node_modules_babel_runtime_helpers_esm_toConsumableArray_js-node_modules_rc-motion_es-9d7511',
+          ),
+          __webpack_require__.e(
+            'mf-dep_vendors-node_modules_dumi-theme-default_es_builtins_Previewer_js-node_modules_prismjs_themes_-25b7f2',
           ),
           __webpack_require__.e(
             'mf-dep__mfsu-dev_mf-va_dumi-theme-default_es_builtins_Previewer_js_js-src_umi_core_umiExports_ts',
@@ -696,6 +735,9 @@
             'mf-dep_vendors-node_modules_umijs_runtime_dist_index_esm_js',
           ),
           __webpack_require__.e(
+            'mf-dep_vendors-node_modules_lodash_throttle_index_js',
+          ),
+          __webpack_require__.e(
             'mf-dep_vendors-node_modules_umijs_preset-dumi_lib_theme_hooks_useSearch_js-node_modules_umijs_preset-227cc3',
           ),
           __webpack_require__.e('mf-dep__mfsu-dev_mf-va_dumi_theme_js'),
@@ -716,6 +758,9 @@
             ),
             __webpack_require__.e(
               'mf-dep_vendors-node_modules_umijs_runtime_dist_index_esm_js',
+            ),
+            __webpack_require__.e(
+              'mf-dep_vendors-node_modules_lodash_throttle_index_js',
             ),
             __webpack_require__.e(
               'mf-dep_vendors-node_modules_umijs_preset-dumi_lib_theme_hooks_useSearch_js-node_modules_umijs_preset-227cc3',
@@ -811,6 +856,143 @@
               };
             });
         },
+      './dumi-theme-default/es/builtins/Tree.js': function () {
+        return Promise.all([
+          __webpack_require__.e('mf-dep_vendors-node_modules_react_index_js'),
+          __webpack_require__.e(
+            'mf-dep_vendors-node_modules_react-dom_index_js',
+          ),
+          __webpack_require__.e(
+            'mf-dep_vendors-node_modules_babel_runtime_helpers_esm_toConsumableArray_js-node_modules_rc-motion_es-9d7511',
+          ),
+          __webpack_require__.e(
+            'mf-dep_vendors-node_modules_babel_runtime_helpers_esm_objectWithoutPropertiesLoose_js-node_modules_b-867bca',
+          ),
+          __webpack_require__.e(
+            'mf-dep__mfsu-dev_mf-va_dumi-theme-default_es_builtins_Tree_js_js-node_modules_dumi-theme-default_es_-d2cd43',
+          ),
+        ]).then(function () {
+          return function () {
+            return __webpack_require__(
+              /*! ./.mfsu-dev/mf-va_dumi-theme-default_es_builtins_Tree.js.js */ './.mfsu-dev/mf-va_dumi-theme-default_es_builtins_Tree.js.js',
+            );
+          };
+        });
+      },
+      './dumi-theme-default/es/builtins/Table.js': function () {
+        return Promise.all([
+          __webpack_require__.e('mf-dep_vendors-node_modules_react_index_js'),
+          __webpack_require__.e(
+            'mf-dep_vendors-node_modules_lodash_throttle_index_js',
+          ),
+          __webpack_require__.e(
+            'mf-dep__mfsu-dev_mf-va_dumi-theme-default_es_builtins_Table_js_js',
+          ),
+        ]).then(function () {
+          return function () {
+            return __webpack_require__(
+              /*! ./.mfsu-dev/mf-va_dumi-theme-default_es_builtins_Table.js.js */ './.mfsu-dev/mf-va_dumi-theme-default_es_builtins_Table.js.js',
+            );
+          };
+        });
+      },
+      './dumi-theme-default/es/builtins/SourceCode.js': function () {
+        return Promise.all([
+          __webpack_require__.e('mf-dep_vendors-node_modules_react_index_js'),
+          __webpack_require__.e(
+            'mf-dep_vendors-node_modules_umijs_preset-built-in_node_modules_regenerator-runtime_runtime_js',
+          ),
+          __webpack_require__.e(
+            'mf-dep_vendors-node_modules_umijs_runtime_dist_index_esm_js',
+          ),
+          __webpack_require__.e(
+            'mf-dep_vendors-node_modules_lodash_throttle_index_js',
+          ),
+          __webpack_require__.e(
+            'mf-dep_vendors-node_modules_umijs_preset-dumi_lib_theme_hooks_useSearch_js-node_modules_umijs_preset-227cc3',
+          ),
+          __webpack_require__.e(
+            'mf-dep_vendors-node_modules_dumi-theme-default_es_builtins_SourceCode_js',
+          ),
+          __webpack_require__.e(
+            'mf-dep__mfsu-dev_mf-va_dumi-theme-default_es_builtins_SourceCode_js_js-node_modules_prismjs_themes_p-c7baa6',
+          ),
+        ]).then(function () {
+          return function () {
+            return __webpack_require__(
+              /*! ./.mfsu-dev/mf-va_dumi-theme-default_es_builtins_SourceCode.js.js */ './.mfsu-dev/mf-va_dumi-theme-default_es_builtins_SourceCode.js.js',
+            );
+          };
+        });
+      },
+      './dumi-theme-default/es/builtins/Example.js': function () {
+        return Promise.all([
+          __webpack_require__.e('mf-dep_vendors-node_modules_react_index_js'),
+          __webpack_require__.e(
+            'mf-dep__mfsu-dev_mf-va_dumi-theme-default_es_builtins_Example_js_js',
+          ),
+        ]).then(function () {
+          return function () {
+            return __webpack_require__(
+              /*! ./.mfsu-dev/mf-va_dumi-theme-default_es_builtins_Example.js.js */ './.mfsu-dev/mf-va_dumi-theme-default_es_builtins_Example.js.js',
+            );
+          };
+        });
+      },
+      './dumi-theme-default/es/builtins/Badge.js': function () {
+        return Promise.all([
+          __webpack_require__.e('mf-dep_vendors-node_modules_react_index_js'),
+          __webpack_require__.e(
+            'mf-dep__mfsu-dev_mf-va_dumi-theme-default_es_builtins_Badge_js_js',
+          ),
+        ]).then(function () {
+          return function () {
+            return __webpack_require__(
+              /*! ./.mfsu-dev/mf-va_dumi-theme-default_es_builtins_Badge.js.js */ './.mfsu-dev/mf-va_dumi-theme-default_es_builtins_Badge.js.js',
+            );
+          };
+        });
+      },
+      './dumi-theme-default/es/builtins/API.js': function () {
+        return Promise.all([
+          __webpack_require__.e('mf-dep_vendors-node_modules_react_index_js'),
+          __webpack_require__.e(
+            'mf-dep_vendors-node_modules_umijs_preset-built-in_node_modules_regenerator-runtime_runtime_js',
+          ),
+          __webpack_require__.e(
+            'mf-dep_vendors-node_modules_umijs_runtime_dist_index_esm_js',
+          ),
+          __webpack_require__.e(
+            'mf-dep_vendors-node_modules_lodash_throttle_index_js',
+          ),
+          __webpack_require__.e(
+            'mf-dep_vendors-node_modules_umijs_preset-dumi_lib_theme_hooks_useSearch_js-node_modules_umijs_preset-227cc3',
+          ),
+          __webpack_require__.e(
+            'mf-dep__mfsu-dev_mf-va_dumi-theme-default_es_builtins_API_js_js',
+          ),
+        ]).then(function () {
+          return function () {
+            return __webpack_require__(
+              /*! ./.mfsu-dev/mf-va_dumi-theme-default_es_builtins_API.js.js */ './.mfsu-dev/mf-va_dumi-theme-default_es_builtins_API.js.js',
+            );
+          };
+        });
+      },
+      './dumi-theme-default/es/builtins/Alert.js': function () {
+        return Promise.all([
+          __webpack_require__.e('mf-dep_vendors-node_modules_react_index_js'),
+          __webpack_require__.e(
+            'mf-dep__mfsu-dev_mf-va_dumi-theme-default_es_builtins_Alert_js_js',
+          ),
+        ]).then(function () {
+          return function () {
+            return __webpack_require__(
+              /*! ./.mfsu-dev/mf-va_dumi-theme-default_es_builtins_Alert.js.js */ './.mfsu-dev/mf-va_dumi-theme-default_es_builtins_Alert.js.js',
+            );
+          };
+        });
+      },
     };
     var get = function (module, getScope) {
       __webpack_require__.R = getScope;
