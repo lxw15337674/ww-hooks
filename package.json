@@ -1,6 +1,6 @@
 {
   "name": "wwhooks",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "scripts": {
     "start": "dumi dev",
     "dev": "dumi dev",
@@ -22,6 +22,7 @@
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "typings": "dist/src/index.d.ts",
+  "types": "dist/index.d.ts",
   "gitHooks": {
     "pre-commit": "lint-staged"
   },
