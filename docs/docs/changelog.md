@@ -5,28 +5,15 @@ group:
 
 # 更新日志
 
-## [1.0.18] - 2021-12-10
+## [1.0.21] - 2022-01-21
 
-#### Added
+#### Feature
 
-- 增加一些新的 hook
-  - `useEventListener`
-  - `useScroll`
-  - `useIsScroll`
-  - `useResizeObserver`
-
-## [1.0.18-fix1] - 2021-12-13
+- 增加usePersistFn
 
 #### Fixed
 
-- 修复usePromise的空参数bug。
-
-## [1.0.19] - 2021-12-17
-
-#### Added
-
-- 增加一些新的 hook
-  - `useIntersectionObserver`
+- 修复debounce、throttle引用问题
 
 ## [1.0.20] - 2022-01-10
 
@@ -43,4 +30,28 @@ group:
 - 去除lodash，减少包大小
 - 增加新的utils
   - `colSpan`
+
+## ## [1.0.19] - 2021-12-17
+
+#### Added
+
+- 增加一些新的 hook
+  - `useIntersectionObserver`
+
+## ## [1.0.18-fix1] - 2021-12-13
+
+#### Fixed
+
+- 修复usePromise的空参数bug。
+
+## [1.0.18] - 2021-12-10
+
+#### Added
+
+- 增加一些新的 hook
+  - `useEventListener`
+  - `useScroll`
+  - `useIsScroll`
+  - `useResizeObserver`
+
 
