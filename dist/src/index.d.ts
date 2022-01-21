@@ -11,7 +11,6 @@ export { default as useDebounceFn } from './hooks/useDebounceFn';
 export { default as useLockScroll } from './hooks/useLockScroll';
 export { default as useMountedState } from './hooks/useMountedState';
 export { default as useTimeoutFn } from './hooks/useTimeoutFn';
-
 export { default as useSize } from './hooks/useSize';
 export { default as useUpdate } from './hooks/useUpdate';
 export { default as useNumber } from './hooks/useNumber';
@@ -27,7 +26,3 @@ export { default as useResizeObserver } from './hooks/useResizeObserver';
 export { default as useIntersectionObserver } from './hooks/useIntersectionObserver';
 export { default as sortBy } from './function/colSpan';
 export { default as isType } from './function/IsType';
-
-// export { default as useAxios } from './hooks/request/useAxios';
-// export { default as useQuery } from './hooks/request/useQuery';
-// export { default as useMutation } from './hooks/request/useMutation';

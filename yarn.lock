@@ -3082,13 +3082,6 @@ aws4@^1.8.0:
   resolved "http://npm-registry.qunhequnhe.com/aws4/download/aws4-1.11.0.tgz#d61f46d83b2519250e2784daf5b09479a8b41c59"
   integrity sha1-1h9G2DslGSUOJ4Ta9bCUeai0HFk=
 
-axios@^0.23.0:
-  version "0.23.0"
-  resolved "http://npm-registry.qunhequnhe.com/axios/download/axios-0.23.0.tgz#b0fa5d0948a8d1d75e3d5635238b6c4625b05149"
-  integrity sha1-sPpdCUio0ddePVY1I4tsRiWwUUk=
-  dependencies:
-    follow-redirects "^1.14.4"
-
 babel-core@7.0.0-bridge.0:
   version "7.0.0-bridge.0"
   resolved "http://npm-registry.qunhequnhe.com/babel-core/download/babel-core-7.0.0-bridge.0.tgz#95a492ddd90f9b4e9a4a1da14eb335b87b634ece"
@@ -5403,11 +5396,6 @@ flush-write-stream@^1.0.2:
   dependencies:
     inherits "^2.0.3"
     readable-stream "^2.3.6"
-
-follow-redirects@^1.14.4:
-  version "1.14.6"
-  resolved "http://npm-registry.qunhequnhe.com/follow-redirects/download/follow-redirects-1.14.6.tgz#8cfb281bbc035b3c067d6cd975b0f6ade6e855cd"
-  integrity sha1-jPsoG7wDWzwGfWzZdbD2reboVc0=
 
 for-each@^0.3.3:
   version "0.3.3"
