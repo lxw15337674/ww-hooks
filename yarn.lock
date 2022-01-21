@@ -7777,7 +7777,7 @@ lodash.clone@^4.3.2:
 
 lodash.debounce@^4.0.8:
   version "4.0.8"
-  resolved "http://npm-registry.qunhequnhe.com/lodash.debounce/download/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
+  resolved "https://registry.npmjs.org/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
   integrity sha1-gteb/zCmfEAF/9XiUVMArZyk168=
 
 lodash.defaults@^4.0.1:
@@ -7817,7 +7817,7 @@ lodash.sortby@^4.7.0:
 
 lodash.throttle@^4.1.1:
   version "4.1.1"
-  resolved "http://npm-registry.qunhequnhe.com/lodash.throttle/download/lodash.throttle-4.1.1.tgz#c23e91b710242ac70c37f1e1cda9274cc39bf2f4"
+  resolved "https://registry.npmjs.org/lodash.throttle/-/lodash.throttle-4.1.1.tgz#c23e91b710242ac70c37f1e1cda9274cc39bf2f4"
   integrity sha1-wj6RtxAkKscMN/HhzaknTMOb8vQ=
 
 lodash.uniq@^4.3.0, lodash.uniq@^4.5.0:

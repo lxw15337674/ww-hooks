@@ -1,4 +1,4 @@
-import { isObject } from 'lodash';
+import { isObject } from '@/common/utils';
 
 type Fn = (...args: any[]) => any;
 

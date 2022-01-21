@@ -1,5 +1,5 @@
 import { Fn } from '../../common/interface';
-import { debounce, DebounceSettings } from 'lodash';
+import { debounce, DebounceSettings } from 'lodash.debounce';
 import { useMemo, useRef } from 'react';
 import useUnmount from '../useUnmount';
 

@@ -1,3 +1,4 @@
+import { AxiosRequestConfig } from 'axios';
 import { useAxiosConfig } from './interface';
 declare const useAxios: <D>({
   debounceInterval,

@@ -12,11 +12,11 @@ group:
 
 ### 基础用法
 
-<code src="./demo/index.tsx" />
+<code src="./Demo/index.tsx" />
 
 ### 监听 keydown 事件
 
-<code src="./demo/index2.tsx" />
+<code src="./Demo/index2.tsx" />
 
 ## API
 

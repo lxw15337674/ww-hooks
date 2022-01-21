@@ -1,6 +1,6 @@
 {
   "name": "wwhooks",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "scripts": {
     "start": "dumi dev",
     "dev": "dumi dev",
@@ -22,6 +22,7 @@
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "typings": "dist/src/index.d.ts",
+  "types": "dist/index.d.ts",
   "gitHooks": {
     "pre-commit": "lint-staged"
   },
@@ -34,7 +35,9 @@
     ]
   },
   "dependencies": {
-    "lodash": "^4.17.21"
+    "axios": "^0.23.0",
+    "lodash.debounce": "^4.0.8",
+    "lodash.throttle": "^4.1.1"
   },
   "peerDependencies": {
     "react": "^16.8.6 || ^17.0"
