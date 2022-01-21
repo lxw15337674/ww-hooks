@@ -4,7 +4,6 @@
 
 # todo
 
-1. useClass
 2. useReactive
 3. usestorage
 4. useIndexedDB

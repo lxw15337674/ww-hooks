@@ -1,7 +1,7 @@
 ---
 group:
   title: sideEffect
-  path: /sideEffect
+  path: /Effect
 ---
 
 # useDebounceFn

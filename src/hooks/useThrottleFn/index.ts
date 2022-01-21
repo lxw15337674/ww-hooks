@@ -1,8 +1,11 @@
 import { Fn } from '../../common/interface';
 import { useMemo, useRef } from 'react';
 import useUnmount from '../useUnmount';
-import { ThrottleSettings, throttle } from 'lodash.throttle';
-
+import throttle from 'lodash.throttle';
+export interface ThrottleSettings {
+  leading?: boolean | undefined;
+  trailing?: boolean | undefined;
+}
 export default function useThrottleFn<T extends Fn = Fn>(
   fn: T,
   wait?: number,
