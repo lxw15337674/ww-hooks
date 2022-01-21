@@ -35,7 +35,6 @@
     ]
   },
   "dependencies": {
-    "axios": "^0.23.0",
     "lodash.debounce": "^4.0.8",
     "lodash.throttle": "^4.1.1"
   },

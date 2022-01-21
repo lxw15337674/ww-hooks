@@ -1,1809 +1,935 @@
 'use strict';
-
-Object.defineProperty(exports, '__esModule', { value: true });
-
-var react = require('react');
-var lodash_debounce = require('lodash.debounce');
-var Axios = require('axios');
-var lodash_throttle = require('lodash.throttle');
-
-function _interopDefaultLegacy(e) {
-  return e && typeof e === 'object' && 'default' in e ? e : { default: e };
-}
-
-var Axios__default = /*#__PURE__*/ _interopDefaultLegacy(Axios);
-
-function ownKeys(object, enumerableOnly) {
-  var keys = Object.keys(object);
-
+Object.defineProperty(exports, '__esModule', { value: !0 });
+var e = require('react'),
+  t = require('lodash.debounce'),
+  n = require('lodash.throttle');
+function r(e, t) {
+  var n = Object.keys(e);
   if (Object.getOwnPropertySymbols) {
-    var symbols = Object.getOwnPropertySymbols(object);
-    enumerableOnly &&
-      (symbols = symbols.filter(function (sym) {
-        return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+    var r = Object.getOwnPropertySymbols(e);
+    t &&
+      (r = r.filter(function (t) {
+        return Object.getOwnPropertyDescriptor(e, t).enumerable;
       })),
-      keys.push.apply(keys, symbols);
+      n.push.apply(n, r);
   }
-
-  return keys;
+  return n;
 }
-
-function _objectSpread2(target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = null != arguments[i] ? arguments[i] : {};
-    i % 2
-      ? ownKeys(Object(source), !0).forEach(function (key) {
-          _defineProperty(target, key, source[key]);
+function u(e) {
+  for (var t = 1; arguments.length > t; t++) {
+    var n = null != arguments[t] ? arguments[t] : {};
+    t % 2
+      ? r(Object(n), !0).forEach(function (t) {
+          o(e, t, n[t]);
         })
       : Object.getOwnPropertyDescriptors
-      ? Object.defineProperties(
-          target,
-          Object.getOwnPropertyDescriptors(source),
-        )
-      : ownKeys(Object(source)).forEach(function (key) {
-          Object.defineProperty(
-            target,
-            key,
-            Object.getOwnPropertyDescriptor(source, key),
-          );
+      ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(n))
+      : r(Object(n)).forEach(function (t) {
+          Object.defineProperty(e, t, Object.getOwnPropertyDescriptor(n, t));
         });
   }
-
-  return target;
+  return e;
 }
-
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true,
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-}
-
-function _objectWithoutPropertiesLoose(source, excluded) {
-  if (source == null) return {};
-  var target = {};
-  var sourceKeys = Object.keys(source);
-  var key, i;
-
-  for (i = 0; i < sourceKeys.length; i++) {
-    key = sourceKeys[i];
-    if (excluded.indexOf(key) >= 0) continue;
-    target[key] = source[key];
-  }
-
-  return target;
-}
-
-function _objectWithoutProperties(source, excluded) {
-  if (source == null) return {};
-
-  var target = _objectWithoutPropertiesLoose(source, excluded);
-
-  var key, i;
-
-  if (Object.getOwnPropertySymbols) {
-    var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
-
-    for (i = 0; i < sourceSymbolKeys.length; i++) {
-      key = sourceSymbolKeys[i];
-      if (excluded.indexOf(key) >= 0) continue;
-      if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
-      target[key] = source[key];
-    }
-  }
-
-  return target;
-}
-
-function _slicedToArray(arr, i) {
+function o(e, t, n) {
   return (
-    _arrayWithHoles(arr) ||
-    _iterableToArrayLimit(arr, i) ||
-    _unsupportedIterableToArray(arr, i) ||
-    _nonIterableRest()
+    t in e
+      ? Object.defineProperty(e, t, {
+          value: n,
+          enumerable: !0,
+          configurable: !0,
+          writable: !0,
+        })
+      : (e[t] = n),
+    e
   );
 }
-
-function _toConsumableArray(arr) {
+function i(e, t) {
   return (
-    _arrayWithoutHoles(arr) ||
-    _iterableToArray(arr) ||
-    _unsupportedIterableToArray(arr) ||
-    _nonIterableSpread()
+    (function (e) {
+      if (Array.isArray(e)) return e;
+    })(e) ||
+    (function (e, t) {
+      var n =
+        null == e
+          ? null
+          : ('undefined' != typeof Symbol && e[Symbol.iterator]) ||
+            e['@@iterator'];
+      if (null == n) return;
+      var r,
+        u,
+        o = [],
+        i = !0,
+        c = !1;
+      try {
+        for (
+          n = n.call(e);
+          !(i = (r = n.next()).done) && (o.push(r.value), !t || o.length !== t);
+          i = !0
+        );
+      } catch (e) {
+        (c = !0), (u = e);
+      } finally {
+        try {
+          i || null == n.return || n.return();
+        } finally {
+          if (c) throw u;
+        }
+      }
+      return o;
+    })(e, t) ||
+    a(e, t) ||
+    (function () {
+      throw new TypeError(
+        'Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.',
+      );
+    })()
   );
 }
-
-function _arrayWithoutHoles(arr) {
-  if (Array.isArray(arr)) return _arrayLikeToArray(arr);
+function c(e) {
+  return (
+    (function (e) {
+      if (Array.isArray(e)) return l(e);
+    })(e) ||
+    (function (e) {
+      if (
+        ('undefined' != typeof Symbol && null != e[Symbol.iterator]) ||
+        null != e['@@iterator']
+      )
+        return Array.from(e);
+    })(e) ||
+    a(e) ||
+    (function () {
+      throw new TypeError(
+        'Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.',
+      );
+    })()
+  );
 }
-
-function _arrayWithHoles(arr) {
-  if (Array.isArray(arr)) return arr;
-}
-
-function _iterableToArray(iter) {
-  if (
-    (typeof Symbol !== 'undefined' && iter[Symbol.iterator] != null) ||
-    iter['@@iterator'] != null
-  )
-    return Array.from(iter);
-}
-
-function _iterableToArrayLimit(arr, i) {
-  var _i =
-    arr == null
-      ? null
-      : (typeof Symbol !== 'undefined' && arr[Symbol.iterator]) ||
-        arr['@@iterator'];
-
-  if (_i == null) return;
-  var _arr = [];
-  var _n = true;
-  var _d = false;
-
-  var _s, _e;
-
-  try {
-    for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) {
-      _arr.push(_s.value);
-
-      if (i && _arr.length === i) break;
-    }
-  } catch (err) {
-    _d = true;
-    _e = err;
-  } finally {
-    try {
-      if (!_n && _i['return'] != null) _i['return']();
-    } finally {
-      if (_d) throw _e;
-    }
+function a(e, t) {
+  if (e) {
+    if ('string' == typeof e) return l(e, t);
+    var n = Object.prototype.toString.call(e).slice(8, -1);
+    return (
+      'Object' === n && e.constructor && (n = e.constructor.name),
+      'Map' === n || 'Set' === n
+        ? Array.from(e)
+        : 'Arguments' === n ||
+          /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)
+        ? l(e, t)
+        : void 0
+    );
   }
-
-  return _arr;
 }
-
-function _unsupportedIterableToArray(o, minLen) {
-  if (!o) return;
-  if (typeof o === 'string') return _arrayLikeToArray(o, minLen);
-  var n = Object.prototype.toString.call(o).slice(8, -1);
-  if (n === 'Object' && o.constructor) n = o.constructor.name;
-  if (n === 'Map' || n === 'Set') return Array.from(o);
-  if (n === 'Arguments' || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
-    return _arrayLikeToArray(o, minLen);
+function l(e, t) {
+  (null == t || t > e.length) && (t = e.length);
+  for (var n = 0, r = Array(t); t > n; n++) r[n] = e[n];
+  return r;
 }
-
-function _arrayLikeToArray(arr, len) {
-  if (len == null || len > arr.length) len = arr.length;
-
-  for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
-
-  return arr2;
-}
-
-function _nonIterableSpread() {
-  throw new TypeError(
-    'Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.',
-  );
-}
-
-function _nonIterableRest() {
-  throw new TypeError(
-    'Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.',
-  );
-}
-
-function _createForOfIteratorHelper(o, allowArrayLike) {
-  var it =
-    (typeof Symbol !== 'undefined' && o[Symbol.iterator]) || o['@@iterator'];
-
-  if (!it) {
+function s(e, t) {
+  var n =
+    ('undefined' != typeof Symbol && e[Symbol.iterator]) || e['@@iterator'];
+  if (!n) {
     if (
-      Array.isArray(o) ||
-      (it = _unsupportedIterableToArray(o)) ||
-      (allowArrayLike && o && typeof o.length === 'number')
+      Array.isArray(e) ||
+      (n = a(e)) ||
+      (t && e && 'number' == typeof e.length)
     ) {
-      if (it) o = it;
-      var i = 0;
-
-      var F = function () {};
-
+      n && (e = n);
+      var r = 0,
+        u = function () {};
       return {
-        s: F,
+        s: u,
         n: function () {
-          if (i >= o.length)
-            return {
-              done: true,
-            };
-          return {
-            done: false,
-            value: o[i++],
-          };
+          return e.length > r ? { done: !1, value: e[r++] } : { done: !0 };
         },
         e: function (e) {
           throw e;
         },
-        f: F,
+        f: u,
       };
     }
-
     throw new TypeError(
       'Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.',
     );
   }
-
-  var normalCompletion = true,
-    didErr = false,
-    err;
+  var o,
+    i = !0,
+    c = !1;
   return {
     s: function () {
-      it = it.call(o);
+      n = n.call(e);
     },
     n: function () {
-      var step = it.next();
-      normalCompletion = step.done;
-      return step;
+      var e = n.next();
+      return (i = e.done), e;
     },
     e: function (e) {
-      didErr = true;
-      err = e;
+      (c = !0), (o = e);
     },
     f: function () {
       try {
-        if (!normalCompletion && it.return != null) it.return();
+        i || null == n.return || n.return();
       } finally {
-        if (didErr) throw err;
+        if (c) throw o;
       }
     },
   };
 }
-
-function useToggle(defaultValue, reverseValue) {
-  var _useState = react.useState(defaultValue),
-    _useState2 = _slicedToArray(_useState, 2),
-    state = _useState2[0],
-    setState = _useState2[1];
-
-  var toggleState = react.useCallback(function (value) {
-    if (value === undefined) {
-      setState(function (value) {
-        return value === defaultValue ? reverseValue : defaultValue;
-      });
-      return;
-    }
-
-    setState(value);
-  }, []);
-  return [state, toggleState];
-}
-
-function useBoolean() {
-  var defaultValue =
-    arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
-  var state = useToggle(defaultValue, !defaultValue);
-  return state;
-}
-
-// /**
-//  * @desc: obj1的keys根据obj2的keys判断
-//  * 1.obj2的key不存在则取另一个对象的value，
-//  * 2.另一个对象的keys会被删除。
-//  * @example
-//  * params:{a:1,b:2,c:3} ,{a:2,d:4}
-//  * result:{a:1,d:4}
-//  */
-// export const unionKeys = (obj1, obj2): typeof obj2 => {
-//   const res = {};
-//   for (let key in obj2) {
-//     const obj1Value = obj1[key];
-//     res[key] = obj1Value === undefined ? obj2[key] : obj1Value;
-//   }
-//   return res;
-// };
-var isValue = function isValue(state) {
-  return typeof state !== 'function';
-};
-var setState = function setState(v, prev) {
-  if (isValue(v)) {
-    return v;
-  }
-
-  return v(prev);
-}; // 数字转px
-function isObject(obj) {
-  return Object.prototype.toString.call(obj) === '[object Object]';
-}
-function isEqual(obj1, obj2) {
-  // 1.判断是不是引用类型，不是引用
-  if (!isObject(obj1) || !isObject(obj2)) {
-    return obj1 === obj2;
-  } // 2.比较是否为同一个内存地址
-
-  if (obj1 === obj2) return true; // 3.比较 key 的数量
-
-  var obj1KeysLength = Object.keys(obj1).length;
-  var obj2KeysLength = Object.keys(obj2).length;
-  if (obj1KeysLength !== obj2KeysLength) return false; // 4.比较 value 的值
-
-  for (var key in obj1) {
-    if (Object.prototype.hasOwnProperty.call(obj1, key)) {
-      var result = isEqual(obj1[key], obj2[key]);
-      if (!result) return false;
-    }
-  }
-
-  return true;
-}
-
-var useArray = function useArray(initialArray) {
-  var _useState = react.useState(initialArray),
-    _useState2 = _slicedToArray(_useState, 2),
-    value = _useState2[0],
-    setValue = _useState2[1];
-
-  var isEdited = react.useMemo(
-    function () {
-      return !isEqual(initialArray, value);
-    },
-    [initialArray, value],
-  );
-  var actions = react.useMemo(
-    function () {
-      return {
-        set: function set(index, item) {
-          setValue(function (prev) {
-            var temp = _toConsumableArray(prev);
-
-            temp[index] = setState(item, temp[index]);
-            return temp;
-          });
-        },
-        setAll: setValue,
-        remove: function remove(index) {
-          setValue(function (prev) {
-            var temp = _toConsumableArray(prev);
-
-            temp.splice(index, 1);
-            return temp;
-          });
-        },
-        push: function push(item) {
-          setValue(function (prev) {
-            var temp = _toConsumableArray(prev);
-
-            temp.push(item);
-            return temp;
-          });
-        },
-        clear: function clear() {
-          setValue([]);
-        },
-        reset: function reset() {
-          setValue(initialArray);
-        },
-      };
-    },
-    [initialArray],
-  );
-  var swap = react.useCallback(
-    function (dragIndex, dropIndex) {
-      var maxIndex = value.length - 1;
-
-      if (dragIndex > maxIndex || dropIndex > maxIndex) {
-        console.error('交换位置超出最大位置');
-      }
-
-      var list = _toConsumableArray(value);
-
-      var _ref = [list[dropIndex], list[dragIndex]];
-      list[dragIndex] = _ref[0];
-      list[dropIndex] = _ref[1];
-      setValue(list);
-    },
-    [value],
-  );
-  var reorder = react.useCallback(
-    function (startIndex, endIndex) {
-      var maxIndex = value.length - 1;
-
-      if (startIndex > maxIndex || endIndex > maxIndex) {
-        console.error('交换位置超出最大位置');
-      }
-
-      var result = _toConsumableArray(value);
-
-      var _result$splice = result.splice(startIndex, 1),
-        _result$splice2 = _slicedToArray(_result$splice, 1),
-        removed = _result$splice2[0];
-
-      result.splice(endIndex, 0, removed);
-      setValue(result);
-    },
-    [value],
-  );
+function f(t, n) {
+  var r = i(e.useState(t), 2),
+    u = r[1];
   return [
-    value,
-    _objectSpread2(
-      {
-        isEdited: isEdited,
-        swap: swap,
-        reorder: reorder,
-      },
-      actions,
-    ),
-  ];
-};
-
-var useMount = function useMount(fn) {
-  react.useEffect(function () {
-    fn();
-  }, []);
-};
-
-var useUnmount = function useUnmount(fn) {
-  react.useEffect(function () {
-    return fn;
-  }, []);
-};
-
-var useUpdateEffect = function useUpdateEffect(effect, deps) {
-  var _useState = react.useState(false),
-    _useState2 = _slicedToArray(_useState, 2),
-    isMount = _useState2[0],
-    setIsMount = _useState2[1];
-
-  react.useEffect(function () {
-    if (isMount) {
-      effect();
-    } else {
-      setIsMount(true);
-    }
-  }, deps);
-};
-
-function useObject(defaultValue) {
-  var _useState = react.useState(defaultValue),
-    _useState2 = _slicedToArray(_useState, 2),
-    object = _useState2[0],
-    setObject = _useState2[1];
-
-  var reset = react.useCallback(
-    function () {
-      setObject(defaultValue);
-    },
-    [defaultValue],
-  );
-  var isEdited = react.useMemo(
-    function () {
-      return !isEqual(object, defaultValue);
-    },
-    [object, defaultValue],
-  );
-  var set = react.useCallback(
-    function (object) {
-      setObject(function (prevObject) {
-        var state = setState(object, prevObject);
-        return _objectSpread2(_objectSpread2({}, prevObject), state);
-      });
-    },
-    [setObject],
-  );
-  return [
-    object,
-    {
-      setAll: setObject,
-      set: set,
-      reset: reset,
-      isEdited: isEdited,
-    },
-  ];
-}
-
-var setWindowsHash = function setWindowsHash(hash) {
-  window.location.replace('#' + encodeURIComponent(hash));
-};
-
-var index = function (initialState) {
-  var _useState = react.useState(function () {
-      var hash = window.location.hash.substring(1);
-
-      if (hash === '') {
-        setWindowsHash(initialState);
-        return initialState;
-      }
-
-      return hash;
-    }),
-    _useState2 = _slicedToArray(_useState, 2),
-    hash = _useState2[0],
-    setHash = _useState2[1];
-
-  react.useEffect(
-    function () {
-      if (hash === null || hash === undefined) {
-        //https://stackoverflow.com/questions/1397329/how-to-remove-the-hash-from-window-location-url-with-javascript-without-page-r
-        history.pushState(
-          '',
-          document.title,
-          window.location.pathname + window.location.search,
-        );
-      } else {
-        setWindowsHash(hash);
-      }
-    },
-    [hash],
-  );
-  var reset = react.useCallback(
-    function () {
-      setHash(initialState);
-    },
-    [initialState],
-  );
-  return [hash, setHash, reset];
-};
-
-var index$1 = function (defaultValue, navigateMode) {
-  var _useState = react.useState(function () {
-      var init = defaultValue !== null ? defaultValue : location.search;
-      return new URLSearchParams(init);
-    }),
-    _useState2 = _slicedToArray(_useState, 2),
-    urlState = _useState2[0],
-    setUrlState = _useState2[1];
-
-  var Actions = react.useMemo(
-    function () {
-      return {
-        set: function set(key, entry) {
-          setUrlState(function (prev) {
-            var temp = new URLSearchParams(prev);
-            var prevValue = prev.get(key);
-            var data = setState(entry, prevValue);
-
-            if (data === undefined) {
-              temp.delete(key);
-            } else {
-              temp.set(key, data);
-            }
-
-            return temp;
-          });
-        },
-        clear: function clear() {
-          setUrlState(new URLSearchParams());
-        },
-      };
-    },
-    [urlState, setUrlState],
-  );
-  useUpdateEffect(
-    function () {
-      var mode = ''.concat(navigateMode, 'State');
-      var params = urlState.toString();
-
-      if (!params) {
-        history[mode]({}, document.title, window.location.pathname);
-        return;
-      }
-
-      var url = '?' + params;
-      history[mode](null, '', url);
-    },
-    [urlState],
-  );
-  return [urlState, Actions];
-};
-
-function useDebounceFn(fn, wait, options) {
-  var fnRef = react.useRef(fn);
-  fnRef.current = fn;
-  var debouncedFn = react.useMemo(
-    function () {
-      return lodash_debounce.debounce(
-        fnRef.current,
-        wait !== null && wait !== void 0 ? wait : 1000,
-        options,
-      );
-    },
-    [wait, fnRef, options],
-  );
-  useUnmount(function () {
-    debouncedFn.cancel();
-  });
-  return {
-    run: debouncedFn,
-    cancel: debouncedFn.cancel,
-    flush: debouncedFn.flush,
-  };
-}
-
-var lockScrollStyle = {
-  overflowY: 'hidden',
-};
-function useLockScroll(container) {
-  var _useBoolean = useBoolean(false),
-    _useBoolean2 = _slicedToArray(_useBoolean, 2),
-    lock = _useBoolean2[0],
-    setLock = _useBoolean2[1];
-
-  react.useEffect(
-    function () {
-      container = container || document.body;
-      var _container$style = container.style,
-        originalPaddingRight = _container$style.paddingRight,
-        originalOverflow = _container$style.overflow;
-
-      var _container$getBoundin = container.getBoundingClientRect(),
-        width = _container$getBoundin.width;
-
-      if (lock) {
-        container.style.width = ''.concat(width, 'px');
-        container.style.overflowY = lockScrollStyle.overflowY;
-      }
-
-      return function () {
-        container.style.overflow = originalOverflow;
-        container.style.width = originalPaddingRight;
-      };
-    },
-    [lock, container],
-  );
-  return [setLock, lock];
-}
-
-var _excluded = [
-  'debounceInterval',
-  'manual',
-  'onSuccess',
-  'onError',
-  'initialData',
-  'throttleInterval',
-  'loadingDelay',
-  'defaultParams',
-];
-var axios = Axios__default['default'].create();
-
-var useAxios = function useAxios(_ref) {
-  var debounceInterval = _ref.debounceInterval,
-    manual = _ref.manual,
-    onSuccess = _ref.onSuccess,
-    onError = _ref.onError,
-    initialData = _ref.initialData,
-    throttleInterval = _ref.throttleInterval,
-    loadingDelay = _ref.loadingDelay,
-    defaultParams = _ref.defaultParams,
-    axiosConfig = _objectWithoutProperties(_ref, _excluded);
-
-  var cancelToken = react.useRef();
-  var axiosRequest = react.useCallback(
-    function (config) {
-      var runConfig = _objectSpread2(
-        _objectSpread2(
-          {
-            cancelToken: new Axios__default['default'].CancelToken(function (
-              c,
-            ) {
-              cancelToken.current = c;
-            }),
-          },
-          axiosConfig,
-        ),
-        config,
-      );
-
-      return axios.request(runConfig).then(function (res) {
-        return res.data;
-      });
-    },
-    [axiosConfig],
-  );
-  var request = usePromise(axiosRequest, {
-    debounceInterval: debounceInterval,
-    manual: manual,
-    onSuccess: onSuccess,
-    onError: onError,
-    initialData: initialData,
-    throttleInterval: throttleInterval,
-    loadingDelay: loadingDelay,
-    defaultParams: defaultParams,
-  });
-  var cancel = react.useCallback(
-    function () {
-      var _cancelToken$current;
-
-      (_cancelToken$current = cancelToken.current) === null ||
-      _cancelToken$current === void 0
-        ? void 0
-        : _cancelToken$current.call(cancelToken);
-      request === null || request === void 0 ? void 0 : request.cancel();
-    },
-    [request.cancel],
-  );
-  useUnmount(function () {
-    cancel();
-  });
-  return request;
-};
-
-function useMountedState() {
-  var mountedRef = react.useRef(false);
-  react.useEffect(function () {
-    mountedRef.current = true;
-    return function () {
-      mountedRef.current = false;
-    };
-  }, []);
-  var get = react.useCallback(function () {
-    return mountedRef.current;
-  }, []);
-  return get;
-}
-
-function useTimeoutFn(fn) {
-  var delay =
-    arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-  var timer = react.useRef(null);
-
-  var _useBoolean = useBoolean(false),
-    _useBoolean2 = _slicedToArray(_useBoolean, 2),
-    waiting = _useBoolean2[0],
-    setWaiting = _useBoolean2[1];
-
-  var run = react.useCallback(
-    function () {
-      for (
-        var _len = arguments.length, args = new Array(_len), _key = 0;
-        _key < _len;
-        _key++
-      ) {
-        args[_key] = arguments[_key];
-      }
-
-      clearTimeout(timer.current);
-      if (delay === undefined || delay === null) return;
-      setWaiting(true);
-      timer.current = setTimeout(function () {
-        fn.apply(void 0, args);
-        setWaiting(false);
-      }, delay);
-    },
-    [fn, delay],
-  );
-  react.useEffect(function () {
-    return function () {
-      clearTimeout(timer.current);
-    };
-  }, []);
-  var cancel = react.useCallback(function () {
-    clearTimeout(timer.current);
-    setWaiting(false);
-  }, []);
-  return {
-    waiting: waiting,
-    run: run,
-    cancel: cancel,
-  };
-}
-
-var _excluded$1 = ['deps', 'pollingInterval', 'manual', 'concurrent', 'params'];
-
-var useQuery = function useQuery(_ref) {
-  var _ref$deps = _ref.deps,
-    deps = _ref$deps === void 0 ? [] : _ref$deps,
-    _ref$pollingInterval = _ref.pollingInterval,
-    pollingInterval =
-      _ref$pollingInterval === void 0 ? 0 : _ref$pollingInterval,
-    _ref$manual = _ref.manual,
-    manual = _ref$manual === void 0 ? true : _ref$manual,
-    _ref$concurrent = _ref.concurrent,
-    concurrent = _ref$concurrent === void 0 ? false : _ref$concurrent,
-    params = _ref.params,
-    useAxiosConfig = _objectWithoutProperties(_ref, _excluded$1);
-
-  var polling = react.useRef();
-
-  var _useState = react.useState(params),
-    _useState2 = _slicedToArray(_useState, 2),
-    requestParams = _useState2[0],
-    setParams = _useState2[1];
-
-  var request = useAxios(useAxiosConfig);
-  var cancel = react.useCallback(
-    function () {
-      request.cancel();
-      clearTimeout(polling.current);
-    },
-    [request],
-  );
-  var run = react.useCallback(
-    function (_params) {
-      if (polling.current) {
-        clearTimeout(polling.current);
-      }
-
-      if (!concurrent) {
-        cancel();
-      }
-
-      var params = setState(_params, requestParams);
-      setParams(params);
-      var axiosConfig = {
-        params: params,
-      }; // 参数合并
-
-      if (pollingInterval) {
-        return request.run(axiosConfig).finally(function () {
-          polling.current = setTimeout(function () {
-            if (!polling.current) return;
-            run(params);
-          }, pollingInterval);
-        });
-      }
-
-      return request.run(axiosConfig);
-    },
-    [concurrent, requestParams, pollingInterval, request, cancel],
-  );
-  var reload = react.useCallback(
-    function () {
-      return run(requestParams);
-    },
-    [requestParams, run],
-  );
-  useUpdateEffect(function () {
-    reload();
-  }, _toConsumableArray(deps));
-  useMount(function () {
-    if (manual === false) {
-      reload();
-    }
-  });
-  useUnmount(function () {
-    clearTimeout(polling.current);
-  });
-  return _objectSpread2(
-    _objectSpread2({}, request),
-    {},
-    {
-      run: run,
-      reload: reload,
-      cancel: cancel,
-      params: requestParams,
-      setParams: setParams,
-    },
-  );
-};
-
-var _excluded$2 = ['manual', 'data'];
-
-var useMutation = function useMutation(_ref) {
-  var _ref$manual = _ref.manual,
-    manual = _ref$manual === void 0 ? true : _ref$manual,
-    data = _ref.data,
-    useAxiosConfig = _objectWithoutProperties(_ref, _excluded$2);
-
-  var _useState = react.useState(data),
-    _useState2 = _slicedToArray(_useState, 2),
-    bodyData = _useState2[0],
-    setBodyData = _useState2[1];
-
-  var axiosConfig = _objectSpread2(
-    {
-      data: bodyData,
-      method: 'post',
-    },
-    useAxiosConfig,
-  );
-
-  var request = useAxios(axiosConfig);
-  var run = react.useCallback(
-    function (params) {
-      var _params = setState(params, bodyData);
-
-      setBodyData(params);
-      return request.run({
-        data: _params,
-      });
-    },
-    [bodyData, request],
-  );
-  var reload = react.useCallback(
-    function () {
-      return run(bodyData);
-    },
-    [run, bodyData],
-  );
-  useMount(function () {
-    if (manual === false) {
-      request.reload();
-    }
-  });
-  return _objectSpread2(
-    _objectSpread2({}, request),
-    {},
-    {
-      run: run,
-      reload: reload,
-      params: bodyData,
-      setParams: setBodyData,
-    },
-  );
-};
-
-function useSize(target) {
-  var _useState = react.useState({
-      width: 0,
-      height: 0,
-    }),
-    _useState2 = _slicedToArray(_useState, 2),
-    state = _useState2[0],
-    setState = _useState2[1];
-
-  useResizeObserver(target, function (entry) {
-    setState({
-      width: entry.target.offsetWidth,
-      height: entry.target.offsetHeight,
-    });
-  });
-  return state;
-}
-
-var useUpdate = function useUpdate() {
-  var _useState = react.useState({}),
-    _useState2 = _slicedToArray(_useState, 2),
-    setState = _useState2[1];
-
-  return react.useCallback(function () {
-    setState({});
-  }, []);
-};
-
-var useNumber = function useNumber() {
-  var defaultValue =
-    arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-
-  var _useState = react.useState(defaultValue),
-    _useState2 = _slicedToArray(_useState, 2),
-    number = _useState2[0],
-    setNumber = _useState2[1];
-
-  var actions = react.useMemo(function () {
-    var plus = function plus() {
-      var v =
-        arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
-      setNumber(function (c) {
-        return c + v;
-      });
-    };
-
-    var minus = function minus() {
-      var v =
-        arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
-      setNumber(function (c) {
-        return c - v;
-      });
-    };
-
-    return {
-      plus: plus,
-      minus: minus,
-    };
-  }, []);
-  var reset = react.useCallback(
-    function () {
-      setNumber(defaultValue);
-    },
-    [defaultValue],
-  );
-  return [
-    number,
-    _objectSpread2(
-      {
-        set: setNumber,
-        reset: reset,
-      },
-      actions,
-    ),
-  ];
-};
-
-var useClick = function useClick() {
-  var simpleClickFn =
-    arguments.length > 0 && arguments[0] !== undefined
-      ? arguments[0]
-      : function (e) {};
-  var doubleClickFn =
-    arguments.length > 1 && arguments[1] !== undefined
-      ? arguments[1]
-      : function (e) {};
-  var config =
-    arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-
-  var _useNumber = useNumber(0),
-    _useNumber2 = _slicedToArray(_useNumber, 2),
-    clickCount = _useNumber2[0],
-    actions = _useNumber2[1];
-
-  var _useMemo = react.useMemo(
-      function () {
-        return _objectSpread2(
-          _objectSpread2(
-            {},
-            {
-              delay: 250,
-              exclusive: false,
+    r[0],
+    e.useCallback(function (e) {
+      u(
+        void 0 !== e
+          ? e
+          : function (e) {
+              return e === t ? n : t;
             },
-          ),
-          config,
-        );
+      );
+    }, []),
+  ];
+}
+function v() {
+  var e = arguments.length > 0 && void 0 !== arguments[0] && arguments[0],
+    t = f(e, !e);
+  return t;
+}
+var d = function (e, t) {
+  return 'function' != typeof e ? e : e(t);
+};
+function p(e) {
+  return '[object Object]' === Object.prototype.toString.call(e);
+}
+function h(e, t) {
+  if (!p(e) || !p(t)) return e === t;
+  if (e === t) return !0;
+  if (Object.keys(e).length !== Object.keys(t).length) return !1;
+  for (var n in e) {
+    if (Object.prototype.hasOwnProperty.call(e, n))
+      if (!h(e[n], t[n])) return !1;
+  }
+  return !0;
+}
+var y = function (t) {
+    e.useEffect(function () {
+      t();
+    }, []);
+  },
+  b = function (t) {
+    e.useEffect(function () {
+      return t;
+    }, []);
+  },
+  m = function (t, n) {
+    var r = i(e.useState(!1), 2),
+      u = r[0],
+      o = r[1];
+    e.useEffect(function () {
+      u ? t() : o(!0);
+    }, n);
+  };
+var g = function (e) {
+  window.location.replace('#' + encodeURIComponent(e));
+};
+function w(n, r, u) {
+  var o = e.useRef(n);
+  o.current = n;
+  var i = e.useMemo(
+    function () {
+      return t.debounce(o.current, null != r ? r : 1e3, u);
+    },
+    [r, o, u],
+  );
+  return (
+    b(function () {
+      i.cancel();
+    }),
+    { run: i, cancel: i.cancel, flush: i.flush }
+  );
+}
+var S = 'hidden';
+function x() {
+  var t = e.useRef(!1);
+  return (
+    e.useEffect(function () {
+      return (
+        (t.current = !0),
+        function () {
+          t.current = !1;
+        }
+      );
+    }, []),
+    e.useCallback(function () {
+      return t.current;
+    }, [])
+  );
+}
+function O(t) {
+  var n = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : 0,
+    r = e.useRef(null),
+    u = v(!1),
+    o = i(u, 2),
+    c = o[0],
+    a = o[1],
+    l = e.useCallback(
+      function () {
+        for (var e = arguments.length, u = Array(e), o = 0; e > o; o++)
+          u[o] = arguments[o];
+        clearTimeout(r.current),
+          null != n &&
+            (a(!0),
+            (r.current = setTimeout(function () {
+              t.apply(void 0, u), a(!1);
+            }, n)));
       },
-      [config],
-    ),
-    delay = _useMemo.delay,
-    exclusive = _useMemo.exclusive;
-
-  var _useTimeoutFn = useTimeoutFn(function () {
-      actions.reset();
-    }, delay),
-    run = _useTimeoutFn.run;
-
-  var fn = react.useCallback(
-    function (e) {
-      if (clickCount === 0) {
-        simpleClickFn === null || simpleClickFn === void 0
-          ? void 0
-          : simpleClickFn(e);
-        run();
-      }
-
-      if (clickCount === 1) {
-        if (!exclusive) {
-          simpleClickFn === null || simpleClickFn === void 0
-            ? void 0
-            : simpleClickFn(e);
-        }
-
-        doubleClickFn === null || doubleClickFn === void 0
-          ? void 0
-          : doubleClickFn(e);
-      }
-
-      actions.plus(1);
-    },
-    [simpleClickFn, run, exclusive, doubleClickFn],
-  );
-  return fn;
-};
-
-function useThrottleFn(fn, wait, options) {
-  var fnRef = react.useRef(fn);
-  fnRef.current = fn;
-  var throttledFn = react.useMemo(
-    function () {
-      return lodash_throttle.throttle(
-        fnRef.current,
-        wait !== null && wait !== void 0 ? wait : 1000,
-        options,
-      );
-    },
-    [wait, fnRef, options],
-  );
-  useUnmount(function () {
-    throttledFn.cancel();
-  });
-  return {
-    run: throttledFn,
-    cancel: throttledFn.cancel,
-    flush: throttledFn.flush,
-  };
-}
-
-// /**
-function isNumber(value) {
-  return typeof value === 'number';
-}
-function isObject$1(obj) {
-  return Object.prototype.toString.call(obj) === '[object Object]';
-}
-
-var usePromise = function usePromise(service) {
-  var _ref =
-      arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
-    _ref$debounceInterval = _ref.debounceInterval,
-    debounceInterval =
-      _ref$debounceInterval === void 0 ? null : _ref$debounceInterval,
-    _ref$manual = _ref.manual,
-    manual = _ref$manual === void 0 ? true : _ref$manual,
-    _ref$onSuccess = _ref.onSuccess,
-    onSuccess = _ref$onSuccess === void 0 ? function () {} : _ref$onSuccess,
-    _ref$onError = _ref.onError,
-    onError = _ref$onError === void 0 ? function () {} : _ref$onError,
-    _ref$initialData = _ref.initialData,
-    initialData = _ref$initialData === void 0 ? null : _ref$initialData,
-    _ref$throttleInterval = _ref.throttleInterval,
-    throttleInterval =
-      _ref$throttleInterval === void 0 ? null : _ref$throttleInterval,
-    _ref$loadingDelay = _ref.loadingDelay,
-    loadingDelay = _ref$loadingDelay === void 0 ? 300 : _ref$loadingDelay,
-    _ref$defaultParams = _ref.defaultParams,
-    defaultParams = _ref$defaultParams === void 0 ? [] : _ref$defaultParams;
-
-  var mountedState = useMountedState();
-
-  var _useState = react.useState(initialData),
-    _useState2 = _slicedToArray(_useState, 2),
-    data = _useState2[0],
-    setData = _useState2[1];
-
-  var _useState3 = react.useState(),
-    _useState4 = _slicedToArray(_useState3, 2),
-    error = _useState4[0],
-    setError = _useState4[1];
-
-  var _useState5 = react.useState('success'),
-    _useState6 = _slicedToArray(_useState5, 2),
-    status = _useState6[0],
-    setStatus = _useState6[1];
-
-  var _useState7 = react.useState(defaultParams),
-    _useState8 = _slicedToArray(_useState7, 2),
-    params = _useState8[0],
-    setParams = _useState8[1];
-
-  var delaySetLoading = useTimeoutFn(function () {
-    setStatus('loading');
-  }, loadingDelay);
-  var baseRun = react.useCallback(
-    function () {
-      for (
-        var _len = arguments.length, params = new Array(_len), _key = 0;
-        _key < _len;
-        _key++
-      ) {
-        params[_key] = arguments[_key];
-      }
-
-      delaySetLoading.run();
-      setError(undefined);
-      setParams(params);
-      return service
-        .apply(void 0, params)
-        .then(function (data) {
-          mountedState() && setData(data);
-          onSuccess === null || onSuccess === void 0
-            ? void 0
-            : onSuccess(data, params);
-          setStatus('success');
-          return data;
-        })
-        .catch(function (err) {
-          mountedState() && setError(err);
-          onError === null || onError === void 0
-            ? void 0
-            : onError(err, params);
-          setStatus('error');
-          return Promise.reject(err);
-        })
-        .finally(function () {
-          delaySetLoading.cancel();
-        });
-    },
-    [delaySetLoading, mountedState, onError, onSuccess, service],
-  );
-  var debounceRun = useDebounceFn(baseRun, debounceInterval);
-  var throttleRun = useThrottleFn(baseRun, throttleInterval);
-  var run = react.useCallback(
-    function () {
-      for (
-        var _len2 = arguments.length, params = new Array(_len2), _key2 = 0;
-        _key2 < _len2;
-        _key2++
-      ) {
-        params[_key2] = arguments[_key2];
-      }
-
-      var _params = params;
-
-      if (!Array.isArray(params)) {
-        _params = [];
-      }
-
-      if (isNumber(debounceInterval)) {
-        debounceRun.run.apply(debounceRun, _toConsumableArray(_params));
-        return Promise.resolve(null);
-      }
-
-      if (isNumber(throttleInterval)) {
-        throttleRun.run.apply(throttleRun, _toConsumableArray(_params));
-        return Promise.resolve(null);
-      }
-
-      return baseRun.apply(void 0, _toConsumableArray(_params));
-    },
-    [debounceInterval, throttleInterval, baseRun, debounceRun, throttleRun],
-  );
-  var reload = react.useCallback(
-    function () {
-      if (Array.isArray(params)) {
-        return run.apply(void 0, _toConsumableArray(params));
-      } // @ts-ignore
-
-      return run();
-    },
-    [run, params],
-  );
-  var cancel = react.useCallback(
-    function () {
-      debounceRun === null || debounceRun === void 0
-        ? void 0
-        : debounceRun.cancel();
-      throttleRun === null || throttleRun === void 0
-        ? void 0
-        : throttleRun.cancel();
-    },
-    [debounceRun, throttleRun],
-  );
-  var flush = react.useMemo(
-    function () {
-      if (
-        debounceRun === null || debounceRun === void 0
-          ? void 0
-          : debounceRun.flush
-      ) {
-        return debounceRun.flush;
-      }
-
-      if (
-        throttleRun === null || throttleRun === void 0
-          ? void 0
-          : throttleRun.flush
-      ) {
-        return throttleRun.flush;
-      }
-
-      return function () {
-        return Promise.resolve(null);
-      };
-    },
-    [debounceRun, throttleRun],
-  );
-  useMount(function () {
-    if (manual === false) {
-      reload();
-    }
-  });
-  useUnmount(function () {
-    cancel();
-  });
-  return {
-    data: data,
-    params: params,
-    error: error,
-    reload: reload,
-    isLoading: status === 'loading',
-    isError: status === 'error',
-    isSuccess: status === 'success',
-    status: status,
-    run: run,
-    cancel: cancel,
-    mutate: setData,
-    flush: flush,
-  };
-};
-
-function setDefaultArguments(fn) {
-  for (
-    var _len = arguments.length,
-      defaultArguments = new Array(_len > 1 ? _len - 1 : 0),
-      _key = 1;
-    _key < _len;
-    _key++
-  ) {
-    defaultArguments[_key - 1] = arguments[_key];
-  }
-
-  return function () {
-    for (
-      var _len2 = arguments.length, args = new Array(_len2), _key2 = 0;
-      _key2 < _len2;
-      _key2++
-    ) {
-      args[_key2] = arguments[_key2];
-    }
-
-    var mergeArgs = defaultArguments.map(function (v, i) {
-      if (Array.isArray(v)) {
-        return args[i];
-      }
-
-      if (isObject$1(v)) {
-        return _objectSpread2(_objectSpread2({}, v), args[i]);
-      }
-
-      return args[i];
-    });
-    return fn.apply(void 0, _toConsumableArray(mergeArgs));
-  };
-}
-
-function isFunction(obj) {
-  return typeof obj === 'function';
-}
-function getTargetElement(target, defaultElement) {
-  if (!target) {
-    return defaultElement;
-  }
-
-  var targetElement;
-
-  if (isFunction(target)) {
-    targetElement = target();
-  } else if ('current' in target) {
-    targetElement = target.current;
-  } else {
-    targetElement = target;
-  }
-
-  return targetElement;
-} // export const on = (function () {
-//   if (document.addEventListener) {
-//     return function (element, event, handler, useCapture = false) {
-//       if (element && event && handler) {
-//         element.addEventListener(event, handler, useCapture);
-//       }
-//     };
-//   } else {
-//     return function (element, event, handler) {
-//       if (element && event && handler) {
-//         element.attachEvent('on' + event, handler);
-//       }
-//     };
-//   }
-// })();
-// /* istanbul ignore next */
-// export const off = (function () {
-//   if (document.removeEventListener) {
-//     return function (element, event, handler, useCapture = false) {
-//       if (element && event) {
-//         element.removeEventListener(event, handler, useCapture);
-//       }
-//     };
-//   } else {
-//     return function (element, event, handler) {
-//       if (element && event) {
-//         element.detachEvent('on' + event, handler);
-//       }
-//     };
-//   }
-// })();
-// /* istanbul ignore next */
-// export const once = function (el, event, fn) {
-//   var listener = function () {
-//     if (fn) {
-//       fn.apply(this, arguments);
-//     }
-//     off(el, event, listener);
-//   };
-//   on(el, event, listener);
-// };
-// /* istanbul ignore next */
-// export function hasClass(el, cls) {
-//   if (!el || !cls) {
-//     return false;
-//   }
-//   if (cls.indexOf(' ') !== -1) {
-//     throw new Error('className should not contain space.');
-//   }
-//   if (el.classList) {
-//     return el.classList.contains(cls);
-//   } else {
-//     return (' ' + el.className + ' ').indexOf(' ' + cls + ' ') > -1;
-//   }
-// }
-// /* istanbul ignore next */
-// export function addClass(el, cls) {
-//   if (!el) {
-//     return;
-//   }
-//   let curClass = el.className;
-//   let classes = (cls || '').split(' ');
-//   for (let i = 0, j = classes.length; i < j; i++) {
-//     let clsName = classes[i];
-//     if (!clsName) {
-//       continue;
-//     }
-//     if (el.classList) {
-//       el.classList.add(clsName);
-//     } else if (!hasClass(el, clsName)) {
-//       curClass += ' ' + clsName;
-//     }
-//   }
-//   if (!el.classList) {
-//     el.className = curClass;
-//   }
-// }
-// /* istanbul ignore next */
-// export function removeClass(el, cls) {
-//   if (!el || !cls) {
-//     return;
-//   }
-//   let classes = cls.split(' ');
-//   let curClass = ' ' + el.className + ' ';
-//   for (let i = 0, j = classes.length; i < j; i++) {
-//     let clsName = classes[i];
-//     if (!clsName) {
-//       continue;
-//     }
-//     if (el.classList) {
-//       el.classList.remove(clsName);
-//     } else if (hasClass(el, clsName)) {
-//       curClass = curClass.replace(' ' + clsName + ' ', ' ');
-//     }
-//   }
-//   if (!el.classList) {
-//     el.className = curClass.trim();
-//   }
-// }
-
-/* istanbul ignore next */
-// export const getStyle = function (element, styleName) {
-//   if (!element || !styleName) {
-//     return null;
-//   }
-//   styleName = camelCase(styleName);
-//   if (styleName === 'float') {
-//     styleName = 'cssFloat';
-//   }
-//   try {
-//     let computed = document.defaultView.getComputedStyle(element, '');
-//     return element.style[styleName] || computed ? computed[styleName] : null;
-//   } catch (e) {
-//     return element.style[styleName];
-//   }
-// };
-// /* istanbul ignore next */
-// export function setStyle(element, styleName, value) {
-//   if (!element || !styleName) {
-//     return;
-//   }
-//   if (typeof styleName === 'object') {
-//     for (let prop in styleName) {
-//       if (styleName.hasOwnProperty(prop)) {
-//         setStyle(element, prop, styleName[prop]);
-//       }
-//     }
-//   } else {
-//     styleName = camelCase(styleName);
-//     element.style[styleName] = value;
-//   }
-// }
-// export const isScroll = (el, vertical) => {
-//   const determinedDirection = vertical !== null || vertical !== undefined;
-//   const overflow = determinedDirection
-//     ? vertical
-//       ? getStyle(el, 'overflow-y')
-//       : getStyle(el, 'overflow-x')
-//     : getStyle(el, 'overflow');
-//   return overflow.match(/(scroll|auto)/);
-// };
-// export const getScrollContainer = (el, vertical) => {
-//   let parent = el;
-//   while (parent) {
-//     if ([window, document, document.documentElement].includes(parent)) {
-//       return window;
-//     }
-//     if (isScroll(parent, vertical)) {
-//       return parent;
-//     }
-//     parent = parent.parentNode;
-//   }
-//   return parent;
-// };
-// export const isInContainer = (el, container) => {
-//   if (!el || !container) {
-//     return false;
-//   }
-//   const elRect = el.getBoundingClientRect();
-//   let containerRect;
-//   if (
-//     [window, document, document.documentElement, null, undefined].includes(
-//       container,
-//     )
-//   ) {
-//     containerRect = {
-//       top: 0,
-//       right: window.innerWidth,
-//       bottom: window.innerHeight,
-//       left: 0,
-//     };
-//   } else {
-//     containerRect = container.getBoundingClientRect();
-//   }
-//   return (
-//     elRect.top < containerRect.bottom &&
-//     elRect.bottom > containerRect.top &&
-//     elRect.right > containerRect.left &&
-//     elRect.left < containerRect.right
-//   );
-// };
-// 判断元素是否可见
-
-function isInViewPort(el) {
-  if (!el) {
-    return undefined;
-  }
-
-  var viewPortWidth =
-    window.innerWidth ||
-    document.documentElement.clientWidth ||
-    document.body.clientWidth;
-  var viewPortHeight =
-    window.innerHeight ||
-    document.documentElement.clientHeight ||
-    document.body.clientHeight;
-  var rect = el.getBoundingClientRect();
-
-  if (rect) {
-    var top = rect.top,
-      bottom = rect.bottom,
-      left = rect.left,
-      right = rect.right;
-    return (
-      bottom > 0 && top <= viewPortHeight && left <= viewPortWidth && right > 0
+      [t, n],
     );
-  }
-
-  return false;
-}
-
-function useIntersectionObserver(target, callback, config) {
-  react.useLayoutEffect(
-    function () {
-      var el = getTargetElement(target);
-
-      if (!el) {
-        return;
-      }
-
-      var observer = new IntersectionObserver(function (entries) {
-        var _iterator = _createForOfIteratorHelper(entries),
-          _step;
-
-        try {
-          for (_iterator.s(); !(_step = _iterator.n()).done; ) {
-            var entry = _step.value;
-            callback(entry);
-          }
-        } catch (err) {
-          _iterator.e(err);
-        } finally {
-          _iterator.f();
-        }
-      }, config);
-      observer.observe(el);
-      return function () {
-        observer.disconnect();
-      };
-    },
-    [target],
-  );
-}
-
-function useVisible(target) {
-  var _useState = react.useState(function () {
-      var el = getTargetElement(target);
-      return isInViewPort(el);
-    }),
-    _useState2 = _slicedToArray(_useState, 2),
-    visible = _useState2[0],
-    setVisible = _useState2[1];
-
-  useIntersectionObserver(target, function (entry) {
-    setVisible(entry.isIntersecting);
-  });
-  return visible;
-}
-
-function useEventListener(eventName, handler) {
-  var options =
-    arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-  var handlerRef = react.useRef();
-  handlerRef.current = handler;
-  react.useEffect(
-    function () {
-      var targetElement = getTargetElement(options.target, window);
-
-      if (
-        !(targetElement === null || targetElement === void 0
-          ? void 0
-          : targetElement.addEventListener)
-      ) {
-        return;
-      }
-
-      var eventListener = function eventListener(event) {
-        return handlerRef.current && handlerRef.current(event);
-      };
-
-      targetElement.addEventListener(eventName, eventListener, {
-        capture: options.capture,
-        once: options.once,
-        passive: options.passive,
-      });
-      return function () {
-        targetElement.removeEventListener(eventName, eventListener, {
-          capture: options.capture,
-        });
-      };
-    },
-    [eventName, options],
-  );
-}
-
-function useScroll(target) {
-  var _useState = react.useState({
-      left: 0,
-      top: 0,
-    }),
-    _useState2 = _slicedToArray(_useState, 2),
-    position = _useState2[0],
-    setPosition = _useState2[1];
-
-  useEventListener(
-    'scroll',
-    function (e) {
-      var target = e.target;
-      var newPosition = {
-        left: target.scrollLeft,
-        top: target.scrollTop,
-      };
-      setPosition(newPosition);
-    },
-    {
-      target: target,
-    },
-  );
-  return {
-    position: position,
-  };
-}
-
-function useResizeObserver(target, onResize) {
-  react.useLayoutEffect(
-    function () {
-      var el = getTargetElement(target);
-
-      if (!el) {
-        return;
-      }
-
-      var resizeObserver = new ResizeObserver(function (entries) {
-        entries.forEach(function (entry) {
-          onResize(entry);
-        });
-      });
-      resizeObserver.observe(el);
-      return function () {
-        resizeObserver.disconnect();
-      };
-    },
-    [target],
-  );
-}
-
-function colSpan(data, keys) {
-  var list = data;
-  var span = {};
-
-  var _iterator = _createForOfIteratorHelper(keys),
-    _step;
-
-  try {
-    var _loop = function _loop() {
-      var key = _step.value;
-      var currentValue = list[0][key];
-      var lengthList = list.reduce(
-        function (pre, cur) {
-          if (cur[key] === currentValue) {
-            var lastLength = pre.length - 1;
-            pre[lastLength] = pre[lastLength] + 1;
-          } else {
-            pre.push(1);
-            currentValue = cur[key];
-          }
-
-          return pre;
-        },
-        [0],
-      );
-
-      var colSpan = function colSpan(lengthList) {
-        return lengthList.reduce(function (prev, cur) {
-          var list = new Array(cur).fill(0);
-          list[0] = cur;
-          prev.push.apply(prev, _toConsumableArray(list));
-          return prev;
-        }, []);
-      };
-
-      span[key] = colSpan(lengthList);
+  e.useEffect(function () {
+    return function () {
+      clearTimeout(r.current);
     };
-
-    for (_iterator.s(); !(_step = _iterator.n()).done; ) {
-      _loop();
-    }
-  } catch (err) {
-    _iterator.e(err);
-  } finally {
-    _iterator.f();
-  }
-
-  return span;
+  }, []);
+  var s = e.useCallback(function () {
+    clearTimeout(r.current), a(!1);
+  }, []);
+  return { waiting: c, run: l, cancel: s };
 }
-
-function isType(data, type) {
-  var dataType = Object.prototype.toString
-    .call(data)
-    .slice(8, -1)
-    .toLowerCase();
-  return type === dataType;
-}
-
-var useIsScroll = function useIsScroll(target) {
-  var _useState = react.useState({
-      x: false,
-      y: false,
-    }),
-    _useState2 = _slicedToArray(_useState, 2),
-    state = _useState2[0],
-    setState = _useState2[1];
-
-  useResizeObserver(target, function (entry) {
-    var target = entry.target;
-    setState({
-      x: target.scrollWidth !== target.clientWidth,
-      y: target.scrollHeight !== target.clientHeight,
-    });
-  });
-  return state;
+var j = function () {
+  var t = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : 0,
+    n = e.useState(t),
+    r = i(n, 2),
+    o = r[0],
+    c = r[1],
+    a = e.useMemo(function () {
+      return {
+        plus: function () {
+          var e =
+            arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : 1;
+          c(function (t) {
+            return t + e;
+          });
+        },
+        minus: function () {
+          var e =
+            arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : 1;
+          c(function (t) {
+            return t - e;
+          });
+        },
+      };
+    }, []),
+    l = e.useCallback(
+      function () {
+        c(t);
+      },
+      [t],
+    );
+  return [o, u({ set: c, reset: l }, a)];
 };
-
-exports.isType = isType;
-exports.setDefaultArguments = setDefaultArguments;
-exports.sortBy = colSpan;
-exports.useArray = useArray;
-exports.useAxios = useAxios;
-exports.useBoolean = useBoolean;
-exports.useClick = useClick;
-exports.useDebounceFn = useDebounceFn;
-exports.useEventListener = useEventListener;
-exports.useHash = index;
-exports.useIntersectionObserver = useIntersectionObserver;
-exports.useIsScroll = useIsScroll;
-exports.useLockScroll = useLockScroll;
-exports.useMount = useMount;
-exports.useMountedState = useMountedState;
-exports.useMutation = useMutation;
-exports.useNumber = useNumber;
-exports.useObject = useObject;
-exports.usePromise = usePromise;
-exports.useQuery = useQuery;
-exports.useResizeObserver = useResizeObserver;
-exports.useScroll = useScroll;
-exports.useSize = useSize;
-exports.useThrottleFn = useThrottleFn;
-exports.useTimeoutFn = useTimeoutFn;
-exports.useToggle = useToggle;
-exports.useUnmount = useUnmount;
-exports.useUpdate = useUpdate;
-exports.useUpdateEffect = useUpdateEffect;
-exports.useUrlState = index$1;
-exports.useVisible = useVisible;
+function A(t, r, u) {
+  var o = e.useRef(t);
+  o.current = t;
+  var i = e.useMemo(
+    function () {
+      return n.throttle(o.current, null != r ? r : 1e3, u);
+    },
+    [r, o, u],
+  );
+  return (
+    b(function () {
+      i.cancel();
+    }),
+    { run: i, cancel: i.cancel, flush: i.flush }
+  );
+}
+function E(e) {
+  return 'number' == typeof e;
+}
+function C(e) {
+  return '[object Object]' === Object.prototype.toString.call(e);
+}
+function k(e, t) {
+  return e
+    ? 'function' == typeof e
+      ? e()
+      : 'current' in e
+      ? e.current
+      : e
+    : t;
+}
+function P(t, n, r) {
+  e.useLayoutEffect(
+    function () {
+      var e = k(t);
+      if (e) {
+        var u = new IntersectionObserver(function (e) {
+          var t,
+            r = s(e);
+          try {
+            for (r.s(); !(t = r.n()).done; ) {
+              n(t.value);
+            }
+          } catch (e) {
+            r.e(e);
+          } finally {
+            r.f();
+          }
+        }, r);
+        return (
+          u.observe(e),
+          function () {
+            u.disconnect();
+          }
+        );
+      }
+    },
+    [t],
+  );
+}
+function I(t, n) {
+  var r = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {},
+    u = e.useRef();
+  (u.current = n),
+    e.useEffect(
+      function () {
+        var e = k(r.target, window);
+        if (null == e ? void 0 : e.addEventListener) {
+          var n = function (e) {
+            return u.current && u.current(e);
+          };
+          return (
+            e.addEventListener(t, n, {
+              capture: r.capture,
+              once: r.once,
+              passive: r.passive,
+            }),
+            function () {
+              e.removeEventListener(t, n, { capture: r.capture });
+            }
+          );
+        }
+      },
+      [t, r],
+    );
+}
+function R(t, n) {
+  e.useLayoutEffect(
+    function () {
+      var e = k(t);
+      if (e) {
+        var r = new ResizeObserver(function (e) {
+          e.forEach(function (e) {
+            n(e);
+          });
+        });
+        return (
+          r.observe(e),
+          function () {
+            r.disconnect();
+          }
+        );
+      }
+    },
+    [t],
+  );
+}
+(exports.isType = function (e, t) {
+  return t === Object.prototype.toString.call(e).slice(8, -1).toLowerCase();
+}),
+  (exports.setDefaultArguments = function (e) {
+    for (
+      var t = arguments.length, n = Array(t > 1 ? t - 1 : 0), r = 1;
+      t > r;
+      r++
+    )
+      n[r - 1] = arguments[r];
+    return function () {
+      for (var t = arguments.length, r = Array(t), o = 0; t > o; o++)
+        r[o] = arguments[o];
+      var i = n.map(function (e, t) {
+        return Array.isArray(e) ? r[t] : C(e) ? u(u({}, e), r[t]) : r[t];
+      });
+      return e.apply(void 0, c(i));
+    };
+  }),
+  (exports.sortBy = function (e, t) {
+    var n,
+      r = e,
+      u = {},
+      o = s(t);
+    try {
+      var i = function () {
+        var e = n.value,
+          t = r[0][e],
+          o = r.reduce(
+            function (n, r) {
+              if (r[e] === t) {
+                var u = n.length - 1;
+                n[u] = n[u] + 1;
+              } else n.push(1), (t = r[e]);
+              return n;
+            },
+            [0],
+          );
+        u[e] = (function (e) {
+          return e.reduce(function (e, t) {
+            var n = Array(t).fill(0);
+            return (n[0] = t), e.push.apply(e, c(n)), e;
+          }, []);
+        })(o);
+      };
+      for (o.s(); !(n = o.n()).done; ) i();
+    } catch (e) {
+      o.e(e);
+    } finally {
+      o.f();
+    }
+    return u;
+  }),
+  (exports.useArray = function (t) {
+    var n = i(e.useState(t), 2),
+      r = n[0],
+      o = n[1],
+      a = e.useMemo(
+        function () {
+          return !h(t, r);
+        },
+        [t, r],
+      ),
+      l = e.useMemo(
+        function () {
+          return {
+            set: function (e, t) {
+              o(function (n) {
+                var r = c(n);
+                return (r[e] = d(t, r[e])), r;
+              });
+            },
+            setAll: o,
+            remove: function (e) {
+              o(function (t) {
+                var n = c(t);
+                return n.splice(e, 1), n;
+              });
+            },
+            push: function (e) {
+              o(function (t) {
+                var n = c(t);
+                return n.push(e), n;
+              });
+            },
+            clear: function () {
+              o([]);
+            },
+            reset: function () {
+              o(t);
+            },
+          };
+        },
+        [t],
+      ),
+      s = e.useCallback(
+        function (e, t) {
+          var n = r.length - 1;
+          (e > n || t > n) && console.error('交换位置超出最大位置');
+          var u = c(r),
+            i = [u[t], u[e]];
+          (u[e] = i[0]), (u[t] = i[1]), o(u);
+        },
+        [r],
+      ),
+      f = e.useCallback(
+        function (e, t) {
+          var n = r.length - 1;
+          (e > n || t > n) && console.error('交换位置超出最大位置');
+          var u = c(r),
+            a = i(u.splice(e, 1), 1);
+          u.splice(t, 0, a[0]), o(u);
+        },
+        [r],
+      );
+    return [r, u({ isEdited: a, swap: s, reorder: f }, l)];
+  }),
+  (exports.useBoolean = v),
+  (exports.useClick = function () {
+    var t =
+        arguments.length > 0 && void 0 !== arguments[0]
+          ? arguments[0]
+          : function (e) {},
+      n =
+        arguments.length > 1 && void 0 !== arguments[1]
+          ? arguments[1]
+          : function (e) {},
+      r = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {},
+      o = j(0),
+      c = i(o, 2),
+      a = c[0],
+      l = c[1],
+      s = e.useMemo(
+        function () {
+          return u(u({}, { delay: 250, exclusive: !1 }), r);
+        },
+        [r],
+      ),
+      f = s.delay,
+      v = s.exclusive,
+      d = O(function () {
+        l.reset();
+      }, f),
+      p = d.run,
+      h = e.useCallback(
+        function (e) {
+          0 === a && (null == t || t(e), p()),
+            1 === a && (v || null == t || t(e), null == n || n(e)),
+            l.plus(1);
+        },
+        [t, p, v, n],
+      );
+    return h;
+  }),
+  (exports.useDebounceFn = w),
+  (exports.useEventListener = I),
+  (exports.useHash = function (t) {
+    var n = e.useState(function () {
+        var e = window.location.hash.substring(1);
+        return '' === e ? (g(t), t) : e;
+      }),
+      r = i(n, 2),
+      u = r[0],
+      o = r[1];
+    e.useEffect(
+      function () {
+        null == u
+          ? history.pushState(
+              '',
+              document.title,
+              window.location.pathname + window.location.search,
+            )
+          : g(u);
+      },
+      [u],
+    );
+    var c = e.useCallback(
+      function () {
+        o(t);
+      },
+      [t],
+    );
+    return [u, o, c];
+  }),
+  (exports.useIntersectionObserver = P),
+  (exports.useIsScroll = function (t) {
+    var n = i(e.useState({ x: !1, y: !1 }), 2),
+      r = n[0],
+      u = n[1];
+    return (
+      R(t, function (e) {
+        var t = e.target;
+        u({
+          x: t.scrollWidth !== t.clientWidth,
+          y: t.scrollHeight !== t.clientHeight,
+        });
+      }),
+      r
+    );
+  }),
+  (exports.useLockScroll = function (t) {
+    var n = i(v(!1), 2),
+      r = n[0],
+      u = n[1];
+    return (
+      e.useEffect(
+        function () {
+          var e = (t = t || document.body).style,
+            n = e.paddingRight,
+            u = e.overflow,
+            o = t.getBoundingClientRect();
+          return (
+            r &&
+              ((t.style.width = ''.concat(o.width, 'px')),
+              (t.style.overflowY = S)),
+            function () {
+              (t.style.overflow = u), (t.style.width = n);
+            }
+          );
+        },
+        [r, t],
+      ),
+      [u, r]
+    );
+  }),
+  (exports.useMount = y),
+  (exports.useMountedState = x),
+  (exports.useNumber = j),
+  (exports.useObject = function (t) {
+    var n = i(e.useState(t), 2),
+      r = n[0],
+      o = n[1],
+      c = e.useCallback(
+        function () {
+          o(t);
+        },
+        [t],
+      ),
+      a = e.useMemo(
+        function () {
+          return !h(r, t);
+        },
+        [r, t],
+      ),
+      l = e.useCallback(
+        function (e) {
+          o(function (t) {
+            var n = d(e, t);
+            return u(u({}, t), n);
+          });
+        },
+        [o],
+      );
+    return [r, { setAll: o, set: l, reset: c, isEdited: a }];
+  }),
+  (exports.usePromise = function (t) {
+    var n = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {},
+      r = n.debounceInterval,
+      u = void 0 === r ? null : r,
+      o = n.manual,
+      a = void 0 === o || o,
+      l = n.onSuccess,
+      s = void 0 === l ? function () {} : l,
+      f = n.onError,
+      v = void 0 === f ? function () {} : f,
+      d = n.initialData,
+      p = void 0 === d ? null : d,
+      h = n.throttleInterval,
+      m = void 0 === h ? null : h,
+      g = n.loadingDelay,
+      S = void 0 === g ? 300 : g,
+      j = n.defaultParams,
+      C = void 0 === j ? [] : j,
+      k = x(),
+      P = e.useState(p),
+      I = i(P, 2),
+      R = I[0],
+      L = I[1],
+      M = e.useState(),
+      T = i(M, 2),
+      U = T[0],
+      D = T[1],
+      H = e.useState('success'),
+      W = i(H, 2),
+      B = W[0],
+      q = W[1],
+      z = e.useState(C),
+      F = i(z, 2),
+      _ = F[0],
+      N = F[1],
+      V = O(function () {
+        q('loading');
+      }, S),
+      Y = e.useCallback(
+        function () {
+          for (var e = arguments.length, n = Array(e), r = 0; e > r; r++)
+            n[r] = arguments[r];
+          return (
+            V.run(),
+            D(void 0),
+            N(n),
+            t
+              .apply(void 0, n)
+              .then(function (e) {
+                return k() && L(e), null == s || s(e, n), q('success'), e;
+              })
+              .catch(function (e) {
+                return (
+                  k() && D(e),
+                  null == v || v(e, n),
+                  q('error'),
+                  Promise.reject(e)
+                );
+              })
+              .finally(function () {
+                V.cancel();
+              })
+          );
+        },
+        [V, k, v, s, t],
+      ),
+      $ = w(Y, u),
+      G = A(Y, m),
+      J = e.useCallback(
+        function () {
+          for (var e = arguments.length, t = Array(e), n = 0; e > n; n++)
+            t[n] = arguments[n];
+          var r = t;
+          return (
+            Array.isArray(t) || (r = []),
+            E(u)
+              ? ($.run.apply($, c(r)), Promise.resolve(null))
+              : E(m)
+              ? (G.run.apply(G, c(r)), Promise.resolve(null))
+              : Y.apply(void 0, c(r))
+          );
+        },
+        [u, m, Y, $, G],
+      ),
+      K = e.useCallback(
+        function () {
+          return Array.isArray(_) ? J.apply(void 0, c(_)) : J();
+        },
+        [J, _],
+      ),
+      Q = e.useCallback(
+        function () {
+          null == $ || $.cancel(), null == G || G.cancel();
+        },
+        [$, G],
+      ),
+      X = e.useMemo(
+        function () {
+          return (null == $ ? void 0 : $.flush)
+            ? $.flush
+            : (null == G ? void 0 : G.flush)
+            ? G.flush
+            : function () {
+                return Promise.resolve(null);
+              };
+        },
+        [$, G],
+      );
+    return (
+      y(function () {
+        !1 === a && K();
+      }),
+      b(function () {
+        Q();
+      }),
+      {
+        data: R,
+        params: _,
+        error: U,
+        reload: K,
+        isLoading: 'loading' === B,
+        isError: 'error' === B,
+        isSuccess: 'success' === B,
+        status: B,
+        run: J,
+        cancel: Q,
+        mutate: L,
+        flush: X,
+      }
+    );
+  }),
+  (exports.useResizeObserver = R),
+  (exports.useScroll = function (t) {
+    var n = i(e.useState({ left: 0, top: 0 }), 2),
+      r = n[0],
+      u = n[1];
+    return (
+      I(
+        'scroll',
+        function (e) {
+          var t = e.target;
+          u({ left: t.scrollLeft, top: t.scrollTop });
+        },
+        { target: t },
+      ),
+      { position: r }
+    );
+  }),
+  (exports.useSize = function (t) {
+    var n = i(e.useState({ width: 0, height: 0 }), 2),
+      r = n[0],
+      u = n[1];
+    return (
+      R(t, function (e) {
+        u({ width: e.target.offsetWidth, height: e.target.offsetHeight });
+      }),
+      r
+    );
+  }),
+  (exports.useThrottleFn = A),
+  (exports.useTimeoutFn = O),
+  (exports.useToggle = f),
+  (exports.useUnmount = b),
+  (exports.useUpdate = function () {
+    var t = i(e.useState({}), 2)[1];
+    return e.useCallback(function () {
+      t({});
+    }, []);
+  }),
+  (exports.useUpdateEffect = m),
+  (exports.useUrlState = function (t, n) {
+    var r = i(
+        e.useState(function () {
+          var e = null !== t ? t : location.search;
+          return new URLSearchParams(e);
+        }),
+        2,
+      ),
+      u = r[0],
+      o = r[1],
+      c = e.useMemo(
+        function () {
+          return {
+            set: function (e, t) {
+              o(function (n) {
+                var r = new URLSearchParams(n),
+                  u = n.get(e),
+                  o = d(t, u);
+                return void 0 === o ? r.delete(e) : r.set(e, o), r;
+              });
+            },
+            clear: function () {
+              o(new URLSearchParams());
+            },
+          };
+        },
+        [u, o],
+      );
+    return (
+      m(
+        function () {
+          var e = ''.concat(n, 'State'),
+            t = '' + u;
+          t
+            ? history[e](null, '', '?' + t)
+            : history[e]({}, document.title, window.location.pathname);
+        },
+        [u],
+      ),
+      [u, c]
+    );
+  }),
+  (exports.useVisible = function (t) {
+    var n = i(
+        e.useState(function () {
+          return (function (e) {
+            if (e) {
+              var t =
+                  window.innerWidth ||
+                  document.documentElement.clientWidth ||
+                  document.body.clientWidth,
+                n =
+                  window.innerHeight ||
+                  document.documentElement.clientHeight ||
+                  document.body.clientHeight,
+                r = e.getBoundingClientRect();
+              return (
+                !!r && r.bottom > 0 && n >= r.top && t >= r.left && r.right > 0
+              );
+            }
+          })(k(t));
+        }),
+        2,
+      ),
+      r = n[0],
+      u = n[1];
+    return (
+      P(t, function (e) {
+        u(e.isIntersecting);
+      }),
+      r
+    );
+  });

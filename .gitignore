@@ -9,6 +9,8 @@
 
 /.history
 /.yarn
+/dist
+/docs-dist
 # misc
 .DS_Store
 
