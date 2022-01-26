@@ -1,16 +1,19 @@
+import { usePersistFn } from '@/';
 import React, { useState } from 'react';
-import { useBoolean, useDebounceFn } from 'wwhooks';
+import { useDebounceFn } from 'wwhooks';
+
 export default () => {
-  const [count, setCount] = useState<number>(0);
-  const [leading, { toggle: leadingToggle }] = useBoolean(false);
-  const [trailing, { toggle: trailingToggle }] = useBoolean(true);
-  const { run, cancel, flush } = useDebounceFn<() => void>(
-    () => {
-      setCount((state) => ++state);
-    },
-    1000,
-    { leading: leading, trailing: trailing },
-  );
+  let [count, setCount] = useState<number>(0);
+  const [leading, setLeading] = useState(false);
+  const [trailing, setTrailing] = useState(true);
+  const fn = usePersistFn(() => {
+    const v = ++count;
+    setCount(v);
+  });
+  const { run, cancel, flush } = useDebounceFn<() => void>(fn, 500, {
+    leading: leading,
+    trailing: trailing,
+  });
   return (
     <div>
       <p>count : {count} </p>
@@ -26,10 +29,10 @@ export default () => {
         </button>
       </p>
       <p>
-        <button type="button" onClick={() => leadingToggle()}>
+        <button type="button" onClick={() => setLeading((v) => !v)}>
           leading : {leading.toString()}
         </button>
-        <button type="button" onClick={() => trailingToggle()}>
+        <button type="button" onClick={() => setTrailing((v) => !v)}>
           trailing : {trailing.toString()}
         </button>
       </p>
