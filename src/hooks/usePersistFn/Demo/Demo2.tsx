@@ -1,6 +1,6 @@
 import { message } from 'antd';
 import React, { useCallback, useRef, useState } from 'react';
-import usePersistFn from '..';
+import { usePersistFn } from 'wwhooks';
 
 export default () => {
   const [count, setCount] = useState(0);
@@ -45,7 +45,7 @@ export default () => {
 };
 
 // some expensive component with React.memo
-const ExpensiveTree = React.memo<{ [key: string]: any }>(({ showCount }) => {
+const ExpensiveTree = React.memo<any>(({ showCount }) => {
   const renderCountRef = useRef(0);
   renderCountRef.current += 1;
 
