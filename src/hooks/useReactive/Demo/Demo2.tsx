@@ -4,11 +4,14 @@ import useReactive from '..';
 const Test = () => {
   let list = useReactive({ a: '' });
   const [count, setCount] = useState(0);
+  // 会触发
   useEffect(() => {
     setCount((v) => v + 1);
-    console.log(list.a);
   }, [list.a]);
-  console.log(list.a);
+  // 不会触发
+  useEffect(() => {
+    setCount((v) => v + 100);
+  }, [list]);
   return (
     <div>
       <input
@@ -16,10 +19,8 @@ const Test = () => {
           list.a = e.target.value;
         }}
       />
-      <p>
-        <div>{JSON.stringify(list)}</div>
-        <div>{count}</div>
-      </p>
+      <div>{JSON.stringify(list)}</div>
+      <div>{count}</div>
     </div>
   );
 };

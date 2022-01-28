@@ -1,9 +1,19 @@
 import { useMemo, useState } from 'react';
 import usePersistFn from '../usePersistFn';
 
+function isObject(val: Record<string, any>): boolean {
+  return typeof val === 'object' && val !== null;
+}
+
 const observer = <T extends Record<string, any>>(val, cb) => {
   const proxy = new Proxy<T>(val, {
+    get(target, key, receiver) {
+      const res = Reflect.get(target, key, receiver);
+      console.log(res);
+      return isObject(res) ? observer(res, cb) : Reflect.get(target, key);
+    },
     set(target, key, val) {
+      console.log(target, key, val);
       const v = Reflect.set(target, key, val);
       cb(target);
       return v;

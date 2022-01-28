@@ -1,27 +1,18 @@
-/**
- * debug: true
- */
 import React from 'react';
-import useReactive from '..';
+import { useReactive } from 'wwhooks';
 
 export default () => {
   const state = useReactive({
-    list: [{ name: '小王' }, { name: '小张' }],
+    list: [{ name: Math.random() }],
   });
 
-  const changeList = () => {
-    state.list = [...state.list];
-    state.list = [...state.list.map((v) => ({ name: v.name }))];
-  };
-
   const changeName = () => {
-    state.list[0].name = '随机' + Math.random();
+    state.list[0].name = Math.random();
   };
 
   return (
     <div>
-      <button onClick={changeList}>改变数据</button>
-      <button onClick={changeName}>改名</button>
+      <button onClick={changeName}>改变数据</button>
       <div>{JSON.stringify(state.list.map((v) => v.name))}</div>
     </div>
   );
