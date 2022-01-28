@@ -4,15 +4,15 @@
 
 # todo
 
-2. useReactive
-3. usestorage
-4. useIndexedDB
-5. useDialog
-6. 单例模式的 useUrlstate
-7. useHover
-8. useScroll，封装对应的移动方法
-9. useisScroll，判断处于滚动状态
-10. useObject，增加与原始数据比较出差异的对象
+- [x] useReactive
+- [ ] usestorage
+- [ ] useIndexedDB
+- [x] ~~useDialog~~
+- [ ] 单例模式的 useUrlstate
+- [ ] useHover
+- [ ] useScroll，封装对应的移动方法
+- [ ] useisScroll，判断处于滚动状态
+- [ ] useObject，增加与原始数据比较出差异的对象
 
 ## list
 
