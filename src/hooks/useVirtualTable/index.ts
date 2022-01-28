@@ -1,10 +1,11 @@
 import { MutableRefObject, useEffect, useMemo, useState } from 'react';
-import { useSize, useDebounceFn } from 'wwhooks';
 import findVisibleIndex from './utils/scroll';
-import { dataType } from '../utils/base';
 import { Options, UpdateOffset } from './interface';
 import getUpdateDistance from './utils/getUpdateDistance';
 import useScroll from '../useScroll';
+import { dataType } from '@/common/utils';
+import useDebounceFn from '../useDebounceFn';
+import useSize from '../useSize';
 
 const overscan = 5;
 
@@ -39,8 +40,8 @@ export default <T = any>(
       setRowIndex(index);
       setRowUpdateOffset(getUpdateDistance(index, rowHeightList));
     },
+    10,
     {
-      wait: 10,
       leading: false,
     },
   );
@@ -55,8 +56,8 @@ export default <T = any>(
       setColIndex(index);
       setColUpdateOffset(getUpdateDistance(index, colWidthList));
     },
+    10,
     {
-      wait: 10,
       leading: false,
     },
   );
@@ -85,7 +86,7 @@ export default <T = any>(
     console.warn('please enter a valid itemHeight');
   }
   const rowHeightList = useMemo(() => {
-    return originalList.map((item, index) => {
+    return (originalList ?? []).map((item, index) => {
       if (dataType(rowHeight) === 'number') {
         return rowHeight as number;
       }
@@ -93,7 +94,7 @@ export default <T = any>(
     });
   }, [originalList]);
   const colWidthList = useMemo(() => {
-    return originalList[0].map((item, index) => {
+    return (originalList[0] ?? []).map((item, index) => {
       if (dataType(colWidth) === 'number') {
         return colWidth as number;
       }
@@ -120,6 +121,7 @@ export default <T = any>(
   const totalWidth = useMemo(() => {
     return colWidthList.reduce((sum, item) => sum + item, 0);
   }, [colWidthList]);
+  // console.log(rowIndex.start, rowIndex.end, colIndex.start, colIndex.end);
   return {
     list: originalList
       .slice(rowIndex.start, rowIndex.end)

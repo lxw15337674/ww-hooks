@@ -1,3 +1,8 @@
+---
+group:
+  title: dom
+  path: /dom
+---
 # useSyncScroll
 
 同步元素之间的 scrollLeft 或 scrollTop

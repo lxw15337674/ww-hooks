@@ -3,13 +3,12 @@ group:
   title: dom
   path: /dom
 ---
-# useVirtualTable
+# useVirtualList
 
-提供虚拟滚动的表格，支持横纵向滚动，用于解决海量数据渲染时卡顿问题。
+提供虚拟滚动的列表，支持横纵向滚动，用于解决海量数据渲染时卡顿问题。
 
 优化点：
 
-- [x] 只计算滚动方向
 - [x] 缓存距离 update 的滚动距离。
 
 参考：
