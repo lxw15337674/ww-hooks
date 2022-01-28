@@ -4,8 +4,8 @@ import { useBoolean, useThrottleFn } from 'wwhooks';
 
 export default () => {
   const [count, setCount] = useState<number>(0);
-  const [leading, { toggle: leadingToggle }] = useBoolean(false);
-  const [trailing, { toggle: trailingToggle }] = useBoolean(true);
+  const [leading, leadingToggle] = useBoolean(false);
+  const [trailing, trailingToggle] = useBoolean(true);
   const { run, cancel, flush } = useThrottleFn<() => void>(
     () => {
       setCount((state) => ++state);

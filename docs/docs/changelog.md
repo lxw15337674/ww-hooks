@@ -5,6 +5,16 @@ group:
 
 # 更新日志
 
+## [1.0.22] 
+
+#### Feature
+
+- 增加useReactive、useSyncScroll
+
+#### Fixed
+
+- 修复部分示例代码
+
 ## [1.0.21] - 2022-01-21
 
 #### Feature
@@ -53,5 +63,4 @@ group:
   - `useScroll`
   - `useIsScroll`
   - `useResizeObserver`
-
 

@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useBoolean, useDebounceFn } from 'wwhooks';
 export default () => {
   const [count, setCount] = useState<number>(0);
-  const [leading, { toggle: leadingToggle }] = useBoolean(false);
-  const [trailing, { toggle: trailingToggle }] = useBoolean(true);
+  const [leading, leadingToggle] = useBoolean(false);
+  const [trailing, trailingToggle] = useBoolean(true);
   const { run, cancel, flush } = useDebounceFn<() => void>(
     () => {
       setCount((state) => ++state);

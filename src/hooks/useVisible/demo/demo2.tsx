@@ -14,9 +14,9 @@ export default () => {
     <div>
       <div style={{ height: 200, width: 200, overflow: 'scroll' }}>
         <div id="demo2">observer dom</div>
-        <div style={{ height: 300 }}></div>
+        <div style={{ height: 300 }} />
       </div>
-      <p>visible:{visible.toString()}</p>
+      <p>visible:{JSON.stringify(visible)}</p>
     </div>
   );
 };
