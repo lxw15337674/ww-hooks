@@ -6,7 +6,7 @@ const mockInt = () => {
 };
 const mockList = [];
 let key = 0;
-for (let i = 0; i < 10000; i++) {
+for (let i = 0; i < 100000; i++) {
   const value = mockInt();
   key++;
   mockList.push({
@@ -17,19 +17,21 @@ for (let i = 0; i < 10000; i++) {
 
 export default () => {
   const containerRef = useRef<HTMLDivElement>();
-  const wrapperRef = useRef<HTMLDivElement>();
   const { list: cells, wrapperStyle } = useVirtualList(mockList, {
     containerRef,
-    wrapperRef,
-    height: (index) => {
-      return 10;
+    itemHeight: (index) => {
+      return 50;
     },
   });
   return (
     <div ref={containerRef} style={{ height: 400, overflow: 'auto' }}>
       <div style={wrapperStyle}>
         {cells.map((row, index) => {
-          return <div key={index}>{row.value}</div>;
+          return (
+            <div key={index} style={{ height: 50 }}>
+              {row.value}
+            </div>
+          );
         })}
       </div>
     </div>

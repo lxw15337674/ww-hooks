@@ -3,7 +3,7 @@ import findVisibleIndex from './utils/scroll';
 import { Options, UpdateOffset } from './interface';
 import getUpdateDistance from './utils/getUpdateDistance';
 import useScroll from '../useScroll';
-import { dataType } from '@/common/utils';
+import { dataType } from '../../common/utils';
 import useDebounceFn from '../useDebounceFn';
 import useSize from '../useSize';
 
@@ -11,11 +11,12 @@ const defaultOverscan = 5;
 
 export default <T = any>(
   originalList: T[],
-  { containerRef, height, wrapperRef, overscan = defaultOverscan }: Options,
+  { containerRef, itemHeight, overscan = defaultOverscan }: Options,
 ) => {
   const { height: containerHeight } = useSize(
     containerRef as MutableRefObject<HTMLElement>,
   );
+  // TODO: 待优化
   const { top } = useScroll(containerRef);
   const [rowIndex, setRowIndex] = useState({ start: 0, end: 0 });
   const [rowUpdateOffset, setRowUpdateOffset] = useState<UpdateOffset>({
@@ -25,6 +26,7 @@ export default <T = any>(
 
   const { run: calculateRowRange } = useDebounceFn(
     () => {
+      console.log(top, containerHeight, overscan);
       const index = findVisibleIndex(
         top,
         containerHeight || 0,
@@ -41,49 +43,46 @@ export default <T = any>(
   );
 
   useEffect((): void => {
-    const end = rowIndex.end > overscan ? rowIndex.end - overscan : overscan;
-    const start = rowIndex.start + overscan;
-    if (
-      top > rowUpdateOffset.downOffset + rowTopOffsetList[end] ||
-      top < rowTopOffsetList[start] - rowUpdateOffset.upOffset
-    ) {
+    if (top > rowUpdateOffset.downOffset || top < rowUpdateOffset.upOffset) {
       calculateRowRange();
     }
   }, [top]);
 
   const heightList = useMemo(() => {
     return (originalList ?? []).map((item, index) => {
-      if (dataType(height) === 'number') {
-        return height as number;
+      if (dataType(itemHeight) === 'number') {
+        return itemHeight as number;
       }
-      return (height as (index: number) => number)(index);
+      return (itemHeight as (index: number) => number)(index);
     });
-  }, [originalList]);
+  }, [itemHeight, originalList]);
 
-  const totalList = (numList: number[]) => {
+  const rowTopOffsetList = useMemo(() => {
     let total = 0;
-    return numList.map((item) => {
+    return heightList.map((item) => {
       total += item;
       return total;
     });
-  };
-
-  const rowTopOffsetList = useMemo(() => {
-    return totalList(heightList);
-  }, [heightList]);
-
-  const totalHeight = useMemo(() => {
-    return heightList.reduce((sum, item) => sum + item, 0);
   }, [heightList]);
 
   const list = useMemo(() => {
     return originalList.slice(rowIndex.start, rowIndex.end);
   }, [originalList, rowIndex]);
 
+  const marginTop = useMemo(() => {
+    return rowTopOffsetList[rowIndex.start];
+  }, [rowTopOffsetList, rowIndex.start]);
+
+  const totalHeight = useMemo(() => {
+    return heightList.reduce((sum, item) => sum + item, 0) - marginTop;
+  }, [heightList, marginTop]);
+
+  console.log('repaint', marginTop);
+
   return {
     list: list,
     wrapperStyle: {
-      marginTop: top,
+      marginTop,
       height: totalHeight,
     },
   };
