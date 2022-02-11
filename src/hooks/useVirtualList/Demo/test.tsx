@@ -30,9 +30,9 @@ export default () => {
               border: '1px solid #e8e8e8',
               marginBottom: 8,
             }}
-            key={ele.index}
+            key={ele}
           >
-            Row: {ele.data}
+            Row: {ele}
           </div>
         ))}
       </div>
