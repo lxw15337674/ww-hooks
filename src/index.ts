@@ -1,4 +1,7 @@
+import useDynamicList from './hooks/useDynamicList';
+import usePrevious from './hooks/usePrevious';
 import useSyncScroll from './hooks/useSyncScroll';
+
 export { default as useBoolean } from './hooks/useBoolean';
 export { default as useArray } from './hooks/useArray';
 export { default as useMount } from './hooks/useMount';
@@ -33,4 +36,4 @@ export { default as useAxios } from './hooks/request/useAxios';
 export { default as useQuery } from './hooks/request/useQuery';
 export { default as useMutation } from './hooks/request/useMutation';
 
-export { useSyncScroll };
+export { useSyncScroll, useDynamicList, usePrevious };

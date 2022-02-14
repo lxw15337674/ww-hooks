@@ -9,7 +9,7 @@ group:
 
 #### Feature
 
-- 增加useReactive、useSyncScroll
+- 增加useReactive、useSyncScroll、useVirtualList、usePrevious
 
 #### Fixed
 

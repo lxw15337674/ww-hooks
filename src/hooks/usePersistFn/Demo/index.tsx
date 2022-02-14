@@ -6,9 +6,9 @@
  *
  */
 import { message } from 'antd';
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import usePersistFn from '..';
-const test = (props) => {
+const Test = (props) => {
   const [value, setValue] = useState('');
   const show = usePersistFn((text) => {
     console.log(value);
@@ -22,4 +22,4 @@ const test = (props) => {
     </div>
   );
 };
-export default test;
+export default Test;
