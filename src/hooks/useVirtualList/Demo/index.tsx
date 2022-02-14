@@ -6,7 +6,7 @@ const mockInt = (minNum, maxNum) => {
 };
 const mockList = [];
 let key = 0;
-for (let i = 0; i < 10000; i++) {
+for (let i = 0; i < 99999; i++) {
   const value = mockInt(20, 100);
   key++;
   mockList.push({
@@ -26,10 +26,19 @@ export default () => {
   return (
     <div ref={containerRef} style={{ height: 400, overflow: 'auto' }}>
       <div style={wrapperStyle}>
-        {cells.map((row, index) => {
+        {cells.map((cell) => {
           return (
-            <div key={index} style={{ height: row.value }}>
-              {row.value}
+            <div
+              key={cell.data.key}
+              style={{
+                height: cell.data.value,
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                border: '1px solid #e8e8e8',
+              }}
+            >
+              row:{cell.index}:{cell.data.value}
             </div>
           );
         })}

@@ -1,11 +1,11 @@
 import { Index } from '../interface';
+
 // 二分查找法
 function binarySearch(offset: number, list: number[]): number {
   if (isNaN(offset)) {
     offset = 0;
   }
   if (list.length === 0) {
-    // console.error('数组为空');
     return 0;
   }
   let startIndex = 0;
@@ -43,8 +43,8 @@ export default function findVisibleIndex(
 ): Index {
   let start = binarySearch(offset, list) - overscan;
   let end = binarySearch(visibleOffset + offset, list) + overscan;
-  start = start < 0 ? 0 : start;
-  end = end > list.length ? list.length : end;
+  start = Math.max(0, start);
+  end = Math.min(end, list.length);
   return {
     start,
     end,
