@@ -41,7 +41,8 @@ export default () => {
                 border: '1px solid #e8e8e8',
               }}
             >
-              row:{cell.index}:{cell.data.value}
+              <div style={{ marginRight: 20 }}>index : {cell.index}</div>
+              <div>height : {cell.data.value}</div>
             </div>
           );
         })}

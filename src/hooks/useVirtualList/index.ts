@@ -6,7 +6,7 @@ import useScroll from '../useScroll';
 import useSize from '../useSize';
 import usePersistFn from '../usePersistFn';
 
-const defaultOverscan = 3;
+const defaultOverscan = 5;
 
 export default <T = any>(
   originalList: T[],
