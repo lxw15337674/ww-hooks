@@ -11,12 +11,6 @@ group:
 
 - [x] 缓存距离 update 的滚动距离。
 
-参考：
-
-https://www.jianshu.com/p/4e16b4211d84
-
-https://wwhooks.js.org/zh-CN/hooks/ui/use-virtual-list/
-
 
 
 <code src="./Demo/index.tsx" />

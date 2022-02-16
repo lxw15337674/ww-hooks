@@ -1,4 +1,5 @@
 import useDynamicList from './hooks/useDynamicList';
+import useInterval from './hooks/useInterval';
 import usePrevious from './hooks/usePrevious';
 import useSyncScroll from './hooks/useSyncScroll';
 
@@ -36,4 +37,4 @@ export { default as useAxios } from './hooks/request/useAxios';
 export { default as useQuery } from './hooks/request/useQuery';
 export { default as useMutation } from './hooks/request/useMutation';
 
-export { useSyncScroll, useDynamicList, usePrevious };
+export { useSyncScroll, useDynamicList, usePrevious, useInterval };

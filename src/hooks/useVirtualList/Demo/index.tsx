@@ -23,13 +23,14 @@ export default () => {
       return item.value;
     },
   });
+
   return (
     <div ref={containerRef} style={{ height: 400, overflow: 'auto' }}>
       <div style={wrapperStyle}>
-        {cells.map((cell, index) => {
+        {cells.map((cell) => {
           return (
             <div
-              key={index}
+              key={cell.data.key}
               style={{
                 height: cell.data.value,
                 display: 'flex',
@@ -38,8 +39,7 @@ export default () => {
                 border: '1px solid #e8e8e8',
               }}
             >
-              <div style={{ marginRight: 20 }}>index : {cell.index}</div>
-              <div>height : {cell.data.value}</div>
+              row:{cell.index}:{cell.data.value}
             </div>
           );
         })}

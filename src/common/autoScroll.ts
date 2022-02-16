@@ -1,22 +1,22 @@
 function autoScroll(dom: HTMLElement, t = 10) {
-  dom.scrollTop = 0;
   const scroll = () => {
     if (!scrollStart(dom)) {
       clearInterval(timer);
     }
   };
   let timer = null;
-  dom.onmouseover = function () {
+  const start = () => {
     timer = setInterval(scroll, t);
   };
-  dom.onmouseout = function () {
+  const cancel = () => {
     clearInterval(timer);
   };
+  return { start, cancel };
 }
 
 // 开始滚动函数
 function scrollStart(dom: HTMLElement) {
-  if (dom.scrollTop > 10000) {
+  if (dom.clientHeight > dom.scrollTop) {
     return false;
   }
   dom.scrollTop += 100;

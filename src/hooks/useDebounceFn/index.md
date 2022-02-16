@@ -1,6 +1,6 @@
 ---
 group:
-  title: sideEffect
+  title: Effect
   path: /Effect
 ---
 
@@ -48,4 +48,3 @@ const {
 | _wait_   | 需要延迟的毫秒数                                                              | `number`  | 1000                            | 否   |
 | options  | 防抖配置,参考[lodash.debounce](https://www.lodashjs.com/docs/lodash.debounce) | `Options` | `{leading:false,trailing:true}` | 否   |
 
-###
