@@ -4,14 +4,11 @@ export default () => {
   const [count, setCount] = useState<number>(0);
   const { start, clear, looping } = useInterval(() => {
     setCount((v) => ++v);
-    console.log('test');
   }, 100);
   return (
     <div>
-      <p>
-        count : {count}
-        <div>looping:{JSON.stringify(looping)}</div>
-      </p>
+      <p>count : {count}</p>
+      <p>looping:{JSON.stringify(looping)}</p>
       <p>
         <button type="button" onClick={() => start()}>
           start
