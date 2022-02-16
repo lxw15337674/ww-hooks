@@ -7,15 +7,13 @@ group:
 
 提供虚拟滚动的列表，支持横纵向滚动，用于解决海量数据渲染时卡顿问题。
 
-优化点：
-
-- [x] 缓存距离 update 的滚动距离。
-
 
 
 <code src="./Demo/index.tsx" />
 
 <code src="./Demo/test.tsx" />
+
+<code src="./Demo/table.tsx" />
 
 ### Params
 

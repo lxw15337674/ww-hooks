@@ -4,7 +4,6 @@
 import autoScroll from '@/common/autoScroll';
 import React, { useEffect, useRef } from 'react';
 import useVirtualList from '..';
-import { faker } from '@faker-js/faker';
 import { Button } from 'antd';
 import { useInterval } from '@/';
 
@@ -23,7 +22,7 @@ export default () => {
   const containerRef = useRef<HTMLDivElement>();
   const { list: cells, wrapperStyle } = useVirtualList(mockList, {
     containerRef,
-    itemHeight: 10,
+    itemHeight: 30,
   });
   useEffect(() => {
     autoScroll(containerRef.current);
@@ -53,18 +52,17 @@ export default () => {
               <div
                 key={index}
                 style={{
-                  height: 10,
+                  height: 30,
                   display: 'flex',
                   justifyContent: 'center',
                   alignItems: 'center',
                   border: '1px solid #e8e8e8',
                 }}
               >
-                <div style={{ marginRight: 20 }}>index : {cell.index}</div>
-                <div>height : {cell.data.value}</div>
-                <Button>123</Button>
-                <Button>123</Button>
-                <Button>123</Button>
+                {cells.slice(0, 10).map((cell, cellIndex) => {
+                  const key = `${index}-${cellIndex}`;
+                  return <Button key={key}>123</Button>;
+                })}
               </div>
             );
           })}

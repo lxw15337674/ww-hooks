@@ -1,13 +1,11 @@
+import { Button } from 'antd';
 import React, { useRef } from 'react';
 import useVirtualList from '..';
 
-const mockInt = (minNum, maxNum) => {
-  return parseInt(Math.random() * (maxNum - minNum + 1) + minNum, 10);
-};
 const mockList = [];
 let key = 0;
 for (let i = 0; i < 99999; i++) {
-  const value = mockInt(20, 100);
+  const value = 30;
   key++;
   mockList.push({
     value,
@@ -19,18 +17,16 @@ export default () => {
   const containerRef = useRef<HTMLDivElement>();
   const { list: cells, wrapperStyle } = useVirtualList(mockList, {
     containerRef,
-    itemHeight: (item) => {
-      return item.value;
-    },
+    itemHeight: 30,
   });
 
   return (
     <div ref={containerRef} style={{ height: 400, overflow: 'auto' }}>
       <div style={wrapperStyle}>
-        {cells.map((cell) => {
+        {cells.map((cell, index) => {
           return (
             <div
-              key={cell.data.key}
+              key={index}
               style={{
                 height: cell.data.value,
                 display: 'flex',
@@ -40,6 +36,9 @@ export default () => {
               }}
             >
               row:{cell.index}:{cell.data.value}
+              <Button>123</Button>
+              <Button>123</Button>
+              <Button>123</Button>
             </div>
           );
         })}

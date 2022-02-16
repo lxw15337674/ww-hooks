@@ -1,36 +1,20 @@
 import React, { useState } from 'react';
-import { useBoolean, useDebounceFn } from 'wwhooks';
+import { useInterval } from 'wwhooks';
 export default () => {
   const [count, setCount] = useState<number>(0);
-  const [leading, leadingToggle] = useBoolean(false);
-  const [trailing, trailingToggle] = useBoolean(true);
-  const { run, cancel, flush } = useDebounceFn<() => void>(
-    () => {
-      setCount((state) => ++state);
-    },
-    1000,
-    { leading: leading, trailing: trailing },
-  );
+  const { start, clear, looping } = useInterval(() => {
+    setCount((v) => ++v);
+  }, 100);
   return (
     <div>
-      <p>count : {count} </p>
+      <p>count : {count}</p>
+      <p>looping:{JSON.stringify(looping)}</p>
       <p>
-        <button type="button" onClick={() => run()}>
-          add
+        <button type="button" onClick={() => start()}>
+          start
         </button>
-        <button type="button" onClick={() => cancel()}>
-          cancel
-        </button>
-        <button type="button" onClick={() => flush()}>
-          flush
-        </button>
-      </p>
-      <p>
-        <button type="button" onClick={() => leadingToggle()}>
-          leading : {leading.toString()}
-        </button>
-        <button type="button" onClick={() => trailingToggle()}>
-          trailing : {trailing.toString()}
+        <button type="button" onClick={() => clear()}>
+          clear
         </button>
       </p>
     </div>
