@@ -11,9 +11,15 @@ group:
 
 1. dom回收
 
+文档：
+
+https://github.com/dwqs/blog/issues/70
+
+https://www.jianshu.com/p/4e16b4211d84
 
 
-<!-- <code src="./Demo/index.tsx" /> -->
+
+<code src="./Demo/index.tsx" />
 
 <code src="./Demo/test.tsx" />
 
@@ -34,9 +40,9 @@ group:
 
 ### Result
 
-| 参数           | 说明                      | 类型                         |
-| -------------- | ------------------------- | ---------------------------- |
-| list           | 当前需要展示的列表内容    | `{data: T, index: number}[]` |
-| containerProps | 滚动容器的 props          | `object`                     |
-| wrapperProps   | children 外层包裹器 props | `object`                     |
-|                |                           |                              |
+| 参数         | 说明                   | 类型                                  |
+| ------------ | ---------------------- | ------------------------------------- |
+| list         | 当前需要展示的列表内容 | `{data: T, index: number}[]`          |
+| wrapperStyle | 滚动容器的样式         | `{marginTop: number,height: number;}` |
+|              |                        |                                       |
+|              |                        |                                       |

@@ -27,7 +27,6 @@ export default () => {
     <div ref={containerRef} style={{ height: 400, overflow: 'auto' }}>
       <div style={wrapperStyle}>
         {cells.map((cell, index) => {
-          console.log(cell);
           return (
             <div
               key={index}
@@ -42,6 +41,13 @@ export default () => {
             >
               <div style={{ marginRight: 20 }}>index : {cell.index}</div>
               <div>height : {cell.data.value}</div>
+              <button
+                onClick={() => {
+                  console.log(cell.index);
+                }}
+              >
+                {cell.data.value}
+              </button>
             </div>
           );
         })}
