@@ -117,7 +117,7 @@ export default <T = any>(
   }, [heightList, marginTop]);
 
   return {
-    list,
+    pool,
     wrapperStyle: {
       marginTop,
       height: totalHeight,

@@ -1,7 +1,6 @@
 /**
  * debug: true
  */
-import autoScroll from '@/common/autoScroll';
 import React, { useEffect, useRef } from 'react';
 import useVirtualList from '..';
 import { Button } from 'antd';
@@ -20,13 +19,11 @@ for (let i = 0; i < 99999; i++) {
 
 export default () => {
   const containerRef = useRef<HTMLDivElement>();
-  const { list: cells, wrapperStyle } = useVirtualList(mockList, {
+  const { list: cells, wrapperStyle } = useVirtualList(
+    mockList,
     containerRef,
-    itemHeight: 30,
-  });
-  useEffect(() => {
-    autoScroll(containerRef.current);
-  }, []);
+    30,
+  );
   const { start, clear, looping } = useInterval(() => {
     const dom = containerRef.current;
     if (dom.clientHeight <= dom.scrollTop) {

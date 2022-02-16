@@ -15,10 +15,11 @@ for (let i = 0; i < 99999; i++) {
 
 export default () => {
   const containerRef = useRef<HTMLDivElement>();
-  const { list: cells, wrapperStyle } = useVirtualList(mockList, {
+  const { list: cells, wrapperStyle } = useVirtualList(
+    mockList,
     containerRef,
-    itemHeight: 30,
-  });
+    30,
+  );
 
   return (
     <div ref={containerRef} style={{ height: 400, overflow: 'auto' }}>

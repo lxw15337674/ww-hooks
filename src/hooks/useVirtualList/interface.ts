@@ -2,8 +2,7 @@ import { MutableRefObject } from 'react';
 
 export interface Options {
   itemHeight: number;
-  containerRef: MutableRefObject<HTMLDivElement>;
-  overscan?: number;
+  containerRef: MutableRefObject<Element>;
 }
 export interface Pool<T> {
   item: T;

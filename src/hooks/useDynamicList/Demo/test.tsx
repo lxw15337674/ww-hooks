@@ -3,7 +3,6 @@
  */
 import React, { useEffect, useRef } from 'react';
 import useDynamicList from '..';
-import autoScroll from '../../../common/autoScroll';
 import { faker } from '@faker-js/faker';
 import { Button } from 'antd';
 
@@ -33,9 +32,7 @@ export default () => {
       return item.value;
     },
   });
-  useEffect(() => {
-    autoScroll(containerRef.current);
-  }, []);
+
   return (
     <div ref={containerRef} style={{ height: 400, overflow: 'auto' }}>
       <div style={wrapperStyle}>

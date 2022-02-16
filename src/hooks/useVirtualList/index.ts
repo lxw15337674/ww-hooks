@@ -1,12 +1,12 @@
 import { MutableRefObject, useLayoutEffect, useMemo, useState } from 'react';
-import { Options } from './interface';
 import useScroll from '../useScroll';
 import useSize from '../useSize';
 import usePersistFn from '../usePersistFn';
 
 export default <T = any>(
   originalList: T[],
-  { containerRef, itemHeight }: Options,
+  containerRef: MutableRefObject<Element>,
+  itemHeight: number,
 ) => {
   const { height: containerHeight } = useSize(
     containerRef as MutableRefObject<HTMLElement>,
@@ -57,5 +57,5 @@ export default <T = any>(
       marginTop,
       height: totalHeight,
     },
-  };
+  } as const;
 };

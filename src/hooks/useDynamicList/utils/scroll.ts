@@ -35,6 +35,7 @@ function binarySearch(offset: number, list: number[]): number {
 }
 
 // 获取当前表格的索引值，例如{start:0,end:10}
+// eslint-disable-next-line max-params
 export default function findVisibleIndex(
   offset: number,
   visibleOffset: number,
