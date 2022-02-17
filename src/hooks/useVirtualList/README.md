@@ -5,13 +5,15 @@ group:
 ---
 # useVirtualList
 
-提供虚拟滚动的列表，支持横纵向滚动，用于解决海量数据渲染时卡顿问题。
+提供虚拟滚动的列表，解决大数据渲染卡顿问题。
 
-性能最优
+特性：
 
-限制：
+1. 只支持固定高度，性能最优。
 
-1. 只支持固定高度。
+> 动态高度，请使用[useDynamicList](use-dynamic-list)
+
+
 
 <code src="./Demo/index.tsx" />
 
@@ -34,4 +36,6 @@ group:
 | 参数         | 说明                    | 类型                         |
 | ------------ | ----------------------- | ---------------------------- |
 | list         | 当前需要展示的列表内容  | `{data: T, index: number}[]` |
-| wrapperStyle | children 外层包裹的样式 | `object`                     |
+| wrapperStyle | children 外层包裹的样式 | `CSSProperties`              |
+| scrollTo     | 滚动到指定index         | `(index: number) => void`    |
+

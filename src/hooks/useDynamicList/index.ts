@@ -12,7 +12,7 @@ import useScroll from '../useScroll';
 import useSize from '../useSize';
 import usePersistFn from '../usePersistFn';
 
-const defaultOverscan = 5;
+const defaultOverscan = 3;
 interface PoolItem<T> {
   data: T;
   id: number;
@@ -38,10 +38,7 @@ export default <T = any>(
 
   const heightList = useMemo(() => {
     return (originalList ?? []).map((item, index) => {
-      if (typeof itemHeight === 'number') {
-        return itemHeight as number;
-      }
-      return (itemHeight as (item: T, index: number) => number)(item, index);
+      return itemHeight(item, index);
     });
   }, [itemHeight, originalList]);
 
@@ -79,16 +76,13 @@ export default <T = any>(
     calculateRowRange();
   }, [top, containerHeight]);
 
-  const list = useMemo(() => {
-    return originalList
+  useLayoutEffect(() => {
+    const list = originalList
       .slice(rowIndex.start, rowIndex.end)
       .map((ele, index) => ({
         data: ele,
         index: index + rowIndex.start,
       }));
-  }, [originalList, rowIndex]);
-
-  useLayoutEffect(() => {
     const length = pool?.length ?? 0 - list?.length;
     const views: Item[] = list.map((item, index) => ({
       data: item.data,
@@ -110,17 +104,25 @@ export default <T = any>(
       });
     }
     setPool([...views, ...unusedViews]);
-  }, [list]);
+  }, [originalList, rowIndex]);
 
   const totalHeight = useMemo(() => {
     return heightList.reduce((sum, item) => sum + item, 0) - marginTop;
   }, [heightList, marginTop]);
 
+  const scrollTo = usePersistFn((index: number) => {
+    const container = containerRef.current;
+    if (container) {
+      container.scrollTop = rowTopOffsetList[index];
+    }
+  });
+
   return {
-    pool,
+    list: pool,
     wrapperStyle: {
       marginTop,
       height: totalHeight,
     },
+    scrollTo,
   };
 };

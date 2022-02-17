@@ -11,7 +11,7 @@ const mockInt = (minNum, maxNum) => {
 };
 const mockList = [];
 let key = 0;
-for (let i = 0; i < 1000; i++) {
+for (let i = 0; i < 100; i++) {
   // const value = mockInt(30, 200);
   const value = 30;
   key++;
@@ -52,9 +52,13 @@ export default () => {
               <div style={{ marginRight: 20 }}>index : {cell.index}</div>
               <div>height : {cell.data.value}</div>
               <p>${cell.data.email}</p>
-              <p>${cell.data.words}</p>
-              <p>${cell.data.paragraphs}</p>
-              <button>123</button>
+              <Button>123</Button>
+              <Button>123</Button>
+              <Button>123</Button>
+              <Button>123</Button>
+              <Button>123</Button>
+              <Button>123</Button>
+              <Button>123</Button>
             </div>
           );
         })}

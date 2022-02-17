@@ -1,4 +1,10 @@
-import { MutableRefObject, useLayoutEffect, useMemo, useState } from 'react';
+import {
+  CSSProperties,
+  MutableRefObject,
+  useLayoutEffect,
+  useMemo,
+  useState,
+} from 'react';
 import useScroll from '../useScroll';
 import useSize from '../useSize';
 import usePersistFn from '../usePersistFn';
@@ -51,11 +57,19 @@ export default <T = any>(
     return itemHeight * originalList.length - marginTop;
   }, [itemHeight, marginTop, originalList.length]);
 
+  const scrollTo = usePersistFn((index: number) => {
+    const container = containerRef.current;
+    if (container) {
+      container.scrollTop = itemHeight * index;
+    }
+  });
+
   return {
     list,
     wrapperStyle: {
       marginTop,
       height: totalHeight,
-    },
+    } as CSSProperties,
+    scrollTo,
   } as const;
 };

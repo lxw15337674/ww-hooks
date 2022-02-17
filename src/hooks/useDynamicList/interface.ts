@@ -1,7 +1,7 @@
 import { MutableRefObject } from 'react';
 
 export interface Options<T> {
-  itemHeight: number | ((item: T, index: number) => number);
+  itemHeight: (item: T, index: number) => number;
   containerRef: MutableRefObject<HTMLDivElement>;
   overscan?: number;
 }

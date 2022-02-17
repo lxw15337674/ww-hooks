@@ -1,10 +1,10 @@
 /**
  * debug: true
  */
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import useVirtualList from '..';
 import { Button } from 'antd';
-import { useInterval } from '@/';
+import { useInterval } from '../../../';
 
 const mockList = [];
 let key = 0;
@@ -22,7 +22,7 @@ export default () => {
   const { list: cells, wrapperStyle } = useVirtualList(
     mockList,
     containerRef,
-    10,
+    30,
   );
 
   const { start, clear, looping } = useInterval(() => {
@@ -50,7 +50,7 @@ export default () => {
               <div
                 key={index}
                 style={{
-                  height: 10,
+                  height: 30,
                   display: 'flex',
                   justifyContent: 'center',
                   alignItems: 'center',
@@ -59,6 +59,10 @@ export default () => {
               >
                 <div style={{ marginRight: 20 }}>index : {cell.index}</div>
                 <div>height : {cell.data.value}</div>
+                <Button>123</Button>
+                <Button>123</Button>
+                <Button>123</Button>
+                <Button>123</Button>
                 <Button>123</Button>
                 <Button>123</Button>
                 <Button>123</Button>
