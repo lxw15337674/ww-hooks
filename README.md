@@ -7,11 +7,10 @@
 - [x] useReactive
 - [ ] usestorage
 - [ ] useIndexedDB
-- [x] ~~useDialog~~
-- [ ] 单例模式的 useUrlstate
+- [x] 单例模式的 useUrlstate
 - [ ] useHover
-- [ ] useScroll，封装对应的移动方法
-- [ ] useisScroll，判断处于滚动状态
+- [x] useScroll，封装对应的移动方法
+- [x] useisScroll，判断可以滚动状态
 - [ ] useObject，增加与原始数据比较出差异的对象
 
 ## list

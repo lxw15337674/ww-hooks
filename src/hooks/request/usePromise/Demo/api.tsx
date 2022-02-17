@@ -1,5 +1,6 @@
 export const getData = () => {
   return new Promise((resolve) => {
+    console.log('data');
     setTimeout(() => {
       resolve('data');
     }, 1000);

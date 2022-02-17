@@ -1,5 +1,5 @@
-import { usePromiseConfig } from '@src/hooks/request/usePromise/interface';
-import { AxiosResponse, AxiosRequestConfig } from 'axios';
+import { AxiosRequestConfig } from 'axios';
+import { usePromiseConfig } from '../usePromise/interface';
 
 export type Status = 'loading' | 'error' | 'success';
 

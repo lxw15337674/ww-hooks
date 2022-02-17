@@ -10,6 +10,7 @@ group:
 #### Feature
 
 - 增加useReactive、useSyncScroll、useVirtualList、usePrevious、useDynamicList、useInterval
+- 内部代码优化，用usePersistFn代替useCallback
 
 #### Fixed
 

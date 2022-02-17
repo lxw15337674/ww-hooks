@@ -9,7 +9,7 @@ export default () => {
     onSuccess: () => {
       setCount((v) => ++v);
     },
-    debounce: { wait: 1000 },
+    debounceInterval: 1000,
   });
   return (
     <div>
