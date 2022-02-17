@@ -1,5 +1,7 @@
+import { usePersistFn } from '@/';
 import React, { useState } from 'react';
-import { useBoolean, useDebounceFn } from 'wwhooks';
+import { useDebounceFn } from 'wwhooks';
+
 export default () => {
   const [count, setCount] = useState<number>(0);
   const [leading, leadingToggle] = useBoolean(false);
@@ -26,10 +28,10 @@ export default () => {
         </button>
       </p>
       <p>
-        <button type="button" onClick={() => leadingToggle()}>
+        <button type="button" onClick={() => setLeading((v) => !v)}>
           leading : {leading.toString()}
         </button>
-        <button type="button" onClick={() => trailingToggle()}>
+        <button type="button" onClick={() => setTrailing((v) => !v)}>
           trailing : {trailing.toString()}
         </button>
       </p>
