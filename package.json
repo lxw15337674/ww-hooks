@@ -1,6 +1,6 @@
 {
   "name": "wwhooks",
-  "version": "1.0.21",
+  "version": "1.0.22",
   "scripts": {
     "start": "dumi dev",
     "dev": "dumi dev",
