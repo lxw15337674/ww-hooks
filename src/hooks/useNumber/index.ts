@@ -1,4 +1,5 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
+import usePersistFn from '../usePersistFn';
 
 const useNumber = (defaultValue: number = 0) => {
   const [number, setNumber] = useState<number>(defaultValue);
@@ -13,9 +14,9 @@ const useNumber = (defaultValue: number = 0) => {
     return { plus, minus };
   }, []);
 
-  const reset = useCallback(() => {
+  const reset = usePersistFn(() => {
     setNumber(defaultValue);
-  }, [defaultValue]);
+  });
 
   return [number, { set: setNumber, reset, ...actions }] as const;
 };

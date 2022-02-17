@@ -1,6 +1,7 @@
 import { isEqual, setState } from '../../common/utils';
-import { useState, useMemo, useCallback } from 'react';
+import { useState, useMemo } from 'react';
 import { initialState } from '@/common/interface';
+import usePersistFn from '../usePersistFn';
 
 const useArray = <T = any>(initialArray: initialState<T[]>) => {
   const [value, setValue] = useState<T[]>(initialArray);
@@ -42,31 +43,25 @@ const useArray = <T = any>(initialArray: initialState<T[]>) => {
     [initialArray],
   );
 
-  const swap = useCallback(
-    (dragIndex: number, dropIndex: number) => {
-      const maxIndex = value.length - 1;
-      if (dragIndex > maxIndex || dropIndex > maxIndex) {
-        console.error('交换位置超出最大位置');
-      }
-      const list = [...value];
-      [list[dragIndex], list[dropIndex]] = [list[dropIndex], list[dragIndex]];
-      setValue(list);
-    },
-    [value],
-  );
-  const reorder = useCallback(
-    (startIndex: number, endIndex: number) => {
-      const maxIndex = value.length - 1;
-      if (startIndex > maxIndex || endIndex > maxIndex) {
-        console.error('交换位置超出最大位置');
-      }
-      const result = [...value];
-      const [removed] = result.splice(startIndex, 1);
-      result.splice(endIndex, 0, removed);
-      setValue(result);
-    },
-    [value],
-  );
+  const swap = usePersistFn((dragIndex: number, dropIndex: number) => {
+    const maxIndex = value.length - 1;
+    if (dragIndex > maxIndex || dropIndex > maxIndex) {
+      console.error('交换位置超出最大位置');
+    }
+    const list = [...value];
+    [list[dragIndex], list[dropIndex]] = [list[dropIndex], list[dragIndex]];
+    setValue(list);
+  });
+  const reorder = usePersistFn((startIndex: number, endIndex: number) => {
+    const maxIndex = value.length - 1;
+    if (startIndex > maxIndex || endIndex > maxIndex) {
+      console.error('交换位置超出最大位置');
+    }
+    const result = [...value];
+    const [removed] = result.splice(startIndex, 1);
+    result.splice(endIndex, 0, removed);
+    setValue(result);
+  });
   return [value, { isEdited, swap, reorder, ...actions }] as const;
 };
 

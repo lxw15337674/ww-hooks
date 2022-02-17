@@ -1,10 +1,11 @@
-import { useMemo, useCallback, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { isEqual, setState } from '../../common/utils';
 import {
   SetDispatch,
   SetPartialDispatch,
   SetPartialStateAction,
 } from '../../common/interface';
+import usePersistFn from '../usePersistFn';
 
 export interface Action<T> {
   reset: () => void;
@@ -17,23 +18,20 @@ export default function useObject<T extends object = object>(
   defaultValue: T | (() => T),
 ): [T, Action<T>] {
   const [object, setObject] = useState<T>(defaultValue);
-  const reset = useCallback(() => {
+  const reset = usePersistFn(() => {
     setObject(defaultValue);
-  }, [defaultValue]);
+  });
 
   const isEdited = useMemo(() => {
     return !isEqual(object, defaultValue);
   }, [object, defaultValue]);
 
-  const set = useCallback(
-    (object: SetPartialStateAction<T>) => {
-      setObject((prevObject: T) => {
-        const state = setState<Partial<T>>(object, prevObject);
-        return { ...prevObject, ...state };
-      });
-    },
-    [setObject],
-  );
+  const set = usePersistFn((object: SetPartialStateAction<T>) => {
+    setObject((prevObject: T) => {
+      const state = setState<Partial<T>>(object, prevObject);
+      return { ...prevObject, ...state };
+    });
+  });
 
   return [object, { setAll: setObject, set, reset, isEdited }];
 }
