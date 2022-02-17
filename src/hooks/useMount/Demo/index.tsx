@@ -10,11 +10,11 @@ const Component = () => {
 };
 
 export default () => {
-  const [state, { toggle }] = useBoolean(false);
+  const [state, toggle] = useBoolean(false);
 
   return (
     <>
-      <button type="button" onClick={toggle}>
+      <button type="button" onClick={() => toggle()}>
         {state ? 'unmount' : 'mount'}
       </button>
       {state && <Component />}

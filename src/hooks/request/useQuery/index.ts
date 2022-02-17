@@ -1,6 +1,12 @@
 import { useQueryConfig } from './interface';
-import { useMount, useAxios, useUnmount, useUpdateEffect } from '../../../';
-import { SetStateAction, useCallback, useRef, useState } from 'react';
+import {
+  useMount,
+  useAxios,
+  useUnmount,
+  useUpdateEffect,
+  usePersistFn,
+} from '../../../';
+import { SetStateAction, useRef, useState } from 'react';
 import { AxiosRequestConfig } from 'axios';
 import { setState } from '../../../common/utils';
 
@@ -15,40 +21,37 @@ const useQuery = <P = any, D = any>({
   const polling = useRef<NodeJS.Timeout>();
   const [requestParams, setParams] = useState<P>(params);
   const request = useAxios<D>(useAxiosConfig);
-  const cancel = useCallback(() => {
+  const cancel = usePersistFn(() => {
     request.cancel();
     clearTimeout(polling.current);
-  }, [request]);
+  });
 
-  const run = useCallback(
-    (_params: SetStateAction<P>) => {
-      if (polling.current) {
-        clearTimeout(polling.current);
-      }
-      if (!concurrent) {
-        cancel();
-      }
-      const params = setState(_params, requestParams);
-      setParams(params);
-      const axiosConfig: AxiosRequestConfig = {
-        params,
-      };
-      // 参数合并
-      if (pollingInterval) {
-        return request.run(axiosConfig).finally(() => {
-          polling.current = setTimeout(() => {
-            if (!polling.current) return;
-            run(params);
-          }, pollingInterval);
-        });
-      }
-      return request.run(axiosConfig);
-    },
-    [concurrent, requestParams, pollingInterval, request, cancel],
-  );
-  const reload = useCallback(() => {
+  const run = usePersistFn((_params: SetStateAction<P>) => {
+    if (polling.current) {
+      clearTimeout(polling.current);
+    }
+    if (!concurrent) {
+      cancel();
+    }
+    const params = setState(_params, requestParams);
+    setParams(params);
+    const axiosConfig: AxiosRequestConfig = {
+      params,
+    };
+    // 参数合并
+    if (pollingInterval) {
+      return request.run(axiosConfig).finally(() => {
+        polling.current = setTimeout(() => {
+          if (!polling.current) return;
+          run(params);
+        }, pollingInterval);
+      });
+    }
+    return request.run(axiosConfig);
+  });
+  const reload = usePersistFn(() => {
     return run(requestParams);
-  }, [requestParams, run]);
+  });
 
   useUpdateEffect(() => {
     reload();

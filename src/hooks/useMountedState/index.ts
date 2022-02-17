@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
+import usePersistFn from '../usePersistFn';
 
 export default function useMountedState() {
   const mountedRef = useRef<boolean>(false);
@@ -8,6 +9,6 @@ export default function useMountedState() {
       mountedRef.current = false;
     };
   }, []);
-  const get = useCallback(() => mountedRef.current, []);
+  const get = usePersistFn(() => mountedRef.current);
   return get;
 }

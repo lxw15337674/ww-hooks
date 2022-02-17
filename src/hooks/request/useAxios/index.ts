@@ -1,6 +1,6 @@
-import { useCallback, useRef } from 'react';
+import { useRef } from 'react';
 import Axios, { AxiosRequestConfig, Canceler } from 'axios';
-import { usePromise, useUnmount } from '../../../';
+import { usePersistFn, usePromise, useUnmount } from '../../../';
 import { useAxiosConfig } from './interface';
 
 const axios = Axios.create();
@@ -17,22 +17,18 @@ const useAxios = <D>({
   ...axiosConfig
 }: useAxiosConfig<D>) => {
   const cancelToken = useRef<Canceler>();
-
-  const axiosRequest = useCallback(
-    (config?: AxiosRequestConfig) => {
-      const runConfig = {
-        cancelToken: new Axios.CancelToken((c) => {
-          cancelToken.current = c;
-        }),
-        ...axiosConfig,
-        ...config,
-      };
-      return axios.request<D>(runConfig).then((res) => {
-        return res.data;
-      });
-    },
-    [axiosConfig],
-  );
+  const axiosRequest = usePersistFn((config?: AxiosRequestConfig) => {
+    const runConfig = {
+      cancelToken: new Axios.CancelToken((c) => {
+        cancelToken.current = c;
+      }),
+      ...axiosConfig,
+      ...config,
+    };
+    return axios.request<D>(runConfig).then((res) => {
+      return res.data;
+    });
+  });
 
   const request = usePromise<D, [AxiosRequestConfig<D>]>(axiosRequest, {
     debounceInterval,
@@ -45,10 +41,10 @@ const useAxios = <D>({
     defaultParams,
   });
 
-  const cancel = useCallback(() => {
+  const cancel = usePersistFn(() => {
     cancelToken.current?.();
     request?.cancel();
-  }, [request.cancel]);
+  });
 
   useUnmount(() => {
     cancel();

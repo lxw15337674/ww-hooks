@@ -21,9 +21,7 @@ function useEventListener(
     if (!targetElement?.addEventListener) {
       return;
     }
-    const eventListener = (
-      event: Event,
-    ): EventListenerOrEventListenerObject | AddEventListenerOptions => {
+    const eventListener = (event: Event) => {
       return handlerRef.current && handlerRef.current(event);
     };
 

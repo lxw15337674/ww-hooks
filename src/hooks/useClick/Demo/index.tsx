@@ -5,7 +5,7 @@
  *  简单示例
  *
  */
-import useClick from '../';
+import { useClick } from 'wwhooks';
 import React, { useState } from 'react';
 
 const Demo = () => {

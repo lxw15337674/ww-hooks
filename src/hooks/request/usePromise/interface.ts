@@ -1,4 +1,4 @@
-import { AxiosRequestConfig, AxiosResponse } from 'axios';
+import { Dispatch, SetStateAction } from 'react';
 
 export type Status = 'loading' | 'error' | 'success';
 
@@ -34,7 +34,7 @@ export interface usePromiseResult<D, P extends any[]> {
   params: P;
   reload: () => Promise<D>;
   cancel: () => void;
-  mutate: React.Dispatch<React.SetStateAction<D>>;
+  mutate: Dispatch<SetStateAction<D>>;
   isError: boolean;
   isSuccess: boolean;
   status: Status;

@@ -1,10 +1,5 @@
-import {
-  useState,
-  useCallback,
-  Dispatch,
-  SetStateAction,
-  useEffect,
-} from 'react';
+import { useState, Dispatch, SetStateAction, useEffect } from 'react';
+import usePersistFn from '../usePersistFn';
 
 const setWindowsHash = (hash: string) => {
   window.location.replace('#' + encodeURIComponent(hash));
@@ -24,7 +19,7 @@ export default (
 
   useEffect(() => {
     if (hash === null || hash === undefined) {
-      //https://stackoverflow.com/questions/1397329/how-to-remove-the-hash-from-window-location-url-with-javascript-without-page-r
+      // https://stackoverflow.com/questions/1397329/how-to-remove-the-hash-from-window-location-url-with-javascript-without-page-r
       history.pushState(
         '',
         document.title,
@@ -35,9 +30,9 @@ export default (
     }
   }, [hash]);
 
-  const reset = useCallback(() => {
+  const reset = usePersistFn(() => {
     setHash(initialState);
-  }, [initialState]);
+  });
 
   return [hash, setHash, reset];
 };

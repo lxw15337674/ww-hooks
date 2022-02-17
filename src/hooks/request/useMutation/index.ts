@@ -1,6 +1,6 @@
 import { useMutationConfig } from './interface';
-import { useMount, useAxios } from '../../../';
-import { useCallback, useState } from 'react';
+import { useMount, useAxios, usePersistFn } from '../../../';
+import { useState } from 'react';
 import { AxiosRequestConfig } from 'axios';
 import { setState } from '../../../common/utils';
 import { SetStateAction } from '@/common/interface';
@@ -19,17 +19,14 @@ const useMutation = <P = any, D = any>({
 
   const request = useAxios<P>(axiosConfig);
 
-  const run = useCallback(
-    (params: SetStateAction<P>) => {
-      let _params = setState(params, bodyData);
-      setBodyData(params);
-      return request.run({ data: _params });
-    },
-    [bodyData, request],
-  );
-  const reload = useCallback(() => {
+  const run = usePersistFn((params: SetStateAction<P>) => {
+    let _params = setState(params, bodyData);
+    setBodyData(params);
+    return request.run({ data: _params });
+  });
+  const reload = usePersistFn(() => {
     return run(bodyData);
-  }, [run, bodyData]);
+  });
 
   useMount(() => {
     if (manual === false) {

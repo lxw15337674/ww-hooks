@@ -1,14 +1,20 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import {
   Service,
   Status,
   usePromiseConfig,
   usePromiseResult,
 } from './interface';
-import { useMount, useMountedState, useTimeoutFn, useUnmount } from '../../..';
+import {
+  useMount,
+  useMountedState,
+  usePersistFn,
+  useTimeoutFn,
+  useUnmount,
+} from '../../..';
 import useDebounceFn from '../../useDebounceFn';
 import useThrottleFn from '../../useThrottleFn';
-import { isNumber } from '@/common/utils';
+import { isNumber } from '../../../common/utils';
 
 const usePromise = <D, P extends any[] = never>(
   service: Service<D, P>,
@@ -32,66 +38,61 @@ const usePromise = <D, P extends any[] = never>(
     setStatus('loading');
   }, loadingDelay);
 
-  const baseRun = useCallback(
-    (...params: P): Promise<D> => {
-      delaySetLoading.run();
-      setError(undefined);
-      setParams(params);
-      return service(...params)
-        .then((data: D) => {
-          mountedState() && setData(data);
-          onSuccess?.(data, params);
-          setStatus('success');
-          return data;
-        })
-        .catch((err: Error) => {
-          mountedState() && setError(err);
-          onError?.(err, params);
-          setStatus('error');
-          return Promise.reject(err);
-        })
-        .finally(() => {
-          delaySetLoading.cancel();
-        });
-    },
-    [delaySetLoading, mountedState, onError, onSuccess, service],
-  );
+  const baseRun = usePersistFn((...params: P): Promise<D> => {
+    delaySetLoading.run();
+    setError(undefined);
+    setParams(params);
+    return service(...params)
+      .then((data: D) => {
+        mountedState() && setData(data);
+        onSuccess?.(data, params);
+        setStatus('success');
+        return data;
+      })
+      .catch((err: Error) => {
+        mountedState() && setError(err);
+        onError?.(err, params);
+        setStatus('error');
+        return Promise.reject(err);
+      })
+      .finally(() => {
+        delaySetLoading.cancel();
+      });
+  });
 
   const debounceRun = useDebounceFn(baseRun, debounceInterval);
 
   const throttleRun = useThrottleFn(baseRun, throttleInterval);
 
-  const run = useCallback(
-    (...params: P): Promise<D> => {
-      let _params = params;
-      if (!Array.isArray(params)) {
-        _params = [] as P;
-      }
-      if (isNumber(debounceInterval)) {
-        debounceRun.run(..._params);
-        return Promise.resolve(null);
-      }
-      if (isNumber(throttleInterval)) {
-        throttleRun.run(..._params);
-        return Promise.resolve(null);
-      }
-      return baseRun(..._params);
-    },
-    [debounceInterval, throttleInterval, baseRun, debounceRun, throttleRun],
-  );
+  const run = usePersistFn((...params: P): Promise<D> => {
+    let _params = params;
+    if (!Array.isArray(params)) {
+      _params = [] as P;
+    }
+    if (isNumber(debounceInterval)) {
+      console.log('debounce');
+      debounceRun.run(..._params);
+      return Promise.resolve(null);
+    }
+    if (isNumber(throttleInterval)) {
+      throttleRun.run(..._params);
+      return Promise.resolve(null);
+    }
+    return baseRun(..._params);
+  });
 
-  const reload = useCallback(() => {
+  const reload = usePersistFn(() => {
     if (Array.isArray(params)) {
       return run(...params);
     }
     // @ts-ignore
     return run();
-  }, [run, params]);
+  });
 
-  const cancel = useCallback(() => {
+  const cancel = usePersistFn(() => {
     debounceRun?.cancel();
     throttleRun?.cancel();
-  }, [debounceRun, throttleRun]);
+  });
 
   const flush = useMemo(() => {
     if (debounceRun?.flush) {

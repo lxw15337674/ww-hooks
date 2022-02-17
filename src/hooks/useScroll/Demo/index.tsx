@@ -7,7 +7,7 @@ import { useScroll } from 'wwhooks';
 
 export default () => {
   const ref = useRef();
-  const { position } = useScroll(ref);
+  const position = useScroll(ref);
   return (
     <>
       <p>left:{position.left}</p>

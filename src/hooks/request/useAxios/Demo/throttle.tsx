@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { useAxios } from 'wwhooks';
+import useAxios from '..';
+// import { useAxios } from 'wwhooks';
 
 export default () => {
   const [count, setCount] = useState(0);
@@ -9,7 +10,7 @@ export default () => {
     onSuccess: (data) => {
       setCount((v) => ++v);
     },
-    throttle: { wait: 10000 },
+    throttleInterval: 1000,
   });
   return (
     <div>
@@ -19,7 +20,7 @@ export default () => {
       <p>requestCount:{count}</p>
       <button
         onClick={() => {
-          request.run();
+          request.reload();
         }}
       >
         request

@@ -3,17 +3,16 @@ import React, { useState } from 'react';
 import { useDebounceFn } from 'wwhooks';
 
 export default () => {
-  let [count, setCount] = useState<number>(0);
-  const [leading, setLeading] = useState(false);
-  const [trailing, setTrailing] = useState(true);
-  const fn = usePersistFn(() => {
-    const v = ++count;
-    setCount(v);
-  });
-  const { run, cancel, flush } = useDebounceFn<() => void>(fn, 500, {
-    leading: leading,
-    trailing: trailing,
-  });
+  const [count, setCount] = useState<number>(0);
+  const [leading, leadingToggle] = useBoolean(false);
+  const [trailing, trailingToggle] = useBoolean(true);
+  const { run, cancel, flush } = useDebounceFn<() => void>(
+    () => {
+      setCount((state) => ++state);
+    },
+    1000,
+    { leading: leading, trailing: trailing },
+  );
   return (
     <div>
       <p>count : {count} </p>

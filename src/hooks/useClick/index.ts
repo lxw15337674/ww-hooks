@@ -1,5 +1,5 @@
-import React, { useCallback, useMemo } from 'react';
-import { useNumber, useTimeoutFn } from '../../';
+import React, { useMemo } from 'react';
+import { useNumber, usePersistFn, useTimeoutFn } from '../../';
 
 export interface Config {
   delay?: number;
@@ -21,22 +21,19 @@ const useClick = (
     actions.reset();
   }, delay);
 
-  const fn = useCallback(
-    (e: React.MouseEvent) => {
-      if (clickCount === 0) {
+  const fn = usePersistFn((e: React.MouseEvent) => {
+    if (clickCount === 0) {
+      simpleClickFn?.(e);
+      run();
+    }
+    if (clickCount === 1) {
+      if (!exclusive) {
         simpleClickFn?.(e);
-        run();
       }
-      if (clickCount === 1) {
-        if (!exclusive) {
-          simpleClickFn?.(e);
-        }
-        doubleClickFn?.(e);
-      }
-      actions.plus(1);
-    },
-    [simpleClickFn, run, exclusive, doubleClickFn],
-  );
+      doubleClickFn?.(e);
+    }
+    actions.plus(1);
+  });
 
   return fn;
 };

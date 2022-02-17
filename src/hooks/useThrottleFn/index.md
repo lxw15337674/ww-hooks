@@ -1,6 +1,6 @@
 ---
 group:
-  title: sideEffect
+  title: Effect
   path: /Effect
 ---
 

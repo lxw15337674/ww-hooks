@@ -6,12 +6,21 @@ group:
 
 # 待上线
 
-## feature
-1. 增加useRective
 
 # 更新日志
 
-## [1.0.21] - 2022-01-21
+## [1.0.22] 2022/02/17
+
+#### Feature
+
+- 增加useReactive、useSyncScroll、useVirtualList、usePrevious、useDynamicList、useInterval
+- 内部代码优化，用usePersistFn代替useCallback
+
+#### Fixed
+
+- 修复部分示例代码
+
+## [1.0.21] 2022-01-21
 
 #### Feature
 
@@ -37,14 +46,14 @@ group:
 - 增加新的utils
   - `colSpan`
 
-## ## [1.0.19] - 2021-12-17
+## [1.0.19] - 2021-12-17
 
 #### Added
 
 - 增加一些新的 hook
   - `useIntersectionObserver`
 
-## ## [1.0.18-fix1] - 2021-12-13
+## [1.0.18-fix1] - 2021-12-13
 
 #### Fixed
 
@@ -59,3 +68,7 @@ group:
   - `useScroll`
   - `useIsScroll`
   - `useResizeObserver`
+<<<<<<< HEAD
+
+=======
+>>>>>>> origin/master

@@ -7,9 +7,8 @@
  */
 import { message } from 'antd';
 import React, { useState } from 'react';
-import { usePersistFn } from 'wwhooks';
-
-const Test = () => {
+import usePersistFn from '..';
+const Test = (props) => {
   const [value, setValue] = useState('');
   const show = usePersistFn((text) => {
     console.log(value);

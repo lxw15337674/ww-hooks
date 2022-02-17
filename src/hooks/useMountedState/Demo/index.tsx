@@ -14,11 +14,11 @@ const Component = () => {
 };
 
 export default () => {
-  const [state, { toggle }] = useBoolean(true);
+  const [state, toggle] = useBoolean(true);
   return (
     <>
       <p>
-        <button onClick={toggle}>{state ? 'unmount' : 'mount'}</button>
+        <button onClick={() => toggle()}>{state ? 'unmount' : 'mount'}</button>
       </p>
       {state ? <Component /> : <p>no</p>}
     </>

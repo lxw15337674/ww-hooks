@@ -2,16 +2,18 @@
 
 [文档](https://lxw15337674.github.io/ww-hooks/)
 
+当前版本:1.0.22
+
 # todo
 
-2. usestorage
-3. useIndexedDB
-4. useDialog
-5. 单例模式的 useUrlstate
-6. useHover
-7. useScroll，封装对应的移动方法
-8. useisScroll，判断处于滚动状态
-9. useObject，增加与原始数据比较出差异的对象
+- [x] useReactive
+- [ ] usestorage
+- [ ] useIndexedDB
+- [x] 单例模式的 useUrlstate
+- [ ] useHover
+- [x] useScroll，封装对应的移动方法
+- [x] useisScroll，判断可以滚动状态
+- [ ] useObject，增加与原始数据比较出差异的对象
 
 ## list
 

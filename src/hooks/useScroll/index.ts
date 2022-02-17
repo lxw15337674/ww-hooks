@@ -25,5 +25,5 @@ export default function useScroll(target: Target) {
     },
     { target },
   );
-  return { position } as const;
+  return position;
 }

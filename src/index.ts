@@ -1,3 +1,8 @@
+import useDynamicList from './hooks/useDynamicList';
+import useInterval from './hooks/useInterval';
+import usePrevious from './hooks/usePrevious';
+import useSyncScroll from './hooks/useSyncScroll';
+
 export { default as useBoolean } from './hooks/useBoolean';
 export { default as useArray } from './hooks/useArray';
 export { default as useMount } from './hooks/useMount';
@@ -28,7 +33,8 @@ export { default as sortBy } from './function/colSpan';
 export { default as isType } from './function/IsType';
 export { default as usePersistFn } from './hooks/usePersistFn';
 export { default as useReactive } from './hooks/useReactive';
-
 export { default as useAxios } from './hooks/request/useAxios';
 export { default as useQuery } from './hooks/request/useQuery';
 export { default as useMutation } from './hooks/request/useMutation';
+
+export { useSyncScroll, useDynamicList, usePrevious, useInterval };
