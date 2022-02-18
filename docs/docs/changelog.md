@@ -3,8 +3,18 @@ group:
   order: 0 
 ---
 
+# 更新内容
 
-# 待上线
+## 待更新
+
+#### Feature
+
+- 文档重新梳理hook分类
+- useInterval改为useIntervalFn
+
+#### Fixed
+
+- 修复debounce、throttle引用问题
 
 
 # 更新日志
@@ -13,7 +23,7 @@ group:
 
 #### Feature
 
-- 增加useReactive、useSyncScroll、useVirtualList、usePrevious、useDynamicList、useInterval
+- 增加useReactive、useSyncScroll、useVirtualList、usePrevious、useDynamicList、useIntervalFn
 - 内部代码优化，用usePersistFn代替useCallback
 
 #### Fixed
@@ -68,7 +78,7 @@ group:
   - `useScroll`
   - `useIsScroll`
   - `useResizeObserver`
-<<<<<<< HEAD
+  <<<<<<< HEAD
 
 =======
 >>>>>>> origin/master

@@ -1,6 +1,6 @@
 ---
 group:
-  path: /Effect
+  title: function
 ---
 
 # usePersistFn

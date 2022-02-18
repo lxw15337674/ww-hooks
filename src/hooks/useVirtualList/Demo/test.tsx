@@ -4,7 +4,7 @@
 import React, { useRef } from 'react';
 import useVirtualList from '..';
 import { Button } from 'antd';
-import { useInterval } from '../../../';
+import { useIntervalFn } from '../../../';
 
 const mockList = [];
 let key = 0;
@@ -25,7 +25,7 @@ export default () => {
     30,
   );
 
-  const { start, clear, looping } = useInterval(() => {
+  const { start, clear, looping } = useIntervalFn(() => {
     const dom = containerRef.current;
     if (dom.clientHeight >= dom.scrollTop) {
       clear();

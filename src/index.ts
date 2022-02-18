@@ -1,40 +1,77 @@
+import isType from './function/IsType';
+import setDefaultArguments from './function/setDefaultArguments';
+import useAxios from './hooks/request/useAxios';
+import useMutation from './hooks/request/useMutation';
+import usePromise from './hooks/request/usePromise';
+import useQuery from './hooks/request/useQuery';
+import useArray from './hooks/useArray';
+import useBoolean from './hooks/useBoolean';
+import useClick from './hooks/useClick';
+import useDebounceFn from './hooks/useDebounceFn';
 import useDynamicList from './hooks/useDynamicList';
-import useInterval from './hooks/useInterval';
+import useEventListener from './hooks/useEventListener';
+import useHash from './hooks/useHash';
+import useIntersectionObserver from './hooks/useIntersectionObserver';
+import useIntervalFn from './hooks/useIntervalFn';
+import useIsScroll from './hooks/useIsScroll';
+import useLockScroll from './hooks/useLockScroll';
+import useMount from './hooks/useMount';
+import useMountedState from './hooks/useMountedState';
+import useNumber from './hooks/useNumber';
+import useObject from './hooks/useObject';
+import usePersistFn from './hooks/usePersistFn';
 import usePrevious from './hooks/usePrevious';
+import useReactive from './hooks/useReactive';
+import useResizeObserver from './hooks/useResizeObserver';
+import useScroll from './hooks/useScroll';
+import useSize from './hooks/useSize';
 import useSyncScroll from './hooks/useSyncScroll';
+import useThrottleFn from './hooks/useThrottleFn';
+import useTimeoutFn from './hooks/useTimeoutFn';
+import useToggle from './hooks/useToggle';
+import useUnmount from './hooks/useUnmount';
+import useUpdate from './hooks/useUpdate';
+import useUpdateEffect from './hooks/useUpdateEffect';
+import useUrlState from './hooks/useUrlState';
+import useVisible from './hooks/useVisible';
+import sortBy from './function/colSpan';
 
-export { default as useBoolean } from './hooks/useBoolean';
-export { default as useArray } from './hooks/useArray';
-export { default as useMount } from './hooks/useMount';
-export { default as useUnmount } from './hooks/useUnmount';
-export { default as useUpdateEffect } from './hooks/useUpdateEffect';
-export { default as useObject } from './hooks/useObject';
-export { default as useHash } from './hooks/useHash';
-export { default as useUrlState } from './hooks/useUrlState';
-export { default as useToggle } from './hooks/useToggle';
-export { default as useDebounceFn } from './hooks/useDebounceFn';
-export { default as useLockScroll } from './hooks/useLockScroll';
-export { default as useMountedState } from './hooks/useMountedState';
-export { default as useTimeoutFn } from './hooks/useTimeoutFn';
-export { default as useSize } from './hooks/useSize';
-export { default as useUpdate } from './hooks/useUpdate';
-export { default as useNumber } from './hooks/useNumber';
-export { default as useClick } from './hooks/useClick';
-export { default as usePromise } from './hooks/request/usePromise';
-export { default as useThrottleFn } from './hooks/useThrottleFn';
-export { default as setDefaultArguments } from './function/setDefaultArguments';
-export { default as useVisible } from './hooks/useVisible';
-export { default as useEventListener } from './hooks/useEventListener';
-export { default as useScroll } from './hooks/useScroll';
-export { default as useIsScroll } from './hooks/useIsScroll';
-export { default as useResizeObserver } from './hooks/useResizeObserver';
-export { default as useIntersectionObserver } from './hooks/useIntersectionObserver';
-export { default as sortBy } from './function/colSpan';
-export { default as isType } from './function/IsType';
-export { default as usePersistFn } from './hooks/usePersistFn';
-export { default as useReactive } from './hooks/useReactive';
-export { default as useAxios } from './hooks/request/useAxios';
-export { default as useQuery } from './hooks/request/useQuery';
-export { default as useMutation } from './hooks/request/useMutation';
-
-export { useSyncScroll, useDynamicList, usePrevious, useInterval };
+export {
+  useSyncScroll,
+  useDynamicList,
+  usePrevious,
+  useIntervalFn,
+  useBoolean,
+  useArray,
+  useMount,
+  useUnmount,
+  useUpdateEffect,
+  useObject,
+  useHash,
+  useUrlState,
+  useToggle,
+  useDebounceFn,
+  useLockScroll,
+  useMountedState,
+  useTimeoutFn,
+  useSize,
+  sortBy,
+  useUpdate,
+  useNumber,
+  useClick,
+  usePromise,
+  useThrottleFn,
+  setDefaultArguments,
+  useVisible,
+  useEventListener,
+  useScroll,
+  useIsScroll,
+  useResizeObserver,
+  useIntersectionObserver,
+  isType,
+  usePersistFn,
+  useReactive,
+  useAxios,
+  useQuery,
+  useMutation,
+};

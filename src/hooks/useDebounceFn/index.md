@@ -1,7 +1,6 @@
 ---
 group:
-  title: Effect
-  path: /Effect
+  title: function
 ---
 
 # useDebounceFn

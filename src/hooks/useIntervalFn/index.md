@@ -1,10 +1,9 @@
 ---
 group:
-  title: Effect
-  path: /Effect
+  title: function
 ---
 
-# useInterval
+# useIntervalFn
 
 循环执行函数的hook
 
@@ -28,7 +27,7 @@ const {
   start,
   clear,
   looping
-} = useInterval(
+} = useIntervalFn(
   fn: ()=>void,
   delay:number,
 );
