@@ -1,9 +1,8 @@
 ---
 group:
-  title: dom
-  path: /dom
+  title: Sensor
+  path: /Sensor
 ---
-
 # useSize
 
 一个用于监听 dom 节点尺寸变化的 Hook。
@@ -11,6 +10,7 @@ group:
 ## demo
 
 <code src="./Demo/index.tsx"/>
+<code src="./Demo/Demo2.tsx"/>
 
 ### Params
 

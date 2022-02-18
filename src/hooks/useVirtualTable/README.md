@@ -1,4 +1,4 @@
----
+<!-- ---
 group:
   title: dom
   path: /dom
@@ -46,4 +46,4 @@ https://wwhooks.js.org/zh-CN/hooks/ui/use-virtual-list/
 | list           | 当前需要展示的列表内容    | `{data: T, index: number}[]` |
 | containerProps | 滚动容器的 props          | `object`                     |
 | wrapperProps   | children 外层包裹器 props | `object`                     |
-|                |                           |                              |
+|                |                           |                              | -->

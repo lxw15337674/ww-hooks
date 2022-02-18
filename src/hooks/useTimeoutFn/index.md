@@ -1,6 +1,7 @@
 ---
 group:
-  title: function
+  title: Function
+  path: /Function
 ---
 
 # useTimeoutFn
