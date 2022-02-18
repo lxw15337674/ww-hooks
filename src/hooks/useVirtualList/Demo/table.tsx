@@ -1,7 +1,7 @@
 /**
  * debug: true
  */
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import useVirtualList from '..';
 import { Button } from 'antd';
 import { useInterval } from '@/';
@@ -26,7 +26,7 @@ export default () => {
   );
   const { start, clear, looping } = useInterval(() => {
     const dom = containerRef.current;
-    if (dom.clientHeight <= dom.scrollTop) {
+    if (dom.clientHeight >= dom.scrollTop) {
       clear();
     }
     dom.scrollTop += 100;
@@ -47,7 +47,7 @@ export default () => {
           {cells.map((cell, index) => {
             return (
               <div
-                key={index}
+                key={cell.index}
                 style={{
                   height: 30,
                   display: 'flex',

@@ -27,7 +27,7 @@ export default () => {
 
   const { start, clear, looping } = useInterval(() => {
     const dom = containerRef.current;
-    if (dom.clientHeight <= dom.scrollTop) {
+    if (dom.clientHeight >= dom.scrollTop) {
       clear();
     }
     dom.scrollTop += 100;
