@@ -25,6 +25,7 @@ import useReactive from './hooks/useReactive';
 import useResizeObserver from './hooks/useResizeObserver';
 import useScroll from './hooks/useScroll';
 import useSize from './hooks/useSize';
+import useMutationObserver from './hooks/useMutationObserver';
 import useSyncScroll from './hooks/useSyncScroll';
 import useThrottleFn from './hooks/useThrottleFn';
 import useTimeoutFn from './hooks/useTimeoutFn';
@@ -74,4 +75,5 @@ export {
   useAxios,
   useQuery,
   useMutation,
+  useMutationObserver,
 };
