@@ -1,4 +1,3 @@
-import { useResizeObserver } from '@/';
 import { useState } from 'react';
 import useMutationObserver from '../useMutationObserver';
 
@@ -11,7 +10,7 @@ const useIsScroll = (target) => {
     x: false,
     y: false,
   });
-  useMutationObserver(target, (entry) => {
+  useMutationObserver(target, () => {
     if (!target.current) {
       return;
     }
