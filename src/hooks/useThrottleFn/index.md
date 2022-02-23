@@ -1,7 +1,7 @@
 ---
 group:
-  title: Effect
-  path: /Effect
+  title: Function
+  path: /Function
 ---
 
 # useThrottleFn

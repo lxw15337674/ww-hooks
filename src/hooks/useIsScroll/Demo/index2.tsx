@@ -1,17 +1,36 @@
 /**
- * title: 监听浏览器
- * desc: 通过ref监听节点变化
+ * debug : true
  */
-import React, { useRef } from 'react';
-import { useIsScroll } from 'wwhooks';
+import React, { useEffect, useRef } from 'react';
+import { useIsScroll, useTimeoutFn } from 'wwhooks';
 
+let visible = false;
 export default () => {
-  const isScrollState = useIsScroll(document.body);
+  const ref = useRef();
+  const isScrollState = useIsScroll(ref);
+  const { run } = useTimeoutFn(() => {
+    visible = true;
+  }, 1000);
+  useEffect(() => {
+    run();
+  });
   return (
     <>
       窗口状态
       <p>x : {isScrollState.x.toString()}</p>
       <p>y : {isScrollState.y.toString()}</p>
+      <div
+        ref={ref}
+        style={{
+          height: 100,
+          width: 200,
+          border: '1px solid',
+          overflow: 'scroll',
+          resize: 'both',
+        }}
+      >
+        {visible && <div style={{ height: 200, width: 400 }}>test</div>}
+      </div>
     </>
   );
 };

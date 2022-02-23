@@ -1,5 +1,5 @@
-import { useResizeObserver } from '@/';
 import { useState } from 'react';
+import useMutationObserver from '../useMutationObserver';
 
 export interface ScrollState {
   x: boolean;
@@ -10,11 +10,13 @@ const useIsScroll = (target) => {
     x: false,
     y: false,
   });
-  useResizeObserver(target, (entry) => {
-    const target = entry.target as HTMLElement;
+  useMutationObserver(target, () => {
+    if (!target.current) {
+      return;
+    }
     setState({
-      x: target.scrollWidth !== target.clientWidth,
-      y: target.scrollHeight !== target.clientHeight,
+      x: target.current.scrollWidth !== target.current.clientWidth,
+      y: target.current.scrollHeight !== target.current.clientHeight,
     });
   });
   return state;

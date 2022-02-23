@@ -1,7 +1,7 @@
 ---
 group:
-  title: dom
-  path: /dom
+  title: Sensor
+  path: /Sensor
 ---
 
 # useScroll

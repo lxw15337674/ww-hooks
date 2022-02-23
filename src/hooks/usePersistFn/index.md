@@ -1,6 +1,7 @@
 ---
 group:
-  path: /Effect
+  title: Function
+  path: /Function
 ---
 
 # usePersistFn

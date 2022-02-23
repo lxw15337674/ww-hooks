@@ -1,12 +1,12 @@
 ---
 group:
-  title: Effect
-  path: /Effect
+  title: Function
+  path: /Function
 ---
 
 # useTimeoutFn
 
-封装 setTimeout 的 Hook。
+处理延迟执行函数。
 
 ## Demo
 

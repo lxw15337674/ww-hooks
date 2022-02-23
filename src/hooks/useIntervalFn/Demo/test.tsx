@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import useInterval from '..';
+import useIntervalFn from '..';
 export default () => {
   const [count, setCount] = useState<number>(0);
-  const { start, clear, looping } = useInterval(() => {
+  const { start, clear, looping } = useIntervalFn(() => {
     setCount((v) => ++v);
   }, 100);
   return (

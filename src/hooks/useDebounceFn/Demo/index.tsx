@@ -1,11 +1,10 @@
-import { usePersistFn } from '@/';
 import React, { useState } from 'react';
 import { useDebounceFn } from 'wwhooks';
 
 export default () => {
   const [count, setCount] = useState<number>(0);
-  const [leading, leadingToggle] = useBoolean(false);
-  const [trailing, trailingToggle] = useBoolean(true);
+  const [leading, leadingToggle] = useState(false);
+  const [trailing, trailingToggle] = useState(true);
   const { run, cancel, flush } = useDebounceFn<() => void>(
     () => {
       setCount((state) => ++state);
@@ -28,10 +27,10 @@ export default () => {
         </button>
       </p>
       <p>
-        <button type="button" onClick={() => setLeading((v) => !v)}>
+        <button type="button" onClick={() => leadingToggle((v) => !v)}>
           leading : {leading.toString()}
         </button>
-        <button type="button" onClick={() => setTrailing((v) => !v)}>
+        <button type="button" onClick={() => trailingToggle((v) => !v)}>
           trailing : {trailing.toString()}
         </button>
       </p>

@@ -68,6 +68,7 @@ export default <T = any>(
         overscan,
       );
       setRowIndex(index);
+
       setRowUpdateOffset(getUpdateDistance(index, rowTopOffsetList));
     }
   });

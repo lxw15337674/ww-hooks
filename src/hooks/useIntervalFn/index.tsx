@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import usePersistFn from '../usePersistFn';
 import useUnmount from '../useUnmount';
 
-function useInterval(fn: () => void, delay: number) {
+function useIntervalFn(fn: () => void, delay: number) {
   const timerId = useRef<any>(null);
   const [looping, setLooping] = useState(false);
   const callback = usePersistFn(() => {
@@ -32,4 +32,4 @@ function useInterval(fn: () => void, delay: number) {
   };
 }
 
-export default useInterval;
+export default useIntervalFn;

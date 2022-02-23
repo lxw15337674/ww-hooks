@@ -3,17 +3,37 @@ group:
   order: 0 
 ---
 
+# 更新内容
 
-# 待上线
+# Todo
+
+
+
+## 待更新
+
+
 
 
 # 更新日志
+
+## [1.0.23] 2022/02/23
+
+#### Feature
+
+- 增加useMutationObserver
+- 文档重新梳理hook分类
+- useInterval改为useIntervalFn
+
+#### Fixed
+
+- 修复debounce、throttle引用问题
+- useIsScroll，如果内部dom变化，不会正确判断是否处于滚动状态
 
 ## [1.0.22] 2022/02/17
 
 #### Feature
 
-- 增加useReactive、useSyncScroll、useVirtualList、usePrevious、useDynamicList、useInterval
+- 增加useReactive、useSyncScroll、useVirtualList、usePrevious、useDynamicList、useIntervalFn
 - 内部代码优化，用usePersistFn代替useCallback
 
 #### Fixed
@@ -68,7 +88,7 @@ group:
   - `useScroll`
   - `useIsScroll`
   - `useResizeObserver`
-<<<<<<< HEAD
+  <<<<<<< HEAD
 
 =======
 >>>>>>> origin/master
