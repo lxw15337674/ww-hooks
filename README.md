@@ -2,7 +2,7 @@
 
 [文档](https://lxw15337674.github.io/ww-hooks/)
 
-当前版本:1.0.22
+当前版本:1.0.23
 
 # todo
 
