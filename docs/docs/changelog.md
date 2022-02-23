@@ -7,9 +7,16 @@ group:
 
 # Todo
 
-- [ ] 使用useIntersection 优化虚拟滚动的hook
+
 
 ## 待更新
+
+
+
+
+# 更新日志
+
+## [1.0.23] 2022/02/23
 
 #### Feature
 
@@ -21,9 +28,6 @@ group:
 
 - 修复debounce、throttle引用问题
 - useIsScroll，如果内部dom变化，不会正确判断是否处于滚动状态
-
-
-# 更新日志
 
 ## [1.0.22] 2022/02/17
 
