@@ -25,7 +25,7 @@ export default <T = any>(
 
   const calculateRowRange = usePersistFn(() => {
     if (
-      top > Math.max(itemHeight * rowIndex.start - containerHeight, 0) ||
+      top >= Math.max(itemHeight * rowIndex.start - containerHeight, 0) ||
       top <= rowIndex.end * itemHeight
     ) {
       const start = Math.max(0, Math.floor(top / itemHeight));
@@ -42,7 +42,7 @@ export default <T = any>(
 
   useLayoutEffect(() => {
     calculateRowRange();
-  }, [top, containerHeight]);
+  }, [top, containerHeight, originalList]);
 
   const list = useMemo(() => {
     return originalList
