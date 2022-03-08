@@ -11,7 +11,8 @@ group:
 
 ## 待更新
 
-
+1. useNumber
+   - [x] 增加max、min
 
 
 # 更新日志

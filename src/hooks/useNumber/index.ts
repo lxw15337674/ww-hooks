@@ -17,25 +17,27 @@ function getTargetValue(val: number, options: Options = {}) {
   }
   return target;
 }
+export type ValueParam = number | ((c: number) => number);
 
 const useNumber = (defaultValue = 0, config?: Options) => {
   const [number, setNumber] = useState<number>(
     getTargetValue(defaultValue, config),
   );
 
-  const setValue = usePersistFn((v) => {
-    setNumber(getTargetValue(v, config));
+  const setValue = usePersistFn((v: ValueParam) => {
+    const target = typeof v === 'number' ? v : v(number);
+    setNumber(getTargetValue(target, config));
   });
 
-  const plus = usePersistFn((v: number = 1) => {
-    setNumber((c) => c + v);
+  const plus = usePersistFn((v = 1) => {
+    setValue((c) => c + v);
   });
-  const minus = usePersistFn((v: number = 1) => {
-    setNumber((c) => c - v);
+  const minus = usePersistFn((v = 1) => {
+    setValue((c) => c - v);
   });
 
   const reset = usePersistFn(() => {
-    setNumber(defaultValue);
+    setValue(defaultValue);
   });
 
   return [number, { set: setValue, reset, plus, minus }] as const;
