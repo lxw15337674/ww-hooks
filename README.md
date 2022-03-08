@@ -19,8 +19,8 @@
 - [ ] useComputed，原理vue的计算属性，需要配合useReactive使用
 - [ ] useStore，基于useComputed 的状态管理
   - [ ] 支持存到sessionStorage
-- [ ] useNumber
-  - [ ] 增加max、min
+- [x] useNumber
+  - [x] 增加max、min
 
 
 

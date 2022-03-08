@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import useReactive from '..';
+import { useReactive } from 'wwhooks';
 
 const Test = () => {
   let list = useReactive({ a: '' });
