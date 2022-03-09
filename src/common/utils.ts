@@ -91,3 +91,10 @@ export const dataType = (val: any): string => {
 export const mockInt = (minNum, maxNum) => {
   return parseInt(Math.random() * (maxNum - minNum + 1) + minNum, 10);
 };
+
+export const setInitialState = <T>(v: T | (() => T)): T => {
+  if (isValue<T>(v)) {
+    return v;
+  }
+  return v();
+};
