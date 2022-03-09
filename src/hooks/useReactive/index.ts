@@ -1,7 +1,5 @@
 import { SetStateAction } from '@/common/interface';
-import _ from 'lodash';
-import { useMemo, useRef, useState } from 'react';
-import usePersistFn from '../usePersistFn';
+import { useMemo } from 'react';
 import useUpdate from '../useUpdate';
 
 function isObject(val: Record<string, any>): boolean {
