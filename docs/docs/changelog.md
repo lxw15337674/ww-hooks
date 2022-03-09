@@ -11,7 +11,10 @@ group:
 
 ## 待更新
 
+1. useNumber
+   - [x] 增加max、min
 
+2. 优化useReactive代码
 
 
 # 更新日志

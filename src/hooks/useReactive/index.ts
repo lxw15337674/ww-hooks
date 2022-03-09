@@ -1,4 +1,4 @@
-import { setInitialState } from '../../common/utils';
+import { SetStateAction } from '@/common/interface';
 import { useMemo } from 'react';
 import useUpdate from '../useUpdate';
 
@@ -10,11 +10,9 @@ const observer = <T extends Record<string, any>>(val, cb) => {
   const proxy = new Proxy<T>(val, {
     get(target, key, receiver) {
       const res = Reflect.get(target, key, receiver);
-      console.log(res);
       return isObject(res) ? observer(res, cb) : Reflect.get(target, key);
     },
     set(target, key, val) {
-      console.log(target, key, val);
       const v = Reflect.set(target, key, val);
       cb(target);
       return v;
@@ -28,16 +26,27 @@ const observer = <T extends Record<string, any>>(val, cb) => {
   return proxy;
 };
 
+export const isValue = <T>(state: SetStateAction<T>): state is T => {
+  return typeof state !== 'function';
+};
+
+export const setState = <T>(v: T | (() => T)): T => {
+  if (isValue<T>(v)) {
+    return v;
+  }
+  return v();
+};
+
 const useReactive = <T extends Record<string, any>>(
   initialState?: T | (() => T),
 ) => {
   const update = useUpdate();
   const state = useMemo(() => {
-    return observer(setInitialState(initialState), () => {
+    return observer(setState(initialState), () => {
       update();
     });
   }, []);
-  return observedState as T;
+  return state as T;
 };
 
 export default useReactive;

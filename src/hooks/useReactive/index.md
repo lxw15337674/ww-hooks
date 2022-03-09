@@ -16,6 +16,7 @@ group:
 <code src="./Demo/index.tsx"/>
 <code src="./Demo/Demo2.tsx"/>
 <code src="./Demo/test2.tsx"/>
+<code src="./Demo/test.tsx"/>
 
 ### Generics
 
