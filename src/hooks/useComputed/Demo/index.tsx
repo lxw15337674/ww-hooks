@@ -2,29 +2,48 @@
  * title: 基本用法
  * debug: true
  */
-import React, { useEffect, useState } from 'react';
-import { useReactive } from 'wwhooks';
+import React from 'react';
+import useComputed from '..';
 
 const Test = () => {
-  const list = useReactive([1, 2]);
-  const [count, setCount] = useState(0);
-  useEffect(() => {
-    setCount((v) => v + 1);
-  }, [list.a]);
-  console.log('render');
+  const list = useComputed({
+    a: 1,
+    b: 2,
+    double: (store) => {
+      console.log('double');
+      return store?.a + store?.b;
+    },
+    third: (store) => {
+      console.log('third');
+      return store.a + store.b + store.double;
+    },
+  });
+
   return (
     <div>
       <button
         onClick={() => {
-          list.push(list.length + 1);
-          list.push(list.length + 1);
+          for (let i = 0; i < 100; i++) {
+            list.a = i;
+            list.b = i;
+          }
         }}
       >
         push
       </button>
-      <button onClick={() => list.pop()}>pop</button>
+      <button
+        onClick={() => {
+          list.a -= 1;
+          list.b -= 1;
+        }}
+      >
+        pop
+      </button>
       <div>{JSON.stringify(list)}</div>
-      <div>{count}</div>
+      <div>{list.double}</div>
+      <div>{list.double}</div>
+      <div>{list.third}</div>
+      <div>{list.third}</div>
     </div>
   );
 };
@@ -43,7 +62,3 @@ let a = {
     this.count -= 1;
   },
 };
-
-console.log(a);
-a.increase();
-console.log(a);

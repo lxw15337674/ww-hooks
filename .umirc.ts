@@ -19,5 +19,5 @@ export default defineConfig({
       'antd',
     ],
   ],
-  mfsu: {},
+  // mfsu: {},
 });
