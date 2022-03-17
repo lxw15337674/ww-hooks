@@ -54,6 +54,7 @@ const useArray = <T = any>(initialArray: initialState<T[]>) => {
     const [removed] = result.splice(startIndex, 1);
     result.splice(endIndex, 0, removed);
     setValue(result);
+    return result;
   });
   return [
     value,
