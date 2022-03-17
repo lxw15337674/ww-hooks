@@ -3,7 +3,7 @@
  * debug: true
  */
 import React, { useEffect, useState } from 'react';
-import { useReactive } from 'wwhooks';
+import useReactive from '..';
 
 const Test = () => {
   const list = useReactive({

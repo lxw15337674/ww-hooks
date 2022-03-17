@@ -1,5 +1,5 @@
 import React from 'react';
-import { useReactive } from 'wwhooks';
+import useReactive from '..';
 
 export default () => {
   const state = useReactive({

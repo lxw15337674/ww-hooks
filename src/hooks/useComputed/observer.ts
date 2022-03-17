@@ -18,35 +18,7 @@ export default class Observer<T extends Record<string, any>> {
       this.deps.notify();
       cb();
     });
-    // eslint-disable-next-line no-constructor-return
-    // return this.proxy;
   }
-
-  // initDeps = (val: T) => {
-  //   const proxyState = this.depsProxy(val);
-  //   let key: string;
-  //   for (key in val) {
-  //     if (Object.prototype.hasOwnProperty.call(val, key)) {
-  //       const value = val[key];
-  //       if (isFunction(value)) {
-  //         this.watchers.set(key, value);
-  //         this.targetFn = this.watchers.update(key);
-  //         // this.deps.addSub(key, this.watchers.update(key));
-  //         this.watchers.update(key)(proxyState);
-  //       }
-  //     }
-  //   }
-  // };
-
-  // depsProxy = (val) => {
-  //   return new Proxy<T>(val, {
-  //     get: (target, key: string, receiver) => {
-  //       const res = Reflect.get(target, key, receiver);
-  //       this.deps.addSub(key, this.targetFn);
-  //       return isObject(res) ? this.depsProxy(res) : Reflect.get(target, key);
-  //     },
-  //   });
-  // };
 
   initProxy = (val) => {
     const proxy = new Proxy<T>(val, {

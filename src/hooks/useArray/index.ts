@@ -9,39 +9,32 @@ const useArray = <T = any>(initialArray: initialState<T[]>) => {
   const isEdited = useMemo(() => {
     return !isEqual(initialArray, value);
   }, [initialArray, value]);
-  const actions = useMemo(
-    () => ({
-      set: (index: number, item: T | ((prev: T) => T)) => {
-        setValue((prev) => {
-          let temp = [...prev];
-          temp[index] = setState<T>(item, temp[index]);
-          return temp;
-        });
-      },
-      setAll: setValue,
-      remove: (index: number) => {
-        setValue((prev) => {
-          const temp = [...prev];
-          temp.splice(index, 1);
-          return temp;
-        });
-      },
-      push: (item: T) => {
-        setValue((prev) => {
-          const temp = [...prev];
-          temp.push(item);
-          return temp;
-        });
-      },
-      clear: () => {
-        setValue([]);
-      },
-      reset: () => {
-        setValue(initialArray);
-      },
-    }),
-    [initialArray],
-  );
+
+  const set = usePersistFn((index: number, item: T | ((prev: T) => T)) => {
+    setValue((prev) => {
+      let temp = [...prev];
+      temp[index] = setState<T>(item, temp[index]);
+      return temp;
+    });
+  });
+  const remove = usePersistFn((index: number) => {
+    setValue((prev) => {
+      const temp = [...prev];
+      temp.splice(index, 1);
+      return temp;
+    });
+  });
+  const push = usePersistFn((item: T) => {
+    setValue((prev) => {
+      const temp = [...prev];
+      temp.push(item);
+      return temp;
+    });
+  });
+  const clear = usePersistFn(() => [setValue([])]);
+  const reset = usePersistFn(() => {
+    setValue(initialArray);
+  });
 
   const swap = usePersistFn((dragIndex: number, dropIndex: number) => {
     const maxIndex = value.length - 1;
@@ -62,7 +55,10 @@ const useArray = <T = any>(initialArray: initialState<T[]>) => {
     result.splice(endIndex, 0, removed);
     setValue(result);
   });
-  return [value, { isEdited, swap, reorder, ...actions }] as const;
+  return [
+    value,
+    { isEdited, swap, reorder, set, remove, push, clear, reset },
+  ] as const;
 };
 
 export default useArray;

@@ -2,19 +2,20 @@
  * title: 基本用法
  * debug: true
  */
+import { Button } from 'antd';
 import React from 'react';
 import useComputed from '..';
 
 const Test = () => {
+  // todo
+  // 参数拆分为data,计算属性，watch
   const list = useComputed({
     a: 1,
     b: 2,
     double: (store) => {
-      console.log('double');
       return store?.a + store?.b;
     },
     third: (store) => {
-      console.log('third');
       return store.a + store.b + store.double;
     },
   });
@@ -24,8 +25,8 @@ const Test = () => {
       <button
         onClick={() => {
           for (let i = 0; i < 100; i++) {
-            list.a = i;
-            list.b = i;
+            list.a += 1;
+            list.b += 1;
           }
         }}
       >
@@ -44,6 +45,9 @@ const Test = () => {
       <div>{list.double}</div>
       <div>{list.third}</div>
       <div>{list.third}</div>
+      {new Array(list.third).fill(1).map((_, index) => {
+        return <Button key={index}>{index}</Button>;
+      })}
     </div>
   );
 };
@@ -52,7 +56,6 @@ export default Test;
 let a = {
   count: 1,
   get double() {
-    console.log('count');
     return this.count * 2;
   },
   increase() {
