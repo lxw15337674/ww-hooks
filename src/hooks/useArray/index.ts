@@ -57,7 +57,17 @@ const useArray = <T = any>(initialArray: initialState<T[]>) => {
   });
   return [
     value,
-    { isEdited, swap, reorder, set, remove, push, clear, reset },
+    {
+      isEdited,
+      swap,
+      reorder,
+      set,
+      remove,
+      push,
+      clear,
+      reset,
+      setAll: setValue,
+    },
   ] as const;
 };
 
