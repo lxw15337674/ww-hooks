@@ -2,7 +2,7 @@
  * title: 传入dom用法
  * desc: 支持改变target
  */
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { useIntersectionObserver, useToggle } from 'wwhooks';
 
 export default () => {
@@ -19,7 +19,7 @@ export default () => {
     <div>
       <div style={{ height: 200, width: 200, overflow: 'scroll' }}>
         <div id="top">Top </div>
-        <div style={{ height: 300 }}></div>
+        <div style={{ height: 300 }} />
         <div id="bottom">bottom </div>
       </div>
       <div>

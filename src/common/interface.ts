@@ -20,4 +20,13 @@ export type BasicTarget<T = HTMLElement> =
 
 export type Target = BasicTarget<HTMLElement | Element | Window | Document>;
 
-export type TargetElement = HTMLElement | Element | Document | Window;
+export type TargetElement = Element | Document | Window | EventTarget;
+
+export type EventListenerOptions =
+  | boolean
+  | {
+      once?: boolean;
+      passive?: boolean;
+      signal?: AbortSignal;
+      capture?: boolean;
+    };

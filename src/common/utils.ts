@@ -1,4 +1,8 @@
-import { SetStateAction } from './interface';
+import {
+  SetStateAction,
+  TargetElement,
+  EventListenerOptions,
+} from './interface';
 
 // /**
 //  * @desc: obj1的keys根据obj2的keys判断
@@ -60,6 +64,7 @@ export function isObject(obj) {
   return Object.prototype.toString.call(obj) === '[object Object]';
 }
 
+// 判断对象是否相同
 export function isEqual(obj1, obj2) {
   // 1.判断是不是引用类型，不是引用
   if (!isObject(obj1) || !isObject(obj2)) {
