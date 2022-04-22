@@ -37,12 +37,15 @@ import useUrlState from './hooks/useUrlState';
 import useVisible from './hooks/useVisible';
 import sortBy from './function/colSpan';
 import useClickAway from './hooks/useClickAway';
+import { useLocalStorage, useSessionStorage } from './hooks/useStorage';
 
 export {
   useSyncScroll,
   useDynamicList,
   usePrevious,
   useIntervalFn,
+  useLocalStorage,
+  useSessionStorage,
   useClickAway,
   useBoolean,
   useArray,
