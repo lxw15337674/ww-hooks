@@ -7,15 +7,13 @@
 # todo
 
 - [x] useReactive
-- [ ] useSessionStorage
-- [ ] usestorage
+- [x] usestorage
 - [ ] useTitle
 - [ ] useIndexedDB
 - [x] 单例模式的 useUrlstate
 - [ ] useHover
 - [x] useScroll，封装对应的移动方法
 - [x] useisScroll，判断可以滚动状态
-- [ ] useObject，增加与原始数据比较出差异的对象
 - [ ] useComputed，原理vue的计算属性，需要配合useReactive使用
 - [ ] useStore，基于useComputed 的状态管理
   - [ ] 支持存到sessionStorage

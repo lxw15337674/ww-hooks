@@ -1,9 +1,9 @@
 import { isEqual, setStateAction } from '../../common/utils';
 import { useState, useMemo } from 'react';
-import { initialState } from '@/common/interface';
+import { InitialState } from '@/common/interface';
 import usePersistFn from '../usePersistFn';
 
-const useArray = <T = any>(initialArray: initialState<T[]>) => {
+const useArray = <T = any>(initialArray: InitialState<T[]>) => {
   const [value, setValue] = useState<T[]>(initialArray);
 
   const isEdited = useMemo(() => {

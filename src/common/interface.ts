@@ -2,7 +2,7 @@ import { MutableRefObject } from 'react';
 
 export type SetStateAction<T> = T | ((value: T) => T);
 
-export type initialState<T> = T | (() => T);
+export type InitialState<T> = T | (() => T);
 
 export type SetPartialStateAction<T> = Partial<T> | ((value: T) => Partial<T>);
 

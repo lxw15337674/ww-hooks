@@ -19,5 +19,6 @@ export default defineConfig({
       'antd',
     ],
   ],
+  nodeModulesTransform: { type: 'none' },
   mfsu: {},
 });

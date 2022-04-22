@@ -38,6 +38,7 @@ import useVisible from './hooks/useVisible';
 import sortBy from './function/colSpan';
 import useClickAway from './hooks/useClickAway';
 import { useLocalStorage, useSessionStorage } from './hooks/useStorage';
+import useTitle from './hooks/useTitle';
 
 export {
   useSyncScroll,
@@ -63,6 +64,7 @@ export {
   useSize,
   sortBy,
   useUpdate,
+  useTitle,
   useNumber,
   useClick,
   usePromise,
