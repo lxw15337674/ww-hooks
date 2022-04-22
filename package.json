@@ -54,6 +54,7 @@
     "autoprefixer": "^10.3.4",
     "babel-eslint": "^10.1.0",
     "babel-plugin-import": "^1.13.3",
+    "cz-conventional-changelog": "^3.3.0",
     "dumi": "^1.1.31",
     "eslint": "^8.6.0",
     "eslint-config-alloy": "^4.4.0",
@@ -66,5 +67,10 @@
     "prettier": "^2.2.1",
     "rollup-plugin-commonjs": "^10.1.0",
     "yorkie": "^2.0.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }

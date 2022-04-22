@@ -1,7 +1,7 @@
 /* eslint-disable max-params */
 import { initialState } from '../../common/interface';
 import { setStateAction } from '../../common/utils';
-import React, { SetStateAction, useState } from 'react';
+import { SetStateAction, useState } from 'react';
 import usePersistFn from '../usePersistFn';
 
 export interface Options<T> {
