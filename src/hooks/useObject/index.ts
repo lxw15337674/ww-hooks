@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { isEqual, setState } from '../../common/utils';
+import { isEqual, setStateAction } from '../../common/utils';
 import {
   SetDispatch,
   SetPartialDispatch,
@@ -28,7 +28,7 @@ export default function useObject<T extends object = object>(
 
   const set = usePersistFn((object: SetPartialStateAction<T>) => {
     setObject((prevObject: T) => {
-      const state = setState<Partial<T>>(object, prevObject);
+      const state = setStateAction<Partial<T>>(object, prevObject);
       return { ...prevObject, ...state };
     });
   });

@@ -1,4 +1,4 @@
-import { setState } from '../../common/utils';
+import { setStateAction } from '../../common/utils';
 import { useMemo, useState } from 'react';
 import { SetStateAction } from '../../common/interface';
 import useUpdateEffect from '../useUpdateEffect';
@@ -18,7 +18,7 @@ export default (
         setUrlState((prev) => {
           const temp = new URLSearchParams(prev);
           const prevValue = prev.get(key);
-          const data = setState<string>(entry, prevValue);
+          const data = setStateAction<string>(entry, prevValue);
           if (data === undefined) {
             temp.delete(key);
           } else {

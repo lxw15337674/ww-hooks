@@ -1,4 +1,4 @@
-import { isEqual, setState } from '../../common/utils';
+import { isEqual, setStateAction } from '../../common/utils';
 import { useState, useMemo } from 'react';
 import { initialState } from '@/common/interface';
 import usePersistFn from '../usePersistFn';
@@ -14,7 +14,7 @@ const useArray = <T = any>(initialArray: initialState<T[]>) => {
       set: (index: number, item: T | ((prev: T) => T)) => {
         setValue((prev) => {
           let temp = [...prev];
-          temp[index] = setState<T>(item, temp[index]);
+          temp[index] = setStateAction<T>(item, temp[index]);
           return temp;
         });
       },

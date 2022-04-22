@@ -1,8 +1,4 @@
-import {
-  SetStateAction,
-  TargetElement,
-  EventListenerOptions,
-} from './interface';
+import { SetStateAction } from './interface';
 
 // /**
 //  * @desc: obj1的keys根据obj2的keys判断
@@ -25,7 +21,7 @@ export const isValue = <T>(state: SetStateAction<T>): state is T => {
   return typeof state !== 'function';
 };
 
-export const setState = <T>(v: SetStateAction<T>, prev: T): T => {
+export const setStateAction = <T>(v: SetStateAction<T>, prev: T): T => {
   if (isValue<T>(v)) {
     return v;
   }
