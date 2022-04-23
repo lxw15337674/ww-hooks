@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Target } from '../../common/interface';
+import { BasicTarget } from '../../common/interface';
 import useEventListener from '../useEventListener';
 
 interface Position {
@@ -7,23 +7,19 @@ interface Position {
   top: number;
 }
 
-export default function useScroll(target: Target) {
+export default function useScroll(target: BasicTarget) {
   const [position, setPosition] = useState<Position>({
     left: 0,
     top: 0,
   });
 
-  useEventListener(
-    'scroll',
-    (e) => {
-      let target = e.target as HTMLElement;
-      const newPosition = {
-        left: target.scrollLeft,
-        top: target.scrollTop,
-      };
-      setPosition(newPosition);
-    },
-    { target },
-  );
+  useEventListener(target, 'scroll', (e) => {
+    let target = e.target as HTMLElement;
+    const newPosition = {
+      left: target.scrollLeft,
+      top: target.scrollTop,
+    };
+    setPosition(newPosition);
+  });
   return position;
 }

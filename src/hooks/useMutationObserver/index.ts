@@ -1,4 +1,5 @@
-import { useEffect } from 'react';
+import { usePersistFn, useUnmount } from 'wwhooks';
+import { useEffect, useRef, useState } from 'react';
 import { getTargetElement } from '../../common/dom';
 import { BasicTarget } from '../../common/interface';
 
@@ -13,16 +14,26 @@ function useMutationObserver(
     attributeOldValue: true,
   },
 ) {
+  const [state, setState] = useState<boolean>(true);
+  const observer = useRef<MutationObserver>();
   useEffect(() => {
-    const el = getTargetElement(target);
-    if (!el) {
-      return;
+    if (state) {
+      const el = getTargetElement(target);
+      if (!el) {
+        return;
+      }
+      observer.current = new MutationObserver(callback);
+      observer.current.observe(el, config);
+    } else {
+      observer.current?.disconnect();
+      observer.current = undefined;
     }
-    const observer = new MutationObserver(callback);
-    observer.observe(el as HTMLElement, config);
     return () => {
-      observer.disconnect();
+      observer.current?.disconnect();
+      observer.current = undefined;
     };
-  }, [target]);
+  }, [state]);
+
+  return [state, setState] as const;
 }
 export default useMutationObserver;

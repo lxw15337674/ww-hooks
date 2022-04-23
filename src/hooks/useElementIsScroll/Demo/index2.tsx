@@ -2,12 +2,12 @@
  * debug : true
  */
 import React, { useEffect, useRef } from 'react';
-import { useIsScroll, useTimeoutFn } from 'wwhooks';
+import { useElementIsScroll, useTimeoutFn } from 'wwhooks';
 
 let visible = false;
 export default () => {
   const ref = useRef();
-  const isScrollState = useIsScroll(ref);
+  const isScrollState = useElementIsScroll(document.body);
   const { run } = useTimeoutFn(() => {
     visible = true;
   }, 1000);

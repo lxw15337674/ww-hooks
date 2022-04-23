@@ -30,7 +30,7 @@ group:
 #### Fixed
 
 - 修复debounce、throttle引用问题
-- useIsScroll，如果内部dom变化，不会正确判断是否处于滚动状态
+- useElementIsScroll，如果内部dom变化，不会正确判断是否处于滚动状态
 
 ## [1.0.22] 2022/02/17
 
@@ -89,7 +89,7 @@ group:
 - 增加一些新的 hook
   - `useEventListener`
   - `useScroll`
-  - `useIsScroll`
+  - `useElementIsScroll`
   - `useResizeObserver`
   <<<<<<< HEAD
 

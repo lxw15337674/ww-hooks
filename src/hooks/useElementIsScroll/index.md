@@ -4,16 +4,15 @@ group:
   path: /Sensor
 ---
 
-# useIsScroll
+# useElementIsScroll
 
-判断元素是否处于滚动状态。
+判断元素是否处于滚动状态。如果监听窗口请使用[useWindowIsScroll](/Sensor/use-window-is-scroll)
 
 使用场景：
 
 1. 判断是否需要展开按钮。
 
 ## demo
-
 
 <code src="./Demo/index.tsx"/>
 
