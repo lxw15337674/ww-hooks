@@ -13,6 +13,14 @@ group:
 <code src="./Demo/index.tsx"/>
 <code src="./Demo/test.tsx"/>
 
+
+### Result
+
+| **参数** | **说明**       | **类型**  |
+| -------- | -------------- | --------- |
+| isObserving   |    是否处于观察状态        | `boolean`    |
+| setIsObserving  | 切换观察状态 | `React.Dispatch<React.SetStateAction<boolean>>` |
+
 ### Params
 
 | 参数    | 说明                                         | 类型                   | 默认值 | 必填 |

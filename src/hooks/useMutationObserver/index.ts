@@ -14,10 +14,10 @@ function useMutationObserver(
     attributeOldValue: true,
   },
 ) {
-  const [state, setState] = useState<boolean>(true);
+  const [isObserving, setIsObserving] = useState<boolean>(true);
   const observer = useRef<MutationObserver>();
   useEffect(() => {
-    if (state) {
+    if (isObserving) {
       const el = getTargetElement(target);
       if (!el) {
         return;
@@ -32,8 +32,8 @@ function useMutationObserver(
       observer.current?.disconnect();
       observer.current = undefined;
     };
-  }, [state]);
+  }, [isObserving]);
 
-  return [state, setState] as const;
+  return [isObserving, setIsObserving] as const;
 }
 export default useMutationObserver;
