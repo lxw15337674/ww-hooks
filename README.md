@@ -2,24 +2,17 @@
 
 [文档](https://lxw15337674.github.io/ww-hooks/)
 
-当前版本:1.0.23
+当前版本:1.1.24
 
 # todo
 
-- [x] useReactive
-- [x] usestorage
-- [x] useTitle
 - [ ] useIndexedDB
 - [x] 单例模式的 useUrlstate
 - [ ] useHover
-- [x] useScroll，封装对应的移动方法
-- [x] useElementIsScroll，判断可以滚动状态
 - [ ] useComputed，原理vue的计算属性，需要配合useReactive使用
 - [ ] useStore，基于useComputed 的状态管理
   - [ ] 支持存到sessionStorage
-- [x] useClickAway，点击外部区域事件。
-- [x] useNumber
-  - [x] 增加max、min
+
 
 
 
