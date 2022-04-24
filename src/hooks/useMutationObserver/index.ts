@@ -1,4 +1,3 @@
-import { usePersistFn, useUnmount } from 'wwhooks';
 import { useEffect, useRef, useState } from 'react';
 import { getTargetElement } from '../../common/dom';
 import { BasicTarget } from '../../common/interface';

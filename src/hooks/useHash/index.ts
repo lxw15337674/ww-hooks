@@ -6,13 +6,13 @@ const setWindowsHash = (hash: string) => {
 };
 
 export default (
-  initialState?: string,
+  InitialState?: string,
 ): [string, Dispatch<SetStateAction<string>>, () => void] => {
   const [hash, setHash] = useState<string>(() => {
     let hash = window.location.hash.substring(1);
     if (hash === '') {
-      setWindowsHash(initialState);
-      return initialState;
+      setWindowsHash(InitialState);
+      return InitialState;
     }
     return hash;
   });
@@ -31,7 +31,7 @@ export default (
   }, [hash]);
 
   const reset = usePersistFn(() => {
-    setHash(initialState);
+    setHash(InitialState);
   });
 
   return [hash, setHash, reset];
