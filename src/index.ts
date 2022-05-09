@@ -41,6 +41,7 @@ import { useLocalStorage, useSessionStorage } from './hooks/useStorage';
 import useTitle from './hooks/useTitle';
 import useHover from './hooks/useHover';
 import useWindowIsScroll from './hooks/useWindowIsScroll';
+import useClipboardText from './hooks/useClipboardText';
 
 export {
   useSyncScroll,
@@ -64,6 +65,7 @@ export {
   useDebounceFn,
   useLockScroll,
   useMountedState,
+  useClipboardText,
   useTimeoutFn,
   useSize,
   sortBy,

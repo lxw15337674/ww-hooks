@@ -1,5 +1,5 @@
-import { getTargetElement } from '@/common/dom';
-import { BasicTarget } from '@/common/interface';
+import { getTargetElement } from '../../common/dom';
+import { BasicTarget } from '../../common/interface';
 import { useState } from 'react';
 import useMutationObserver from '../useMutationObserver';
 

@@ -7,10 +7,11 @@ group:
 
 ## 待更新
 1. 增加useHover
+2. 增加useClipboardText
 
 # 更新日志
 
-   
+
 ## [1.1.0] 2022/04/24
 
 #### Feature
@@ -32,9 +33,6 @@ group:
 - 增加useMutationObserver
 - 文档重新梳理hook分类
 - useInterval改为useIntervalFn
-- useNumber
-  - [x] 增加max、min
-- 优化useReactive代码
 
 #### Fixed
 

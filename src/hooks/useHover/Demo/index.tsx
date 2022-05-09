@@ -6,7 +6,7 @@
  *
  */
 import React, { useRef } from 'react';
-import useHover from '..';
+import { useHover } from 'wwhooks';
 
 export default () => {
   const ref = useRef(null);
