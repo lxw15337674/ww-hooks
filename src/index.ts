@@ -39,6 +39,7 @@ import sortBy from './function/colSpan';
 import useClickAway from './hooks/useClickAway';
 import { useLocalStorage, useSessionStorage } from './hooks/useStorage';
 import useTitle from './hooks/useTitle';
+import useHover from './hooks/useHover';
 
 export {
   useSyncScroll,
@@ -51,6 +52,7 @@ export {
   useBoolean,
   useArray,
   useMount,
+  useHover,
   useUnmount,
   useUpdateEffect,
   useObject,
