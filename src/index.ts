@@ -13,7 +13,7 @@ import useEventListener from './hooks/useEventListener';
 import useHash from './hooks/useHash';
 import useIntersectionObserver from './hooks/useIntersectionObserver';
 import useIntervalFn from './hooks/useIntervalFn';
-import useIsScroll from './hooks/useIsScroll';
+import useElementIsScroll from './hooks/useElementIsScroll';
 import useLockScroll from './hooks/useLockScroll';
 import useMount from './hooks/useMount';
 import useMountedState from './hooks/useMountedState';
@@ -40,12 +40,14 @@ import useClickAway from './hooks/useClickAway';
 import { useLocalStorage, useSessionStorage } from './hooks/useStorage';
 import useTitle from './hooks/useTitle';
 import useHover from './hooks/useHover';
+import useWindowIsScroll from './hooks/useWindowIsScroll';
 
 export {
   useSyncScroll,
   useDynamicList,
   usePrevious,
   useIntervalFn,
+  useWindowIsScroll,
   useLocalStorage,
   useSessionStorage,
   useClickAway,
@@ -75,7 +77,7 @@ export {
   useVisible,
   useEventListener,
   useScroll,
-  useIsScroll,
+  useElementIsScroll,
   useResizeObserver,
   useIntersectionObserver,
   isType,

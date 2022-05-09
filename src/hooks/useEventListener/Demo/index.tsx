@@ -14,7 +14,7 @@ export default () => {
   };
 
   const ref = useRef();
-  useEventListener('click', clickHandler, { target: ref });
+  useEventListener(ref, 'click', clickHandler);
 
   return (
     <button ref={ref} type="button">

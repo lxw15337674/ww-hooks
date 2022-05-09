@@ -1,3 +1,5 @@
+import { getTargetElement } from '@/common/dom';
+import { BasicTarget } from '@/common/interface';
 import { useState } from 'react';
 import useMutationObserver from '../useMutationObserver';
 
@@ -5,20 +7,22 @@ export interface ScrollState {
   x: boolean;
   y: boolean;
 }
-const useIsScroll = (target) => {
+const useElementIsScroll = (target: BasicTarget<Element>) => {
   const [state, setState] = useState<ScrollState>({
     x: false,
     y: false,
   });
   useMutationObserver(target, () => {
-    if (!target.current) {
+    const el = getTargetElement(target);
+    if (!el) {
       return;
     }
+
     setState({
-      x: target.current.scrollWidth !== target.current.clientWidth,
-      y: target.current.scrollHeight !== target.current.clientHeight,
+      x: el.scrollWidth !== el.clientWidth,
+      y: el.scrollHeight !== el.clientHeight,
     });
   });
   return state;
 };
-export default useIsScroll;
+export default useElementIsScroll;

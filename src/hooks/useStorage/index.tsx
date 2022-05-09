@@ -1,5 +1,5 @@
 /* eslint-disable max-params */
-import { initialState } from '../../common/interface';
+import { InitialState } from '../../common/interface';
 import { setStateAction } from '../../common/utils';
 import { SetStateAction, useState } from 'react';
 import usePersistFn from '../usePersistFn';
@@ -11,7 +11,7 @@ export interface Options<T> {
 
 function useStorage<T>(
   key: string,
-  defaultValue?: initialState<T>,
+  defaultValue?: InitialState<T>,
   options?: Options<T>,
   storage: Storage = sessionStorage,
 ) {
@@ -61,7 +61,7 @@ function useStorage<T>(
 
 function useLocalStorage<T>(
   key: string,
-  defaultValue?: initialState<T>,
+  defaultValue?: InitialState<T>,
   options?: Options<T>,
 ) {
   return useStorage(key, defaultValue, options, localStorage);
@@ -69,7 +69,7 @@ function useLocalStorage<T>(
 
 function useSessionStorage<T>(
   key: string,
-  defaultValue?: initialState<T>,
+  defaultValue?: InitialState<T>,
   options?: Options<T>,
 ) {
   return useStorage(key, defaultValue, options);

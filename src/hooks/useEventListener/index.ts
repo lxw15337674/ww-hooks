@@ -3,13 +3,13 @@ import { useEffect, useRef } from 'react';
 import { Target } from '../../common/interface';
 
 type Options = {
-  target?: Target;
   capture?: boolean;
   once?: boolean;
   passive?: boolean;
 };
 
 function useEventListener(
+  target: Target,
   eventName: string,
   handler: (e: Event) => void,
   options: Options = {},
@@ -17,7 +17,7 @@ function useEventListener(
   const handlerRef = useRef<Function>();
   handlerRef.current = handler;
   useEffect(() => {
-    const targetElement = getTargetElement(options.target, window);
+    const targetElement = getTargetElement(target, window);
     if (!targetElement?.addEventListener) {
       return;
     }

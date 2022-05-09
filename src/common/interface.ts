@@ -12,7 +12,7 @@ export type SetPartialDispatch<T> = (state: SetPartialStateAction<T>) => void;
 
 export type Fn = (...args: any) => any;
 
-export type BasicTarget<T = HTMLElement> =
+export type BasicTarget<T = Element> =
   | (() => T | null)
   | T
   | null

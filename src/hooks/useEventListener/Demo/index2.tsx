@@ -12,7 +12,7 @@ export default () => {
   const keyDownHandler = (ev: KeyboardEvent) => {
     setValue(ev.code);
   };
-  useEventListener('keydown', keyDownHandler);
+  useEventListener(window, 'keydown', keyDownHandler);
 
   return <p>Your press key is {value}</p>;
 };

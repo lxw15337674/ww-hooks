@@ -11,5 +11,5 @@ import useHover from '..';
 export default () => {
   const ref = useRef(null);
   const isHovering = useHover(ref);
-  return <button ref={ref}>{isHovering ? 'hover' : 'unhover'}</button>;
+  return <button ref={ref}>{isHovering ? 'hover' : 'unHover'}</button>;
 };

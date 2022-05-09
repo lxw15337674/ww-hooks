@@ -38,11 +38,11 @@ export const setState = <T>(v: T | (() => T)): T => {
 };
 
 const useReactive = <T extends Record<string, any>>(
-  initialState?: InitialState<T>,
+  InitialState?: InitialState<T>,
 ) => {
   const update = useUpdate();
   const state = useMemo(() => {
-    return observer(setState(initialState), () => {
+    return observer(setState(InitialState), () => {
       update();
     });
   }, []);

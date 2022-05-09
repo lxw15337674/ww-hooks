@@ -12,27 +12,15 @@ export default (target: BasicTarget, options?: Options): boolean => {
 
   const [state, toggle] = useBoolean(false);
 
-  useEventListener(
-    'mouseenter',
-    () => {
-      onEnter?.();
-      toggle();
-    },
-    {
-      target,
-    },
-  );
+  useEventListener(target, 'mouseenter', () => {
+    onEnter?.();
+    toggle();
+  });
 
-  useEventListener(
-    'mouseleave',
-    () => {
-      onLeave?.();
-      toggle();
-    },
-    {
-      target,
-    },
-  );
+  useEventListener(target, 'mouseleave', () => {
+    onLeave?.();
+    toggle();
+  });
 
   return state;
 };

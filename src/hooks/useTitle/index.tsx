@@ -5,10 +5,10 @@ import useMount from '../useMount';
 import useMutationObserver from '../useMutationObserver';
 
 function useTitle(
-  initialState: InitialState<string> = document.title,
+  InitialState: InitialState<string> = document.title,
   restoreOnUnmount: boolean = false,
 ) {
-  const [title, setTitle] = useState(initialState);
+  const [title, setTitle] = useState(InitialState);
   const [beforeTitle] = useState(document.title);
 
   useEffect(() => {
@@ -17,7 +17,7 @@ function useTitle(
   }, [title]);
 
   useMount(() => {
-    setTitle(initialState);
+    setTitle(InitialState);
   });
 
   useMutationObserver(
