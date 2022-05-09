@@ -1,6 +1,6 @@
 ---
 group:
-  path: /state
+  path: /State
 ---
 
 # useReactive

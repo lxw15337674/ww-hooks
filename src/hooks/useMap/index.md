@@ -1,8 +1,8 @@
 ---
 title: useMap<todo>
 group:
-  title: state
-  path: /state
+  title: State
+  path: /State
 ---
 
 # useMap

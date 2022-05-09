@@ -1,10 +1,10 @@
 ---
 group:
-  title: Sensor
-  path: /Sensor
+  title: State
+  path: /State
 ---
 
-# useHover
+# useClipboard
 
 判断元素的悬停状态
 
@@ -17,8 +17,8 @@ group:
 ## API
 
 ```javascript
-const isHovering = useHover(target, {onEnter,onLeave});
-```
+const isHovering = useClipboard(target, {onEnter,onLeave});
+``` 
 
 
 

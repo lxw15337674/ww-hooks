@@ -11,10 +11,8 @@ group:
 
 ## 待更新
 
-1. useNumber
-   - [x] 增加max、min
-
-2. 优化useReactive代码
+1. 增加useHover
+   
 
 
 # 更新日志
@@ -26,6 +24,9 @@ group:
 - 增加useMutationObserver
 - 文档重新梳理hook分类
 - useInterval改为useIntervalFn
+- useNumber
+  - [x] 增加max、min
+- 优化useReactive代码
 
 #### Fixed
 

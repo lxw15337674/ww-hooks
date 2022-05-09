@@ -1,8 +1,8 @@
 ---
 title: useBoolean
 group:
-  title: state
-  path: /state
+  title: State
+  path: /State
 ---
 
 # useBoolean
