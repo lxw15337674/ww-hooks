@@ -1,8 +1,8 @@
 import { usePersistFn, useMount } from '../../';
 import { useState } from 'react';
 import useEventListener from '../useEventListener';
-import { SetStateAction } from '@/common/interface';
-import { setStateAction } from '@/common/utils';
+import { SetStateAction } from '../../common/interface';
+import { setStateAction } from '../../common/utils';
 
 export interface Options {
   onEnter?: () => void;
