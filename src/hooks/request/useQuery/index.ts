@@ -8,7 +8,7 @@ import {
 } from '../../../';
 import { SetStateAction, useRef, useState } from 'react';
 import { AxiosRequestConfig } from 'axios';
-import { setState } from '../../../common/utils';
+import { setStateAction } from '../../../common/utils';
 
 const useQuery = <P = any, D = any>({
   deps = [],
@@ -33,7 +33,7 @@ const useQuery = <P = any, D = any>({
     if (!concurrent) {
       cancel();
     }
-    const params = setState(_params, requestParams);
+    const params = setStateAction(_params, requestParams);
     setParams(params);
     const axiosConfig: AxiosRequestConfig = {
       params,

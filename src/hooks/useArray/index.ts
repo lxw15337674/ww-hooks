@@ -1,40 +1,47 @@
-import { isEqual, setState } from '../../common/utils';
+import { isEqual, setStateAction } from '../../common/utils';
 import { useState, useMemo } from 'react';
-import { initialState } from '@/common/interface';
+import { InitialState } from '@/common/interface';
 import usePersistFn from '../usePersistFn';
 
-const useArray = <T = any>(initialArray: initialState<T[]>) => {
+const useArray = <T = any>(initialArray: InitialState<T[]>) => {
   const [value, setValue] = useState<T[]>(initialArray);
 
   const isEdited = useMemo(() => {
     return !isEqual(initialArray, value);
   }, [initialArray, value]);
-
-  const set = usePersistFn((index: number, item: T | ((prev: T) => T)) => {
-    setValue((prev) => {
-      let temp = [...prev];
-      temp[index] = setState<T>(item, temp[index]);
-      return temp;
-    });
-  });
-  const remove = usePersistFn((index: number) => {
-    setValue((prev) => {
-      const temp = [...prev];
-      temp.splice(index, 1);
-      return temp;
-    });
-  });
-  const push = usePersistFn((item: T) => {
-    setValue((prev) => {
-      const temp = [...prev];
-      temp.push(item);
-      return temp;
-    });
-  });
-  const clear = usePersistFn(() => [setValue([])]);
-  const reset = usePersistFn(() => {
-    setValue(initialArray);
-  });
+  const actions = useMemo(
+    () => ({
+      set: (index: number, item: T | ((prev: T) => T)) => {
+        setValue((prev) => {
+          let temp = [...prev];
+          temp[index] = setStateAction<T>(item, temp[index]);
+          return temp;
+        });
+      },
+      setAll: setValue,
+      remove: (index: number) => {
+        setValue((prev) => {
+          const temp = [...prev];
+          temp.splice(index, 1);
+          return temp;
+        });
+      },
+      push: (item: T) => {
+        setValue((prev) => {
+          const temp = [...prev];
+          temp.push(item);
+          return temp;
+        });
+      },
+      clear: () => {
+        setValue([]);
+      },
+      reset: () => {
+        setValue(initialArray);
+      },
+    }),
+    [initialArray],
+  );
 
   const swap = usePersistFn((dragIndex: number, dropIndex: number) => {
     const maxIndex = value.length - 1;

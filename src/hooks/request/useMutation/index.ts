@@ -2,7 +2,7 @@ import { useMutationConfig } from './interface';
 import { useMount, useAxios, usePersistFn } from '../../../';
 import { useState } from 'react';
 import { AxiosRequestConfig } from 'axios';
-import { setState } from '../../../common/utils';
+import { setStateAction } from '../../../common/utils';
 import { SetStateAction } from '@/common/interface';
 
 const useMutation = <P = any, D = any>({
@@ -20,7 +20,7 @@ const useMutation = <P = any, D = any>({
   const request = useAxios<P>(axiosConfig);
 
   const run = usePersistFn((params: SetStateAction<P>) => {
-    let _params = setState(params, bodyData);
+    let _params = setStateAction(params, bodyData);
     setBodyData(params);
     return request.run({ data: _params });
   });

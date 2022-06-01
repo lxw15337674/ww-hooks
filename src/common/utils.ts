@@ -21,7 +21,7 @@ export const isValue = <T>(state: SetStateAction<T>): state is T => {
   return typeof state !== 'function';
 };
 
-export const setState = <T>(v: SetStateAction<T>, prev: T): T => {
+export const setStateAction = <T>(v: SetStateAction<T>, prev: T): T => {
   if (isValue<T>(v)) {
     return v;
   }
@@ -60,6 +60,7 @@ export function isObject(obj) {
   return Object.prototype.toString.call(obj) === '[object Object]';
 }
 
+// 判断对象是否相同
 export function isEqual(obj1, obj2) {
   // 1.判断是不是引用类型，不是引用
   if (!isObject(obj1) || !isObject(obj2)) {

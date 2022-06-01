@@ -1,7 +1,7 @@
 ---
 group:
-  title: state
-  path: /state
+  title: State
+  path: /State
 ---
 
 # useObject
@@ -22,7 +22,7 @@ group:
 
 | **参数** | **说明**       | **类型**  |
 | -------- | -------------- | --------- |
-| object   | 数据           | `T|()=>T` |
+| object   | 数据           | `T`       |
 | actions  | 状态及操作集合 | `Actions` |
 
 ### Actions

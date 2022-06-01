@@ -1,4 +1,4 @@
-import { SetStateAction } from '@/common/interface';
+import { InitialState, SetStateAction } from '@/common/interface';
 import { useMemo } from 'react';
 import useUpdate from '../useUpdate';
 
@@ -38,11 +38,11 @@ export const setState = <T>(v: T | (() => T)): T => {
 };
 
 const useReactive = <T extends Record<string, any>>(
-  initialState?: T | (() => T),
+  InitialState?: InitialState<T>,
 ) => {
   const update = useUpdate();
   const state = useMemo(() => {
-    return observer(setState(initialState), () => {
+    return observer(setState(InitialState), () => {
       update();
     });
   }, []);

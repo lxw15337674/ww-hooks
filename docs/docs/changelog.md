@@ -5,19 +5,26 @@ group:
 
 # 更新内容
 
-# Todo
-
-
-
 ## 待更新
-
-1. useNumber
-   - [x] 增加max、min
-
-2. 优化useReactive代码
-
+1. 增加useHover
+2. 增加useClipboardText
 
 # 更新日志
+
+
+## [1.1.0] 2022/04/24
+
+#### Feature
+
+- 新增useHover、useWindowIsScroll、useStorage、useTitle、useClickAway
+- useNumber增加max、min
+- 优化useReactive代码
+
+#### refactor
+
+- useEventListener增加参数
+- useMutationObserver增加watch状态，修改watch状态
+- useIsScroll 重命名 useElementisScroll 
 
 ## [1.0.23] 2022/02/23
 
@@ -30,7 +37,7 @@ group:
 #### Fixed
 
 - 修复debounce、throttle引用问题
-- useIsScroll，如果内部dom变化，不会正确判断是否处于滚动状态
+- useElementIsScroll，如果内部dom变化，不会正确判断是否处于滚动状态
 
 ## [1.0.22] 2022/02/17
 
@@ -89,7 +96,7 @@ group:
 - 增加一些新的 hook
   - `useEventListener`
   - `useScroll`
-  - `useIsScroll`
+  - `useElementIsScroll`
   - `useResizeObserver`
   <<<<<<< HEAD
 

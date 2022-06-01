@@ -13,7 +13,7 @@ import useEventListener from './hooks/useEventListener';
 import useHash from './hooks/useHash';
 import useIntersectionObserver from './hooks/useIntersectionObserver';
 import useIntervalFn from './hooks/useIntervalFn';
-import useIsScroll from './hooks/useIsScroll';
+import useElementIsScroll from './hooks/useElementIsScroll';
 import useLockScroll from './hooks/useLockScroll';
 import useMount from './hooks/useMount';
 import useMountedState from './hooks/useMountedState';
@@ -36,15 +36,26 @@ import useUpdateEffect from './hooks/useUpdateEffect';
 import useUrlState from './hooks/useUrlState';
 import useVisible from './hooks/useVisible';
 import sortBy from './function/colSpan';
+import useClickAway from './hooks/useClickAway';
+import { useLocalStorage, useSessionStorage } from './hooks/useStorage';
+import useTitle from './hooks/useTitle';
+import useHover from './hooks/useHover';
+import useWindowIsScroll from './hooks/useWindowIsScroll';
+import useClipboardText from './hooks/useClipboardText';
 
 export {
   useSyncScroll,
   useDynamicList,
   usePrevious,
   useIntervalFn,
+  useWindowIsScroll,
+  useLocalStorage,
+  useSessionStorage,
+  useClickAway,
   useBoolean,
   useArray,
   useMount,
+  useHover,
   useUnmount,
   useUpdateEffect,
   useObject,
@@ -54,10 +65,12 @@ export {
   useDebounceFn,
   useLockScroll,
   useMountedState,
+  useClipboardText,
   useTimeoutFn,
   useSize,
   sortBy,
   useUpdate,
+  useTitle,
   useNumber,
   useClick,
   usePromise,
@@ -66,7 +79,7 @@ export {
   useVisible,
   useEventListener,
   useScroll,
-  useIsScroll,
+  useElementIsScroll,
   useResizeObserver,
   useIntersectionObserver,
   isType,

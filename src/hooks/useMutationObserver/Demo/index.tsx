@@ -3,41 +3,46 @@
  * desc: 通过ref监听节点变化
  */
 import React, { useRef, useState } from 'react';
-import { useMutationObserver } from 'wwhooks';
+import useMutationObserver from '..';
+// import { useMutationObserver } from 'wwhooks';
 
 export default () => {
-  const ref = useRef();
-  useMutationObserver(
+  const ref = useRef<HTMLDivElement>();
+  const [info, setInfo] = useState<Object>();
+  const [watch, setState] = useMutationObserver(
     ref,
     (mutations: MutationRecord[], observer: MutationObserver) => {
-      console.log(mutations, observer);
+      for (let mutation of mutations) {
+        const target = mutation.target as HTMLDivElement;
+        setInfo({ ...target.dataset } as typeof info);
+      }
     },
   );
-
-  const [count, setCount] = useState(0);
+  console.log(info);
   return (
     <div>
       <div>
-        {count}
-        <button onClick={() => setCount((e) => e + 2)}>plus2</button>
-        <button onClick={() => setCount((e) => --e)}>minus</button>
+        <p>data:{JSON.stringify(info)}</p>
+        <p>
+          watch {watch.toString()}
+          <button onClick={() => setState((v) => !v)}>
+            {watch ? 'stop' : 'watch'}
+          </button>
+        </p>
+        <p>
+          <input
+            onChange={(e) =>
+              ref.current.setAttribute('data-name', e.target.value)
+            }
+          />
+          <input
+            onChange={(e) =>
+              ref.current.setAttribute('data-location', e.target.value)
+            }
+          />
+        </p>
       </div>
-      <div
-        ref={ref}
-        style={{
-          height: 100,
-          width: 200,
-          resize: 'both',
-          border: '1px solid',
-          overflow: 'auto',
-        }}
-      >
-        {Array(count)
-          .fill(count)
-          .map((item, index) => {
-            return <div key={index}>{item}</div>;
-          })}
-      </div>
+      <div ref={ref}>ref element </div>
     </div>
   );
 };

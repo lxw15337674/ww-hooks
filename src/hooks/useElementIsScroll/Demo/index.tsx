@@ -3,17 +3,20 @@
  * desc: 通过ref监听节点变化
  */
 import React, { useRef } from 'react';
-import { useIsScroll } from 'wwhooks';
+import { useElementIsScroll } from 'wwhooks';
 
 export default () => {
   const ref = useRef();
-  const isScrollState = useIsScroll(ref);
+  const isScrollState = useElementIsScroll(() => {
+    return document.getElementById('button');
+  });
 
   return (
     <>
       <p>x : {isScrollState.x.toString()}</p>
       <p>y : {isScrollState.y.toString()}</p>
       <div
+        id="button"
         ref={ref}
         style={{
           height: 100,
