@@ -1,5 +1,5 @@
-import { isFunction } from '@/common/dom';
-import { Fn } from '@/common/interface';
+import { isFunction } from '../../common/dom';
+import { Fn } from '../../common/interface';
 import { debounce, isObject } from 'lodash';
 import Deps from './Dep';
 import Watchers from './watcher';
