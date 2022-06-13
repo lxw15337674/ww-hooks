@@ -10,9 +10,13 @@ export default () => {
     setEffectCount((v) => ++v);
   }, [depCount]);
 
-  useUpdateEffect(() => {
-    setUpdateCount((v) => ++v);
-  }, [depCount]);
+  useUpdateEffect(
+    (cur, pre) => {
+      console.log(cur, pre);
+      setUpdateCount((v) => ++v);
+    },
+    [depCount],
+  );
 
   return (
     <>
