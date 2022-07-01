@@ -42,7 +42,7 @@ const reducer = (state: IState, action) => {
 
 function Component1() {
   let [state, dispatch] = useReducer(reducer, initState);
-
+  console.log(UserContext);
   return (
     <UserContext.Provider value={{ state, dispatch }}>
       <h1>{`Hello ${state.theme}!`}</h1>
@@ -76,7 +76,6 @@ function Component3() {
 }
 
 function Component4() {
-  console.log('renderComponent4');
   return (
     <>
       <h1>Component 4</h1>
@@ -87,7 +86,7 @@ function Component4() {
 
 function Component5() {
   const { state, dispatch } = useContext(UserContext);
-  console.log('renderComponent5');
+
   return (
     <>
       <h1>Component 5</h1>

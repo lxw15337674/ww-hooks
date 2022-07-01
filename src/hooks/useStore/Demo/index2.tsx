@@ -12,7 +12,7 @@ import React, {
   useReducer,
   useState,
 } from 'react';
-import { Store, useStore } from '..';
+import initContext from '..';
 
 const UserContext = createContext(null);
 export interface IState {
@@ -22,29 +22,25 @@ const initialState: IState = {
   theme: 'dark',
 };
 
+const { Context, useStore } = initContext({ initialState: initialState });
+
 function Component1() {
   return (
-    <Store initialState={initialState}>
-      {(state, setState) => {
-        return (
-          <>
-            <h1>{`Hello ${state.theme}!`}</h1>
-            <input
-              defaultValue={state.theme}
-              onChange={(e) => setState({ theme: e.target.value })}
-            ></input>
-            <Component2 />
-          </>
-        );
-      }}
-    </Store>
+    <Context>
+      <Component2 />
+    </Context>
   );
 }
 
 function Component2() {
+  const { state, setState } = useStore();
   return (
     <>
       <h1>Component 2</h1>
+      <input
+        value={state.theme}
+        onChange={(e) => setState({ theme: e.target.value })}
+      ></input>
       <Component3 />
     </>
   );
@@ -69,11 +65,14 @@ function Component4() {
 }
 
 function Component5() {
-  const { state } = useContext(UserContext);
-
+  const { state, setState } = useStore();
   return (
     <>
       <h1>Component 5</h1>
+      <input
+        value={state.theme}
+        onChange={(e) => setState({ theme: e.target.value })}
+      ></input>
       <h2>{`Hello ${state.theme} again!`}</h2>
     </>
   );
