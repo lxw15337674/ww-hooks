@@ -99,3 +99,14 @@ export const setInitialState = <T>(v: T | (() => T)): T => {
   }
   return v();
 };
+
+export function pick<T extends object, U extends keyof T>(
+  origin: T,
+  keys: U[],
+): Pick<T, U> {
+  const empty = {} as Pick<T, U>;
+  if (!origin) {
+    return empty;
+  }
+  return Object.assign(empty, ...keys.map((key) => ({ [key]: origin[key] })));
+}

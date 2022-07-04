@@ -5,14 +5,7 @@
  * 简单示例
  *
  */
-import useNumber from '@/hooks/useNumber';
-import React, {
-  createContext,
-  Dispatch,
-  useContext,
-  useReducer,
-  useState,
-} from 'react';
+import React, { createContext } from 'react';
 import initContext from '..';
 
 const UserContext = createContext(null);
@@ -22,14 +15,8 @@ export interface IState {
 const initialState: IState = {
   theme: 'dark',
 };
-function useCounter() {
-  const [store, setStore] = useState(initialState);
-  return {
-    store,
-    setStore,
-  };
-}
-const { Provider, useStore } = initContext(useCounter);
+
+const { Provider, useStore } = initContext(initialState);
 
 function Component1() {
   return (
@@ -50,11 +37,15 @@ function Component2() {
 }
 
 function Component3() {
-  const { store } = useStore((store) => store);
+  const { store, setStore } = useStore((store) => store);
+  console.log('Component3 render');
   return (
     <>
       <h1>Component 3</h1>
-      {store.theme}
+      <input
+        value={store.theme}
+        onChange={(e) => setStore({ theme: e.target.value })}
+      ></input>
       <Component4 />
     </>
   );
@@ -71,17 +62,16 @@ function Component4() {
 
 function Component5() {
   const { store, setStore } = useStore((store) => store);
-  console.log(store);
+  console.log('Component5 render');
+
   return (
     <>
       <h1>Component 5</h1>
-      {store.theme}
-      <button type="button" onClick={() => setStore({ theme: 'red' })}>
-        red
-      </button>
-      <button type="button" onClick={() => setStore({ theme: 'yellow' })}>
-        yellow
-      </button>
+      <input
+        value={store.theme}
+        onChange={(e) => setStore({ theme: e.target.value })}
+      ></input>
+      <h2>{`Hello ${store.theme} again!`}</h2>
     </>
   );
 }

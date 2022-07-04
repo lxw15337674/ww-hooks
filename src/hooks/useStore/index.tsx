@@ -1,4 +1,4 @@
-import { isEqual } from '../../common/utils';
+import { isEqual, pick } from '../../common/utils';
 import React, {
   Children,
   createContext,
@@ -11,107 +11,81 @@ import React, {
 import usePersistFn from '../usePersistFn';
 import useUpdate from '../useUpdate';
 
-interface Props<T> {
-  initialState: T;
+interface Props<V, T> {
+  useHook: (initialState?: T) => V;
 }
-interface ContextProps<T> {
-  children: React.ReactNode | ((value: T) => React.ReactNode);
+interface ContextProps<V, T> {
+  children: React.ReactNode | ((value: V) => React.ReactNode);
+  initialState?: T;
 }
 
-interface Context<T> {
-  store: T;
-  setStore: (value: T) => void;
-  listeners: Listener<T>;
+interface Context<V> {
+  value: V;
+  listeners: Listener<V>;
 }
 type Listener<T> = Set<(value: Partial<T>) => void>;
 
-function initContext<T>({ initialState }: Props<T>) {
-  const Context = createContext<Context<T>>(null);
-  // const listeners = createContext<Listener<T>>(null);
-
-  return {
-    Provider: React.memo(({ children }: ContextProps<T>) => {
-      const storeRef = useRef(initialState);
-      const forceUpdate = useUpdate();
-      const listeners = useRef<Listener<T>>(new Set()).current;
-      const store = storeRef.current;
-      const setStore = usePersistFn((nextStore: Partial<T>) => {
-        storeRef.current = { ...store, ...nextStore };
-        console.log(storeRef.current);
-        for (let l of listeners) {
-          l(storeRef.current);
+function initContext<V extends object, T extends object>(
+  useHook: (initialState?: T) => V,
+) {
+  const Context = createContext<Context<V>>(null);
+  const Provider = React.memo(
+    ({ children, initialState }: ContextProps<V, T>) => {
+      const value = useHook(initialState);
+      const store = React.useRef<Context<V>>({
+        value,
+        listeners: new Set(),
+      }).current;
+      useEffect(() => {
+        for (let listener of store.listeners) {
+          listener(value);
         }
       });
-
-      useEffect(() => {
-        console.log('Provider render', store);
-      });
-      console.log(store);
       return (
-        <Context.Provider value={{ store, listeners, setStore }}>
-          {typeof children === 'function' ? children(store) : children}
+        <Context.Provider value={store}>
+          {typeof children === 'function' ? children(store.value) : children}
         </Context.Provider>
       );
-    }),
-    useStore: <D extends Partial<T>>(selector: (value: T) => D) => {
-      const forceUpdate = useUpdate();
-      const { store, setStore, listeners } = useContext<Context<T>>(Context);
-      const selectedStore = selector(store);
-      const cb = usePersistFn((nextStore: T) => {
-        for (let key in selectedStore) {
-          if (
-            !isEqual(selectedStore[key], nextStore[key as unknown as keyof T])
-          ) {
-            forceUpdate();
-            break;
-          }
-        }
-      });
-      useLayoutEffect(() => {
-        listeners.add(cb);
-        return () => {
-          listeners.delete(cb);
-        };
-      }, []);
-      console.log(store);
-      return { store: selectedStore, setStore };
     },
-    // useSelector: <D extends {}>(selector: (value: T) => D) => {
-    //   const forceUpdate = useUpdate();
-    //   const context  = React.useContext(Context);
-    //   const listeners =context
-    //   const selected = selector(value);
-    //   const StoreValue = {
-    //     selector,
-    //     value,
-    //     selected,
-    //   };
-    //   const ref = React.useRef(StoreValue);
+  );
+  const useStore = (selector: (value: V) => Partial<V>) => {
+    const forceUpdate = useUpdate();
+    const { value, listeners } = useContext<Context<V>>(Context);
+    const selectedStore = selector(value);
+    const cb = usePersistFn((nextStore: T) => {
+      for (let key in selectedStore) {
+        if (
+          !isEqual(selectedStore[key], nextStore[key as unknown as keyof T])
+        ) {
+          forceUpdate();
+          break;
+        }
+      }
+    });
+    useLayoutEffect(() => {
+      listeners.add(cb);
+      return () => {
+        listeners.delete(cb);
+      };
+    }, []);
+    return selectedStore;
+  };
+  const usePicker = (keys: (keyof V)[]) => {
+    return useStore((state) => pick(state, keys));
+  };
 
-    //   React.useLayoutEffect(() => {
-    //     function listener(nextValue: Value) {
-    //       try {
-    //         const refValue = ref.current;
-    //         if (refValue.value === nextValue) {
-    //           return;
-    //         }
-    //         const nextSelected = refValue.selector(nextValue);
-    //         if (isShadowEqual(refValue.selected, nextSelected)) {
-    //           return;
-    //         }
-    //       } catch (e) {
-    //         // ignore
-    //       }
-    //       forceUpdate();
-    //     }
+  function withPicker<T>(Child: React.FC<T & Partial<V>>, keys: (keyof V)[]) {
+    return (props: T) => {
+      const picked = usePicker(keys);
+      return <Child {...{ ...picked, ...props }} />;
+    };
+  }
 
-    //     listeners.add(listener);
-    //     return () => {
-    //       listeners.delete(listener);
-    //     };
-    //   }, []);
-    //   return selected;
-    // },
+  return {
+    Provider,
+    useStore,
+    usePicker,
+    withPicker,
   };
 }
 export default initContext;
