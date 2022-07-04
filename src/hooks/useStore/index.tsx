@@ -11,9 +11,6 @@ import React, {
 import usePersistFn from '../usePersistFn';
 import useUpdate from '../useUpdate';
 
-interface Props<V, T> {
-  useHook: (initialState?: T) => V;
-}
 interface ContextProps<V, T> {
   children: React.ReactNode | ((value: V) => React.ReactNode);
   initialState?: T;
@@ -36,6 +33,7 @@ function initContext<V extends object, T extends object>(
         value,
         listeners: new Set(),
       }).current;
+      store.value = value;
       useEffect(() => {
         for (let listener of store.listeners) {
           listener(value);
@@ -74,12 +72,15 @@ function initContext<V extends object, T extends object>(
     return useStore((state) => pick(state, keys));
   };
 
-  function withPicker<T>(Child: React.FC<T & Partial<V>>, keys: (keyof V)[]) {
+  const withPicker = <T extends object>(
+    Child: React.FC<T & Partial<V>>,
+    keys: (keyof V)[],
+  ) => {
     return (props: T) => {
       const picked = usePicker(keys);
       return <Child {...{ ...picked, ...props }} />;
     };
-  }
+  };
 
   return {
     Provider,
