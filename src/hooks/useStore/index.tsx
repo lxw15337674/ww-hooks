@@ -1,4 +1,10 @@
-import React, { Children, createContext, useContext, useState } from 'react';
+import React, {
+  Children,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 
 interface Props<T> {
   initialState: T;
@@ -6,11 +12,11 @@ interface Props<T> {
 interface ContextProps {
   children: React.ReactNode;
 }
+
 function initContext<T>({ initialState }: Props<T>) {
   const Context = createContext(null);
-  const state = initialState;
   return {
-    Context: ({ children }: ContextProps) => {
+    Provider: ({ children }: ContextProps) => {
       const [state, setState] = useState(initialState);
       return (
         <Context.Provider value={{ state, setState }}>

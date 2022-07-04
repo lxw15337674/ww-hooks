@@ -22,13 +22,15 @@ const initialState: IState = {
   theme: 'dark',
 };
 
-const { Context, useStore } = initContext({ initialState: initialState });
+const { Provider, useStore } = initContext({
+  initialState: initialState,
+});
 
 function Component1() {
   return (
-    <Context>
+    <Provider>
       <Component2 />
-    </Context>
+    </Provider>
   );
 }
 
