@@ -35,23 +35,25 @@ function Component1() {
 }
 
 function Component2() {
-  const { state, setState } = useStore();
+  console.log('Component2 render');
   return (
     <>
       <h1>Component 2</h1>
-      <input
-        value={state.theme}
-        onChange={(e) => setState({ theme: e.target.value })}
-      ></input>
       <Component3 />
     </>
   );
 }
 
 function Component3() {
+  const { store, setStore } = useStore((store) => store);
+  console.log('Component3 render');
   return (
     <>
       <h1>Component 3</h1>
+      <input
+        value={store.theme}
+        onChange={(e) => setStore({ theme: e.target.value })}
+      ></input>
       <Component4 />
     </>
   );
@@ -67,15 +69,17 @@ function Component4() {
 }
 
 function Component5() {
-  const { state, setState } = useStore();
+  const { store, setStore } = useStore((store) => store);
+  console.log('Component5 render');
+
   return (
     <>
       <h1>Component 5</h1>
       <input
-        value={state.theme}
-        onChange={(e) => setState({ theme: e.target.value })}
+        value={store.theme}
+        onChange={(e) => setStore({ theme: e.target.value })}
       ></input>
-      <h2>{`Hello ${state.theme} again!`}</h2>
+      <h2>{`Hello ${store.theme} again!`}</h2>
     </>
   );
 }
