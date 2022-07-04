@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useUpdateEffect } from 'wwhooks';
+import { useUpdateLayoutEffect } from 'wwhooks';
 
 export default () => {
   const [depCount, setDepCount] = useState<number>(0);
@@ -9,7 +9,7 @@ export default () => {
     setEffectCount((v) => ++v);
   }, [depCount]);
 
-  useUpdateEffect(
+  useUpdateLayoutEffect(
     (cur, pre) => {
       setUpdateCount((v) => ++v);
       console.log(cur, pre);
