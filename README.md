@@ -13,6 +13,7 @@
 - [ ] useStore，基于useComputed 的状态管理
   - [ ] 支持存到sessionStorage
 - [ ] usePromise 支持数据持久化
+- [ ] [useworker](https://juejin.cn/post/7126174907477688328)
 
 
 
