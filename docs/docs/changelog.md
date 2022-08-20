@@ -6,8 +6,8 @@ group:
 # 更新内容
 
 ## 待更新
-1. 增加useHover
-2. 增加useClipboardText
+1. 增加useHover、useClipboardText、**useUpdateLayoutEffect**
+2. 
 
 # 更新日志
 

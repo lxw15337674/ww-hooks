@@ -42,6 +42,7 @@ import useTitle from './hooks/useTitle';
 import useHover from './hooks/useHover';
 import useWindowIsScroll from './hooks/useWindowIsScroll';
 import useClipboardText from './hooks/useClipboardText';
+import useUpdateLayoutEffect from './hooks/useUpdateLayoutEffect';
 
 export {
   useSyncScroll,
@@ -49,6 +50,7 @@ export {
   usePrevious,
   useIntervalFn,
   useWindowIsScroll,
+  useUpdateLayoutEffect,
   useLocalStorage,
   useSessionStorage,
   useClickAway,

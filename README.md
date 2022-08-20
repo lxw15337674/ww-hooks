@@ -8,7 +8,6 @@
 
 - [ ] useIndexedDB
 - [x] 单例模式的 useUrlstate
-- [ ] useHover
 - [ ] useComputed，原理vue的计算属性，需要配合useReactive使用
 - [ ] useStore，基于useComputed 的状态管理
   - [ ] 支持存到sessionStorage
