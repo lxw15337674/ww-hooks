@@ -18,7 +18,7 @@ const useQuery = <P = any, D = any>({
   params,
   ...useAxiosConfig
 }: useQueryConfig<P, D>) => {
-  const polling = useRef<NodeJS.Timeout>();
+  const polling = useRef();
   const [requestParams, setParams] = useState<P>(params);
   const request = useAxios<D>(useAxiosConfig);
   const cancel = usePersistFn(() => {

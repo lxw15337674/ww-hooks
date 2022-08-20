@@ -11,7 +11,7 @@ const useClickAway = <T extends Event = Event>(
   events: string[] = defaultEvents,
 ) => {
   const handler = usePersistFn((event) => {
-    const el = getTargetElement(target);
+    const el = getTargetElement<Element>(target);
     if (el && !el.contains(event.target)) {
       onClickAway(event);
     }

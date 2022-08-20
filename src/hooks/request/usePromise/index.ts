@@ -83,7 +83,7 @@ const usePromise = <D, P extends any[] = never>(
 
   const reload = usePersistFn(() => {
     if (Array.isArray(params)) {
-      return run(...params);
+      return run(...(params as P));
     }
     // @ts-ignore
     return run();

@@ -1,7 +1,7 @@
 import { Fn } from '../../common/interface';
-import debounce from 'lodash.debounce';
 import { useMemo, useRef } from 'react';
 import useUnmount from '../useUnmount';
+import { debounce } from 'lodash';
 interface DebounceSettings {
   leading?: boolean | undefined;
   maxWait?: number | undefined;

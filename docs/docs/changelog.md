@@ -6,10 +6,14 @@ group:
 # 更新内容
 
 ## 待更新
-1. 增加useHover、useClipboardText、**useUpdateLayoutEffect**
-2. 
+1. 
 
 # 更新日志
+
+## [1.1.1] 2022/08/20
+#### Feature
+1. 增加useHover、useClipboardText、useUpdateLayoutEffect
+2. 项目使用pnpm
 
 
 ## [1.1.0] 2022/04/24
@@ -98,7 +102,3 @@ group:
   - `useScroll`
   - `useElementIsScroll`
   - `useResizeObserver`
-  <<<<<<< HEAD
-
-=======
->>>>>>> origin/master

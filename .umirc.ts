@@ -21,4 +21,5 @@ export default defineConfig({
   ],
   nodeModulesTransform: { type: 'none' },
   mfsu: {},
+  resolve: { excludes: ['./template'] },
 });
