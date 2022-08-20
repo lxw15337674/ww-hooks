@@ -13,7 +13,7 @@ const useElementIsScroll = (target: BasicTarget<Element>) => {
     y: false,
   });
   useMutationObserver(target, () => {
-    const el = getTargetElement(target);
+    const el = getTargetElement<Element>(target);
     if (!el) {
       return;
     }
