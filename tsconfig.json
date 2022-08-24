@@ -9,8 +9,12 @@
     "baseUrl": "./",
     "strict": false,
     "paths": {
-      "@/": ["src/"],
-      "@/*": ["src/*"]
+      "@/": [
+        "packages/wwhooks/src"
+      ],
+      "@/*": [
+        "packages/wwhooks/src/*"
+      ]
     },
     "allowSyntheticDefaultImports": true
   },
