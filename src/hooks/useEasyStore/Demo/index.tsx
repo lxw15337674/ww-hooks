@@ -44,16 +44,27 @@ function Component1() {
   let [state, dispatch] = useReducer(reducer, initState);
   console.log(UserContext);
   return (
-    <UserContext.Provider value={{ state, dispatch }}>
-      <h1>{`Hello ${state.theme}!`}</h1>
-      <input
-        defaultValue={state.theme}
-        onChange={(e) =>
-          dispatch({ type: 'changeTheme', value: e.target.value })
-        }
-      ></input>
-      <Component2 />
-    </UserContext.Provider>
+    <>
+      <UserContext.Provider value={{ state, dispatch }}>
+        <h1>{`Hello ${state.theme}!`}</h1>
+        <input
+          defaultValue={state.theme}
+          onChange={(e) =>
+            dispatch({ type: 'changeTheme', value: e.target.value })
+          }
+        ></input>
+      </UserContext.Provider>
+      <UserContext.Provider value={{ state, dispatch }}>
+        <h1>{`Hello ${state.theme}!`}</h1>
+        <input
+          defaultValue={state.theme}
+          onChange={(e) =>
+            dispatch({ type: 'changeTheme', value: e.target.value })
+          }
+        ></input>
+        <Component2 />
+      </UserContext.Provider>
+    </>
   );
 }
 
