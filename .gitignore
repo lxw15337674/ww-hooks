@@ -1,4 +1,5 @@
 # dependencies
+/node_modules
 /npm-debug.log*
 /yarn-error.log
 
@@ -20,5 +21,4 @@
 # ide
 /.vscode
 /.idea
-
 node_modules
