@@ -7,14 +7,15 @@ export function useSyncScroll(
 ) {
   const lock = useRef(0);
   const syncScroll = usePersistFn((e) => {
-    e = e[0];
+    if (!e) {
+      return;
+    }
     if (lock.current > 0) {
       lock.current -= 1;
       return;
     }
     const syncList = refList.filter((ref) => ref.current !== e.target);
     lock.current = syncList.length;
-    console.log(attribute);
     if (attribute === 'left' || attribute === 'both') {
       const left = e.target.scrollLeft;
       for (let ref of syncList) {

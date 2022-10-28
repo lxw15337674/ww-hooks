@@ -10,8 +10,8 @@ const Box = forwardRef<HTMLDivElement, { color: string }>(({ color }, ref) => {
     <div
       ref={ref}
       style={{
-        height: 100,
-        width: 200,
+        height: 400,
+        width: 400,
         overflow: 'auto',
         border: '1px solid ',
         borderColor: color,
@@ -29,7 +29,6 @@ const Test = (props) => {
   const BoxRef = useRef<HTMLDivElement>();
   const [attribute, setAttribute] = useState('both');
   useSyncScroll([redBoxRef, BlueBoxRef, BoxRef], attribute);
-  console.log(redBoxRef, BlueBoxRef);
   return (
     <>
       <button onClick={() => setAttribute('both')}>both</button>
