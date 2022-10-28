@@ -2,7 +2,7 @@ import { useLayoutEffect } from 'react';
 import { getTargetElement } from '../../common/dom';
 import { BasicTarget } from '../../common/interface';
 
-function useResizeObserver(
+export function useResizeObserver(
   target: BasicTarget,
   onResize: (entry: ResizeObserverEntry) => void,
 ) {

@@ -1,11 +1,8 @@
 import { useState } from 'react';
+import { ScrollState } from '../useElementIsScroll';
 import useEventListener from '../useEventListener';
 
-export interface ScrollState {
-  x: boolean;
-  y: boolean;
-}
-const useWindowIsScroll = () => {
+export const useWindowIsScroll = () => {
   const [state, setState] = useState<ScrollState>({
     x: false,
     y: false,

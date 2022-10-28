@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { getTargetElement } from '../../common/dom';
 import { BasicTarget } from '../../common/interface';
 
-function useMutationObserver(
+export function useMutationObserver(
   target: BasicTarget,
   callback: MutationCallback,
   config: MutationObserverInit = {

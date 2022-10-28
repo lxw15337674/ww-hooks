@@ -9,7 +9,7 @@ import useScroll from '../useScroll';
 import useSize from '../useSize';
 import usePersistFn from '../usePersistFn';
 
-export default <T = any>(
+export const useVirtualList = <T = any>(
   originalList: T[],
   containerRef: MutableRefObject<Element>,
   itemHeight: number,
@@ -73,3 +73,5 @@ export default <T = any>(
     scrollTo,
   } as const;
 };
+
+export default useVirtualList;

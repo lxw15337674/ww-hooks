@@ -5,7 +5,7 @@ const setWindowsHash = (hash: string) => {
   window.location.replace('#' + encodeURIComponent(hash));
 };
 
-export default (
+export const useHash = (
   InitialState?: string,
 ): [string, Dispatch<SetStateAction<string>>, () => void] => {
   const [hash, setHash] = useState<string>(() => {
@@ -36,3 +36,5 @@ export default (
 
   return [hash, setHash, reset];
 };
+
+export default useHash;

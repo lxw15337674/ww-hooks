@@ -8,7 +8,7 @@ type Options = {
   passive?: boolean;
 };
 
-function useEventListener(
+export function useEventListener(
   target: Target,
   eventName: string,
   handler: (e: Event) => void,

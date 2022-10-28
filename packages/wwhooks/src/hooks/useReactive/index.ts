@@ -40,7 +40,7 @@ export const setState = <T>(v: T | (() => T)): T => {
   return v();
 };
 
-const useReactive = <T extends Record<string, any>>(
+export const useReactive = <T extends Record<string, any>>(
   InitialState?: InitialState<T>,
 ) => {
   const update = useUpdate();

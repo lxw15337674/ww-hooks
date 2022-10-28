@@ -4,7 +4,7 @@ import { BasicTarget } from '../../common/interface';
 
 export type Size = { width: number; height: number };
 
-function useSize(target: BasicTarget) {
+export function useSize(target: BasicTarget) {
   const [state, setState] = useState<Size>({
     width: 0,
     height: 0,

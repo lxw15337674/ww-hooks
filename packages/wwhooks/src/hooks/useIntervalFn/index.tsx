@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import usePersistFn from '../usePersistFn';
 import useUnmount from '../useUnmount';
 
-function useIntervalFn(fn: () => void, delay: number) {
+export function useIntervalFn(fn: () => void, delay: number) {
   const timerId = useRef<any>(null);
   const [looping, setLooping] = useState(false);
   const callback = usePersistFn(() => {

@@ -5,7 +5,7 @@ export interface Config {
   delay?: number;
   exclusive?: boolean;
 }
-const useClick = (
+export const useClick = (
   simpleClickFn = (e: React.MouseEvent) => {},
   doubleClickFn = (e: React.MouseEvent) => {},
   config: Config = {},

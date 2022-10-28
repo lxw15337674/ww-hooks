@@ -1,7 +1,7 @@
 import { usePersistFn } from '../..';
 import { useEffect, useRef, useState } from 'react';
 
-function useTimeoutFn<T extends any[] = never>(
+export function useTimeoutFn<T extends any[] = never>(
   fn: (...args: T) => void,
   delay: number = 0,
 ) {

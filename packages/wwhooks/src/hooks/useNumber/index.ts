@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import usePersistFn from '../usePersistFn';
 
-interface Options {
+export interface Options {
   min?: number;
   max?: number;
 }
@@ -19,7 +19,7 @@ function getTargetValue(val: number, options: Options = {}) {
 }
 export type ValueParam = number | ((c: number) => number);
 
-const useNumber = (defaultValue = 0, config?: Options) => {
+export const useNumber = (defaultValue = 0, config?: Options) => {
   const [number, setNumber] = useState<number>(
     getTargetValue(defaultValue, config),
   );

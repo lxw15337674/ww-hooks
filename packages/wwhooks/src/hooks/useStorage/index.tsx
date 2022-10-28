@@ -4,7 +4,7 @@ import { setStateAction } from '../../common/utils';
 import { SetStateAction, useState } from 'react';
 import usePersistFn from '../usePersistFn';
 
-export interface Options<T> {
+export interface useStorageOptions<T> {
   serializer?: (value: T) => string;
   deserializer?: (value: string) => T;
 }
@@ -12,7 +12,7 @@ export interface Options<T> {
 function useStorage<T>(
   key: string,
   defaultValue?: InitialState<T>,
-  options?: Options<T>,
+  options?: useStorageOptions<T>,
   storage: Storage = sessionStorage,
 ) {
   const serializer = (value: T) => {
@@ -62,7 +62,7 @@ function useStorage<T>(
 function useLocalStorage<T>(
   key: string,
   defaultValue?: InitialState<T>,
-  options?: Options<T>,
+  options?: useStorageOptions<T>,
 ) {
   return useStorage(key, defaultValue, options, localStorage);
 }
@@ -70,9 +70,10 @@ function useLocalStorage<T>(
 function useSessionStorage<T>(
   key: string,
   defaultValue?: InitialState<T>,
-  options?: Options<T>,
+  options?: useStorageOptions<T>,
 ) {
   return useStorage(key, defaultValue, options);
 }
 
 export { useLocalStorage, useSessionStorage };
+export default { useLocalStorage, useSessionStorage };

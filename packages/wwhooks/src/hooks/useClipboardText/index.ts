@@ -1,13 +1,9 @@
-import { usePersistFn, useMount } from '../..';
 import { useState } from 'react';
 import useEventListener from '../useEventListener';
 import { SetStateAction } from '../../common/interface';
 import { setStateAction } from '../../common/utils';
-
-export interface Options {
-  onEnter?: () => void;
-  onLeave?: () => void;
-}
+import usePersistFn from '../usePersistFn';
+import useMount from '../useMount';
 
 async function readPermission() {
   const state = false;
@@ -61,3 +57,5 @@ export default function useClipboardText() {
   });
   return [text, write] as const;
 }
+
+export { useClipboardText };

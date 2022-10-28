@@ -20,7 +20,7 @@ interface PoolItem<T> {
   index: number;
 }
 
-export default <T = any>(
+export const useDynamicList = <T = any>(
   originalList: T[],
   { containerRef, itemHeight, overscan = defaultOverscan }: Options<T>,
 ) => {
@@ -127,3 +127,5 @@ export default <T = any>(
     scrollTo,
   };
 };
+
+export default useDynamicList;

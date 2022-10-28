@@ -7,7 +7,7 @@ export interface ScrollState {
   x: boolean;
   y: boolean;
 }
-const useElementIsScroll = (target: BasicTarget<Element>) => {
+export const useElementIsScroll = (target: BasicTarget<Element>) => {
   const [state, setState] = useState<ScrollState>({
     x: false,
     y: false,

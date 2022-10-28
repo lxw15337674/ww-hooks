@@ -8,7 +8,7 @@ interface DebounceSettings {
   trailing?: boolean | undefined;
 }
 
-export default function useDebounceFn<T extends Fn = Fn>(
+export function useDebounceFn<T extends Fn = Fn>(
   fn: T,
   wait?: number,
   options?: DebounceSettings,
@@ -29,3 +29,5 @@ export default function useDebounceFn<T extends Fn = Fn>(
     flush: debouncedFn.flush,
   };
 }
+
+export default useDebounceFn;

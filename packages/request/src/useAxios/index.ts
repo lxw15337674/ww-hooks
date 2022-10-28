@@ -5,7 +5,7 @@ import { useAxiosConfig } from './interface';
 
 const axios = Axios.create();
 
-const useAxios = <D>({
+export const useAxios = <D>({
   debounceInterval,
   manual,
   onSuccess,

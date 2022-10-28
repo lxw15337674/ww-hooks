@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import usePersistFn from '../usePersistFn';
 
-export default function useMountedState() {
+export function useMountedState() {
   const mountedRef = useRef<boolean>(false);
   useEffect(() => {
     mountedRef.current = true;
@@ -12,3 +12,5 @@ export default function useMountedState() {
   const get = usePersistFn(() => mountedRef.current);
   return get;
 }
+
+export default useMountedState;

@@ -14,7 +14,7 @@ export interface Action<T> {
   isEdited: boolean;
 }
 
-export default function useObject<T extends object = object>(
+export function useObject<T extends object = object>(
   defaultValue: T | (() => T),
 ): [T, Action<T>] {
   const [object, setObject] = useState<T>(defaultValue);
@@ -35,3 +35,5 @@ export default function useObject<T extends object = object>(
 
   return [object, { setAll: setObject, set, reset, isEdited }];
 }
+
+export default useObject;

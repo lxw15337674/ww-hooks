@@ -4,7 +4,7 @@ import useUnmount from '../useUnmount';
 import useMount from '../useMount';
 import useMutationObserver from '../useMutationObserver';
 
-function useTitle(
+export function useTitle(
   InitialState: InitialState<string> = document.title,
   restoreOnUnmount: boolean = false,
 ) {

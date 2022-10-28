@@ -9,7 +9,7 @@ group:
 
 只有在依赖更新时执行。
 
-> 与 useEffect 区别：
+> 与 useLayoutEffect 区别：
 >
 > 1. 不会在首次渲染时执行。
 > 2. 依赖对象为必填项。

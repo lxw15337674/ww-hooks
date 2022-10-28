@@ -19,7 +19,7 @@ interface Context<V> {
 }
 type Listener<T> = Set<(value: Partial<T>) => void>;
 
-function initContext<V extends object, T extends object>(
+export function initContext<V extends object, T extends object>(
   useHook: (initialState?: T) => V,
 ) {
   const Context = createContext<Context<V>>(null);

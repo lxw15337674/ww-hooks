@@ -3,7 +3,7 @@ import { useMemo, useState } from 'react';
 import { SetStateAction } from '../../common/interface';
 import useUpdateEffect from '../useUpdateEffect';
 
-export default (
+export const useUrlState = (
   defaultValue?: string | string[][] | Record<string, string> | URLSearchParams,
   navigateMode?: 'push' | 'replace',
 ) => {
@@ -47,3 +47,5 @@ export default (
 
   return [urlState, Actions] as const;
 };
+
+export default useUrlState;

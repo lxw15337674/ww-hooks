@@ -1,4 +1,6 @@
-import { isObject } from '../../common/utils';
+function isObject(obj) {
+  return Object.prototype.toString.call(obj) === '[object Object]';
+}
 
 type Fn = (...args: any[]) => any;
 

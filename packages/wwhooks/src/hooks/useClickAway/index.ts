@@ -5,7 +5,7 @@ import usePersistFn from '../usePersistFn';
 
 const defaultEvents = ['click'];
 
-const useClickAway = <T extends Event = Event>(
+export const useClickAway = <T extends Event = Event>(
   target: BasicTarget,
   onClickAway: (event: T) => void,
   events: string[] = defaultEvents,

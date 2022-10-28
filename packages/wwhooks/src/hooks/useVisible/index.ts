@@ -3,7 +3,7 @@ import useIntersectionObserver from '../useIntersectionObserver';
 import { getTargetElement, isInViewPort } from '../../common/dom';
 import { useState } from 'react';
 
-function useVisible<T extends HTMLElement = HTMLElement>(
+export function useVisible<T extends HTMLElement = HTMLElement>(
   target: BasicTarget<T>,
 ) {
   const [visible, setVisible] = useState(() => {

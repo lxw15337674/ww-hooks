@@ -2,12 +2,7 @@ import { BasicTarget } from 'packages/wwhooks/src/common/interface';
 import useBoolean from '../useBoolean';
 import useEventListener from '../useEventListener';
 
-export interface Options {
-  onEnter?: () => void;
-  onLeave?: () => void;
-}
-
-export default (target: BasicTarget, options?: Options): boolean => {
+export const useHover = (target: BasicTarget, options?: Options): boolean => {
   const { onEnter, onLeave } = options || {};
 
   const [state, toggle] = useBoolean(false);
@@ -24,3 +19,5 @@ export default (target: BasicTarget, options?: Options): boolean => {
 
   return state;
 };
+
+export default useHover;

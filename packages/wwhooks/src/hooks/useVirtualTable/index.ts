@@ -9,7 +9,7 @@ import useSize from '../useSize';
 
 const overscan = 5;
 
-export default <T = any>(
+export const useVirtualTable = <T = any>(
   originalList: T[][],
   containerRef: any,
   options: Options<T>,
@@ -134,3 +134,5 @@ export default <T = any>(
     },
   };
 };
+
+export default useVirtualTable;

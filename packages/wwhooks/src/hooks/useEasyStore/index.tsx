@@ -20,7 +20,7 @@ interface Context<T> {
 }
 type Listener<T> = Set<(value: Partial<T>) => void>;
 
-function initContext<T extends object>(initialState: T) {
+export function initContext<T extends object>(initialState: T) {
   const Context = createContext<Context<T>>(null);
   return {
     Provider: React.memo(({ children }: ContextProps<T>) => {

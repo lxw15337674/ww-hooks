@@ -1,7 +1,7 @@
 import { MutableRefObject, useEffect, useRef } from 'react';
 import usePersistFn from '../usePersistFn';
 
-function useSyncScroll(
+export function useSyncScroll(
   refList: MutableRefObject<HTMLElement>[],
   attribute: 'left' | 'both' | 'top' = 'left',
 ) {

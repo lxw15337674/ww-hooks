@@ -3,7 +3,7 @@ import { useState, useMemo } from 'react';
 import { InitialState } from 'packages/wwhooks/src/common/interface';
 import usePersistFn from '../usePersistFn';
 
-const useArray = <T = any>(initialArray: InitialState<T[]>) => {
+export const useArray = <T = any>(initialArray: InitialState<T[]>) => {
   const [value, setValue] = useState<T[]>(initialArray);
 
   const isEdited = useMemo(() => {
