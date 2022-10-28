@@ -20,6 +20,6 @@ export default defineConfig({
     ],
   ],
   nodeModulesTransform: { type: 'none' },
-  mfsu: {},
+  // mfsu: {},
   resolve: { excludes: ['./template'] },
 });
