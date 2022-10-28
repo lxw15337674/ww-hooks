@@ -1,0 +1,49 @@
+{
+  "name": "wwhooks",
+  "version": "1.1.1",
+  "scripts": {
+    "start": "dumi dev",
+    "dev": "dumi dev",
+    "docs:build": "dumi build",
+    "docs:deploy": "gh-pages -d docs-dist",
+    "build": "father-build",
+    "build:watch": "father-build -watch",
+    "deploy": "pnpm run docs:build && pnpm run docs:deploy",
+    "release": "pnpm run build && pnpm --registry https://registry.pnpmjs.org publish",
+    "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\"",
+    "test": "umi-test",
+    "test:coverage": "umi-test --coverage"
+  },
+  "files": [
+    "dist",
+    "package.json",
+    "README.md"
+  ],
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "typings": "dist/src/index.d.ts",
+  "types": "dist/index.d.ts",
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx,less,json}": [
+      "prettier --write"
+    ],
+    "*.ts?(x)": [
+      "prettier --parser=typescript --write"
+    ]
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "lodash": "^4.17.21"
+  },
+  "peerDependencies": {
+    "react": ">=16.9.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
