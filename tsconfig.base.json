@@ -7,14 +7,10 @@
     "esModuleInterop": true,
     "sourceMap": true,
     "baseUrl": "./",
-    "strict": false,
+    "strict": true,
     "paths": {
-      "@/": [
-        "packages/wwhooks/src"
-      ],
-      "@/*": [
-        "packages/wwhooks/src/*"
-      ]
+      "@/": ["packages/wwhooks/src"],
+      "@/*": ["packages/wwhooks/src/*"]
     },
     "allowSyntheticDefaultImports": true
   },
