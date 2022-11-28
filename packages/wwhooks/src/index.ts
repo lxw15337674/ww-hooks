@@ -38,3 +38,4 @@ export * from './hooks/useHover';
 export * from './hooks/useWindowIsScroll';
 export * from './hooks/useClipboardText';
 export * from './hooks/useUpdateLayoutEffect';
+export * from './hooks/useMouse';

@@ -8,10 +8,10 @@ type Options = {
   passive?: boolean;
 };
 
-export function useEventListener(
+export function useEventListener<T = Event>(
   target: Target,
   eventName: string,
-  handler: (e: Event) => void,
+  handler: (e: T) => void,
   options: Options = {},
 ) {
   const handlerRef = useRef<Function>();

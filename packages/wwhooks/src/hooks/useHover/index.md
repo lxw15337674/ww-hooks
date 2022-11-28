@@ -1,7 +1,7 @@
 ---
 group:
-  title: Dom
-  path: /Dom
+  title: Sensor
+  path: /Sensor
 ---
 
 # useHover
