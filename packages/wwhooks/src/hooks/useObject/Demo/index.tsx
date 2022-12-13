@@ -6,7 +6,7 @@ interface Obj {
   age: number;
 }
 const Demo = () => {
-  const [obj, actions] = useObject<Obj>({
+  const [obj, setObj, actions] = useObject<Obj>({
     name: 'bhwa233',
     age: 25,
   });
@@ -25,7 +25,7 @@ const Demo = () => {
       <p>
         <button
           onClick={() =>
-            actions.set((prev) => ({
+            setObj((prev) => ({
               age: ++prev.age,
             }))
           }
@@ -36,7 +36,7 @@ const Demo = () => {
         <input
           value={obj.name}
           onChange={(e) => {
-            actions.set({ name: e.target.value });
+            setObj({ name: e.target.value });
           }}
         />
       </p>
