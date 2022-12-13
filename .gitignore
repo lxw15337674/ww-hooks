@@ -24,3 +24,4 @@ docs-dist
 /.idea
 node_modules
 docs-dist
+packages/wwhooks/docs-dist/umi.server.js
