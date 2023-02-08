@@ -1,8 +1,7 @@
 import { Table } from 'antd';
 import { ColumnsType } from 'antd/lib/table';
 import React from 'react';
-import sortBy from '..';
-// import { sortBy } from 'wwhooks';
+import { sortBy } from 'wwutils';
 
 const data = [
   { user: 'fred', age: 48, phone: 123456 },

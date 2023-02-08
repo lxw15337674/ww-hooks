@@ -1,7 +1,7 @@
 import {
   CSSProperties,
   MutableRefObject,
-  useLayoutEffect,
+  useEffect,
   useMemo,
   useState,
 } from 'react';
@@ -40,7 +40,7 @@ export const useVirtualList = <T = any>(
     }
   });
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     calculateRowRange();
   }, [top, containerHeight, originalList]);
 

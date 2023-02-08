@@ -2,7 +2,7 @@ import { isEqual } from '../../common/utils';
 import React, {
   createContext,
   useContext,
-  useLayoutEffect,
+  useEffect,
   useRef,
   useState,
 } from 'react';
@@ -54,7 +54,7 @@ export function initContext<T extends object>(initialState: T) {
           }
         }
       });
-      useLayoutEffect(() => {
+      useEffect(() => {
         listeners.add(cb);
         return () => {
           listeners.delete(cb);

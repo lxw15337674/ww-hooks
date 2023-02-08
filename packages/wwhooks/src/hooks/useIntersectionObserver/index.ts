@@ -1,5 +1,5 @@
 import { getTargetElement } from '../../common/dom';
-import { useLayoutEffect } from 'react';
+import { useEffect } from 'react';
 import { BasicTarget } from '../../common/interface';
 
 export function useIntersectionObserver<T extends Element = Element>(
@@ -7,7 +7,7 @@ export function useIntersectionObserver<T extends Element = Element>(
   callback: (info: IntersectionObserverEntry) => void,
   config?: IntersectionObserverInit,
 ) {
-  useLayoutEffect(() => {
+  useEffect(() => {
     const el = getTargetElement(target);
     if (!el) {
       return;

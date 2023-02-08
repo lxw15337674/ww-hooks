@@ -1,10 +1,5 @@
 import { isEqual, pick } from '../../common/utils';
-import React, {
-  createContext,
-  useContext,
-  useEffect,
-  useLayoutEffect,
-} from 'react';
+import React, { createContext, useContext, useEffect } from 'react';
 import usePersistFn from '../usePersistFn';
 import useUpdate from '../useUpdate';
 
@@ -57,7 +52,7 @@ export function initContext<V extends object, T extends object>(
         }
       }
     });
-    useLayoutEffect(() => {
+    useEffect(() => {
       listeners.add(cb);
       return () => {
         listeners.delete(cb);

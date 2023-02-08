@@ -1,4 +1,4 @@
-import { useLayoutEffect } from 'react';
+import { useEffect } from 'react';
 import { getTargetElement } from '../../common/dom';
 import { BasicTarget } from '../../common/interface';
 
@@ -6,7 +6,7 @@ export function useResizeObserver(
   target: BasicTarget,
   onResize: (entry: ResizeObserverEntry) => void,
 ) {
-  useLayoutEffect(() => {
+  useEffect(() => {
     const el = getTargetElement(target);
     if (!el) {
       return;

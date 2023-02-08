@@ -1,7 +1,7 @@
 import { defineConfig } from 'dumi';
 
 export default defineConfig({
-  title: 'wwhooks',
+  title: 'wwutils',
   outputPath: './docs-dist',
   mode: 'doc',
   base: './ww-hooks/',

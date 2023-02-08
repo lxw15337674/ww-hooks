@@ -1,7 +1,7 @@
 import {
   CSSProperties,
   MutableRefObject,
-  useLayoutEffect,
+  useEffect,
   useMemo,
   useState,
 } from 'react';
@@ -73,11 +73,11 @@ export const useDynamicList = <T = any>(
     }
   });
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     calculateRowRange();
   }, [top, containerHeight]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const list = originalList
       .slice(rowIndex.start, rowIndex.end)
       .map((ele, index) => ({

@@ -1,11 +1,13 @@
 {
   "name": "wwhooks-monorepo",
-  "version": "1.1.1",
+  "version": "1.0.0",
   "scripts": {
-    "dev": "pnpm -r --filter=./packages/wwhooks run dev",
-    "build": "pnpm -r --filter=./packages/wwhooks run build",
-    "docs:build": "pnpm -r --filter=./packages/wwhooks run docs:build"
-
+    "dev:wwhooks": "pnpm -r --filter=./packages/wwhooks run dev",
+    "build:wwhooks": "pnpm -r --filter=./packages/wwhooks run build",
+    "docs:wwhooks": "pnpm -r --filter=./packages/wwhooks run docs:build",
+    "dev:wwutils": "pnpm -r --filter=./packages/wwutils run dev",
+    "build:wwutils": "pnpm -r --filter=./packages/wwutils run build",
+    "docs:wwutils": "pnpm -r --filter=./packages/wwutils run docs:build"
   },
   "files": [
     "dist",
