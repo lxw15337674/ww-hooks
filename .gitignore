@@ -23,6 +23,10 @@ docs-dist
 /.vscode
 /.idea
 node_modules
+**/node_modules
+**/docs-dist/
+**/dist/
+**/.dumi
 docs-dist
 packages/wwhooks/docs-dist/umi.server.js
 /dist
