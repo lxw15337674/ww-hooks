@@ -24,10 +24,13 @@ importers:
       father: ^4
       gh-pages: ^4.0.0
       lint-staged: ^13.0.3
+      lodash: ^4.17.21
       postcss: ^8.4.16
       prettier: ^2.7.1
       react: ^17.0.2
       react-dom: ^17.0.2
+    dependencies:
+      lodash: 4.17.21
     devDependencies:
       '@babel/eslint-parser': 7.18.9_5rbyuefuly6hvwctvpjswina6q
       '@babel/preset-react': 7.18.6_@babel+core@7.20.12

@@ -25,3 +25,8 @@ docs-dist
 node_modules
 docs-dist
 packages/wwhooks/docs-dist/umi.server.js
+/dist
+.dumi/tmp
+.dumi/tmp-test
+.dumi/tmp-production
+.DS_Store

@@ -1,7 +1,7 @@
 import { Table } from 'antd';
 import { ColumnsType } from 'antd/lib/table';
 import React from 'react';
-import { sortBy } from 'wwutils';
+import { colSpan } from 'wwutils';
 
 const data = [
   { user: 'fred', age: 48, phone: 123456 },
@@ -13,9 +13,7 @@ const data = [
 ].map((item, index) => ({ ...item, index }));
 
 const app = () => {
-  console.log(sortBy);
-
-  const rowSpan = sortBy(data, ['user', 'age']);
+  const rowSpan = colSpan(data, ['user', 'age']);
   const columns: ColumnsType = [
     {
       title: 'user',

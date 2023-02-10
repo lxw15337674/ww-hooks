@@ -22,4 +22,4 @@ function setDefaultArguments<
   };
 }
 
-export default setDefaultArguments;
+export { setDefaultArguments };

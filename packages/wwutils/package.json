@@ -6,7 +6,8 @@
     "start": "dumi dev",
     "dev": "dumi dev",
     "prepare": " dumi setup",
-    "build": "dumi build",
+    "docs:build": "dumi build",
+    "build": "father build",
     "deploy": "pnpm run docs:build && pnpm run docs:deploy",
     "release": "pnpm run build && pnpm --registry https://registry.pnpmjs.org publish",
     "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\""

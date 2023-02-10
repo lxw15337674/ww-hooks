@@ -12,7 +12,7 @@ group:
 
 ### 基础用法
 
-<code src="./Demo/index.tsx" />
+<code src="./Demo/index.tsx" ></code>
 
 ### 监听 keydown 事件
 

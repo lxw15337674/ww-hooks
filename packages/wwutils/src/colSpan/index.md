@@ -1,6 +1,4 @@
 ---
-group:
-  title: utils
 ---
 
 # colSpan

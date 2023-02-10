@@ -32,4 +32,4 @@ function colSpan<T extends {}>(data: T[], keys: (keyof T)[]) {
   return span;
 }
 
-export default colSpan;
+export { colSpan };

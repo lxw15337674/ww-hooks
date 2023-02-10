@@ -6,4 +6,4 @@ function isType<T>(data: any, type: string): data is T {
   return type === dataType;
 }
 
-export default isType;
+export { isType };
