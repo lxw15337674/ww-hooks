@@ -1,8 +1,8 @@
 ---
+title: useObject
 group:
   title: State
-  path: /State
----
+--- 
 
 # useObject
 

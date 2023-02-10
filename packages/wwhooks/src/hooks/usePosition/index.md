@@ -1,7 +1,6 @@
-<!-- ---
+---
 group:
-  title: usePosition
-  path: /Sensor
+  title: State
 ---
 
 # usePosition
@@ -25,4 +24,4 @@ group:
 | screenX | 距离显示器左侧的距离   | `number` |
 | screenY | 距离显示器顶部的距离   | `number` |
 
-> [前端offset/scroll/client各类属性详解](https://juejin.cn/post/6940808773564891166) -->
+> [前端offset/scroll/client各类属性详解](https://juejin.cn/post/6940808773564891166)

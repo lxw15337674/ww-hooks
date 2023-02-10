@@ -17,7 +17,7 @@ group:
 <code src="./Demo/index.tsx"></code>
 
 
-<code src="./Demo/index2.tsx"/>
+<code src="./Demo/index2.tsx" ></code>
 
 ### Params
 

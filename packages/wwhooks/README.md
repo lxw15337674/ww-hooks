@@ -16,8 +16,6 @@
 - [ ] 依照[pinia](https://juejin.cn/post/7078281612013764616)语法实现useStore
 
 
-
-
 ## list
 
 useRequest
@@ -33,29 +31,3 @@ useRequest
 - useQuery
   
   基于 useRequest，增加针对查询请求的特性
-
-## Getting Started
-
-Install dependencies,
-
-```bash
-$ npm i
-```
-
-Start the dev server,
-
-```bash
-$ npm start
-```
-
-Build documentation,
-
-```bash
-$ npm run docs:build
-```
-
-Build library via `father-build`,
-
-```bash
-$ npm run build
-```

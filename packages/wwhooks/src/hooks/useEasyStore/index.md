@@ -13,7 +13,7 @@ group:
 ### 基本用法
 
 <code src="./Demo/index.tsx"></code>
-<code src="./Demo/index2.tsx"/>
+<code src="./Demo/index2.tsx" ></code>
 
 ### Generics
 

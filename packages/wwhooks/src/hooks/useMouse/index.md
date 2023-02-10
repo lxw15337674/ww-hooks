@@ -1,7 +1,6 @@
 ---
 group:
-  title: useMouse
-  path: /Sensor
+  title: State
 ---
 
 # useMouse

@@ -23,11 +23,11 @@ group:
 
 ### 加载状态延迟
 
-<code src="./Demo/LoadingDelay.tsx"/>
+<code src="./Demo/LoadingDelay.tsx"></code>
 
 ### 防抖
 
-<code src="./Demo/debounce.tsx"/>
+<code src="./Demo/debounce.tsx"></code>
 
 ### 节流
 

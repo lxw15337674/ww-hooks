@@ -9,8 +9,8 @@ group:
 
 ## Demo
 
-<code src="./Demo/Demo1.tsx" />
-
+<code src="./Demo/index.tsx" ><code>
+ 
 ### Params
 
 | 参数      | 说明                    | 类型                                    | 是否必填 | 默认值 |

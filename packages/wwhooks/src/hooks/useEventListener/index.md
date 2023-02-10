@@ -16,7 +16,7 @@ group:
 
 ### 监听 keydown 事件
 
-<code src="./Demo/index2.tsx" />
+<code src="./Demo/index2.tsx" ></code>
 
 ## API
 

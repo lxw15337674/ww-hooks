@@ -20,7 +20,7 @@ group:
 
 <code src="./Demo/index.tsx"></code>
 
-<code src="./Demo/demo2.tsx"/>
+<code src="./Demo/demo2.tsx" ><code>
 
 ### Params
 

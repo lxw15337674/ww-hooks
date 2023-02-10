@@ -44,7 +44,11 @@ export default function DumiContextWrapper() {
           prefersColor: { default: 'light', switch: true },
           name: 'wwhooks',
           logo: false,
-          nav: [{ title: 'hooks', link: 'src/hooks' }],
+          nav: [
+            { title: '指南', link: '/guide' },
+            { title: '更新内容', link: '/changelog' },
+            { title: 'hooks', link: '/hooks/use-hash' },
+          ],
         },
       }}
     >

@@ -18,11 +18,13 @@ export async function getRoutes() {
         parentId: 'dumi-context-layout',
         isLayout: true,
       },
-      'docs/docs/changelog': {
-        path: 'docs/changelog',
-        id: 'docs/docs/changelog',
+      'docs/changelog': {
+        path: 'changelog',
+        id: 'docs/changelog',
         parentId: 'DocLayout',
       },
+      'docs/guide': { path: 'guide', id: 'docs/guide', parentId: 'DocLayout' },
+      'docs/index': { path: '', id: 'docs/index', parentId: 'DocLayout' },
       'hooks/useArray/index': {
         id: 'hooks/useArray/index',
         path: 'hooks/use-array',
@@ -173,8 +175,8 @@ export async function getRoutes() {
         path: 'hooks/use-store',
         parentId: 'DocLayout',
       },
-      'hooks/useSyncScroll/README': {
-        id: 'hooks/useSyncScroll/README',
+      'hooks/useSyncScroll/index': {
+        id: 'hooks/useSyncScroll/index',
         path: 'hooks/use-sync-scroll',
         parentId: 'DocLayout',
       },
@@ -213,11 +215,6 @@ export async function getRoutes() {
         path: 'hooks/use-update-effect',
         parentId: 'DocLayout',
       },
-      'hooks/useUpdateLayoutEffect/index': {
-        id: 'hooks/useUpdateLayoutEffect/index',
-        path: 'hooks/use-update-layout-effect',
-        parentId: 'DocLayout',
-      },
       'hooks/useUrlState/index': {
         id: 'hooks/useUrlState/index',
         path: 'hooks/use-url-state',
@@ -233,8 +230,8 @@ export async function getRoutes() {
         path: 'hooks/use-virtual-table',
         parentId: 'DocLayout',
       },
-      'hooks/useVisible/README': {
-        id: 'hooks/useVisible/README',
+      'hooks/useVisible/index': {
+        id: 'hooks/useVisible/index',
         path: 'hooks/use-visible',
         parentId: 'DocLayout',
       },
@@ -269,10 +266,22 @@ export async function getRoutes() {
             /* webpackChunkName: "nm__.pnpm__dumi_2.1.8_m273yayteyy2vzqmynnb6kpyha__node_modules__dumi__theme-default__layouts__DocLayout__index" */ 'D:/ownerCode/wwhooks/node_modules/.pnpm/dumi@2.1.8_m273yayteyy2vzqmynnb6kpyha/node_modules/dumi/theme-default/layouts/DocLayout/index.js'
           ),
       ),
-      'docs/docs/changelog': React.lazy(
+      'docs/changelog': React.lazy(
         () =>
           import(
-            /* webpackChunkName: "docs__docs__changelog.md" */ 'D:/ownerCode/wwhooks/packages/wwhooks/docs/docs/changelog.md'
+            /* webpackChunkName: "docs__changelog.md" */ 'D:/ownerCode/wwhooks/packages/wwhooks/docs/changelog.md'
+          ),
+      ),
+      'docs/guide': React.lazy(
+        () =>
+          import(
+            /* webpackChunkName: "docs__guide.md" */ 'D:/ownerCode/wwhooks/packages/wwhooks/docs/guide.md'
+          ),
+      ),
+      'docs/index': React.lazy(
+        () =>
+          import(
+            /* webpackChunkName: "docs__index.md" */ 'D:/ownerCode/wwhooks/packages/wwhooks/docs/index.md'
           ),
       ),
       'hooks/useArray/index': React.lazy(
@@ -455,10 +464,10 @@ export async function getRoutes() {
             /* webpackChunkName: "hooks__useStore__index.md" */ 'D:/ownerCode/wwhooks/packages/wwhooks/src/hooks/useStore/index.md'
           ),
       ),
-      'hooks/useSyncScroll/README': React.lazy(
+      'hooks/useSyncScroll/index': React.lazy(
         () =>
           import(
-            /* webpackChunkName: "hooks__useSyncScroll__README.md" */ 'D:/ownerCode/wwhooks/packages/wwhooks/src/hooks/useSyncScroll/README.md'
+            /* webpackChunkName: "hooks__useSyncScroll__index.md" */ 'D:/ownerCode/wwhooks/packages/wwhooks/src/hooks/useSyncScroll/index.md'
           ),
       ),
       'hooks/useThrottleFn/index': React.lazy(
@@ -503,12 +512,6 @@ export async function getRoutes() {
             /* webpackChunkName: "hooks__useUpdateEffect__index.md" */ 'D:/ownerCode/wwhooks/packages/wwhooks/src/hooks/useUpdateEffect/index.md'
           ),
       ),
-      'hooks/useUpdateLayoutEffect/index': React.lazy(
-        () =>
-          import(
-            /* webpackChunkName: "hooks__useUpdateLayoutEffect__index.md" */ 'D:/ownerCode/wwhooks/packages/wwhooks/src/hooks/useUpdateLayoutEffect/index.md'
-          ),
-      ),
       'hooks/useUrlState/index': React.lazy(
         () =>
           import(
@@ -527,10 +530,10 @@ export async function getRoutes() {
             /* webpackChunkName: "hooks__useVirtualTable__README.md" */ 'D:/ownerCode/wwhooks/packages/wwhooks/src/hooks/useVirtualTable/README.md'
           ),
       ),
-      'hooks/useVisible/README': React.lazy(
+      'hooks/useVisible/index': React.lazy(
         () =>
           import(
-            /* webpackChunkName: "hooks__useVisible__README.md" */ 'D:/ownerCode/wwhooks/packages/wwhooks/src/hooks/useVisible/README.md'
+            /* webpackChunkName: "hooks__useVisible__index.md" */ 'D:/ownerCode/wwhooks/packages/wwhooks/src/hooks/useVisible/index.md'
           ),
       ),
       'hooks/useWindowIsScroll/index': React.lazy(
