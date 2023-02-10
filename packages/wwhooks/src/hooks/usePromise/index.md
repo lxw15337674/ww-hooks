@@ -33,7 +33,7 @@ group:
 
 > 同时配置防抖，节流的情况下，节流优先级低于防抖
 
-<code src="./Demo/throttle.tsx"/>
+<code src="./Demo/throttle.tsx"></code>
 
 ### Generics
 
