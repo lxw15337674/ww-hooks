@@ -1,7 +1,7 @@
 /**
  *
  * title: 基本用法
- * desc: 简单示例
+ * description: 简单示例
  *
  */
 import React, { useState } from 'react';

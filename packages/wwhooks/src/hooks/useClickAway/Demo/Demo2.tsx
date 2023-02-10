@@ -1,7 +1,7 @@
 /**
  *
  * title: 改变ref
- * desc: |
+ * description: |
  *  支持改变ref
  *
  */

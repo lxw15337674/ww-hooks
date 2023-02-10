@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
 import usePrevious from '../usePrevious';
 
 export type EffectCallback<T> = (newValues: T, oldValues: T) => void;
@@ -8,9 +8,9 @@ export function useUpdateEffect<T extends any[]>(
 ) {
   const [isMount, setIsMount] = useState<boolean>(false);
   const prev = usePrevious<T>(deps);
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (isMount) {
-      effect(deps, prev);
+      effect(deps, prev as T);
     } else {
       setIsMount(true);
     }

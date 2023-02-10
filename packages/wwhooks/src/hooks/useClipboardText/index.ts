@@ -16,7 +16,7 @@ async function readPermission() {
     }
     return true;
   } catch (error) {
-    console.error(error.message);
+    console.error(new Error(String(error)).message);
   }
   return state;
 }

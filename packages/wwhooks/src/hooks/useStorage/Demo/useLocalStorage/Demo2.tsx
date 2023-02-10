@@ -1,6 +1,6 @@
 /**
  * title: 存储复杂类型数据
- * desc:
+ * description:
  */
 import React from 'react';
 import { useLocalStorage } from '../..';

@@ -20,8 +20,10 @@ export function useLockScroll(container?: HTMLElement) {
     }
 
     return () => {
-      container.style.overflow = originalOverflow;
-      container.style.width = originalPaddingRight;
+      if (container) {
+        container.style.overflow = originalOverflow;
+        container.style.width = originalPaddingRight;
+      }
     };
   }, [lock, container]);
   return [setLock, lock] as const;

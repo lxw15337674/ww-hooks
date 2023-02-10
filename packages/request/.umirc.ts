@@ -17,7 +17,6 @@ export default defineConfig({
       'antd',
     ],
   ],
-  nodeModulesTransform: { type: 'none' },
   // mfsu: {}, //与MonoRepos冲突
   resolve: { excludes: ['./template'] },
 });

@@ -6,7 +6,7 @@ const setWindowsHash = (hash: string) => {
 };
 
 export const useHash = (
-  InitialState?: string,
+  InitialState = '',
 ): [string, Dispatch<SetStateAction<string>>, () => void] => {
   const [hash, setHash] = useState<string>(() => {
     let hash = window.location.hash.substring(1);

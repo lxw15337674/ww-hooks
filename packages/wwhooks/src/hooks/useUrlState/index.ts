@@ -18,7 +18,7 @@ export const useUrlState = (
         setUrlState((prev) => {
           const temp = new URLSearchParams(prev);
           const prevValue = prev.get(key);
-          const data = setStateAction<string>(entry, prevValue);
+          const data = setStateAction<string>(entry, prevValue ?? '');
           if (data === undefined) {
             temp.delete(key);
           } else {
@@ -35,7 +35,7 @@ export const useUrlState = (
   );
 
   useUpdateEffect(() => {
-    const mode = `${navigateMode}State`;
+    const mode = `${navigateMode}State` as 'pushState' | 'replaceState';
     const params = urlState.toString();
     if (!params) {
       history[mode]({}, document.title, window.location.pathname);

@@ -1,7 +1,7 @@
 import { SetStateAction } from './interface';
 
 // /**
-//  * @desc: obj1的keys根据obj2的keys判断
+//  * @description: obj1的keys根据obj2的keys判断
 //  * 1.obj2的key不存在则取另一个对象的value，
 //  * 2.另一个对象的keys会被删除。
 //  * @example
@@ -43,25 +43,25 @@ export function pxToNum(str: string): number {
   return 0;
 }
 
-export function mergeWith(obj, source, customizer) {
-  for (let i in obj) {
-    if (Object.prototype.hasOwnProperty.call(obj, i)) {
-      obj[i] = customizer(obj[i], source[i]);
-    }
-  }
-  return obj;
-}
+// export function mergeWith(obj, source, customizer) {
+//   for (let i in obj) {
+//     if (Object.prototype.hasOwnProperty.call(obj, i)) {
+//       obj[i] = customizer(obj[i], source[i]);
+//     }
+//   }
+//   return obj;
+// }
 
-export function isNumber(value) {
+export function isNumber(value: any) {
   return typeof value === 'number';
 }
 
-export function isObject(obj) {
+export function isObject(obj: any) {
   return Object.prototype.toString.call(obj) === '[object Object]';
 }
 
 // 判断对象是否相同
-export function isEqual(obj1, obj2) {
+export function isEqual(obj1: any, obj2: any) {
   // 1.判断是不是引用类型，不是引用
   if (!isObject(obj1) || !isObject(obj2)) {
     return obj1 === obj2;
@@ -89,8 +89,8 @@ export const dataType = (val: any): string => {
     .replace(/^.{8}(.+)]$/, (m, $1) => $1.toLowerCase());
 };
 
-export const mockInt = (minNum, maxNum) => {
-  return parseInt(Math.random() * (maxNum - minNum + 1) + minNum, 10);
+export const mockInt = (minNum: number, maxNum: number) => {
+  return parseInt(String(Math.random() * (maxNum - minNum + 1) + minNum), 10);
 };
 
 export const setInitialState = <T>(v: T | (() => T)): T => {

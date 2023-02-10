@@ -1,7 +1,7 @@
 /**
  *
  * title: 依赖请求
- * desc: |
+ * description: |
  *  配置`deps`参数，当deps变化，就会触发`run`执行
  *
  */

@@ -1,7 +1,7 @@
 /**
  *
  * title: 滚动条点击
- * desc: |
+ * description: |
  *  点击任何区域的滚动条都不会触发click，如果需要触发需改为使用mousedown。
  *
  */

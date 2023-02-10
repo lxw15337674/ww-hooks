@@ -9,7 +9,7 @@ group:
 
 ## demo
 
-<code src="./Demo/index.tsx"/>
+<code src="./Demo/index.tsx"></code>
 <code src="./Demo/Demo2.tsx"/>
 
 ### Params

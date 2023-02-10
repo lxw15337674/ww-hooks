@@ -5,7 +5,7 @@ export function useTimeoutFn<T extends any[] = never>(
   fn: (...args: T) => void,
   delay: number = 0,
 ) {
-  const timer = useRef(null);
+  const timer = useRef<any>();
   const [waiting, setWaiting] = useState<boolean>(false);
   const run = usePersistFn((...args: T) => {
     clearTimeout(timer.current);

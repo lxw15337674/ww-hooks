@@ -1,6 +1,6 @@
 /**
  * title: 用法
- * desc: 相对于窗口是否可见
+ * description: 相对于窗口是否可见
  */
 import React, { useRef, useState } from 'react';
 import { useIntersectionObserver } from 'wwhooks';

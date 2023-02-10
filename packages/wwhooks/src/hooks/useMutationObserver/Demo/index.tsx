@@ -1,6 +1,6 @@
 /**
  * title: 用法
- * desc: 通过ref监听节点变化
+ * description: 通过ref监听节点变化
  */
 import React, { useRef, useState } from 'react';
 import useMutationObserver from '..';

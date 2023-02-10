@@ -1,6 +1,6 @@
 /**
  * title: 基础用法
- * desc: 使用 ref 监听
+ * description: 使用 ref 监听
  */
 
 import React, { useRef, useState } from 'react';

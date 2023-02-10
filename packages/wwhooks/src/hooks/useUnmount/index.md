@@ -11,7 +11,7 @@ group:
 
 ## demo
 
-<code src="./Demo/index.tsx"/>
+<code src="./Demo/index.tsx"></code>
 
 ## API
 

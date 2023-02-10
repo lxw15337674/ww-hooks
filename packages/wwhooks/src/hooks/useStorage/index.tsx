@@ -42,7 +42,7 @@ function useStorage<T>(
 
   const [state, setState] = useState<T>(() => getStorageValue());
 
-  const setStorageState = usePersistFn((nextState?: SetStateAction<T>) => {
+  const setStorageState = usePersistFn((nextState: SetStateAction<T>) => {
     try {
       const nextValue = setStateAction(nextState, state);
       setState(nextValue);

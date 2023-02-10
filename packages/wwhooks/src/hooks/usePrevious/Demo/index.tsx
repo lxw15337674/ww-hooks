@@ -1,6 +1,6 @@
 /**
  * title: 基本用法
- * desc: 记录上次的 count 值
+ * description: 记录上次的 count 值
  */
 import { usePrevious } from 'wwhooks';
 import React, { useState } from 'react';

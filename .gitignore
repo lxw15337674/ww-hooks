@@ -14,10 +14,10 @@ docs-dist
 .DS_Store
 
 # umi
-.umi
-.umi-production
-.umi-test
 .env.local
+.dumi/tmp
+.dumi/tmp-production
+.DS_Store
 
 # ide
 /.vscode

@@ -1,6 +1,6 @@
 /**
  * title: 基本用法
- * desc:
+ * description:
  */
 import React from 'react';
 import { useSessionStorage } from 'wwhooks';

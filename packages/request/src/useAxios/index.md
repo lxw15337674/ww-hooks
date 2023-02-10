@@ -15,7 +15,7 @@ group:
 
 ### 基本用法
 
-<code src="./Demo/index.tsx"/>
+<code src="./Demo/index.tsx"></code>
 
 ### 加载状态延迟
 

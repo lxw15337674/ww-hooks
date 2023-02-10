@@ -1,6 +1,6 @@
 /**
  * title: 基本用法
- * desc: 通过ref监听节点变化
+ * description: 通过ref监听节点变化
  */
 import React, { useRef } from 'react';
 import { useElementIsScroll } from 'wwhooks';

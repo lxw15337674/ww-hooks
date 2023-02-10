@@ -1,6 +1,6 @@
 /**
  * title: 传入dom用法
- * desc: 支持改变target
+ * description: 支持改变target
  */
 import React, { useState } from 'react';
 import { useIntersectionObserver, useToggle } from 'wwhooks';

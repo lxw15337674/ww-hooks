@@ -1,6 +1,6 @@
 /**
  * title: 基本用法
- * desc:
+ * description:
  */
 import React, { useEffect, useState } from 'react';
 import { useReactive } from 'wwhooks';

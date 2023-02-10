@@ -1,7 +1,7 @@
 /**
  *
  * title: 基本用法
- * desc: |
+ * description: |
  *  - 直接调用run方法请求。
  *
  */
