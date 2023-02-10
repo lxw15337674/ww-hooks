@@ -13,6 +13,6 @@ export default dumircConfig({
   resolve: {
     atomDirs: [{ type: 'hooks', dir: 'src/hooks' }],
   },
-  base: '/wwhooks',
-  publicPath: process.env.NODE_ENV === 'production' ? '/wwhooks/' : '/',
+  // base: '/wwhooks',
+  // publicPath: process.env.NODE_ENV === 'production' ? '/wwhooks/' : '/',
 });
