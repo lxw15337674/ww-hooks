@@ -27,6 +27,7 @@ node_modules
 **/docs-dist/
 **/dist/
 **/.dumi
+**/tmp
 docs-dist
 packages/wwhooks/docs-dist/umi.server.js
 /dist
