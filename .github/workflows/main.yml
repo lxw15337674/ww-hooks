@@ -22,9 +22,15 @@ jobs:
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install
-      - run: pnpm run docs:build
-      - name: Deploy
+      - run: pnpm docs:wwhooks
+        # run: pnpm docs:wwutils
+      - name: Deploy wwhooks
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.PUBLISH_PAGES }}
-          publish_dir: ./docs-dist
+          publish_dir: ./wwhooks/docs-dist
+      # - name: Deploy wwutils
+      #   uses: peaceiris/actions-gh-pages@v3
+      #   with:
+      #     github_token: ${{ secrets.PUBLISH_PAGES }}
+      #     publish_dir: ./wwutils/docs-dist
