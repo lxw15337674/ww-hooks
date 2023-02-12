@@ -21,7 +21,7 @@ group:
 
 <code src="./Demo/index.tsx"></code>
 
-### 加载状态延迟
+<!-- ### 加载状态延迟
 
 <code src="./Demo/LoadingDelay.tsx"></code>
 
@@ -33,7 +33,7 @@ group:
 
 > 同时配置防抖，节流的情况下，节流优先级低于防抖
 
-<code src="./Demo/throttle.tsx"></code>
+<code src="./Demo/throttle.tsx"></code> -->
 
 ### Generics
 

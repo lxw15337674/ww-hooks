@@ -1,4 +1,3 @@
-export * from './hooks/usePromise';
 export * from './hooks/useArray';
 export * from './hooks/useBoolean';
 export * from './hooks/useClick';
@@ -38,3 +37,4 @@ export * from './hooks/useHover';
 export * from './hooks/useWindowIsScroll';
 export * from './hooks/useClipboardText';
 export * from './hooks/useMouse';
+export * from './hooks/usePromise';

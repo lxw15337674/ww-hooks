@@ -1,8 +1,6 @@
-import {
-  InitialState,
-  SetStateAction,
-} from 'packages/wwhooks/src/common/interface';
+
 import { useMemo } from 'react';
+import { SetStateAction, InitialState } from '../../common/interface';
 import useUpdate from '../useUpdate';
 
 function isObject(val: Record<string, any>): boolean {
@@ -51,5 +49,3 @@ export const useReactive = <T extends Record<string, any>>(
   }, []);
   return state as T;
 };
-
-export default useReactive;
