@@ -30,7 +30,7 @@ Build documentation,
 $ npm run docs:build
 ```
 
-Build library via `father-build`,
+Build library via `father`,
 
 ```bash
 $ npm run build
