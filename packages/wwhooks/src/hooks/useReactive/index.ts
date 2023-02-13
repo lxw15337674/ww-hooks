@@ -1,4 +1,3 @@
-
 import { useMemo } from 'react';
 import { SetStateAction, InitialState } from '../../common/interface';
 import useUpdate from '../useUpdate';
@@ -49,3 +48,5 @@ export const useReactive = <T extends Record<string, any>>(
   }, []);
   return state as T;
 };
+
+export default useReactive;
