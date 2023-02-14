@@ -38,3 +38,5 @@ export * from './hooks/useWindowIsScroll';
 export * from './hooks/useClipboardText';
 export * from './hooks/useMouse';
 export * from './hooks/usePromise';
+export * from './hooks/useLatest';
+

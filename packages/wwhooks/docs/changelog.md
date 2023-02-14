@@ -6,10 +6,20 @@ group:
 # 更新内容
 
 ## 待更新
-1. 增加**useHover**、**useClipboardText**、**useUpdateLayoutEffect**、**useMouse**
-2. 修改**useObject**返回值，单独提出set。
+1. 增加**useLatest**
 
 # 更新日志
+
+- 
+
+## [1.1.1] 2023/01/20
+
+#### Feature
+
+- 增加**useHover**、**useClipboardText**、**useUpdateLayoutEffect**、**useMouse**
+- 修改**useObject**返回值，单独提出set。
+
+
 
 ## [1.1.0] 2022/04/24
 

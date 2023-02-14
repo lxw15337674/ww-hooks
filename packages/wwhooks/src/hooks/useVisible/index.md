@@ -1,7 +1,7 @@
 ---
 group:
   title: Sensor
-  path: /Sensor
+
 ---
 
 # useVisible
