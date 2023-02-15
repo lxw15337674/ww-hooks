@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { SetStateAction, InitialState } from '../../common/interface';
+import { setInitialState } from '../../common/utils';
 import useUpdate from '../useUpdate';
 
 function isObject(val: Record<string, any>): boolean {
@@ -30,19 +31,12 @@ export const isValue = <T>(state: SetStateAction<T>): state is T => {
   return typeof state !== 'function';
 };
 
-export const setState = <T>(v: T | (() => T)): T => {
-  if (isValue<T>(v)) {
-    return v;
-  }
-  return v();
-};
-
 export const useReactive = <T extends Record<string, any>>(
   InitialState?: InitialState<T>,
 ) => {
   const update = useUpdate();
   const state = useMemo(() => {
-    return observer(setState(InitialState), () => {
+    return observer(setInitialState(InitialState), () => {
       update();
     });
   }, []);

@@ -1,19 +1,31 @@
-import React from 'react';
-import useReactive from '..';
+/**
+ * title: 使用useEffect
+ * description: 如果需要用useEffect,需要用JSON.stringify包裹
+ */
+import React, { useEffect, useState } from 'react';
+import { useReactive } from 'wwhooks';
 
-export default () => {
-  const state = useReactive({
-    list: [{ name: Math.random() }],
-  });
-
-  const changeName = () => {
-    state.list[0].name = Math.random();
-  };
-
+const Test = () => {
+  let list = useReactive({ a: '' });
+  const [count, setCount] = useState(0);
+  // 会触发
+  useEffect(() => {
+    setCount((v) => v + 1);
+  }, [list]);
+  // 不会触发
+  useEffect(() => {
+    setCount((v) => v + 100);
+  }, [JSON.stringify(list.a)]);
   return (
     <div>
-      <button onClick={changeName}>改变数据</button>
-      <div>{JSON.stringify(state.list.map((v) => v.name))}</div>
+      <input
+        onChange={(e) => {
+          list.a = e.target.value;
+        }}
+      />
+      <div>{JSON.stringify(list)}</div>
+      <div>{count}</div>
     </div>
   );
 };
+export default Test;

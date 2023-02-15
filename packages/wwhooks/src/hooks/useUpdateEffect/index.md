@@ -22,7 +22,7 @@ group:
 
 ```typescript
 useUpdateEffect(
-  effect: () => (void | (() => void | undefined)),
+  effect: (cur: T, pre: T) => (void | (() => void | undefined)),
   deps: deps,
 )
 ```
@@ -31,5 +31,5 @@ useUpdateEffect(
 
 | **参数** | **说明**           | **类型**       | **默认值** | 必填 |
 | -------- | ------------------ | -------------- | ---------- | ---- |
-| effect   | 可执行函数         | `() => (void)` | -          | 是   |
+| effect   | 可执行函数         | `(cur: T, pre: T) => (void)` | -          | 是   |
 | deps     | 传入依赖变化的对象 | `array`        | -          | 是   |
