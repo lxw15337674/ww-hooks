@@ -10,7 +10,13 @@ group:
 
 # 更新日志
 
-- 
+## [1.1.2] 2023/01/20
+
+#### Added
+
+- 增加**useLatest**
+
+更新useReactive、useupdateEffect文档。
 
 ## [1.1.1] 2023/01/20
 
