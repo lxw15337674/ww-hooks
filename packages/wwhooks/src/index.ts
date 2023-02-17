@@ -39,4 +39,6 @@ export * from './hooks/useClipboardText';
 export * from './hooks/useMouse';
 export * from './hooks/usePromise';
 export * from './hooks/useLatest';
-
+export * from './utils/colSpan';
+export * from './utils/IsType';
+export * from './utils/setDefaultArguments';

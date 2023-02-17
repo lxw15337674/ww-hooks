@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { setDefaultArguments } from 'wwutils';
+import { setDefaultArguments } from 'wwhooks';
 
 interface Obj {
   a?: string;

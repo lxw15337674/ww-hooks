@@ -1,7 +1,7 @@
 import { Table } from 'antd';
 import { ColumnsType } from 'antd/lib/table';
 import React from 'react';
-import { colSpan } from 'wwutils';
+import { colSpan } from 'wwhooks';
 
 const data = [
   { user: 'fred', age: 48, phone: 123456 },

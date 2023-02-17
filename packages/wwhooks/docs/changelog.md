@@ -6,7 +6,8 @@ group:
 # 更新内容
 
 ## 待更新
-1. 增加**useLatest**
+1. **useEventListener** 增加开关
+2. 增加utils方法
 
 # 更新日志
 
