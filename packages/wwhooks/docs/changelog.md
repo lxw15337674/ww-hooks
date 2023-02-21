@@ -7,6 +7,7 @@ group:
 
 ## 待更新
 1. 增加**useLatest**
+1. **useClickaway** 增加开启暂停功能。
 
 # 更新日志
 

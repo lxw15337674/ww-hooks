@@ -1,7 +1,7 @@
 /**
  *
  * title: 基本用法
- * description: |
+ * desc: |
  *  简单示例
  *
  */
@@ -11,12 +11,19 @@ import { useClickAway } from 'wwhooks';
 const Demo = () => {
   const ref = useRef(null);
   const [count, setCount] = useState(0);
-  useClickAway(ref, () => {
+  const { run, isRunning, stop } = useClickAway(ref, () => {
     setCount((v) => ++v);
   });
 
   return (
     <div>
+      <button
+        onClick={() => {
+          isRunning ? stop() : run();
+        }}
+      >
+        {isRunning ? 'stop' : 'run'}
+      </button>
       <button ref={ref} type="button">
         click away count:{count}
       </button>

@@ -1,11 +1,13 @@
 import { getTargetElement } from '../../common/dom';
 import { useEffect, useRef } from 'react';
-import { Target } from '../../common/interface';
+import { Target, TargetElement } from '../../common/interface';
+import { useBoolean, usePersistFn } from '../..';
 
 type Options = {
   capture?: boolean;
   once?: boolean;
   passive?: boolean;
+  manual?: boolean; // 是否手动触发
 };
 
 export function useEventListener<T = Event>(
@@ -14,29 +16,42 @@ export function useEventListener<T = Event>(
   handler: (e: T) => void,
   options: Options = {},
 ) {
-  const handlerRef = useRef<Function>();
-  handlerRef.current = handler;
+  const ele = useRef<TargetElement>();
+  const [isRunning, setIsRunning] = useBoolean(false);
   useEffect(() => {
-    const targetElement = getTargetElement(target, window);
-    if (!targetElement?.addEventListener) {
+    ele.current = getTargetElement(target, window);
+  }, [target]);
+
+  const eventListener = usePersistFn((event: Event) => {
+    return handler(event as T);
+  });
+
+  const run = usePersistFn(() => {
+    if (!ele.current && !isRunning) {
       return;
     }
-    const eventListener = (event: Event) => {
-      return handlerRef.current && handlerRef.current(event);
-    };
-
-    targetElement.addEventListener(eventName, eventListener, {
+    setIsRunning(true);
+    ele.current.addEventListener(eventName, eventListener, {
       capture: options.capture,
       once: options.once,
       passive: options.passive,
     });
-
-    return () => {
-      targetElement.removeEventListener(eventName, eventListener, {
+  });
+  const stop = usePersistFn(() => {
+    if (isRunning) {
+      ele.current.removeEventListener(eventName, eventListener, {
         capture: options.capture,
       });
-    };
-  }, [eventName, options]);
+      setIsRunning(false);
+    }
+  });
+  useEffect(() => {
+    if (options.manual !== false) {
+      run();
+    }
+    return stop;
+  }, []);
+  return { run, isRunning, stop };
 }
 
 export default useEventListener;

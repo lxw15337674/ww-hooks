@@ -1,18 +1,36 @@
 /**
  *
- * title.zh-CN: 监听 keydown 事件
+ * title: 启用、关闭
  */
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useEventListener } from 'wwhooks';
 
 export default () => {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState(0);
 
-  const keyDownHandler = (ev: KeyboardEvent) => {
-    setValue(ev.code);
+  const clickHandler = () => {
+    setValue(value + 1);
   };
-  useEventListener(window, 'keydown', keyDownHandler);
 
-  return <p>Your press key is {value}</p>;
+  const ref = useRef();
+  const { run, isRunning, stop } = useEventListener(ref, 'click', clickHandler);
+
+  return (
+    <div>
+      <p>
+        isRunning:{isRunning.toString()}
+        <button type="button" onClick={run}>
+          run
+        </button>
+        <button type="button" onClick={stop}>
+          stop
+        </button>
+      </p>
+
+      <button ref={ref} type="button">
+        You click {value} times
+      </button>
+    </div>
+  );
 };

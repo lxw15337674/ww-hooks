@@ -1,36 +1,38 @@
 /**
  *
  * title: 改变ref
- * description: |
+ * desc: |
  *  支持改变ref
  *
  */
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { useClickAway } from 'wwhooks';
 
 const Demo = () => {
-  const ref = useRef(null);
+  const [ele, setEle] = useState<any>();
   const [count, setCount] = useState(0);
-  useClickAway(ref, () => {
+  useClickAway(ele, () => {
     setCount((v) => ++v);
   });
 
   return (
     <div>
-      <button id="button1"> button1</button>
-      <button id="button2">button2</button>
       <button
         onClick={() => {
-          if (ref.current?.id === 'button2') {
-            ref.current = document.getElementById('button1');
+          if (ele?.id === 'button1') {
+            setEle(document.getElementById('button2'));
           } else {
-            ref.current = document.getElementById('button2');
+            setEle(document.getElementById('button1'));
           }
         }}
       >
-        switch click
+        toggle ele
       </button>
-      <p>current ref button {ref.current?.id}</p>
+      <p>
+        <button id="button1">button1</button>
+        <button id="button2">button2</button>
+      </p>
+      <p>current ref button {ele?.id ?? 'null'}</p>
       <p>click away count:{count}</p>
     </div>
   );
