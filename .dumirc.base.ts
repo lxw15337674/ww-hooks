@@ -5,9 +5,6 @@ import _ from 'lodash';
 const dumircConfig = (config: IDumiUserConfig) => {
   return _.mergeWith(
     defineConfig({
-      // outputPath: './docs-dist,
-      // base: './ww-hooks/',
-      // publicPath: process.env.NODE_ENV === 'production' ? './ww-hooks/' : './',
       outputPath: 'docs-dist',
       extraBabelPlugins: [
         [
