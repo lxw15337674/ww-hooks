@@ -11,7 +11,7 @@ group:
 
 1. 只支持固定高度，性能最优。
 
-> 动态高度，请使用[useDynamicList](use-dynamic-list)
+> 动态高度，请使用[useDynamicList](/hooks/use-dynamic-list)
 
 
 
