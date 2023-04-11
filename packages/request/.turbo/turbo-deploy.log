@@ -1,0 +1,124 @@
+Debugger attached.
+
+> request@1.0.0 deploy D:\ownerCode\wwhooks\packages\request
+> pnpm run docs:build && pnpm run docs:deploy
+
+Debugger attached.
+
+> request@1.0.0 docs:build D:\ownerCode\wwhooks\packages\request
+> dumi build
+
+Debugger attached.
+info  - dumi v2.1.8
+warn  - Please append `.dumi/**/*` into `include` option of `tsconfig.json`, to make sure the types exported by framework works.
+info  - Umi v4.0.50
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+i Compiling Webpack
+√ Webpack: Compiled with some errors in 9.07s
+info  - Memory Usage: 312.83 MB (RSS: 531.33 MB)
+fatal - Error: ERROR in ./src/useAxios/Demo/LoadingDelay.tsx?techStack=react 2:0-35
+Module not found: Error: Can't resolve 'wwhooks' in 'D:\ownerCode\wwhooks\packages\request\src\useAxios\Demo'
+ @ ./src/useAxios/index.md?type=meta 25:13-143
+ @ ./.dumi/tmp-production/dumi/meta/index.ts 5:0-149 12:17-20 13:9-13 14:11-15 15:11-14
+ @ ./.dumi/tmp-production/dumi/meta/runtime.ts
+ @ ./.dumi/tmp-production/core/plugin.ts 4:0-52 15:11-19
+ @ ./.dumi/tmp-production/umi.ts 10:0-52 24:26-45
+
+ERROR in ./src/useAxios/Demo/debounce.tsx?techStack=react 3:0-35
+Module not found: Error: Can't resolve 'wwhooks' in 'D:\ownerCode\wwhooks\packages\request\src\useAxios\Demo'
+ @ ./src/useAxios/index.md?type=meta 45:13-139
+ @ ./.dumi/tmp-production/dumi/meta/index.ts 5:0-149 12:17-20 13:9-13 14:11-15 15:11-14
+ @ ./.dumi/tmp-production/dumi/meta/runtime.ts
+ @ ./.dumi/tmp-production/core/plugin.ts 4:0-52 15:11-19
+ @ ./.dumi/tmp-production/umi.ts 10:0-52 24:26-45
+
+ERROR in ./src/useAxios/Demo/index.tsx?techStack=react 2:0-35
+Module not found: Error: Can't resolve 'wwhooks' in 'D:\ownerCode\wwhooks\packages\request\src\useAxios\Demo'
+ @ ./src/useAxios/index.md?type=meta 5:13-136
+ @ ./.dumi/tmp-production/dumi/meta/index.ts 5:0-149 12:17-20 13:9-13 14:11-15 15:11-14
+ @ ./.dumi/tmp-production/dumi/meta/runtime.ts
+ @ ./.dumi/tmp-production/core/plugin.ts 4:0-52 15:11-19
+ @ ./.dumi/tmp-production/umi.ts 10:0-52 24:26-45
+
+ERROR in ./src/useQuery/Demo/Concurrent.tsx?techStack=react 9:0-35
+Module not found: Error: Can't resolve 'wwhooks' in 'D:\ownerCode\wwhooks\packages\request\src\useQuery\Demo'
+ @ ./src/useQuery/index.md?type=meta 71:13-141
+ @ ./.dumi/tmp-production/dumi/meta/index.ts 7:0-149 24:17-20 25:9-13 26:11-15 27:11-14
+ @ ./.dumi/tmp-production/dumi/meta/runtime.ts
+ @ ./.dumi/tmp-production/core/plugin.ts 4:0-52 15:11-19
+ @ ./.dumi/tmp-production/umi.ts 10:0-52 24:26-45
+
+ERROR in ./src/useQuery/Demo/Deps.tsx?techStack=react 10:0-35
+Module not found: Error: Can't resolve 'wwhooks' in 'D:\ownerCode\wwhooks\packages\request\src\useQuery\Demo'
+ @ ./src/useQuery/index.md?type=meta 27:13-135
+ @ ./.dumi/tmp-production/dumi/meta/index.ts 7:0-149 24:17-20 25:9-13 26:11-15 27:11-14
+ @ ./.dumi/tmp-production/dumi/meta/runtime.ts
+ @ ./.dumi/tmp-production/core/plugin.ts 4:0-52 15:11-19
+ @ ./.dumi/tmp-production/umi.ts 10:0-52 24:26-45
+
+ERROR in ./src/useQuery/Demo/ParamsRequest.tsx?techStack=react 10:0-35
+Module not found: Error: Can't resolve 'wwhooks' in 'D:\ownerCode\wwhooks\packages\request\src\useQuery\Demo'
+ @ ./src/useQuery/index.md?type=meta 5:13-144
+ @ ./.dumi/tmp-production/dumi/meta/index.ts 7:0-149 24:17-20 25:9-13 26:11-15 27:11-14
+ @ ./.dumi/tmp-production/dumi/meta/runtime.ts
+ @ ./.dumi/tmp-production/core/plugin.ts 4:0-52 15:11-19
+ @ ./.dumi/tmp-production/umi.ts 10:0-52 24:26-45
+
+ERROR in ./src/useQuery/Demo/PollginInterval.tsx?techStack=react 11:0-35
+Module not found: Error: Can't resolve 'wwhooks' in 'D:\ownerCode\wwhooks\packages\request\src\useQuery\Demo'
+ @ ./src/useQuery/index.md?type=meta 49:13-146
+ @ ./.dumi/tmp-production/dumi/meta/index.ts 7:0-149 24:17-20 25:9-13 26:11-15 27:11-14
+ @ ./.dumi/tmp-production/dumi/meta/runtime.ts
+ @ ./.dumi/tmp-production/core/plugin.ts 4:0-52 15:11-19
+ @ ./.dumi/tmp-production/umi.ts 10:0-52 24:26-45
+
+ERROR in ./.dumi/tmp-production/core/route.tsx 69:23-145
+Module not found: Error: [CaseSensitivePathsPlugin] `D:\ownerCode\wwhooks\packages\request\src\useMutation\README.md` does not match the corresponding path on disk `readme.md`
+ @ ./.dumi/tmp-production/umi.ts 9:0-41 26:17-26
+
+ERROR in ./.dumi/tmp-production/dumi/meta/index.ts 6:0-153
+Module not found: Error: [CaseSensitivePathsPlugin] `D:\ownerCode\wwhooks\packages\request\src\useMutation\README.md` does not match the corresponding path on disk `readme.md`
+ @ ./.dumi/tmp-production/dumi/meta/runtime.ts
+ @ ./.dumi/tmp-production/core/plugin.ts 4:0-52 15:11-19
+ @ ./.dumi/tmp-production/umi.ts 10:0-52 24:26-45
+
+ERROR in ./src/useAxios/index.ts 5:0-26
+Module not found: Error: Can't resolve 'axios' in 'D:\ownerCode\wwhooks\packages\request\src\useAxios'
+ @ ./src/useAxios/Demo/throttle.tsx?techStack=react 3:0-26 13:16-24
+ @ ./src/useAxios/index.md?type=meta
+ @ ./.dumi/tmp-production/dumi/meta/index.ts 5:0-149 12:17-20 13:9-13 14:11-15 15:11-14
+ @ ./.dumi/tmp-production/dumi/meta/runtime.ts
+ @ ./.dumi/tmp-production/core/plugin.ts 4:0-52 15:11-19
+ @ ./.dumi/tmp-production/umi.ts 10:0-52 24:26-45
+
+ERROR in ./src/useAxios/index.ts 6:0-64
+Module not found: Error: Can't resolve '../../..' in 'D:\ownerCode\wwhooks\packages\request\src\useAxios'
+ @ ./src/useAxios/Demo/throttle.tsx?techStack=react 3:0-26 13:16-24
+ @ ./src/useAxios/index.md?type=meta
+ @ ./.dumi/tmp-production/dumi/meta/index.ts 5:0-149 12:17-20 13:9-13 14:11-15 15:11-14
+ @ ./.dumi/tmp-production/dumi/meta/runtime.ts
+ @ ./.dumi/tmp-production/core/plugin.ts 4:0-52 15:11-19
+ @ ./.dumi/tmp-production/umi.ts 10:0-52 24:26-45
+
+webpack compiled with 11 errors
+    at D:\ownerCode\wwhooks\node_modules\.pnpm\@umijs+bundler-webpack@4.0.50_hmx7aecmdawu2a5ck5guk5ltle\node_modules\@umijs\bundler-webpack\dist\build.js:87:18
+    at finalCallback (D:\ownerCode\wwhooks\node_modules\.pnpm\@umijs+bundler-webpack@4.0.50_hmx7aecmdawu2a5ck5guk5ltle\node_modules\@umijs\bundler-webpack\compiled\webpack\index.js:61916:32)
+    at D:\ownerCode\wwhooks\node_modules\.pnpm\@umijs+bundler-webpack@4.0.50_hmx7aecmdawu2a5ck5guk5ltle\node_modules\@umijs\bundler-webpack\compiled\webpack\index.js:61933:13
+    at Hook.eval [as callAsync] (eval at create (D:\ownerCode\wwhooks\node_modules\.pnpm\@umijs+bundler-utils@4.0.50\node_modules\@umijs\bundler-utils\compiled\tapable\index.js:1:7682), <anonymous>:35:1)
+    at Hook.CALL_ASYNC_DELEGATE [as _callAsync] (D:\ownerCode\wwhooks\node_modules\.pnpm\@umijs+bundler-utils@4.0.50\node_modules\@umijs\bundler-utils\compiled\tapable\index.js:1:4851)
+    at onCompiled (D:\ownerCode\wwhooks\node_modules\.pnpm\@umijs+bundler-webpack@4.0.50_hmx7aecmdawu2a5ck5guk5ltle\node_modules\@umijs\bundler-webpack\compiled\webpack\index.js:61931:21)
+    at D:\ownerCode\wwhooks\node_modules\.pnpm\@umijs+bundler-webpack@4.0.50_hmx7aecmdawu2a5ck5guk5ltle\node_modules\@umijs\bundler-webpack\compiled\webpack\index.js:62671:17
+    at _next0 (eval at create (D:\ownerCode\wwhooks\node_modules\.pnpm\@umijs+bundler-utils@4.0.50\node_modules\@umijs\bundler-utils\compiled\tapable\index.js:1:7682), <anonymous>:16:1)
+    at eval (eval at create (D:\ownerCode\wwhooks\node_modules\.pnpm\@umijs+bundler-utils@4.0.50\node_modules\@umijs\bundler-utils\compiled\tapable\index.js:1:7682), <anonymous>:26:1)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+fatal - A complete log of this run can be found in:
+fatal - D:\ownerCode\wwhooks\packages\request\node_modules\.cache\logger\umi.log
+fatal - Consider reporting a GitHub issue on https://github.com/umijs/dumi/issues
+Waiting for the debugger to disconnect...
+ ELIFECYCLE  Command failed with exit code 1.
+Waiting for the debugger to disconnect...
+ ELIFECYCLE  Command failed with exit code 1.
+Waiting for the debugger to disconnect...
