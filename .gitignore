@@ -35,3 +35,7 @@ packages/wwhooks/docs-dist/umi.server.js
 .dumi/tmp-test
 .dumi/tmp-production
 .DS_Store
+.turbo
+build/**
+dist/**
+.next/**
