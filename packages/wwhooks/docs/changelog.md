@@ -8,6 +8,8 @@ group:
 ## 待更新
 1. **useEventListener** 增加开关
 2. 增加utils方法
+1. 增加**useLatest**
+1. **useClickaway** 增加开启暂停功能。
 
 # 更新日志
 

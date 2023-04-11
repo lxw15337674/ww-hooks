@@ -1,6 +1,6 @@
 import { getTargetElement } from '../../common/dom';
-import { useEffect, useRef, useState } from 'react';
-import { Target } from '../../common/interface';
+import { useEffect, useRef } from 'react';
+import { Target, TargetElement } from '../../common/interface';
 import { useBoolean, usePersistFn } from '../..';
 
 type Options = {
@@ -16,7 +16,7 @@ export function useEventListener<T = Event>(
   handler: (e: T) => void,
   options: Options = {},
 ) {
-  const ele = useRef<null>();
+  const ele = useRef<TargetElement>();
   const [isRunning, setIsRunning] = useBoolean(false);
   useEffect(() => {
     ele.current = getTargetElement(target, window);
@@ -49,9 +49,7 @@ export function useEventListener<T = Event>(
     if (options.manual !== false) {
       run();
     }
-    return () => {
-      stop();
-    };
+    return stop;
   }, []);
   return { run, isRunning, stop };
 }
