@@ -12,15 +12,15 @@ group:
 
 ### 基本用法
 
-<code src="./Demo/index.tsx"/>
+<code src="./Demo/index.tsx"><code>
 
  ### 改变 ref
 
-<code src="./Demo/Demo2.tsx"/>
+<code src="./Demo/Demo2.tsx"><code>
 
 ### 关于滚动条
 
-<code src="./Demo/Demo3.tsx"/> 
+<code src="./Demo/Demo3.tsx"><code> 
 
 
 ### Result

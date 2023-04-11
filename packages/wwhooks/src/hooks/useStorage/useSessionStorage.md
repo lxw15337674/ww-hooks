@@ -12,11 +12,11 @@ group:
 
 ### 基本用法
 
-<code src="./Demo/useSessionStorage/index.tsx"/>
+<code src="./Demo/useSessionStorage/index.tsx"><code>
 
 ### 存储复杂类型数据
 
-<code src="./Demo/useSessionStorage/Demo2.tsx"/>
+<code src="./Demo/useSessionStorage/Demo2.tsx"><code>
 
 ## API
 

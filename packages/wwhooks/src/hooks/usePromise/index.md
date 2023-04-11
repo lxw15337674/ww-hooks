@@ -54,7 +54,7 @@ group:
 | isSuccess | request 是否处于成功状态。                                   | `boolean`                                                    |
 | status    | 请求状态，初始为`success`                                    | `loading`                                                    |
 | mutate    | 直接修改 data                                                | `React.Dispatch<React.SetStateAction<D>>`                    |
-| run       | - 手动触发 service 执行，run 的 axios 参数优先级最高。<br />- debounce 模式与 throttle 模式返回值为 `Promise<null>` | ` (config?: AxiosRequestConfig) => Promise<Error \| AxiosResponse<D>>` |
+| run       | - 手动触发 service 执行，run 的 axios 参数优先级最高。<br ><code>- debounce 模式与 throttle 模式返回值为 `Promise<null>` | ` (config?: AxiosRequestConfig) => Promise<Error \| AxiosResponse<D>>` |
 | cancel    | 取消当前请求                                                 | `() => void`                                                 |
 | flush     | 立即调用处于防抖或节流状态的函数                             | `() => Promise<Error\| AxiosResponse<D>>`                    |
 
