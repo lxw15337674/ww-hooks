@@ -1,6 +1,4 @@
-function isObject(obj: any) {
-  return Object.prototype.toString.call(obj) === '[object Object]';
-}
+import { isObject } from 'lodash';
 
 type Fn = (...args: any[]) => any;
 

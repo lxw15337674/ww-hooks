@@ -1,11 +1,20 @@
 name: Build and Deploy
-on: # 监听 master 分支上的 push 事件
+
+on:
   push:
     branches:
       - doc
       - master
+  pull_request:
+    types: [opened, reopened, synchronize,closed]
+
+permissions:
+  contents: read
+  pull-requests: write
+
 jobs:
   deploy:
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged)
     runs-on: ubuntu-20.04
     strategy:
       matrix:
@@ -28,9 +37,20 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.PUBLISH_PAGES }}
-          publish_dir: ./packages/wwhooks/docs-dist
-      # - name: Deploy wwutils
-      #   uses: peaceiris/actions-gh-pages@v3
-      #   with:
-      #     github_token: ${{ secrets.PUBLISH_PAGES }}
-      #     publish_dir: ./wwutils/docs-dist
+          publish_dir: ./packages/ww
+          name: Code Review
+
+  test:
+    # if: ${{ contains(github.event.*.labels.*.name, 'gpt review') }} # Optional; to run only when a label is attached
+    if: ${{ github.event_name == 'pull_request' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: anc95/ChatGPT-CodeReview@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          # Optional
+          LANGUAGE: Chinese
+          MODEL:
+          top_p: 1
+          temperature: 1
