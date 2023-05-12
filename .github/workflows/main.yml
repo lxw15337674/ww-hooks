@@ -6,7 +6,7 @@ on:
       - doc
       - master
   pull_request:
-    types: [opened, reopened, synchronize]
+    types: [opened, reopened, synchronize,closed]
 
 permissions:
   contents: read
@@ -14,6 +14,7 @@ permissions:
 
 jobs:
   deploy:
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged)
     runs-on: ubuntu-20.04
     strategy:
       matrix:
@@ -40,7 +41,8 @@ jobs:
           name: Code Review
 
   test:
-    if: ${{ contains(github.event.*.labels.*.name, 'gpt review') }} # Optional; to run only when a label is attached
+    # if: ${{ contains(github.event.*.labels.*.name, 'gpt review') }} # Optional; to run only when a label is attached
+    if: ${{ github.event_name == 'pull_request' }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
