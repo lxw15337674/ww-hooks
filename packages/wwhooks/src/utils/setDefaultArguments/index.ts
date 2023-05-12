@@ -1,5 +1,6 @@
 function isObject(obj: any) {
-  return Object.prototype.toString.call(obj) === '[object Object]';
+  // return Object.prototype.toString.call(obj) === '[object Object]';
+  return true;
 }
 
 type Fn = (...args: any[]) => any;
