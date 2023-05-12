@@ -1,9 +1,17 @@
 name: Build and Deploy
-on: # 监听 master 分支上的 push 事件
+
+on:
   push:
     branches:
       - doc
       - master
+  pull_request:
+    types: [opened, reopened, synchronize]
+
+permissions:
+  contents: read
+  pull-requests: write
+
 jobs:
   deploy:
     runs-on: ubuntu-20.04
@@ -31,50 +39,24 @@ jobs:
           publish_dir: ./packages/ww
           name: Code Review
 
-permissions:
-  contents: read
-  pull-requests: write
-
-on:
-  pull_request:
-    types: [opened, reopened, synchronize]
-
-jobs:
   test:
     if: ${{ contains(github.event.*.labels.*.name, 'gpt review') }} # Optional; to run only when a label is attached
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14, 16]
     steps:
-      - uses: anc95/ChatGPT-CodeReview@main
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          # Optional
-          LANGUAGE: Chinese
-          MODEL:
-          top_p: 1
-          temperature: 1docs-dist
-      # - name: Deploy wwutils
-      #   uses: peaceiris/actions-gh-pages@v3
-      #   with:
-      #     github_token: ${{ secrets.PUBLISH_PAGES }}
-      #     publish_dir: ./wwutils/docs-dist
-
-name: Code Review
-
-permissions:
-  contents: read
-  pull-requests: write
-
-on:
-  pull_request:
-    types: [opened, reopened, synchronize]
-
-jobs:
-  test:
-    if: ${{ contains(github.event.*.labels.*.name, 'gpt review') }} # Optional; to run only when a label is attached
-    runs-on: ubuntu-latest
-    steps:
-      - uses: anc95/ChatGPT-CodeReview@main
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install dependencies
+        run: npm install
+      - name: Run tests
+        run: npm test
+      - name: Code Review
+        uses: anc95/ChatGPT-CodeReview@main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
