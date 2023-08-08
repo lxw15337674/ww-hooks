@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { useBoolean, useThrottleFn } from 'wwhooks';
-// import { useBoolean, useThrottleFn } from '../../../';
 
 export default () => {
   const [count, setCount] = useState<number>(0);
   const [leading, leadingToggle] = useBoolean(false);
   const [trailing, trailingToggle] = useBoolean(true);
-  const { run, cancel, flush } = useThrottleFn<() => void>(
+  const [run, { cancel, flush }] = useThrottleFn<() => void>(
     () => {
       setCount((state) => ++state);
     },

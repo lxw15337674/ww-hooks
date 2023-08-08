@@ -3,15 +3,27 @@ group:
   order: 0 
 ---
 
-# 更新内容
-
-## 待更新
-1. **useEventListener** 增加开关
-2. 增加utils方法
-1. 增加**useLatest**
-1. **useClickaway** 增加开启暂停功能。
-
 # 更新日志
+
+## [2.0.0] 2023/08/08
+
+1. `useEventListener`增加开关
+2. 增加`utils`方法
+3. 新增`useWhyDidYouUpdate` `useFocus` `useLatest`
+4. `useClickaway` 增加开启暂停功能。
+5. 调整`useDebounceFn`，`useThrottleFn`,`useTimeoutFn` 返回值。
+6. 修复 `usePromise` bug。
+7. `useClickaway` 增加开启暂停功能。
+
+
+
+## [1.1.1] 2023/01/20
+
+#### Added
+
+- 增加**useLatest**
+
+更新useReactive、useupdateEffect文档。
 
 ## [1.1.2] 2023/01/20
 

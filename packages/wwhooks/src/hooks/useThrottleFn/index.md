@@ -15,11 +15,10 @@ group:
 ## API
 
 ```typescript
-const {
-  run,
+const [run,{
   cancel,
   flush
-} = useThrottleFn(
+}] = useThrottleFn(
   fn: T,
   wait:number,
   options?: Options

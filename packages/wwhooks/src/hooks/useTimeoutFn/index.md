@@ -12,6 +12,17 @@ group:
 
 <code src="./Demo/index.tsx" ></code>
 
+## API
+
+```typescript
+const [run,{
+  waiting,
+  cancel
+}] = useTimeoutFn(
+  fn: T,
+  delay
+);
+```
 ### Generics
 
 | **参数** | **说明**     | 继承    | 默认值  |

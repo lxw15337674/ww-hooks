@@ -42,3 +42,8 @@ export * from './hooks/useLatest';
 export * from './utils/colSpan';
 export * from './utils/IsType';
 export * from './utils/setDefaultArguments';
+export * from './hooks/useControllableValue';
+export * from './hooks/useFocus';
+export * from './hooks/useMouse';
+export * from './hooks/useWhyDidYouUpdate';
+

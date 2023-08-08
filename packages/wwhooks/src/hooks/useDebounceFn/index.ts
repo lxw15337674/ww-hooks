@@ -1,7 +1,8 @@
 import { Fn } from '../../common/interface';
-import { useMemo, useRef } from 'react';
+import { useMemo } from 'react';
 import useUnmount from '../useUnmount';
 import { debounce } from 'lodash';
+import usePersistFn from '../usePersistFn';
 interface DebounceSettings {
   leading?: boolean | undefined;
   maxWait?: number | undefined;
@@ -10,24 +11,22 @@ interface DebounceSettings {
 
 export function useDebounceFn<T extends Fn = Fn>(
   fn: T,
-  wait?: number,
+  wait = 1000,
   options?: DebounceSettings,
 ) {
-  const fnRef = useRef<T>(fn);
-  fnRef.current = fn;
-
+  const fnRef = usePersistFn(fn);
   const debouncedFn = useMemo(() => {
-    return debounce<T>(fnRef.current, wait ?? 1000, options);
-  }, [wait, fnRef, options]);
+    return debounce<T>(fnRef, wait, options);
+  }, [wait, options]);
 
   useUnmount(() => {
     debouncedFn.cancel();
   });
-  return {
-    run: debouncedFn,
+  const funcs = {
     cancel: debouncedFn.cancel,
     flush: debouncedFn.flush,
   };
+  return [debouncedFn, funcs] as const;
 }
 
 export default useDebounceFn;

@@ -57,6 +57,7 @@ group:
 | run       | - 手动触发 service 执行，run 的 axios 参数优先级最高。<br ><code>- debounce 模式与 throttle 模式返回值为 `Promise<null>` | ` (config?: AxiosRequestConfig) => Promise<Error \| AxiosResponse<D>>` |
 | cancel    | 取消当前请求                                                 | `() => void`                                                 |
 | flush     | 立即调用处于防抖或节流状态的函数                             | `() => Promise<Error\| AxiosResponse<D>>`                    |
+| resetData     | 重置数据为初始值                             | ` () => void`                    |
 
 ### Params
 

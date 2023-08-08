@@ -5,7 +5,7 @@ export default () => {
   const [count, setCount] = useState<number>(0);
   const [leading, leadingToggle] = useState(false);
   const [trailing, trailingToggle] = useState(true);
-  const { run, cancel, flush } = useDebounceFn<() => void>(
+  const [run, { cancel, flush }] = useDebounceFn<() => void>(
     () => {
       setCount((state) => ++state);
     },

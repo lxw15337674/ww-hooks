@@ -21,10 +21,12 @@ export function useThrottleFn<T extends Fn = Fn>(
   useUnmount(() => {
     throttledFn.cancel();
   });
-  return {
-    run: throttledFn,
-    cancel: throttledFn.cancel,
-    flush: throttledFn.flush,
-  };
+  return [
+    throttledFn,
+    {
+      cancel: throttledFn.cancel,
+      flush: throttledFn.flush,
+    },
+  ] as const;
 }
 export default useThrottleFn;
