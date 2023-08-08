@@ -34,7 +34,7 @@
       "prettier --parser=typescript --write"
     ]
   },
-  "dependencies": {
+  "devDependencies": {
     "lodash": "^4.17.21"
   },
   "peerDependencies": {
