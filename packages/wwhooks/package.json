@@ -4,7 +4,7 @@
   "scripts": {
     "start": "dumi dev",
     "dev": "dumi dev",
-    "docs:build": "dumi build",
+    "docs": "dumi build",
     "docs:deploy": "gh-pages -d docs-dist",
     "build": "father build",
     "build:watch": "father dev",

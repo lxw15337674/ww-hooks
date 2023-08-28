@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "turbo run dev --filter wwhooks",
     "build:wwhooks": "turbo run build --filter wwhooks",
-    "docs:wwhooks": "turbo run docs:build --filter wwhooks"
+    "docs:wwhooks": "turbo run docs --filter wwhooks"
   },
   "files": [
     "dist",

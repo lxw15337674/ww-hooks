@@ -12,9 +12,6 @@
       ]
     },
     "docs": {
-      "dependsOn": [
-        "build"
-      ],
       "inputs": [
         "docs-dist/**"
       ]
