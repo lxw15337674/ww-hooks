@@ -3,16 +3,39 @@
   "pipeline": {
     "dev": {},
     "build": {
-      "dependsOn": ["^build"],
-      "outputs": [".next/**", "!.next/cache/**"]
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": [
+        ".next/**",
+        "!.next/cache/**"
+      ]
+    },
+    "docs": {
+      "dependsOn": [
+        "build"
+      ],
+      "inputs": [
+        "docs-dist/**"
+      ]
     },
     "test": {
-      "dependsOn": ["build"],
-      "inputs": ["src/**/*.tsx", "src/**/*.ts", "test/**/*.ts", "test/**/*.tsx"]
+      "dependsOn": [
+        "build"
+      ],
+      "inputs": [
+        "src/**/*.tsx",
+        "src/**/*.ts",
+        "test/**/*.ts",
+        "test/**/*.tsx"
+      ]
     },
     "lint": {},
     "deploy": {
-      "dependsOn": ["build", "lint"]
+      "dependsOn": [
+        "build",
+        "lint"
+      ]
     }
   }
 }
