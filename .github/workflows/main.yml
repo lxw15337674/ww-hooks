@@ -37,8 +37,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.PUBLISH_PAGES }}
-          publish_dir: ./packages/ww
-          name: Code Review
+          publish_dir: ./packages/wwhooks/docs-dist
 
   test:
     # if: ${{ contains(github.event.*.labels.*.name, 'gpt review') }} # Optional; to run only when a label is attached
