@@ -46,4 +46,4 @@ export * from './hooks/useControllableValue';
 export * from './hooks/useFocus';
 export * from './hooks/useMouse';
 export * from './hooks/useWhyDidYouUpdate';
-
+export * from './hooks/useFps'
