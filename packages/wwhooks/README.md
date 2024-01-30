@@ -2,7 +2,7 @@
 
 [文档](https://lxw15337674.github.io/ww-hooks/)
 
-当前版本:1.1.1
+当前版本:2.1.2
 
 # todo
 
@@ -13,7 +13,6 @@
   - [ ] 支持存到sessionStorage
 - [ ] usePromise 支持数据持久化
 - [ ] [useworker](https://juejin.cn/post/7126174907477688328)
-- [ ] 依照[pinia](https://juejin.cn/post/7078281612013764616)语法实现useStore
 
 
 ## list
