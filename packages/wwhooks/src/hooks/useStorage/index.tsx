@@ -64,7 +64,7 @@ function useLocalStorage<T>(
   defaultValue?: InitialState<T>,
   options?: useStorageOptions<T>,
 ) {
-  return useStorage(key, defaultValue, options, localStorage);
+  return useStorage<T>(key, defaultValue, options, localStorage);
 }
 
 function useSessionStorage<T>(
@@ -72,7 +72,7 @@ function useSessionStorage<T>(
   defaultValue?: InitialState<T>,
   options?: useStorageOptions<T>,
 ) {
-  return useStorage(key, defaultValue, options);
+  return useStorage<T>(key, defaultValue, options);
 }
 
 export { useLocalStorage, useSessionStorage };
